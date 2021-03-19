@@ -1,4 +1,4 @@
-## Tech-Breadths - Tech Management
+# Tech-Breadth - Tech Management
 
 | Course                                                       |    Term    |   Professor    | Grade |
 | :----------------------------------------------------------- | :--------: | :------------: | :---: |
