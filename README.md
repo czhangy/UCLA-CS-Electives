@@ -1,6 +1,6 @@
 # Charles Zhang - GPA: 3.90 - Computer Science
 
-## Computer Science Electives
+## CS Electives
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
@@ -10,7 +10,7 @@
 | ??? | ??? | ??? |
 | ??? | ??? | ??? |
 
-## Tech-Breadth Electives - Tech Management
+## Tech-Breadths - Tech Management
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
@@ -18,7 +18,7 @@
 | ??? | ??? | ??? |
 | ??? | ??? | ??? |
 
-## Sci-Tech Electives
+## Sci-Techs
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
