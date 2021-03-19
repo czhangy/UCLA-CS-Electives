@@ -1,4 +1,4 @@
-## CS Electives
+# CS Electives
 
 | Course | Term | Professor | Grade |
 | :----- | :--: | :-------: | :---: |
