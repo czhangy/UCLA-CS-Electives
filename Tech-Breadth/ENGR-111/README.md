@@ -2,6 +2,6 @@
 
 # Bulu-Taciroglu - Spring '21
 
-## Overall: PL | Raw Percentage: PL
+## Overall: IP | Raw Percentage: IP
 
 ## Grading
