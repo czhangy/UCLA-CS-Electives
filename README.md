@@ -1,4 +1,4 @@
-# Charles Zhang - GPA: 3.90 - Computer Science
+# Charles Zhang - GPA: 3.92 - Computer Science
 
 ## CS Electives
 
@@ -14,7 +14,7 @@
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
-| ENGR 111 | Spring '21 | PL |
+| ENGR 111 | Spring '21 | IP |
 | ??? | ??? | ??? |
 | ??? | ??? | ??? |
 
