@@ -5,3 +5,12 @@
 ## Overall: IP | Raw Percentage: IP
 
 ## Grading
+
+|       Category        | Percentage |
+| :-------------------: | :--------: |
+|       Homeworks       |    25%     |
+|      Group Paper      |    20%     |
+| Online Poll Questions |    15%     |
+|  Current Event Posts  |    10%     |
+|         Final         |    30%     |
+
