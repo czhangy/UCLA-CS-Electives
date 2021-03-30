@@ -4,3 +4,6 @@
 
 [TOC]
 
+## Lecture 1: 
+
+- 
