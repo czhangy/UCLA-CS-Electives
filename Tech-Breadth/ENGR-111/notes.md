@@ -24,7 +24,7 @@
         - Equity - the owner's money, friends, family, other investors, etc.
           - Include intellectually aligned people as the first investors
           - Doesn't have to be paid back, will be involved in decision-making
-    - How should short-term assets be managed and financed? - **networking capital**
+    - How should short-term assets be managed and financed? - **net working capital**
       - Refers to the difference between the funding of the company (capital structure) and the short-term buffer zone of assets
       - Dealing with day-to-day business
 - What would you think about before investing in a company?
@@ -44,7 +44,7 @@
     - **Asset** - anything the company owns (cash, equipment, etc.)
   - Looks at the company at one point in time
     - Like a picture of their finances at a single moment
-    - Asks how much of it comes from capital budgeting, capital structure, and networking capital
+    - Asks how much of it comes from capital budgeting, capital structure, and net working capital
   - LHS: total value of assets
     - **Current assets** - the assets that can be turned into cash in a short period of time (within 1 year)
       - Short-term assets
@@ -80,7 +80,7 @@
   - Long-term debt + Shareholders' equity => how should the firm raise funds for the selected investments? => capital structure
     - Depends on the industry, age of the company, risk aversion level, etc.
     - What portion of the company is funded by debt/what portion is funded by equity?
-  - Current liabilities + Current assets => how should short-term assets be managed and financed => networking capital
+  - Current liabilities + Current assets => how should short-term assets be managed and financed => net working capital
     - **Current assets** - anything that can be and is intended to be liquidated in 1 year without major loss in value
     - Companies should operate with positive NWC => difference between current assets and current liabilities
       - May be negative for a period of time after situations involving massive cash outflow
@@ -132,7 +132,190 @@
 
 
 
-## Reading 1:
+## Reading 1: Introduction to Corporate Finance
+
+- What is Corporate Finance?
+  - In starting a firm, you make in investment in assets like inventory, machinery, land, and labor while matching that investment with cash raised through financing => basis of value creation
+  - The Balance Sheet Model of the Firm
+    - Financial snapshot of the firm and its activities at a single point in time
+    - Assets of the firm located on the LHS of the balance sheet
+      - Separated into current and fixed
+        - Fixed assets are those that last a long time
+          - Some fixed assets are tangible, like machinery and equipment
+          - Some fixed assets are intangible, like patents and trademarks
+        - Current assets have short lives, like inventory
+    - Forms of financing are located on the RHS of the balance sheet
+      - Firms issue debt (loan agreements) or equity shares (stock certificates)
+      - Liabilities also classified as long or short-lived
+        - Short-term debts are current liabilities, loans and other obligations that must be repaid in 1 year
+        - Long-term debts are debts that do not have to be repaid in 1 year
+      - Shareholders' equity represents the difference between the value of the assets and the debt of the firm
+        - It is a residual claim of the firm's assets
+    - Finance is a study of the following 3 questions:
+      - What long-lived assets should the firm invest? (LHS)
+        - Capital budgeting => the process of making and managing expenditures on long-lived assets
+      - How can the firm raise cash for required capital expenditures? (RHS)
+        - Capital structure => represents the proportions of the firm's financing from current and long-term debt and equity
+      - How should short-term operating cash flows be managed? (Upper)
+        - Uncertainty/mismatch of cash inflows and outflows
+          - Source of cash-flow problems
+        - Net working capital => current assets minus current liabilities
+  - The Financial Manager
+    - Finance activity usually associated with a top officer (VP/CFO)
+    - Treasurer and controller report to the CFO
+      - Treasurer responsible for handling cash flows, managing capital expenditure decisions, and making financial plans
+      - Controller handles the accounting function (taxes, cost, and financial accounting) and information systems
+- The Corporate Firm
+  - Firm is a way of organizing the economic activity of many individuals
+  - Basic problem of the firm is how to raise cash
+    - Standard method is the corporate form of business - organizing the firm as a corporation
+  - The Sole Proprietorship
+    - **Sole proprietorship** - business owned by 1 person
+      - The sole proprietorship is the cheapest business to form
+        - No formal chapter required
+        - Few government regulations must be satisfied
+      - Sole proprietorship pays no corporate income taxes
+        - All profits taxed as individual income
+      - The sole proprietorship has unlimited liability for business debts and obligations
+        - No distinction is made between personal and business assets
+      - The life of the sole proprietorship is limited by the life of the sole proprietor
+      - Equity money that can be raised by the sole proprietor is limited to the proprietor's personal wealth
+  - The Partnership
+    - **Partnership** - 2+ people get together
+    - 2 types of partnerships: general and limited
+      - **General partnership** - all partners agree to provide some fraction of the work and cash and to share the profits and losses
+        - Each partner is liable for all of the debts of the partnership
+        - Agreement may be formal or oral
+      - **Limited partnership** - permits liability of some of the partners to be limited to the amount of cash each contributed to the partnership
+        - At least 1 partner is a general partner
+        - The limited partners do no participate in managing the business
+    - Partnerships are usually inexpensive/easy to form
+      - Written documents required for complicated agreements
+      - Business licenses and filing fees may be necessary
+    - General partners have unlimited liability for all debts
+      - If 1 general partner is unable to meet his/her commitment, the shortfall must be made up for by the other partners
+    - The general partnership is terminated when a general partner dies or withdraws
+      - Difficult for a partnership to transfer ownership without dissolving
+      - Limited partners may sell their interest in a business
+    - Difficult for a partnership to raise large amounts of cash
+      - Equity contributions are usually limited to a partner’s ability and desire to contribute to the partnership
+    - Income from a partnership is taxed as personal income to the partners
+    - Management control resides with the general partners
+      - Usually a majority vote is required on important matters, such as the amount of profit to be retained in the business
+  - The Corporation
+    - **Corporation** - distinct legal entity
+      - Can have a name and enjoy legal powers of natural persons
+      - More complicated to start than proprietorships or partnerships
+        - Incorporators must prepare articles of incorporation and a set of bylaws
+          - Name of the corporation
+          - Intended life of the corporation
+          - Business purpose
+          - Number of shares of stock that the corporation is authorized to issue, with a statement of limitations and rights of different classes of shares
+          - Nature of the rights granted to shareholders
+          - Number of members of the initial board of directors
+          - Bylaws are rules to be used by the corporation to regulate its own existence
+      - Comprises 3 sets of distinct interests: shareholders, directors, and corporation officers
+        - Shareholders control corporation's direction, policies, and activities
+          - They elect a board of directors who appoint top management
+        - Top management manage the operations of the corporation in the best interest of the shareholders
+        - May be large overlap in smaller corporations
+      - Ownership can be readily transferred to new owners
+        - No limit to the transferability of shares
+      - Corporation has unlimited life
+        - Separate from owners, death/withdrawal doesn't affect the legal existence of the corporation
+      - Shareholders' liability limited to the amount invested in the ownership shares
+      - Major advantages: limited liability, ease of ownership transfer, and perpetual succession
+      - Major disadvantage: federal government taxes corporate income
+        - In addition to other taxes that shareholders pay
+    - Creation of new business organization: LLC (limited liability company)
+      - Goal is to operate/be taxed like a partnership by retain limited liability for owners
+      - IRS can treat LLCs as corporations unless they meet given criteria
+      - Popular amongst large accounting firms and law firms
+  - A Corporation by Another Name...
+    - Variations of the corporate form of organization include joint stock companies, public limited companies, or limited liability companies
+- The Importance of Cash Flows
+  - Most important job of a financial manager is to create value from the firm’s capital budgeting, financing, and net working capital activities
+    - Try to buy assets that generate more cash than they cost
+    - Sell bonds and stocks and other financial instruments that raise more cash than they cost
+    - In essence, the firm must create more cash flow than it uses
+      - Cash flows paid to bondholders and stockholders of the firm should be greater than the cash flows they put into the firm
+  - Identification of Cash Flows
+    - Sometimes not easy to identify cash flows
+    - Much of the information we obtain is within accounting statements
+      - Extraction of cash flow information from these statements is the work of financial analysis
+  - Timing of Cash Flows
+    - The value of an investment made by a firm depends on the timing of cash flows
+    - Individuals prefer to receive cash flows earlier rather than later
+  - Risk of Cash Flows
+    - The amount and timing of cash flows are not usually known with certainty
+    - Most investors have an aversion to risk
+- The Goal of Financial Management
+  - The goal of financial management is to make money or add value for the owners
+  - Possible Goals
+    - Survive
+    - Avoid financial distress and bankruptcy
+    - Beat the competition
+    - Maximize sales or market share
+    - Minimize costs
+    - Maximize profits
+    - Maintain steady earnings growth
+    - These are not precise, presents problems as a goal for the financial manager
+    - Goals tend to fall into 2 classes
+      - Profitability - earning or increasing profits
+        - Sales, market share, cost control
+      - Controlling risk 
+        - Bankruptcy avoidance, stability, and safety
+      - Tend to be contradictory, need a goal that encompasses both factors
+  - The Goal of Financial Management
+    - What is a good financial management decision?
+      - Good decisions increase the value of the stock, and poor decisions decrease the value of the stock
+    - Goal: maximize the current value per share of the existing stock
+      - No ambiguity, no short-run vs. long-run debate
+      - Since stockholders are paid after everyone else, if they're winning, so is everyone else
+  - A More General Goal
+    - What is the appropriate goal when the firm has no traded stock
+    - More general goal: maximize the value of the existing owners' equity
+      - Doesn't include illegal/unethical action
+      - Financial manager best serves the owners of the business by identifying goods and services that add value to the firm because they are desired and valued in the free marketplace
+- The Agency Problem and Control of the Corporation
+  - In large corporations, ownership can be spread over a huge number of stockholders
+    - Management effectively controls the firm
+    - Will management pursue its own goals at the stockholders' expense?
+  - Agency Relationships
+    - **Agency relationship** - the relationship between stockholders and management
+      - Possibility for a conflict of interest between the principal (hirer) and the agent (hired) - **agency problem**
+        - May be affected by method of compensation
+  - Management Goals
+    - **Agency cost** - the costs of the conflict of intereset between stockholders and management
+      - Can be indirect or direct
+        - Indirect costs include lost opportunities
+        - Direct costs come in 2 forms
+          - Corporate expenditure that benefits management but costs the stockholders
+          - Expense that arises from the need to monitor management actions
+    - Left to themselves, managers would tend to maximize the amount of resources over which have control (corporate power/wealth)
+      - Could lead to overemphasis on corporate size or growth
+  - Do Managers Act in the Stockholders' Interests?
+    - Depends on 2 factors:
+      - How closely are management goals aligned with stockholder goals?
+        - Partially dependent on manner of compensation
+      - Can managers be replaced if they do not pusue stockholder goals?
+    - Managerial Compensation
+      - Management will frequently have a significant economic incentive to increase share value for two reasons:
+        - Managerial compensation is usually tied to financial performance in general and share value in particular
+          - Able to buy stock at a bargain price => leads to dependence on increasing stockholders' value
+        - Job prospects
+          - Better performers in the firm will get promoted
+          - Managers who are more successful in pursuing stockholder goals will be in greater demand in the labor market => they command larger salaries
+    - Control of the Firm
+      - Ultimately rests with stockholders => they elect directors who hire and fire management
+      - **Proxy fight** - valuable mechanism by which a group solicits proxies to replace the existing board and thereby replace existing management
+        - **Proxy** - the authority to vote someone else's stock
+      - Firms that are poorly managed are more vulnerable to takeover
+        - Greater profit potential exists
+    - Stockholders control the firm and stockholder wealth maximization is the relevant goal of the corporation
+      - Management goals may still be pursued at the expense of the stockholders
+
+## **Reading 2: Financial Statements and Cash Flow**
 
 - 
 
