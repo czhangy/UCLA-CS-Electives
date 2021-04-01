@@ -48,10 +48,12 @@
   - LHS: total value of assets
     - **Current assets** - the assets that can be turned into cash in a short period of time (within 1 year)
       - Short-term assets
+      - Liquid assets
+      - Definition may change based on industry
     - **Fixed assets**
       - Long-term assets
       - Intangible vs. Tangible
-  - RHS: total firm value to investors
+  - RHS: total firm value to investors (sometimes found below LHS)
     - **Current liabilities** - short-term debt (must be paid within 1 year)
     - **Long-term debt**
     - **Shareholders' equity**
@@ -61,6 +63,76 @@
 
 
 ## Lecture 2:
+
+- Balance Sheet Model of the Firm
+
+  - Tells us what the company has (assets) and what they owe (funds)
+  - Must be provided to the public by law
+  - RHS shows the source of the assets
+    - Owner's own money => shareholders' equity
+    - There's nothing left on the RHS, it just documents the source of the assets side
+  - LHS and RHS should always be balanced
+    - Money coming into the RHS is used to add to something on the LHS
+    - Could put it into current assets as cash, buy equipment (fixed asset) etc.
+    - When debt is paid off, it is subtracted from, the RHS
+
+  - Fixed assets => what long-term assets should the firm choose? => capital budgeting
+  - Long-term debt + Shareholders' equity => how should the firm raise funds for the selected investments? => capital structure
+    - Depends on the industry, age of the company, risk aversion level, etc.
+    - What portion of the company is funded by debt/what portion is funded by equity?
+  - Current liabilities + Current assets => how should short-term assets be managed and financed => networking capital
+    - **Current assets** - anything that can be and is intended to be liquidated in 1 year without major loss in value
+    - Companies should operate with positive NWC => difference between current assets and current liabilities
+      - May be negative for a period of time after situations involving massive cash outflow
+        - If for an extended period of time, worrisome, cannot pay back debt
+        - Should not occur if company operates at a loss as a whole
+
+- The Balance Sheet
+
+  - An accountant's snapshot of the firm's accounting value at a specific point in time
+  - The balance sheet's identity is Assets == Liabilities + Stockholder's Equity
+  - Usually compiled at the end of a quarter
+    - 10Q - quarterly, 10K - annually
+  - Current assets:
+    - Cash and equivalents
+    - Accounts receivable => companies make money off of credit, money not obtained yet
+    - Inventories => relevant for some industries, not for others
+      - World moving towards intangible production (72% in the US)
+      - Looking to sell within a year => inventory management is very important
+    - Other => shouldn't be too large to avoid SEC investigation
+    - Compare splits of LHS to the industry standard
+      - More in current assets => current assets don't make money, sub-optimal distribution
+        - Short-term - no trouble paying short-term debts
+  - Fixed assets:
+    - Record everything at cost
+    - Use straight-line depreciation to model depreciation of fixed assets
+      - Linear depreciation recorded in less accumulated depreciation
+    - Intangible assets - IPs, service sector, etc.
+      - **Amortization** - depreciation of intangible assets
+  - Liabilities
+    - Current Liabilities
+      - Accounts payable
+        - Amount of supply you haven't paid for yet
+      - Notes payable == short-term debt
+        - Borrowed money
+      - Accrued expenses
+        - Utilities
+    - Long-term liabilities
+      - Deferred taxes - pre-arranged delay of tax-paying
+      - Long-term debt - bonds
+        - Bond market is huge, traded by big institutions
+  - Stockholder's equity
+    - Preferred stock
+    - Common stock
+      - Stocks that owners sell, no promise of future payment
+    - Capital surplus
+      - Stocks + this is the total you get by selling shares
+    - Accumulated retained earnings
+      - Profit from operation
+
+
+
+## Reading 1:
 
 - 
 
