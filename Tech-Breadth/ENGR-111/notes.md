@@ -315,7 +315,109 @@
     - Stockholders control the firm and stockholder wealth maximization is the relevant goal of the corporation
       - Management goals may still be pursued at the expense of the stockholders
 
-## **Reading 2: Financial Statements and Cash Flow**
+## Reading 2: Financial Statements and Cash Flow
+
+- The Balance Sheet
+  - **Balance sheet** - an accountant's snapshot of a firm's accounting value on a particular date
+    - 2 sides: assets on the LHS and liabilities/stockholder's equity on the RHS
+    - `Assets = Liabilities + Stockholders' equity`
+      - Must always hold, by definition
+      - Stockholders' equity is defined to be the difference between assets and the liabilities of the firm
+        - Equity is what the stockholders are left with after the firm has satisfied its obligations
+    - 3 concerns: liquidity, debt vs. equity, and value vs. cost
+  - Liquidity
+    - **Liquidity** - the ease and quickness with which assets can be converted to cash (without significant loss in value)
+      - **Current assets** - cash and assets that can be turned into cash within a year
+        - Most liquid
+      - **Accounts receivable** - amounts not yet collected from customers for goods or services sold to them
+      - **Inventory** - composed of raw materials to be used in production, work in process, and finished goods
+      - **Fixed assets**
+        - Least liquid kind of assets
+        - Tangible fixed assets include property, plant, and equipment
+        - Intangible fixed assets include trademarks and patents
+        - Do not convert to cash from normal business activity, not usually used to pay expenses such as payroll
+      - More liquid assets translate to easier time meeting short-term obligations
+        - Probability that a firm will avoid financial distress can be linked to its liquidity
+        - Liquid assets have lower rates of return than fixed assets
+        - Sacrifice liquidity for profit
+  - Debt vs. Equity
+    - **Liabilities** - obligations of the firm that require a payout within a stipulated period
+      - Many involve contractual obligations to repay a stated amount and interest over a period
+      - Frequently associated with nominally fixed cash burdens  (**debt service**) that put the firm in default of a contract if not paid
+    - **Stockholders' equity** - claim against the firm's assets that is residual and not fixed
+      - Accounting value increases when retained earnings are added
+  - Value vs. Cost
+    - **Carrying value**/**book value** - the accounting value of a firm's assets
+    - Under generally accepted accounting principles (GAAP), audited financial statements of firms in the US carry assets at cost
+    - **Market value** - price at which buyers and sellers would trade the assets
+      - Coincidence if accounting value and market value were the same
+      - Management's job is to create value for the firm that exceeds its cost
+- The Income Statement
+  - **Income Statement** - measures performance over a specific period
+  - `Revenue - Expenses = Income`
+  - Balance sheet is a snapshot, the income statement is a video recording of what happened between 2 snapshots
+  - Several sections:
+    - Operations section reports the firm's revenues and expenses from principal operations
+      - EBIT (earnings before interest and taxes)
+    - Non-operating section includes all financing costs, such as interest expense
+      - Second section reports as a separate item the amount of taxes levied on income
+    - Last item is the bottom line - net income
+      - Expressed per share of common stock (earnings per share)
+  - Generally Accepted Accounting Principles
+    - Revenue is recognized on an income statement when the earnings process is virtually completed and an exchange of goods or services has occurred
+      - Unrealized appreciation from owning property will not be recognized as income
+        - Allows for a device to smooth income
+    - Matching principle of GAAP dictates that revenues be matched with expenses
+      - Income is reported when it is earned, regardless of if cash flow occurred
+  - Noncash Items
+    - **Noncash items** - expenses against revenues that do not affect cash flow
+    - **Depreciation** - reflection of the accountant's estimate of the cost of equipment used up in the production process
+      - Cost must be used up over the useful life of the asset
+    - **Deferred taxes** - result from difference between accounting income and true taxable income
+      - Not a cash outflow, but shows up on the balance sheet as deferred tax liability
+      - Theory is that if taxable income is less than accounting income in the current year, it will be more than accounting income later on
+    - Difference between cash flows and accounting income can be quite dramatic
+  - Time and Costs
+    - Visualize future time as having the short-run and the long-run
+      - **Short-run** - period in which certain equipment, resources, and commitments of the firm are fixed
+        - Long enough time to vary outputs
+        - Decisions in the short-run have fixed costs (costs that don't change due to fixed commitments)
+          - Bond interest, overhead, property taxes, etc.
+        - Costs that aren't fixed are variable => change as the output of the firm changes
+          - Raw materials, wages, etc.
+      - **Long-run** - all costs are variable
+        - Distinguishes product costs from period costs
+          - **Product cost** - total production costs incurred during a period and are reported on the income statement as cost of goods sold
+          - **Period cost** - costs that are allocated to a time period
+            - Selling, general, and administrative expenses
+- Taxes
+  - Can be one of the largest cash outflows a firm experiences
+  - Size of a firm's tax bill is determined by the tax code
+    - Result of political, not economic forces
+  - Corporate Tax Rates
+    - Corporate tax rates are not strictly increasing
+      - Instituted by the Tax Reform Act of 1986 and 1993 Omnibus Budget Reconciliation Act
+    - Only 4 corporate rates according to the originators of the current tax rules
+      - 15%, 25%, 34%, and 35%
+      - 38% and 39% brackets arise due to surcharges applied to the 34% and 35% rates => really 6 corporate tax brackets
+  - Average vs. Marginal Tax Rates
+    - **Average tax rate** - tax bill divided by your taxable income
+      - The percentage of your income that goes to pay taxes
+    - **Marginal tax rate** - the tax you would pay if you earned 1 more dollar
+      - Tells us the marginal effect of a decision on our tax bill
+    - **Flat-rate tax** - there is only 1 tax rate, so the rate is the same for all income levels
+      - Marginal tax == average tax rate
+      - US uses a modified flat-rate tax that becomes a true flat-rate tax at high incomes
+    - Under current tax law, average tax rates never go down despite marginal tax rates decreasing
+    - Average/marginal tax rates are 35% => federal
+- Net Working Capital
+  - `NWC = Current Assets - Current Liabilities`
+  - **Change in net working capital** - a firm can invest in NWC
+    - Usually positive in a growing firm
+
+
+
+## Lecture 3: 
 
 - 
 
