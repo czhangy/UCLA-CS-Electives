@@ -62,7 +62,7 @@
 
 
 
-## Lecture 2:
+## Lecture 2: The Balance Sheet
 
 - Balance Sheet Model of the Firm
 
@@ -129,6 +129,91 @@
       - Stocks + this is the total you get by selling shares
     - Accumulated retained earnings
       - Profit from operation
+
+
+
+## Lecture 3: Corporations
+
+- The Corporate Firm
+
+  - The corporate form of business is the standard method f-or solving the problems encounters in raising large amounts of cash
+
+  - However, businesses can take other forms
+
+  - A Comparison:
+
+    - |                                      | Corporation                      | Partnership                                                  |
+      | :----------------------------------: | :------------------------------- | ------------------------------------------------------------ |
+      |            **Liquidity**             | Shares can be easily exchanged   | Subject to substantial restrictions                          |
+      |          **Voting Rights**           | Usually each share gets one vote | General Partner is in charge; limited partners may have some voting rights |
+      |             **Taxation**             | Double                           | Partners pay taxes on distributions                          |
+      | **Reinvestment and dividend payout** | Broad latitude                   | All net cash flow is distributed to partners                 |
+      |            **Liability**             | Limited liability                | General partners may have unlimited liability; limited partners enjoy limited liability |
+      |            **Continuity**            | Perpetual life                   | Limited life                                                 |
+
+  - Enables risk taking by separating the business from the person
+
+  - Pros and Cons of Going Public
+
+    - Pros:
+      - Obtain money that does not have to be repaid
+      - Increased visibility when the company IPOs
+      - Market valuation => how much the company is valued at
+        - Pricing very delicate, your company is unique, so how do you determine the price at IPO?
+        - Don't want stock too high => instant drops are bad for optics
+        - Don't want stock too low => missing potential revenue
+    - Cons:
+      - Going public is costly
+        - Hiring intermediary financial advisors to determine stock pricing, insurance, etc.
+        - Selling stock happens very rarely after IPO
+          - Costly
+          - Selling new stock means selling new percentage (your share) or diluting the existing stock (bad for investors)
+          - Companies simply go into debt
+      - Management loses some of its freedom to act without board approval
+      - Open to scrutiny
+      - Public reporting
+      - Company maybe taken over
+        - Stocks being sold and traded => allows one big company to buy up and takeover
+
+- The Importance of Cash Flow
+
+  - Ultimately, the firm must be a cash generating activity
+  - The cash flows from the firm must exceed the cash flows from the financial markets
+  - Flow diagram:
+    - Financial markets => Firm issues securities => Firm
+      - Financial instruments that you sell to the public in an effort to collect money
+        - Loans/bonds (long-term debt) or stocks (equity)
+    - Firm => Cash flow from firm => dividends and debt payments => financial markets
+    - Firm => Cash flow from firm => taxes => government
+    - Firm => Cash flow from firm => retained cash flows => firm
+
+- The Goal of Financial Management
+
+  - What is the correct goal?
+    - Maximize profit?
+    - Minimize costs?
+    - Maximize market share?
+    - Maximize shareholder wealth?
+      - The one aspect that provides a summary for the rest
+
+- The Agency Problem
+
+  - Agency relationship
+    - Principal hires an agent to represent his/her interest
+    - Stockholders (principals) hire managers (agents) to run the company
+  - Agency problem
+    - Conflict of interest between principal and agent
+
+- Balance Sheet
+
+  - Preferred stock: reserved for initial investors
+    - May offer a certain payment regularly
+  - Par value: initial stock price at IPO
+  - Capital surplus: difference between the amount of money collected from the market and the par value
+  - Accumulated retained earnings: the amount of money kept in the company from your profit
+    - If growing, retained earnings will grow
+    - If you make a loss, retained earnings will decrease
+    - Less treasury stock: the company buying back its own shares (negative value)
 
 
 
@@ -415,9 +500,4 @@
   - **Change in net working capital** - a firm can invest in NWC
     - Usually positive in a growing firm
 
-
-
-## Lecture 3: 
-
-- 
 
