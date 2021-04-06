@@ -1,0 +1,3 @@
+# Google vs. Oracle
+
+With the Supreme Court ruling that Google was acting in line with fair-use laws when they copied Oracle's code, they've established that the use of existing code to create a new product is acceptable under the law. This ruling allows developers to continue using the platforms they're familiar with under fair use, and promotes innovation over the needs of a single corporation. In a way, this takes some potential power away from big corporations, as they cannot lock their code away from public use. I personally agree with the ruling, considering how mass collaboration is crucial to advancing software.
