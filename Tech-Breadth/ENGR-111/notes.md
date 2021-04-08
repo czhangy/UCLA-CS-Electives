@@ -208,12 +208,63 @@
 
   - Preferred stock: reserved for initial investors
     - May offer a certain payment regularly
-  - Par value: initial stock price at IPO
-  - Capital surplus: difference between the amount of money collected from the market and the par value
+  - Par value: initial predicted stock price at IPO
+  - Capital surplus: difference between the amount of money collected from the market and the par value of the stock
   - Accumulated retained earnings: the amount of money kept in the company from your profit
     - If growing, retained earnings will grow
     - If you make a loss, retained earnings will decrease
     - Less treasury stock: the company buying back its own shares (negative value)
+    - Links the balance sheet and the income statement
+      - A video recording of the company
+
+
+
+## Lecture 4: Income Statement
+
+- The Balance Sheet
+  - The company is doing poorly, decides to dissolve
+    - All assets are going to be sold
+      - The debtors will be the first to be paid
+      - If the assets cannot be sold to match the debt (book price > market price), the debtors have to negotiate with the company for repay
+        - They may sue, may get a haircut (a percentage less than what their owed)
+    - The stockholders will be the next to be paid
+  - Company may buy its own stock to signal to the market that its undervalued
+    - May be an attempt to regain control
+    - EPS - Earnings per Share
+      - Company wants EPS to increase steadily => drastic increases set unrealistic expectations for stockholders
+      - `EPS = Share earnings / # of outstanding shares`
+        - Can reduce the number of shares to increase the EPS articifically
+  - Assets are listed in order of liquidity
+    - Cash => accounts receivable => inventories
+- Balance Sheet Analysis
+  - When analyzing a balalnce sheet, the finance manager should look at:
+    - Liquidity
+    - Debt vs. Equity
+    - Value vs. cost (book vs. market value)
+      - Under GAAP (Generally Accepted Accounting Principles), audited financial statements of firms in the US carry assets at cost
+      - Market value is the price at which the assets, liabilities, and equity could actually be bought or sold, which is a completely different concept from historical cost
+    - Balance sheet doesn't include some of the most valuable things a company has
+      - Future potential
+- The Income Statement
+  - Measures financial performance over a specific period of time
+  - The accounting definition of income is: `Revenue - Expenses = Income`
+  - Operating section
+    - Total operating revenues (+)
+    - COGS (Cost of goods sold) - amount of money spent on the materials used to make the product (-)
+    - SG&A (Selling, general, and administrative expenses) - labor + marketing + real estate used to make the product (-)
+    - Depreciation - reduction of the value of a machine to be taken off as cost (-)
+      - Only accounts for the current year => balance sheet takes care of gross and net depreciation
+    - Add top 4 to get operating income (hopefully positive)
+      - Company with positive operating income but negative net income is good candidate for takeover
+        - Good product, bad management
+  - Net income from income statement can go to one of two places:
+    - Retained earnings: stays in the company
+    - Dividends: paid out
+  - Relation to balance sheet
+    - Income statement records all costs and revenue
+      - Depreciation is a non-cost item => the calculated profit on the balance sheet is an underestimate of the actual profit
+      - This underestimate goes to retained earnings on the balance sheet
+        - Assets would go up by more than the equity went up => fixed by recording depreciation on the balance sheet
 
 
 
@@ -371,7 +422,7 @@
       - Possibility for a conflict of interest between the principal (hirer) and the agent (hired) - **agency problem**
         - May be affected by method of compensation
   - Management Goals
-    - **Agency cost** - the costs of the conflict of intereset between stockholders and management
+    - **Agency cost** - the costs of the conflict of interest between stockholders and management
       - Can be indirect or direct
         - Indirect costs include lost opportunities
         - Direct costs come in 2 forms
@@ -383,7 +434,7 @@
     - Depends on 2 factors:
       - How closely are management goals aligned with stockholder goals?
         - Partially dependent on manner of compensation
-      - Can managers be replaced if they do not pusue stockholder goals?
+      - Can managers be replaced if they do not pursue stockholder goals?
     - Managerial Compensation
       - Management will frequently have a significant economic incentive to increase share value for two reasons:
         - Managerial compensation is usually tied to financial performance in general and share value in particular
