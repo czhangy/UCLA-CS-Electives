@@ -552,3 +552,447 @@
     - Usually positive in a growing firm
 
 
+
+## Reading 3: Financial Statements Analysis and Financial Models
+
+- Financial Statements Analysis
+
+  - Financial statements and the numbers derived from them are the primary means of communicating financial information both within the firm and outside the firm
+  - One important goal of the accountant is to report financial information to the user in a form useful for decision making
+  - Standardizing Statements
+    - One thing we want to do with a company's financial statements is to compare them to those of other, similar companies
+      - Almost impossible to perform a direct comparison due to differences in size
+      - May even have to deal with size and currency differences
+    - Standardize by working with percentages rather than dollars
+      - Resulting statements are called **common-size statements**
+  - Common-Size Balance Sheets
+    - Total change must be zero since the beginning and ending numbers must add up to `100%`
+    - In this form, financial statements are relatively easy to read and compare
+  - Common-Size Income Statements
+    - Net income - the bottom line, as define as total revenues minus total expenses
+      - Reflects differences in a firm's capital structure and taxes as well as operating income
+      - Interest expense and taxes are subtracted from operating income in computing net income
+      - Shareholders look closely at net income because dividend payout and retained earnings are closely related to net income
+    - **EPS** - net income divided by the number of shares outstanding
+      - Net income expressed on a per share basis
+    - **EBIT** - earnings before interest expense and taxes
+      - Income before unusual items, discontinued operating or extraordinary items
+      - Operating expenses are subtracted from total operations revenues
+    - EBITDA - earnings before interest expense, taxes, depreciation, and amortization
+      - `EBITDA = EBIT + depreciation and amortization`
+        - Amortization refers to a noncash expense similar to depreciation except it applies to an intangible asset, rather than a tangible asset
+    - Tells us what happens to each dollar in sales
+    - Can give interesting information for comparisons
+
+- Ratio Analysis
+
+  - **Financial ratios** - ways of comparing and investigating the relationships between different pieces of financial information
+
+  - Problem: people and sources don't necessarily compute them in exactly the same way, which leads to confusion
+
+  - Questions:
+
+    - How is it computed?
+    - What is it intended to measure, and why might we be interest?
+    - What is the unit of measurement?
+    - What might a high or low value be telling us? How might such values be misleading?
+    - How could this measure be improved?
+
+  - Categories:
+
+    - Short-term solvency/liquidity ratios
+    - Long-term solvency/financial leverage ratios
+    - Asset management/turnover ratios
+    - Profitability ratios
+    - Market value ratios
+
+  - **Short-Term Solvency or Liquidity Measures**
+
+    - Provide information about a firm's liquidity
+
+      - Ability of the firm to pay its bills over the short run without undue stress
+      - Focus on current assets and current liabilities
+
+    - Particularly interesting to short-term creditors
+
+    - Book values and market values likely to be similar, but current assets/liabilities change fairly rapidly
+
+      - Today's amounts may not be a reliable indicator for future success
+
+    - **Current Ratio**
+
+      - $$
+        \text{Current ratio}=\frac{\text{Current assets}}{\text{Current liabilities}}
+        $$
+
+      - Measure of short-term liquidity
+
+      - Unit of measurement of either dollars or times
+
+        - `$1.31` in current assets for every `$1` of current liabilities
+        - Current liabilities are covered `1.31 times` over
+
+      - Higher current ratio = better for creditors = indicates liquidity + inefficient use of cash/short-term assets to the firm
+
+      - Current ratio should be `>1`, `<1` indicates that NWC is negative, which is highly unusual for healthy firms
+
+        - An apparently low current ratio may not be a bad sign for a company with a large reserve of untapped borrowing power
+
+    - **Quick (or Acid-Test) Ratio**
+
+      - Inventory is the least liquid current asset
+
+        - Book values are least reliable because quality of inventory isn't considered
+
+      - Large inventories are a sign of short-term struggle
+
+        - Overestimated sales => overbuying or overproducing
+        - Large portion of liquidity tied up in slow-moving inventory
+
+      - $$
+        \text{Quick ratio}=\frac{\text{Current assets}-\text{Inventory}}{\text{Current liabilities}}
+        $$
+
+      - Using cash to buy inventory doesn't affect the current ratio, but it lowers the quick ratio
+
+        - Reflects the illiquidity of inventory compared to cash
+
+    - **Cash Ratio**
+
+      - $$
+        \text{Cash ratio}=\frac{\text{Cash}}{\text{Current liabilities}}
+        $$
+
+      - May be interesting to very short-term creditors
+
+  - **Long-Term Solvency Measures**
+
+    - Sometimes called **financial leverage ratios** or **just leverage ratios**
+
+    - Address the firm's long-run ability to meet its obligations/its financial leverage
+
+    - **Total Debt Ratio**
+
+      - Takes into account all debts of all maturities to all creditors
+
+      - $$
+        \text{Total debt ratio}=\frac{\text{Total assets}-\text{Total equity}}{\text{Total assets}}
+        $$
+
+      - Two useful variations:
+
+        - $$
+          \text{Debt-equity ratio}=\frac{\text{Total debt}}{\text{Total equity}}
+          $$
+
+        - $$
+          \text{Equity multiplier}=\frac{\text{Total assets}}{\text{Total equity}}
+          $$
+
+          - Is `1` plus the debt-equity ratio
+
+        - Any one of the three ratios can be used to calculate the other two
+
+    - **Times Interest Earned**
+
+      - $$
+        \text{Times interest earned ratio}=\frac{\text{EBIT}}{\text{Interest}}
+        $$
+
+      - Measures how well a company has its interest obligations covered
+
+      - Often called the interest coverage ratio
+
+    - **Cash Coverage**
+
+      - Problem with TIE is that it's based on EBIT, which isn't an accurate representation of cash available to pay interest
+
+      - $$
+        \text{Cash coverage ratio}=\frac{\text{EBIT}+(\text{Depreciation and amortization})}{\text{Interest}}
+        $$
+
+        - Numerator is EBITDA => a measure frequently used to measure cash flow available to meet financial obligations
+
+  - **Asset Management or Turnover Measures**
+
+    - Sometimes called **asset management** or **utilization ratios**
+
+    - Can all be interpreted as measures of turnover => how efficiently a firm uses its assets to generate sales
+
+    - **Inventory Turnover and Days' Sales in Inventory**
+
+      - Measures how fast a firm sells products
+
+      - $$
+        \text{Inventory turnover}=\frac{\text{Cost of goods sold}}{\text{Inventory}}
+        $$
+
+      - Higher this ratio, the more efficiently we are managing inventory
+
+      - Can be used to figure out how long it took to turnover the inventory on average:
+
+        - $$
+          \text{Days' sales in inventory}=\frac{365\ \text{days}}{\text{Inventory turnover}}
+          $$
+
+    - **Receivables Turnover and Days' Sales in Receivables**
+
+      - Measures how fast a firm collects on its sales
+
+      - $$
+        \text{Receivables turnover}=\frac{\text{Sales}}{\text{Accounts Receivable}}
+        $$
+
+      - $$
+        \text{Days' sales in receivables}=\frac{365\ \text{days}}{\text{Receivables turnover}}
+        $$
+
+        - Frequently called the average collection period (ACP)
+
+    - **Total Asset Turnover**
+
+      - 
+        $$
+        \text{Total asset turnover}=\frac{\text{Sales}}{\text{Total assets}}
+        $$
+
+  - **Profitability Measures**
+
+    - Measure how efficiently a firm uses its assets and how efficiently the firm manages its operations
+
+    - **Profit Margin**
+
+      - $$
+        \text{Profit margin}=\frac{\text{Net income}}{\text{Sales}}
+        $$
+
+    - **EBITDA Margin**
+
+      - Looks more directly at operating cash flows than net income
+
+      - Doesn't include the effect of capital structure or taxes
+
+      - $$
+        \text{EBITDA margin}=\frac{\text{EBITDA}}{\text{Sales}}
+        $$
+
+      - High margin => low expense ratios relative to sales
+
+    - **Return on Assets**
+
+      - Measure of profit per dollar of assets
+
+      - $$
+        \text{Return on assets}=\frac{\text{Net income}}{\text{Total assets}}
+        $$
+
+    - **Return on Equity**
+
+      - Measure of how the stockholders fared during the year
+
+      - Generally, the bottom-line measure of performance
+
+      - $$
+        \text{Return on equity}=\frac{\text{Net income}}{\text{Total equity}}
+        $$
+
+      - ROA and ROE are accounting terms => based on book assets/equity
+
+  - **Market Value Measures**
+
+    - Based on information not necessarily contained in financial statements => the market price per share of the stock
+
+      - Can be calculated directly only for publicly traded companies
+
+    - **Price-Earnings Ratio**
+
+      - $$
+        \text{PE ratio}=\frac{\text{Price per share}}{\text{Earnings per share}}
+        $$
+
+      - Measures how much investors are willing to pay per dollar of current earnings
+
+      - High PEs interpreted as having significant prospect for future growth
+
+    - **Market-to-Book Ratio**
+
+      - $$
+        \text{Market-to-book ratio}=\frac{\text{Market value per share}}{\text{Book value per share}}
+        $$
+
+      - Market-to-book ratio compares the market value of the firm's investments to their cost
+        - `<1` may mean that the firm has been unsuccessful in creating value for stockholders
+
+    - **Market Capitalization**
+      - $$
+        \text{Market capitalization}=\text{Market price per share}\times\text{Number of shares outstanding}
+        $$
+
+    - **Enterprise Value**
+
+      - $$
+        \text{EV}=\text{Market capitalization}+\text{Market value of interest bearing debt}-\text{cash}
+        $$
+
+      - Purpose is to better estimate how much it would take to buy all the outstanding stock of a firm and also pay off debts
+
+        - Cash adjustment recognizes that the cash would be used to help pay off said debt
+
+    - **Enterprise Value Multiples**
+
+      - $$
+        \text{EV multiples}=\frac{\text{EV}}{\text{EBITDA}}
+        $$
+
+      - Allows comparison of firms when they have differing capital structures (interest expense), taxes, or capital spending
+
+      - Expect firms with high growth opportunities to have high EV multiples
+
+- The Du Pont Identity
+
+  - Difference between ROA and ROE reflects the use of debt financing or financial leverage
+
+  - A Closer Look at ROE
+
+    - $$
+      \text{ROE}=\frac{\text{Net income}}{\text{Total equity}}\\\text{ROE}=\frac{\text{Net income}}{\text{Total equity}}\times\frac{\text{Assets}}{\text{Assets}}\\\text{ROE}=\frac{\text{Net income}}{\text{Assets}}\times\frac{\text{Assets}}{\text{Total equity}}\\\text{ROE}=\text{ROA}\times\text{Equity multiplier}
+      $$
+
+    - $$
+      \text{ROE}=\frac{\text{Sales}}{\text{Sales}}\times\frac{\text{Net income}}{\text{Assets}}\times\frac{\text{Assets}}{\text{Total equity}}\\\text{ROE}=\frac{\text{Net income}}{\text{Sales}}\times\frac{\text{Sales}}{\text{Assets}}\times\frac{\text{Assets}}{\text{Total equity}}\\\text{ROE}=\text{Profit margin}\times\text{Total asset turnover}\times\text{Equity multiplier}
+      $$
+
+      - The **Du Pont identity** => partitions ROA into its two component parts
+        - Tells us that ROE is affected by three things:
+          - Operating efficiency (profit margin)
+          - Asset use efficiency (total asset turnover)
+          - Financial leverage (equity multiplier)
+        - Tells us how to correct unsatisfactory ROEs
+
+  - Problems with Financial Statement Analysis
+
+    - Basic problem with financial statement analysis is that there's no underlying theory to identify which quantities to look at and establish benchmarks
+    - Peer group analysis only works for firms that are strictly in the same line of business, in a competitive industry, and there's only one way of operating
+    - Major competitors and peer group members may operate in different countries, meaning their financial statements don't necessarily conform to GAAP
+    - Different firms use different accounting procedures
+    - Different firms end fiscal years at different times
+    - Unusual or transient events may affect financial performance, leading to misleading signals
+
+- Financial Models
+
+  - Models output pro forma financial statements
+
+    - Pro forma - "as a matter of form"
+
+  - Financial statements are the form we use to summarize the projected future financial status of a company
+
+  - The Percentage of Sales Approach
+
+    - Basic idea: separate the income statement and balance sheet accounts into two groups
+
+      - Those that vary with sales
+      - Those that don't
+      - Given a sales forecast, we can then calculate how much financing the firm will need to support the predicted sales level
+
+    - **Percentage of sales approach** => goal is to develop a quick and practical way of generating pro forma statements
+
+    - The Income Statement
+
+      - Assume that profit margin is constant => costs are a constant percentage of sales
+
+      - **Dividend payout ratio**
+
+        - $$
+          \text{Dividend payout ratio}=\frac{\text{Cash dividends}}{\text{Net income}}
+          $$
+
+      - **Retention ratio** or **Plowback ratio**
+
+        - $$
+          \text{Retention ratio}=\frac{\text{Addition to retained earnings}}{\text{Net income}}
+          $$
+
+          - Equal to `1` minus the dividend payout ratio => everything not paid out is retained
+
+    - The Balance Sheet
+
+      - Assume that some items vary directly with sales and other do not
+
+        - For items that vary with sales, we express each as a percentage of sales for the year just completed
+        - When an item doesn't vary directly with sales, we write `n/a`
+
+      - **Capital intensity ratio** - the ratio of total assets to sales
+
+        - Tells us the amount of assets needed to generate $1 in sales
+        - Higher capital intensity ratio => more capital intensive firm
+        - Is just the reciprocal of the total asset turnover ratio
+
+      - **External financing needed**
+
+        - $$
+          \text{EFN}=\frac{\text{Assets}}{\text{Sales}}\times\Delta\text{Sales}-\frac{\text{Spontaneous liabilities}}{\text{Sales}}\times\Delta\text{Sales}-\text{PM}\times\text{Projected sales}\times(1-d)
+          $$
+
+          - `ΔSales` is the projected change in sales
+          - `Spontaneous liabilities` are liabilities that naturally move up and down with sales
+          - `PM` is the profit margin
+          - `d` is the dividend payout ratio
+          - 3 parts:
+            - Projected increase in assets (capital intensity ratio)
+            - Spontaneous increase in liabilities
+            - Projected net income times the retention ratio (projected addition to retained earnings)
+
+- External Financing and Growth
+
+  - The higher the rate of growth in sales or assets, the greater will be the need for external financing
+
+  - Financial Policy and Growth
+
+    - **Internal Growth Rate** - the maximum growth rate that can be achieved with no external financing of any kind
+
+      - The required increase in assets is exactly equal to the addition to retained earnings => EFN is zero
+
+      - $$
+        \text{Internal growth rate}=\frac{\text{ROA}\times b}{1-\text{ROA}\times b}
+        $$
+
+        - `b` is the retention ratio
+
+    - **The Sustainable Growth Rate** - the maximum growth rate a firm can achieve with no external equity financing while it maintains a constant debt-equity ratio (without increasing its financial leverage)
+
+      - $$
+        \text{Sustainable growth rate}=\frac{\text{ROE}\times b}{1-\text{ROE}\times b}
+        $$
+
+        - Identical to internal growth rate, except ROE is used in place of ROA
+
+    - Determinants of Growth 
+
+      - Due to the role ROE plays in the determination of the sustainable growth rate, the factors that determine ROE are important determinants of growth
+
+        - $$
+          \text{ROE}=\text{Profit margin}\times\text{Total asset turnover}\times\text{Equity multiplier}
+          $$
+
+      - Firm's ability to sustain growth depends explicitly on four factors:
+
+        - Profit margin => increase in profit margin increases the firm's ability to generate funds internally
+        - Dividend policy => decrease in percentage of net income paid out as dividends will increase the retention ratio, increasing internally generated equity
+        - Financial policy => increase in the debt-equity ratio increases the firm's financial leverage, making additional debt financing available
+        - Total asset turnover => increase in total asset turnover increases the sales generated for each dollar in assets, decreasing the firm's need for new assets as sales grow
+          - Same as decreasing capital intensity
+
+      - The sustainable growth rate illustrates the explicit relationship between the firm's operating efficiency as measured by profit margin, asset use efficiency as measured by total asset turnover, dividend policy as measure by the retention ratio, and financial policy as measured by the debt-equity ratio
+
+    - Profit Margins and Sustainable Growth
+
+      - If a firm does not wish to sell new equity and its profit margin, dividend policy, financial policy, and total asset turnover are all fixed, then there is only one possible growth ratio
+      - Financial planning ensures internal consistency among the firm's various goals
+        - Captured by the sustainable growth rate
+
+
+
+## Reading 4:
+
+- 
+
