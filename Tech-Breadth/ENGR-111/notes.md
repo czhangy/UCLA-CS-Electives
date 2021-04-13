@@ -268,6 +268,96 @@
 
 
 
+## Lecture 5: Income Statement Analysis
+
+- Balance sheet
+  - Accumulated retained earnings only change when money is made and kept in the company, or a loss is made
+    - Money made that stays in the company is added to accumulated retained earnings under equity, which is balanced out by some kind of assets
+      - It could also be used to pay debt, in which case both sides would decrease
+  - Stock only changes when the company buys or sells stock directly (at IPO)
+- Income statements
+  - Record the flow variables of a business
+  - Operating section:
+    - Total operating revenues - record sales from main business only, other profits go under other income
+      - Deduct COGS, SG&A, and depreciation to get operating income
+    - Cost of goods sold - amount of money spent on the materials used to make the product
+      - Can be valuable for comparison => record all costs under the correct headings
+    - Selling, general, and administration expenses
+    - Operating income tells us if the main company is making money
+      - If negative, it tells us that the company isn't valuable to society
+    - Other income represents income changes that occur outside of the core function of the company
+  - Non-operating section:
+    - Operating income + other income = EBIT (earnings before interest and taxes)
+    - Interest payments
+    - EBIT - interest = pretax income
+  - Taxes section:
+    - Taxes - current and deferred
+    - Pretax - taxes = net income/"the bottom line"
+      - Split into retained earnings and dividends => ratio of dividends to net income is the dividend payout ratio
+        - `1 - dividend payout ratio = retention ratio`
+        - `1 - d = b`
+    - When the interest is higher, the tax is lower
+- How can we purchase a fixed asset?
+  - Use immediate liquid funds
+  - Sell stocks
+  - Sell bonds
+  - Wait for more income
+  - 2 major ways:
+    - Debt - you have to pay it back on a certain date with interest
+      - What if the company is struggling on that date?
+      - Good if you can get it with low interest
+      - Can deduct interest expenses on the income statement, allowing you to reduce taxes
+    - Equity
+- Distributing dividends
+  - Split companies into 2: mature companies and
+    - Mature companies - stable, expected to have a consistent dividend payout ratio
+  - Goes to both common and preferred stockholders
+- Stock split
+  - You start your company and sell your stock and collect your money
+  - In the secondary market, your stock starts to go up as it's traded
+  - If the price of your stock gets too high, then only a limited group of people can buy it
+  - To avoid your stock being concentrated in one source, you perform a stock split
+  - `x:1` split => 1 stock becomes `x` stocks
+  - Attempt to disperse stocks over the public
+  - Data is smoothed out using econometric models so that long-term analysis is possible
+- Income Statement Analysis
+  - 3 things to keep in mind: GAAP, non-cash items, time and cost
+  - Non-cash items
+    - Depreciation is the most apparent
+    - Another non-cash item is deferred taxes, which does not represent a cash flow
+    - Net income is not cash
+    - Cash flow statements
+      - Accounting cash flow
+      - Financial cash flow
+  - Time and Costs
+    - In the short-run, certain equipment, resources, and commitments of the firm are fixed, but the firm can vary such inputs as labor and raw materials
+    - In the long-run, all inputs of production (and hence costs) are variable
+    - Financial accountants do not distinguish between variable costs and fixed costs
+      - Accounting costs usually fit into a classification that distinguishes product costs from period costs
+- Taxes
+  - The one thing we can rely on with taxes is that they are always changing
+  - Marginal vs. average tax rates
+    - Marginal - the percentage paid on the next dollar earned
+    - Average - the tax bill / taxable income
+  - Other taxes
+- Cash Flow Statement
+  - Cash flow from assets, cash flow from bonds, cash flow from stock
+    - `C(A)`
+      - Operating cash flow (OCF): EBIT + depreciation - tax
+        - Can change net working capital
+        - Can change fixed assets
+          - Can calculate these by looking at the balance sheet
+      - Leftover cash goes to debtholders to pay interest (`C(B)`) and to dividends/buying back stock (`C(S)`)
+      - For companies making a loss, cash doesn't flow from operating side to bond/stockholders, it flows the other direction
+
+
+
+## Lecture 6:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
@@ -578,7 +668,7 @@
     - **EBIT** - earnings before interest expense and taxes
       - Income before unusual items, discontinued operating or extraordinary items
       - Operating expenses are subtracted from total operations revenues
-    - EBITDA - earnings before interest expense, taxes, depreciation, and amortization
+    - **EBITDA** - earnings before interest expense, taxes, depreciation, and amortization
       - `EBITDA = EBIT + depreciation and amortization`
         - Amortization refers to a noncash expense similar to depreciation except it applies to an intangible asset, rather than a tangible asset
     - Tells us what happens to each dollar in sales
@@ -821,31 +911,32 @@
         $$
 
       - Market-to-book ratio compares the market value of the firm's investments to their cost
-        - `<1` may mean that the firm has been unsuccessful in creating value for stockholders
-
+        
+      - `<1` may mean that the firm has been unsuccessful in creating value for stockholders
+    
     - **Market Capitalization**
       - $$
         \text{Market capitalization}=\text{Market price per share}\times\text{Number of shares outstanding}
-        $$
-
-    - **Enterprise Value**
-
+      $$
+    
+  - **Enterprise Value**
+    
       - $$
         \text{EV}=\text{Market capitalization}+\text{Market value of interest bearing debt}-\text{cash}
-        $$
-
-      - Purpose is to better estimate how much it would take to buy all the outstanding stock of a firm and also pay off debts
-
-        - Cash adjustment recognizes that the cash would be used to help pay off said debt
-
-    - **Enterprise Value Multiples**
-
+      $$
+    
+    - Purpose is to better estimate how much it would take to buy all the outstanding stock of a firm and also pay off debts
+    
+      - Cash adjustment recognizes that the cash would be used to help pay off said debt
+    
+  - **Enterprise Value Multiples**
+    
       - $$
         \text{EV multiples}=\frac{\text{EV}}{\text{EBITDA}}
-        $$
-
-      - Allows comparison of firms when they have differing capital structures (interest expense), taxes, or capital spending
-
+      $$
+    
+    - Allows comparison of firms when they have differing capital structures (interest expense), taxes, or capital spending
+    
       - Expect firms with high growth opportunities to have high EV multiples
 
 - The Du Pont Identity
