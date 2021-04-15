@@ -352,7 +352,7 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Financial Ratios
 
 - Ratio Analysis
   - Ratios allow for better comparison through time or between companies
@@ -363,6 +363,38 @@
     - What does the value indicate?
     - How can we improve the company's value?
   - When comparing companies, take into account industry, size, etc.
+- Categories of Financial Ratios
+  - Short-term solvency or liquidity ratios
+    - Current ratio = `CA / CL`
+      - Same information as NWC
+    - Quick ratio = `(CA - inventory) / CL`
+    - Cash ratio = `Cash / CL`
+    - What does having high short-term solvency ratios imply?
+      - They can pay their short-term debt
+      - Too high ratios can indicate complacency
+  - Long-term solvency or financial leverage ratios
+    - Total debt ratio = `(A - E) / A`
+    - Debt-equity = `D / E`
+    - Equity multiplier = `A / E = 1 + D / E`
+    - What does having high short-term solvency ratios imply?
+      - Could be bad if the company can't pay back debt
+      - Could be good if the company can leverage the debt to produce assets
+  - Coverage ratios
+    - Times interest earned = `EBIT / Interest`
+    - Cash coverage = `EBIT + Depreciation + Amortization / Interest`
+  - Inventory ratios
+    - Inventory turnover = `COGS / Inventory`
+      - Days' sales in inventory = `365 / Inventory Turnover`
+  - Receivables ratios
+    - Receivables turnover = `Sales / Accounts Receivable`
+    - Day's sales in receivables = `365 / receivables turnover`
+  - Total asset turnover
+    - Total asset turnover = `Sales / Total Assets`
+    - Low if you're a capital intensive industry
+  - Profitability measures
+    - Profit margin = `Net Income / Sales`
+    - Return on assets = `Net Income / Total Assets`
+    - Return on equity = `Net Income / Total Equity`
 
 
 
