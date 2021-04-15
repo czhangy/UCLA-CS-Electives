@@ -354,7 +354,15 @@
 
 ## Lecture 6:
 
-- 
+- Ratio Analysis
+  - Ratios allow for better comparison through time or between companies
+  - As we look at each ratio, ask yourself:
+    - How is the ratio computed?
+    - What is the ratio trying to measure and why?
+    - What is the unit of measurement?
+    - What does the value indicate?
+    - How can we improve the company's value?
+  - When comparing companies, take into account industry, size, etc.
 
 
 
@@ -924,7 +932,7 @@
       - $$
         \text{EV}=\text{Market capitalization}+\text{Market value of interest bearing debt}-\text{cash}
       $$
-    
+      
     - Purpose is to better estimate how much it would take to buy all the outstanding stock of a firm and also pay off debts
     
       - Cash adjustment recognizes that the cash would be used to help pay off said debt
@@ -934,7 +942,7 @@
       - $$
         \text{EV multiples}=\frac{\text{EV}}{\text{EBITDA}}
       $$
-    
+      
     - Allows comparison of firms when they have differing capital structures (interest expense), taxes, or capital spending
     
       - Expect firms with high growth opportunities to have high EV multiples
