@@ -1,3 +1,0 @@
-# Digital Currency
-
-To me, it seems like China's digital currency is simply not an idea that would be accepted by the American public. Historically, Americans have placed a lot of value into their privacy, and placing their financials under direct control and observation of a government entity just doesn't seem plausible. More mainstream digital currencies, most notably crypto, have the benefit of escaping the use of centralized banks and, by extension, government interference. In addition, such a system definitely raises some red flags when it comes to security, as a single weak point in the system could be catastrophic to its users.
