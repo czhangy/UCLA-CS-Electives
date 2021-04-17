@@ -1,0 +1,3 @@
+# Tesla's Patent Strategy
+
+This article discusses the potential motivations and impacts behind Tesla's decision to make their patent available to the public. Without much other context, this seems like it could be a great step forward in the advancement of EVs, while also helping to push Tesla's public image up. Much like how the decision in the Oracle vs. Google Supreme Court case seemingly helps to set a precedent for more public access to published code, this decision by Tesla may serve to set a precedent for other innovations moving forward. At the same time, with how unique of a strategy this is, it's definitely still possible that it may backfire in the end, but that still remains to be seen.
