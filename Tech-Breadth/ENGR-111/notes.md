@@ -398,6 +398,54 @@
 
 
 
+## Lecture 7: Financial Planning
+
+- Computing Profitability Measures
+  - Profit Margin = Net Income / Sales
+  - ROA = Net Income / Total Assets
+  - ROE = Net Income / Total Equity
+- Du-Pont Identity
+  - `ROE = NI / E`
+  - `ROE = (NI / E) x (Assets / Assets) x (Sales / Sales)`
+  - `ROE = (NI / Sales) x (Sales / Assets) x (Assets / Equity)`
+  - `ROE = Profit Margin x Total Asset Turnover x Equity Multiplier`
+- Computing Market Value Measures
+  - `Earning Per Share = NI / Shares Outstanding`
+    - Important for investors
+  - `PE Ratio = Price per share / Earnings per share`
+    - Indicates the relationship between the existing and future valuation of the company
+    - High PE ratio could be good or bad
+      - Good => may indicate high expectations from investors, good for growth companies that can back it up
+      - Bad => may not live up to the hype and crash back to industry standard
+  - `Market Capitalization = Price per share x Shares Outstanding`
+    - Give an immediate valuation of a company
+    - Starting point for determining the value of a company, like size of the balance sheet
+      - The balance sheet doesn't take context into account
+      - Stock price doesn't accurately reflect the values of a company, other factors may impact it as well
+
+- Using Financial Statements
+  - Ratios are not very helpful by themselves: they need to be compared to something
+    - Look at other ratios, industry standard, etc.
+  - Time-Trend Analysis
+    - Used to see how the firm's performance is changing through time
+  - Peer Group Analysis
+    - Compare to similar companies or within industries
+- Financial Planning
+  - May be motivated by need to match/exceed competitor's growth rate in order to maintain position in industry
+  - Determine your objective growth (of sales)
+  - Mostly market conditions along with your operational and financial capabilities will be instrumental
+  - Determine what increase you need in your assets to achieve your growth
+  - Figure out the funding for your extra assets
+  - Pro Forma = projected
+
+
+
+## Lecture 8:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
@@ -699,7 +747,7 @@
     - Total change must be zero since the beginning and ending numbers must add up to `100%`
     - In this form, financial statements are relatively easy to read and compare
   - Common-Size Income Statements
-    - Net income - the bottom line, as define as total revenues minus total expenses
+    - Net income - the bottom line, defined as total revenue minus total expenses
       - Reflects differences in a firm's capital structure and taxes as well as operating income
       - Interest expense and taxes are subtracted from operating income in computing net income
       - Shareholders look closely at net income because dividend payout and retained earnings are closely related to net income
