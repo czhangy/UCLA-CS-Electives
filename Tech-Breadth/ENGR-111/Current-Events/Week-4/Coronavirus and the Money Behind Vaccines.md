@@ -1,0 +1,3 @@
+# Coronavirus and the Money Behind Vaccines
+
+I think the most interesting thing brought up in the video is the trade-off companies have to make between producing the vaccine for profit and producing the vaccine for the public good. Obviously, the companies are taking a large risk by funneling so much funding into these vaccines, and the work that they do surely justifies some profit. At the same time, they have to think about their public image, especially considering the unprecedented amount of public funding that's going into R&D. Out of the suppliers of the vaccine, it's interesting to see how their approaches to this trade-off vary, with some producers like Oxford and J&J selling at lower prices, while Sinovac jacks up the prices.
