@@ -440,9 +440,18 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Pro Forma Statement Analysis
 
-- 
+- Percentage of sales approach - model organic accounts as increasing in proportion to sales 
+
+- $$
+  \text{EFN}=(\frac{\text{Assets}}{\text{Sales}})\times\Delta\text{Sales}-\frac{\text{Spon. Liab.}}{\text{Sales}}\times\Delta\text{Sales}-(PM\times\text{Projected Sales})\times(1-d)
+  $$
+
+- Growth rates
+
+  - Internal growth rate
+  - Sustainable growth rate
 
 
 
