@@ -455,6 +455,12 @@
 
 
 
+## Lecture 9:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
@@ -1180,7 +1186,302 @@
 
 
 
-## Reading 4:
+## Reading 4: Discounted Cash Flow Valuation
+
+- Valuation: The One-Period Case
+
+  - **Future value** or **compound value** - the value of a sum after investing over one or more periods
+
+  - **Present value** - the amount of money required to be invested to get a specific return in the future
+
+    - $$
+      \text{PV}=\frac{C_1}{1+r}
+      $$
+
+      - `C_1` is cash flow at date `1` and `r` is the rate of return (**discount rate**)
+
+    - Present value analysis tells us the present value of a future payment
+
+  - Future and present value analysis always lead to the same decision
+
+  - Financial analysts frequently want to determine the exact cost or benefit of a decision
+
+    - $$
+      \text{NPV}=-\text{Cost}+\text{PV}
+      $$
+
+    - **Net present value** is the present value of future cash flows minus the present value of the cost of the investment
+
+  - Any example with risk poses a more complex problem than a riskless one
+
+    - More risk => higher discount rate
+
+- The Multiperiod Case
+
+  - Future Value and Compounding
+
+    - **Compounding** - the process of leaving money in the financial market and lending it for another year
+
+      - **Simple interest** - Interest times a constant
+        - Interest is not reinvested
+      - **Interest of interest** - Exponential interest that results from compounding
+        - Cash is invested at **compound interest** - each interest payment is reinvested
+
+    - $$
+      \text{FV}=C_0\times(1+r)^\mathcal{T}
+      $$
+
+      - `C_0` is the cash to be invested today, `r` is the interest rate per period, and `T` is the number of periods over which the cash is invested
+
+  - Present Value and Discounting
+
+    - **Discounting** - calculating the present value of a future cash flow
+
+      - Opposite of compounding
+
+    - **Present value factor** - the factor used to calculate the present value of a future cash flow
+
+    - $$
+      \text{PV}=\frac{C_\mathcal{T}}{(1+r)^\mathcal{T}}
+      $$
+
+      - `C_T` is the cash flow at date `T` and `r` is the appropriate discount rate
+
+  - Finding the Number of Periods
+
+    - Finding the answer involves solving for the last variable in the basic present value equation, the number of periods
+
+  - The Algebraic Formula
+
+    - Present value of receiving a cash flow one year from now is:
+
+      - $$
+        \text{PV}=\frac{C_1}{1+r}
+        $$
+
+    - Present value of receiving a cash flow two years from now is:
+
+      - $$
+        \text{PV}=\frac{C_2}{(1+r)^2}
+        $$
+
+    - NPV of a `T`-period project is:
+
+      - $$
+        \text{NPV}=-C_0+\frac{C_1}{1+r}+\frac{C_2}{(1+r)^2}+\ ...\ +\frac{C_\mathcal{T}}{(1+r)^\mathcal{T}}=-C_0+\sum^\mathcal{T}_{i=1}\frac{C_i}{(1+r)^i}
+        $$
+
+        - Initial flow, `C_0` is assumed to be negative because it represents an investment
+
+- Compounding Periods
+
+  - Sometimes, compounding may occur more frequently than just once a year
+
+  - Compounding an investment `m` times a year provides end-of-year wealth of:
+
+    - $$
+      C_o\left(1+\frac{r}{m}\right)^m
+      $$
+
+      - `C_0` is the initial investment and `r` is the **stated annual interest rate** or **annual percentage rate (APR)**
+
+    - The annual rate of return is called the **effective annual rate (EAR)** or the **effective annual yield (EAY)**
+
+      - $$
+        \text{EAR}=\left(1+\frac{r}{m}\right)^m-1
+        $$
+
+  - Distinction between Stated Annual Interest Rate and Effective Annual Rate
+
+    - SAIR becomes meaningful only if the compounding interval is given
+    - EAR is meaningful without a compounding interval
+
+  - Compounding over Many Years
+
+    - Future value with compounding:
+
+      - 
+        $$
+        \text{FV}=C_0\left(1+\frac{r}{m}\right)^{m\mathcal{T}}
+        $$
+
+  - Continuous Compounding
+
+    - **Continuous compounding** - compounding every infinitesimal instant
+
+    - Value at the end of `T` years is expressed as:
+
+      - $$
+        C_0\times e^{r\mathcal{T}}
+        $$
+
+        - `C_0` is the initial investment, `r` is the SAIR, and `T` is the number of years over which the investment runs
+
+- Simplifications
+
+  - Perpetuity
+
+    - **Perpetuity** - a constant stream of cash flows without end
+
+      - British consols - bonds that entitle the investor to yearly interest payments from the British government
+
+        - Present value of the consol is the present value of all of its future coupons => give the investor `C` dollars per year
+
+          - $$
+            \text{PV}=\frac{C}{1+r}+\frac{C}{(1+r)^2}+\frac{C}{(1+r)^3}+\ ...\ =\frac{C}{r}
+            $$
+
+  - Growing Perpetuity
+
+    - **Growing perpetuity** - cash flow stream that is assumed to rise indefinitely
+
+      - $$
+        \text{PV}=\frac{C}{1+r}+\frac{C\times(1+g)}{(1+r)^2}+\frac{C\times(1+g)^2}{(1+r)^3}+\ ...\ +\frac{C\times(1+g)^{\mathcal{N}-1}}{(1+r)^\mathcal{N}}=\frac{C}{r-g}
+        $$
+
+      - Three important points to consider:
+
+        - The numerator - the cash flow one period hence, not at date `0`
+        - The discount rate and the growth rate - the discount rate `r` must be greater than the growth rate `g` for the formula to work
+          - PV undefined when `r < g`
+        - The timing assumption - a regular and discrete pattern of cash flow is assumed
+
+  - Annuity
+
+    - **Annuity** - a level stream of regular payments that lasts for a fixed number of periods
+
+      - $$
+        \text{PV}=\frac{C}{1+r}+\frac{C}{(1+r)^2}+\frac{C}{(1+r)^3}+\ ...\ +\frac{C}{(1+r)^\mathcal{T}}
+        $$
+
+      - Present value of receiving the coupons for only `T` periods must be less than the present value of a consol
+
+      - $$
+        \text{PV}=\frac{C}{r}-\frac{C}{r}\left[\frac{1}{(1+r)^\mathcal{T}}\right]=C\left[\frac{1}{r}-\frac{1}{r(1+r)^\mathcal{T}}\right]=C\left[\frac{1-\frac{1}{(1+r)^\mathcal{T}}}{r}\right]
+        $$
+
+      - The term we use to compute the present value of the stream of level payments, `C`, for `T` years is called an **annuity factor**
+
+        - $$
+          A^\mathcal{T}_r
+          $$
+
+      - $$
+        \text{FV}=C\left[\frac{(1+r)^\mathcal{T}}{r}-\frac1r\right]=C\left[\frac{(1+r)^\mathcal{T}-1}r\right]
+        $$
+
+      - Tricks:
+
+        - Delayed annuity
+          - Getting the timing right can be tricky
+          - Especially true if the annuity or perpetuity begins at a date many periods in the future
+          - Remember that the formula derives the present value of the annuity as of one period *prior* to the first payment
+        - Annuity due
+          - Formulas assume that the first annuity payment begins a full period hence - called an annuity in arrears or an ordinary annuity
+          - Annuity with an immediate initial payment is called an annuity in advance or an annuity due
+        - The infrequent annuity
+          - An annuity with payments occurring less frequently than once a year
+          - Determine the interest rate over the period => use the present value over that many periods
+        - Equating present value of two annuities
+
+  - Growing Annuity
+
+    - **Growing annuity** - a finite number of growing cash flows
+
+      - $$
+        \text{PV}=C\left[\frac{1}{r-g}-\frac1{r-g}\times\left(\frac{1+g}{1+r}\right)^\mathcal{T}\right]=C\left[\frac{1-\left(\frac{1+g}{1+r}\right)^\mathcal{T}}{r-g}\right]
+        $$
+
+        - `C` is the payment to occur at the end of the first period, `r` is the interest rate, `g` is the rate of growth per period, and `T` is the number of periods for the annuity
+
+
+
+## Reading 5: Net Present Value and Other Investment Rules
+
+- Why Use Net Present Value?
+  - Focus on capital budgeting, the decision-making process for accepting or rejecting projects
+  - A dollar received in the future is worth less than a dollar received today, due to the potential investment value in the present
+  - Basic investment rule (the **NPV Rule**) can be generalized to:
+    - Accept a project if the NPV is greater than 0
+    - Reject a project if NPV is less than zero
+    - Accepting positive NPV projects benefits the stockholders
+  - The value of the firm rises by the NPV of the project
+  - **Value additivity** - the sum of the values of the different projects, divisions, or other entities within the firm
+    - Implies that the contribution of any project to a firm's value is simply the NPV of the project
+  - Future cash flows of real-world projects are invariably risky
+    - Cash flows can only be estimated, not known
+    - The discount rate on a risky project is the return that one can expect to earn on a financial asset of comparable risk
+      - Often referred to as the opportunity cost
+  - Three attributes of NPV:
+    - NPV uses cash flows
+      - Cash flows from a project can be used for other corporate purposes like dividend payments, other capital budgeting projects, or payments of corporate interest
+      - On the other hand, earnings are an artificial construct and should not be used in capital budgeting because they don't represent cash
+    - NPV uses all the cash flows of the project
+      - Other approaches ignore cash flows beyond a particular date
+    - NPV discounts the cash flows properly
+      - Other approaches ignore the time value of money when handling cash flows
+- The Payback Period Method
+  - Defining the Rule
+    - The amount of time it takes for the firm to recover its investment is the **payback period**
+    - The **payback period rule** for making investment decisions involves selecting a cutoff date, and then evaluating if the payback period falls within that cutoff date
+      - If it does, accept it
+      - Otherwise, don't
+  - Problems with the Payback Method
+    - Timing of cash flows within the payback period
+      - The payback method doesn't consider the timing of the cash flows within the payback period
+      - NPV discounts the cash flows properly
+    - Payments after the payback period
+      - The payback method ignores all cash flows occurring after the payback period
+      - Some valuable long-term projects are likely to be rejected
+      - NPV uses all the cash flows of the project
+    - Arbitrary standard for payback period
+      - Choosing the payback cutoff date is somewhat arbitrary
+      - Capital markets help estimate the discount rate used in the NPV method
+  - Managerial Perspective
+    - Often used by large, sophisticated companies when making relatively small decisions
+    - It's easy to make decisions using payback
+    - The short timespan means the company can evaluate the manager's decision quickly
+    - May be used by firms with good investment opportunities but no available cash
+      - Quick cash recovery increases the reinvestment possibilities for such firms
+    - Pitfalls of payback may not be as applicable to the real-world as they are in hypothetical models
+    - For big ticket decisions, payback is rarely used
+  - Summary of Payback
+    - Differs from NPV => is conceptually wrong
+    - Can lead to foolish decisions if used too literally
+    - Often used as a screen for decision-making due to its simplicity
+- The Discounted Payback Period Method
+  - **Discounted payback period method** - a variation of the payback method that first discounts the cash flows
+  - Still has some of the major flaws of payback
+  - if we've already discounted the cash flows, we may as well go all the way and use NPV
+  - Really just a poor compromise between NPV and payback
+
+- The Profitability Index
+
+  - **Profitability index** - the ratio of the present value of the future expected cash flows after initial investment divided by the amount of initial investment
+
+    - $$
+      \text{PI}=\frac{\text{PV of cash flows subsequent to initial investment}}{\text{Initial investment}}
+      $$
+
+  - Application of the Profitability Index
+
+    - Independent projects
+      - According to the NPV rule, projects should be accepted if NPV is positive
+      - PI is greater than 1 if the NPV is positive
+      - The PI decision rule states that we accept an independent project if `PI > 1` and we reject it if `PI < 1`
+    - Mutually exclusive projects
+      - PI suffers from scale, ignoring the size of the initial investments
+      - Can correct for this oversight using incremental analysis
+    - Capital rationing
+      - **Capital rationing** - the firm doesn't have enough capital to fund all positive NPV projects
+      - In the case of limited funds, we cannot rank projects according to their NPVs, we should instead rank them according to the ratio of PV to initial investment => PI rule
+      - PI cannot handle capital rationing over multiple time periods
+
+
+
+## Reading 6:
 
 - 
+
+
 
