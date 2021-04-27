@@ -1,0 +1,3 @@
+# Tesla's First Quarter Sales
+
+The slipping of Tesla's stocks shows an interesting dichotomy between different ways to measure a company's success. Despite having increased sales, even in a traditional down period like Jan.-Mar., Tesla's stock prices are still falling for a variety of reasons, ranging from bad press stemming from controversial, cutting-edge technology, to COVID-related manufacturing struggles. These show how important it is to take a variety of approaches when it comes to analyzing a company's success, and justify the need to be introduced to such a large variety of tools.
