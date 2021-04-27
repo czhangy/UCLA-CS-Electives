@@ -455,11 +455,52 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Cash Flow Valuation
+
+- Negative EFN => surplus
+
+- Money coming into equity must either increase assets or reduce liabilities
+
+- The Internal Growth Rate
+
+  - The internal growth rate tells us how much the company can grow assets using retained earnings as the only source of financing
+
+  - $$
+    \text{Internal Growth Rate}=\frac{\text{ROA}\times b}{1-\text{ROA}\times b}
+    $$
+
+  - Higher than IGR => higher debt-equity ratio
+
+- The Sustainable Growth Rate
+
+  - The sustainable growth rate tells us how much the firm can grow by using internally generated funds and issuing debt to maintain a constant debt ratio
+
+  - $$
+    \text{Sustainable Growth Rate}=\frac{\text{ROE}\times b}{1-\text{ROE}\times b}
+    $$
+
+- The One-Period Case
+
+  - If you were to invest $10,000 at 5% interest for one year, your investment would grow to $10,500
+    - $500 would be interest
+    - $10,000 is the principal payment/present value
+    - $10,500 is the total due/future value
+
+- Future Value
+
+- In the one-period case, the formula for FV can be written as:
+
+  - $$
+    \text{FV}=C_0\times(1+r)
+    $$
+
+
+
+## Lecture 10:
 
 - 
 
-
+  
 
 ## Reading 1: Introduction to Corporate Finance
 
