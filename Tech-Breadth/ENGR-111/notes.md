@@ -496,9 +496,36 @@
 
 
 
-## Lecture 10:
+## Lecture 10: Net Present Value
 
-- 
+- Net Present Value
+
+  - In the one-period case, the formula for NPV can be written as:
+  
+    - $$
+      \text{NPV}=-\text{Cost}+\text{PV}
+      $$
+  
+  - Use to compare options that occur over different periods of time by reducing their scope to a single period
+  
+- The Multi-Period Case
+
+  - The general formula for the future value of an investment over many periods can be written as:
+
+    - $$
+      FV=C_0\times(1+r)^T
+      $$
+
+      - `C_0` is cash flow at date `0`
+      - `r` is the appropriate interest rate
+      - `T` is the number of periods over which the cash is invested
+
+  - Markets shift as the interest rates move and firms readjust based on new NPVs
+
+- Effect of Interest Rate on Tail-Heavy Cash Flows
+
+  - Tail-heavy cash flows' NPV fall faster when interest rates increase
+  - Interest rate changes affect different cash flows in different ways
 
   
 
@@ -1061,13 +1088,13 @@
     - **Market Capitalization**
       - $$
         \text{Market capitalization}=\text{Market price per share}\times\text{Number of shares outstanding}
-      $$
+        $$
     
   - **Enterprise Value**
     
       - $$
         \text{EV}=\text{Market capitalization}+\text{Market value of interest bearing debt}-\text{cash}
-      $$
+        $$
       
     - Purpose is to better estimate how much it would take to buy all the outstanding stock of a firm and also pay off debts
     
@@ -1077,7 +1104,7 @@
     
       - $$
         \text{EV multiples}=\frac{\text{EV}}{\text{EBITDA}}
-      $$
+        $$
       
     - Allows comparison of firms when they have differing capital structures (interest expense), taxes, or capital spending
     
