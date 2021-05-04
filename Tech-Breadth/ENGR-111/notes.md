@@ -1597,7 +1597,7 @@
 
     - Independent projects
       - According to the NPV rule, projects should be accepted if NPV is positive
-      - PI is greater than 1 if the NPV is positive
+      - PI is greater than `1` if the NPV is positive
       - The PI decision rule states that we accept an independent project if `PI > 1` and we reject it if `PI < 1`
     - Mutually exclusive projects
       - PI suffers from scale, ignoring the size of the initial investments
