@@ -530,7 +530,62 @@
 
 
 
-## Lecture 11:
+## Lecture 11: NPV Analysis
+
+- Each project needs to be brought to the same time period in order to compare them
+
+  - If PV < Cost, don't purchase
+
+- NPV = 0 at the market rate, NPV only accounts for what you make over the market
+
+- Compounding Periods
+
+  - Compounding an investment `m` times a year for `T` years provides for future value of wealth:
+
+    - $$
+      FV=C_0\times\left(1+\frac{r}{m}\right)^{m\times T}
+      $$
+
+- Effective Annual Rates of interest
+
+  - A reasonable question is "what is the effective annual rate of interest on that investment?"
+  - The Effective Annual Rate (EAR) of interest is the annual rate that would give us the same end-of-investment wealth
+
+- Simplifications
+
+  - Perpetuity
+
+    - A constant stream of cash flows that lasts forever
+
+    - $$
+      PV=\frac{C}{(1+r)}+\frac{C}{(1+r)^2}+\frac{C}{(1+r)^3}+\ ...\ =\frac{C}{r}
+      $$
+
+      
+
+  - Growing perpetuity
+
+    - A stream of cash flows that grows at a constant rate forever
+
+    - $$
+      PV=\frac{C}{(1+r)}+\frac{C\times(1+g)}{(1+r)^2}+\frac{C\times(1+g)^2}{(1+r)^3}+\ ...\ = \frac{C}{r-g}
+      $$
+
+  - Annuity
+
+    - A stream of constant cash flows that lasts for a fixed number of periods
+
+    - $$
+      PV=\frac{C}{r}\left(1-\frac{1}{(1+r)^T}\right)
+      $$
+
+  - Growing annuity
+
+    - A stream of cash flows that grows at a constant rate for a fixed number of periods
+
+
+
+## Lecture 12:
 
 - 
 
