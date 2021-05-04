@@ -527,7 +527,14 @@
   - Tail-heavy cash flows' NPV fall faster when interest rates increase
   - Interest rate changes affect different cash flows in different ways
 
-  
+
+
+
+## Lecture 11:
+
+- 
+
+
 
 ## Reading 1: Introduction to Corporate Finance
 
@@ -1547,9 +1554,34 @@
 
 
 
-## Reading 6:
+## Reading 6: Making Capital Investment Decisions
+
+- Incremental Cash Flows: The Key to Capital Budgeting
+  - Cash Flows - Not Accounting Income
+    - There is a big difference between corporate finance courses and financial accounting courses
+      - Corporate finance use cash flows, while financial accounting stresses income or earnings numbers
+      - When considering a single project, discount the cash flows, not earnings
+      - When considering the firm as a whole, we discount dividends, not earnings, because dividends are the cash flows that an investor receives
+    - Always discount cash flows, not earnings, when performing a capital budgeting calculation
+      - Earnings do not represent real money, cash flows do
+      - Only cash flows that are incremental to the project should be used => cash flows that occur as a direct consequence of accepting the project
+  - Sunk Costs
+    - A **sunk cost** is a cost that has already occurred
+    - They cannot be changed by the decision to accept or reject the project => should be ignored, as they are not incremental cash outflows
+  - Opportunity Costs
+    - **Opportunity costs** - lost revenues that result from using assets in a project over other alternatives
+      - Can be meaningfully viewed as a cost
+      - Firm forgoes other opportunities for using the assets
+  - Side Effects
+    - Side effects are classified as either erosion or synergy
+      - **Erosion** - occurs when a new product reduces the sales and, hence, the cash flows of existing products
+      - **Synergy** - occurs when a new project increases the cash flows of existing projects
+  - Allocated Costs
+    - **Allocated cost** - viewed as a cash outflow of a project only if it is an incremental cost of the project
+
+
+
+## Reading 7: 
 
 - 
-
-
 
