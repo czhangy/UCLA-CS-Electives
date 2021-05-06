@@ -585,9 +585,54 @@
 
 
 
-## Lecture 12:
+## Lecture 12: Other Project Evaluation Methods
 
-- 
+- Why Use NPV?
+  - Accepting positive NPV projects benefits shareholders
+    - NPV uses cash flows
+    - NPV uses all the cash flows of the project
+    - NPV discounts the cash flows properly
+- The NPV Rule
+  - NPV = total PV of future CFs + Initial Investment
+  - Estimating NPV:
+    - Estimate future cash flows how much and when?
+    - Estimate discount rate
+    - Estimate initial costs
+  - Minimum Acceptance Criteria: accept if NPV > 0
+  - Ranking Criteria: Choose the highest NPV
+
+- The Payback Period Method
+
+  - Nearsighted
+  - For small decisions/managerial evaluation => fast feedback
+  - For companies that need cash back fast
+  - Disadvantages:
+    - Ignores the time value of money
+    - Ignores cash flows after the payback period
+    - Biased against long-term projects
+    - Requires an arbitrary acceptance criteria
+    - A project accepted on the payback criteria may not have a positive NPV
+  - Advantages:
+    - Easy to understand
+    - Biased toward liquidity
+
+- The Discounted Payback Period
+
+  - How long does it take the project to "payback" its initial investment, taking into account the time value of money
+  - Discounted payback period is longer than payback period
+
+- The Profitability Index
+
+  - $$
+    PI = \frac{\text{Total PV of Future Cash Flows}}{\text{Initial Investment}}
+    $$
+
+  - Minimum acceptance criteria:
+
+    - PI of 1 is the same as NPV of 0
+    - Accept if PI > 1
+
+  - Ignores the size of the project, may clash with NPV
 
 
 
