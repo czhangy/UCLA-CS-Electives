@@ -636,6 +636,12 @@
 
 
 
+## Lecture 13:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
@@ -1681,7 +1687,86 @@
 
 
 
-## Reading 7: 
+## Reading 7: Risk Analysis, Real Options, and Capital Budgeting
+
+- Sensitivity Analysis, Scenario Analysis, and Break-Even Analysis
+
+  - Projected cash flows from NPV analysis often end up unmet, resulting in a loss
+
+  - Sensitivity Analysis and Scenario Analysis
+
+    - **Sensitivity analysis** examines how sensitive a particular NPV calculation is to changes in underlying assumptions
+      - Generally related to revenues and costs
+        - Revenue concerns: market share, size of marker, price per unit, etc.
+        - Cost concerns: variable costs and fixed costs
+          - **Variable costs** change as the output changes and are 0 when the production is 0
+            - Costs of direct labor and raw materials
+            - Constant to assume variable cost is constant per unit of output => proportional to the level of production
+          - **Fixed costs** are not dependent on the amount of goods or services produced during the period
+            - Usually measured as costs per unit of time
+            - Fixed over a predetermined time period
+      - Standard sensitivity analysis calls for an NPV calculation for all three (pessimistic, expected, optimistic) possibilities of a single variable, along with the expected forecast for all other variables
+        - The constructed table of this process indicates whether NPV analysis should be trusted
+        - Changes in forecast can greatly alter the NPV estimate
+        - The table shows where more information is needed => larger affected areas indicate a need for more information for forecasting
+      - Drawbacks:
+        - May unwittingly increase the false sense of security among managers
+          - Forecasts may have an optimistic view of the pessimistic outcome => can combat by using objective measures for these forecasts
+        - Variables are treated in isolation when they're likely to be related
+    - **Scenario analysis** is a variety of sensitivity analysis which examines a number of different scenarios, where each scenario involves a confluence of factors
+
+  - Break-Even Analysis
+
+    - **Break-even analysis** determines the sales needed to break even
+
+      - Sheds light on the severity of incorrect forecasts
+      - Calculated in terms of both accounting profit and present value
+
+    - Accounting Profit
+
+      - Pretax **contribution margin**:
+
+        - $$
+          \text{Sales Price}-\text{Variable Cost}
+          $$
+
+      - $$
+        \text{Accounting Profit Break-Even Point}=\frac{\text{Fixed Costs}+\text{Depreciation}}{\text{Sales Price}-\text{Variable Costs}}
+        $$
+
+      - Calculation ignores taxes since the number of units needed to break even on a pretax basis must be equal to the number of units needed to break even on an after-tax basis
+
+    - Present Value
+
+      - $$
+        \text{Present Value Break-Even Point}=\frac{\text{EAC}+\text{Fixed costs}\times(1-t_c)-\text{Depreciation}\times t_c}{(\text{Sales price}-\text{Variable costs})\times(1-t_c)}
+        $$
+
+      - Different because accounting profit perspective subtracts depreciation
+
+        - Depreciation understates the true costs of recovering the initial investment
+        - Companies that break even on an accounting basis are losing money because they lose the opportunity cost of the initial investment
+
+- Monte Carlo Simulation
+
+  - **Monte Carlo simulation** is an attempt to model real-world uncertainty
+  - Step 1: Specify the Basic Model
+    - Break up cash flow into components
+  - Step 2: Specify a Distribution for Each Variable in the Model
+    - Model each component variable over a distribution through analysis for
+    - May need distributions over multiple years
+  - Step 3: The Computer Draws One Outcome
+    - Generate a single outcome by making a drawing for each variable in the model => generates a cash flow from the project in each future year
+    - Analyze the probability for each outcome to be drawn
+  - Step 4: Repeat the Procedure
+    - Repeated trials results in a distribution of cash flow for each future year
+  - Step 5: Calculate NPV
+    - Use the cash flow distribution to determine the expected cash flow for the year and all future years
+    - Use this cash flow to calculate the NPV of the project
+
+
+
+## Reading 8:
 
 - 
 
