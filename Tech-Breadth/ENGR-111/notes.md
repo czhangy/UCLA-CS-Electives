@@ -632,13 +632,27 @@
     - PI of 1 is the same as NPV of 0
     - Accept if PI > 1
 
-  - Ignores the size of the project, may clash with NPV
+  - Ignores the size of the project, may clash with NPV when comparing multiple projects
+  
+  - Looks at per dollar difference
 
 
 
 ## Lecture 13:
 
-- 
+- The PI
+  - Disadvantages:
+    - Problems with mutually exclusive investments
+  - Advantages:
+    - May be useful when available investment funds are limited
+    - Easy to understand and communicate
+    - Correct decision when evaluating independent projects
+- The Practice of Capital Budgeting
+  - Varies by industry
+  - NPV, Payback Period, Discounted Payback Period, Profitability Index
+  - The most frequently used technique for large corporations is NPV or IRR
+  - Sunk costs, opportunity costs, allocated costs, side effects
+    - Synergy, erosion, cannibalism
 
 
 
