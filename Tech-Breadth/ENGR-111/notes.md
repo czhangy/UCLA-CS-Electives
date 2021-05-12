@@ -638,7 +638,7 @@
 
 
 
-## Lecture 13:
+## Lecture 13: Capital Budgeting
 
 - The PI
   - Disadvantages:
@@ -653,6 +653,12 @@
   - The most frequently used technique for large corporations is NPV or IRR
   - Sunk costs, opportunity costs, allocated costs, side effects
     - Synergy, erosion, cannibalism
+
+
+
+## Lecture 14:
+
+- 
 
 
 
