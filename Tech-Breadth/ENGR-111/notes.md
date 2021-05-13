@@ -656,7 +656,20 @@
 
 
 
-## Lecture 14:
+## Lecture 14: Sensitivity Analysis
+
+- Sunk costs shouldn't be included within the cash flow of a project, but opportunity costs should be
+- Allocated costs - with or without the project, this cost would have been allocated to this resource already, regardless of if it has an alternative use
+- When calculating OCF, financing costs are implicitly accounted for
+  - Using resources always has a cost, whether it's out of pocket or an opportunity cost => both scenarios accounted for by the discount rate in the NPV calculation
+- Salvage value = market value minus the tax rate times the difference between market value and book value
+- Monte Carlo Simulation
+  - Monte Carlo Simulation is a further attempt to model real-world uncertainty
+  - This approach takes it name from the famous European casino, because it analyzes projects the ay on might evaluate gambling strategies
+
+
+
+## Lecture 15: The Bond Market
 
 - 
 
