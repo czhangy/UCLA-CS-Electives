@@ -669,7 +669,39 @@
 
 
 
-## Lecture 15: The Bond Market
+## Lecture 15: Break Even Point
+
+- Monte Carlo SImulation
+
+  - Come up with model
+    - Use all the data available to us to come up with ideas for what variables could be projected to be (pessimistic => optimistic)
+    - Analyze probabilities of hitting each variable value
+    - Use a computer to generate random values for a variable according to the probability distribution, which generates 1 estimate => repeat
+    - Plot result with probability for each overall result
+
+- Accounting and Financial Break Even Point
+
+  - Accounting:
+
+    - $$
+      Q=\frac{\text{FC}+\text{Dep}}{\text{P}-\text{VC}}
+      $$
+
+    - Ignores financing costs
+
+  - Financial:
+
+    - Produce more to break even
+
+    - $$
+      (\text{P}\times Q-\text{VC}\times Q-\text{FC}-\text{Dep})(1-t)=\text{EAC}-\text{Dep}
+      $$
+
+    - 
+
+
+
+## Lecture 16:
 
 - 
 
