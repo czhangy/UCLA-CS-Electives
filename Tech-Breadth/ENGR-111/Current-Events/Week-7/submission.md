@@ -1,0 +1,3 @@
+# Bond Yields Rise
+
+The Labor Department's reports indicated that the influx of payrolls resulting from the end of the pandemic were lower than expected, initially relieving investors of concerns related to increasing inflation. However, upon further investigation, it was noted that this was ultimately an issue with workers not wanting to return to the labor force, not an issue of corporations. Unfortunately for investors, this means that inflation concerns must still lie on the horizon, and federal response to these concerns is projected to impact the markets even further. Even more so than last week, it seems that the government and population must take extreme caution in the upcoming months.
