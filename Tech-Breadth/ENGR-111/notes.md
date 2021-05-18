@@ -697,7 +697,12 @@
       (\text{P}\times Q-\text{VC}\times Q-\text{FC}-\text{Dep})(1-t)=\text{EAC}-\text{Dep}
       $$
 
-    - 
+- Bond evaluation
+
+  - Can find rate by finding the future value of the initial investment
+  - When people start jumping on a bond, the offerer will raise the price, as they have undervalued it
+  - There's a negative correlation between the bond price and the yield
+  - Bond price depends on market conditions at the time of the sale
 
 
 
