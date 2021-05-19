@@ -1836,7 +1836,110 @@
 
 
 
-## Reading 8:
+## Reading 8: Interest Rates and Bond Valuation
+
+- Bonds and Bond Valuation
+
+  - Corporations and governments frequently borrow money by issuing or selling debt securities called bonds
+
+  - Bond Features and Prices
+
+    - Borrower pays interest every period, but the principal is repaid in full at the end of the loan
+      - Regular interest payments are called the bond's **coupons**
+        - Coupons that are constant and paid every year are called level coupon bonds
+      - Amount paid at the end of the loan is called the bond's **face value** or **par value**
+        - Bond sold for its par value is called a par value bond
+        - Government bonds tend to have larger par values
+      - The annual coupon divided by the face value is called the **coupon rate** on the bond
+      - Number of years until the face value is paid is called the bond's time to **maturity**
+
+  - Bond Values and Yields
+
+    - Since bond cash flows stay constant while the market changes, the value of a bond fluctuates
+
+      - Rising interest rates lead to declining bond value and vice versa
+
+    - The interest rate required in the market on a bond is called the bond's **yield to maturity**
+
+    - Bond that sells for less than its face value is a discount bond
+
+    - Bonds that sell for more than their par value are premium bonds and are sold at a premium
+
+    - $$
+      \text{Bond value}=\text{PV of the coupons}+\text{PV of the face amount}
+      $$
+
+    - Bond prices and interest rates always move in opposite directions
+
+  - Interest Rate Risk
+
+    - The risk that arises for bond owners from fluctuating interest rates
+    - Interest rate risk depends on how sensitive the bond's price is to interest rate changes
+      - Longer time to maturity = greater interest rate risk
+        - More time to compound = more change in PV
+      - Lower coupon rate = greater interest rate risk
+        - Lower coupon rates mean the bond value is more reliant on the PV of the bond's face value
+    - Interest rate risk increases at a decreasing rate
+
+  - Finding the Yield to Maturity: More Trial and Error
+
+    - A bond's annual coupon divided by its price is the bond's **current yield**
+      - Current yield is low on discounted bonds and high on premium bonds since it ignores the built-in gains and losses from the return
+
+  - Zero Coupon Bonds
+
+    - A **zero coupon bond** is a bond that pays no coupons at all
+      - Must be offered at a price much lower than its face value
+
+- Government and Corporate Bonds
+
+  - Government Bonds
+    - The biggest borrower in the world is the US government
+    - When the US gov. wants to borrow money for more than a year, it sells Treasury notes and bonds to the public
+    - No default risk
+    - Treasury issues are exempt from state income taxes (only taxed at the federal level)
+    - State and local governments also borrow money through municipal notes and bonds
+      - Varying degrees of default disk
+      - Exempt from federal income taxes, but not necessarily state
+      - Lower yields due to the tax break
+  - Corporate Bonds
+    - Possibility of default generates a wedge between the promised yield and the expected return of a bond
+      - Promised yield calculations assume the bondholder receives the full face value, ignoring the probability of default
+        - Is simply yield to maturity => need coupon rate, par value, and maturity
+        - Represents return if the bond doesn't default
+      - Expected return calculations specifically take the probability of default into account
+  - Bond Ratings
+    - Debt ratings are an assessment of the creditworthiness of the corporate issuer
+      - How likely the firm is to default and the protection creditors have in the event of a default
+    - Can change as the issuer's financial strength improves or deteriorates
+
+- Determinants of Bond Yields
+
+  - The Term Structure of Interest Rates
+    - Short-term and long-term interest rates will generally be different => the **term structure of interest rates**
+    - Tells us the nominal interest rates on default-free, pure discount bonds of all maturities
+      - The pure time value of money for different lengths of time
+    - Upward sloping if long-term rates are higher than short-term
+    - Shape affected by real rate of interest, interest rate risk, and prospect of future inflation
+      - Real rate of interest is a function of many factors, has a minor impact on the term structure
+      - Prospect of future inflation strongly influences the shape of the term structure, compensation (**inflation premium**) is demanded in the form of higher nominal
+        - Higher rate of inflation will be higher in the future => long-term nominal interest rates will be higher
+      - Longer-term bonds have much greater risk of loss resulting from increases in interest rates
+        - Extra compensation demanded for bearing this risk => **interest rate risk premium**, increases with maturity
+  - Bond Yields and the Yield Curve: Putting It All Together
+    - Plot of Treasury yields relative to maturity - **Treasury yield curve**
+      - Curve's shape is a reflection of the term structure of interest rates
+    - Treasury notes and bonds are default-free, are taxable, and are highly liquid
+    - Credit risk: investors recognize that issuers other than the Treasury may or may not make all the promised payments on a bond
+      - Demand a higher yield as compensation - the **default risk premium**
+    - Municipal bonds are tex-free
+      - Investors demand the extra yield on a taxable bond as compensation - the **taxability premium**
+    - Investors prefer liquid assets
+      - Investors demand a **liquidity premium** - less liquid bonds have higher yields
+
+
+
+# Reading 9:
 
 - 
 
