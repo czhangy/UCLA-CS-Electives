@@ -706,9 +706,16 @@
 
 
 
-## Lecture 16:
+## Lecture 16: Bond Valuation
 
-- 
+- As long as the interest rate is positive, the financial break even point is greater than the accounting break even point
+- Bond valuation depends on the face value, the opportunities available in the market, risk level
+- Bonds selling above their face value are premium bonds
+- Bonds selling below their face value are discount bonds
+- Bonds selling at their face value are par bonds
+- Expectation: recession => sell short-term bonds and buy long-term bonds
+  - Leads to short-term bonds dropping in price, short-term yield will rise
+  - Leads to long-term bonds increasing in prices, long-term yield will decline
 
 
 
