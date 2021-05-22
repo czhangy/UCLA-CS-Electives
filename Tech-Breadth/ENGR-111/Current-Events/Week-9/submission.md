@@ -1,0 +1,3 @@
+# Inflation Rate Calculator
+
+This article discussed the large 4.2% inflation jump that we've seen in the past year. With the Federal Reserve targeting 2% inflation, this jump remains as the largest in the past decade. Obvious signs point to the COVID pandemic as the leading cause, with the article noting that the shift in spending patterns of consumers has altered inflation rates. Inflation in common purchases tend to be more noticed by the consumer. When using my own information, I fell around the 2% mark targeted by the Federal Reserve, which makes sense due to the relative stability of my spending habits.
