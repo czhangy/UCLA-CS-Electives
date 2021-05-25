@@ -759,6 +759,12 @@
 
 
 
+## Lecture 18:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
