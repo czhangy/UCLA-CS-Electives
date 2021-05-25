@@ -719,9 +719,43 @@
 
 
 
-## Lecture 17:
+## Lecture 17: Bond Yields
 
-- 
+- Bonds have 3 things that are fixed:
+
+  - Face value
+  - Coupon rate
+    - Exactly market rate => bond value is equal to face value
+      - This stays true throughout the bond's maturity as long as the market rate is constant
+    - Higher than market rate => premium bond, bond value is higher than face value
+    - Lower than market rate => discount bond, bond value is lower than face value
+  - Maturity
+  - At the end of a bond's maturity, its value will be equal to its face value
+
+- Capital Gains vs. Current Yield
+
+  - $$
+    \text{Current Yield}=\frac{\text{Coupon}}{\text{Bond Price}}
+    $$
+
+  - $$
+    \text{Capital Gains Yield}=\frac{\text{BV}_t-\text{BV}_{t-1}}{\text{BV}_{t-1}}
+    $$
+
+  - The yield of the bond matches the market rate
+    - The capital gains yield plus the current yield gives us the yield of the bond
+
+- Bond Yield Determinants:
+
+  - Term structure: longer term bonds have higher yields
+  - Inflation: long-term bonds will be affected by a bigger margin
+  - Tax premium
+  - Liquidity premium
+  - Default premium
+
+- Returns
+
+  - Dollar returns - the sum of the cash received and the change in value of the asset in dollars
 
 
 
