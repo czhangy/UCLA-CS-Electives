@@ -719,6 +719,12 @@
 
 
 
+## Lecture 17:
+
+- 
+
+
+
 ## Reading 1: Introduction to Corporate Finance
 
 - What is Corporate Finance?
@@ -1939,14 +1945,193 @@
     - Treasury notes and bonds are default-free, are taxable, and are highly liquid
     - Credit risk: investors recognize that issuers other than the Treasury may or may not make all the promised payments on a bond
       - Demand a higher yield as compensation - the **default risk premium**
-    - Municipal bonds are tex-free
+    - Municipal bonds are tax-free
       - Investors demand the extra yield on a taxable bond as compensation - the **taxability premium**
     - Investors prefer liquid assets
       - Investors demand a **liquidity premium** - less liquid bonds have higher yields
 
+## Reading 9: Stock Valuation
+
+- The Present Value of Common Stocks
+
+  - Dividends versus Capital Gains
+
+    - A stock provides two cash flows: the dividends paid on a regular basis, and the sale price when the stock is sold
+
+    - Is the price of a share of a stock equal to:
+
+      - The discounted present value of the sum of next period's dividend plus next period's stock price
+
+      - The discounted present value of all future dividends
+
+        - Both of these are correct
+
+      - 
+        $$
+        P_0=\frac{\text{Div}_1}{1+R}+\frac{\text{Div}_2}{(1+R)^2}+\frac{\text{Div}_3}{(1+R)^3}+\ ...\ = \sum^{\infty}_{t=1}\frac{\text{Div}_t}{(1+R)^t}
+        $$
+
+    - Shows that a long-run dividend discount model holds even when investors have short-term horizons
+
+  - Valuation of Different Types of Stocks
+
+    - Dividends are expected to follow some basic patterns: zero growth, constant growth, and differential growth
+
+      - Zero growth:
+
+        - $$
+          P_0=\frac{\text{Div}}{1+R}+\frac{\text{Div}}{(1+R)^2}+\ ...\ =\frac{\text{Div}}{R}
+          $$
+
+      - Constant growth:
+
+        - Dividends grow at rate `g` as follows:
+
+          - 
+            $$
+            \text{Div}\rightarrow\text{Div}(1+g)\rightarrow\text{Div}(1+g)^2\rightarrow\ ...
+            $$
+
+        - $$
+          P_0=\frac{\text{Div}}{1+R}+\frac{\text{Div}(1+g)}{(1+R)^2}+\frac{\text{Div}(1+g)^2}{(1+R)^3}\ +\ ...\ =\frac{\text{Div}}{R-g}
+          $$
+
+          - Based off of formula of a growing perpetuity
+
+        - `P_0` is equal to infinity when `g = R` => likely an error in estimation if this `g` is used
+
+        - This growth is an explicit goal for many companies
+
+- Estimates of Parameters in the Dividend Discount Model
+
+  - Where Does `g` Come From?
+
+    - Net investment is equal to total investment minus depreciation
+
+      - Net investment of 0 occurs when these two quantities are equal => the firm's physical plant is just maintained, consistent with no growth in earnings
+
+      - Net investment is positive if some of the earnings are retained
+
+        - $$
+          \text{Earnings next year}=\text{Earnings this year}+\text{Increase in earnings}\\\text{Increase in earnings}=\text{Retained earnings this year}+\text{Return on retained earnings}
+          $$
+
+        - $$
+          1+g=1+\text{Retention ratio}\times\text{Return on retained earnings}
+          $$
+
+          - The ratio of retained earnings to earnings is called the **retention ratio**
+
+            - Equal to `1 - payout ratio`
+
+          - Difficult to determine the return expected on currently retained earnings, use historical ROE instead
+
+            - **Return on equity** is the return on the cumulation of all the firm's past projects
+
+            - $$
+              g=\text{Retention ratio}\times\text{Return on retained earnings (ROE)}
+              $$
+
+        - The estimate for the growth rate in earnings is also the estimate for the growth rate in dividends
+
+  - Where Does `R` Come From?
+
+    - $$
+      P_0=\frac{\text{Div}}{(R-g)}\\R-g=\frac{\text{Div}}{P_0}\\R=\frac{\text{Div}}{P_0}+g
+      $$
+
+      - The total return, `R` has two components: 
+      - `Div/P_0` is the **dividend yield**, the expected cash dividend divided by the current price
+        - Conceptually similar to the current yield on a bond
+      - `g` is the **capital gains yield**, the rate at which the value of the investment grows
+
+  - A Healthy Sense of Skepticism
+
+    - These approaches only estimate `g`, they don't determine it precisely
+      - Assumes the return on investment of future retained earnings is equal to the firm's past ROE
+      - Assumes the future retention ratio of the firm is equal to its past retention ratio
+      - Since `R` is highly dependent on `g`, these assumptions will also affect its estimation
+    - Estimations generally thought of as too vulnerable to error to be practical
+      - More useful to calculate the average `R` for an entire industry rather than a single security
+    - Consider edge cases:
+      - If a firm not paying dividends begins to pay dividends, its dividend growth rate over that period is infinite
+      - If `g = R`, the estimation may be correct over the next few years, but the firm cannot hold that high growth rate forever
+        - Short-run estimate being used in a model requiring a perpetual growth rate => error in estimation
+
+  - A Note on the Link between Dividends and Corporate Cash Flows
+
+    - Analysts should hold actual cash holdings when evaluating a stock as opposed to required cash holdings
+    - Using the required cash holdings, which are lower, leads to an overestimate of dividends, and an optimistic stock evaluation
+
+- Growth Opportunities
+
+  - A company with a level stream of earnings per share in perpetuity that pays all earnings out to stockholders as dividends, follows:
+
+    - $$
+      \text{EPS}=\text{Div}
+      $$
+
+    - This type of company is called a cash cow
+
+    - From the perpetuity formula, we see that:
+
+      - $$
+        \frac{\text{EPS}}{R}=\frac{\text{Div}}{R}
+        $$
+
+    - May not be optimal, companies would like to use some of the EPS to pursue growth opportunities (profitable projects) rather than distributing dividends
+
+      - NPVGO - the net present value (per share) of the growth opportunity
+
+      - $$
+        \frac{\text{EPS}}{R}+\text{NPVGO}=\text{Price per share}
+        $$
+
+        - The stock price is the sum of the price of a share, if the firm is a cash cow, plus the NPVGO
+        - Value is only increased when:
+          - Earnings are retained so that projects can be funded
+          - The projects must have positive net present value
+
+  - NPVGOs of Real-World Companies
+
+    - In reality, companies have a whole series of projects, both near-term and long-term
+      - Stock prices of companies should reflect the market's perception of the NPV of all these future projects => stock price should reflect the market's estimate of the firm's NPVGO
+
+  - Growth in Earnings and Dividends versus Growth Opportunities
+
+    - A firm's value increases when it invests in growth opportunities with positive NPVGOs and vice versa
+    - Earnings and dividends grow whether projects with positive NPVs or negative NPVs are selected
+      - They can only fall over time if the firm invests in projects with negative rates of return
+    - Negative NPV projects lower the value of the firm => projects with rates of return below the discount rate lower firm value
+    - Both the earnings and dividends of a firm will grow as long as its projects have positive rates of return
+
+  - Does a Higher Retention Ratio Benefit Shareholders
+
+    - We've previously stated the following:
+
+      - $$
+        P=\frac{\text{Div}}{R-g}\\g=\text{RR}\times\text{ROE}\\\text{Div}=\text{Payout ratio}\times\text{EPS}=(1-\text{RR})\times\text{EPS}
+        $$
+
+      - If `ROE > R`, the NPVGO is positive and increases with the retention ratio => an increase in the ratio implies an increase in the number of positive NPV projects taken
+
+      - If `ROE < R`, the NPVGO is negative and decreases with the retention ratio
+
+  - Dividends or Earnings: Which to Discount?
+
+    - Discount dividends because investors select a stock for what they can get out of it: the dividends and the ultimate sales price
+    - Discounting earnings would cause the calculated stock price to be too high => only a portion of earnings goes to the stockholders as dividends, the remainder is retained
+
+  - The No-Dividend Firm
+
+    - Firms choosing to defer paying out dividends may find that this is optimal behavior, but it could be unpopular among stockholders
+      - May still sell at positive prices => shareholders believe that they will receive dividends or an equally good asset (merger, etc.)
+      - Difficult to apply the dividend discount model to these firms
+    - Firms with high growth rates are likely to pay lower dividends => they have so many positive growth opportunities to fund
 
 
-# Reading 9:
+
+## Reading 10: Risk and Return
 
 - 
 
