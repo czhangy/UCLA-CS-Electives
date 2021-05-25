@@ -2131,7 +2131,132 @@
 
 
 
-## Reading 10: Risk and Return
+## Reading 10: Risk and Return: Lessons from Market History
+
+- Returns
+
+  - Dollar Return
+
+    - As the owner of shares of stock, you could receive some cash, called a divided, during the year
+
+      - This cash is the income component of your return
+      - The other part of your return is the capital gain/loss on the investment
+        - Both parts are required to maintain their investment in the firm
+
+    - The total dollar return on your investment is the sum of the dividend income and the capital gain/loss on the investment
+
+      - $$
+        \text{Total dollar return}=\text{Dividend income}+\text{Capital gain/loss}
+        $$
+
+      - $$
+        \text{Total cash if stock is sold}=\text{Initial investment}+\text{Total dollar return}
+        $$
+
+    - If you hold your stock and don't sell it at year-end:
+
+      - Capital gain is still considered as part of your return
+        - This doesn't violate our previous PV rule that only cash matters
+
+  - Percentage Returns
+
+    - Answer the question: how much return do we get for each dollar invested?
+
+    - The **capital gain** is the change in the price of the stock divided by the initial price
+
+      - $$
+        \text{Capital gain}=\frac{(P_{t+1}-P_t)}{P_t}
+        $$
+
+    - $$
+      \text{Total return}=\frac{\text{Div}_{t+1}}{P_t}+\frac{(P_{t+1}-P_t)}{P_t}
+      $$
+
+      - Total return is equal to the dividend yield plus the capital gains yield
+
+- Holding Period Returns
+
+  - Large-company common stocks: common stock portfolio based on the S&P Composite Index
+  - Small-company common stocks: portfolio corresponding to the bottom fifth of stocks traded on the NY Stock Exchange, ranked by market value
+  - Long-term corporate bonds: portfolio of high-quality corporate bonds with 20-year maturities
+  - Long-term US government bonds: based on US government bonds with maturities of 20 years
+  - US Treasury bills: based on Treasury bills with a one-month maturity
+  - None of the returns are adjusted for taxes or transaction costs
+    - The year-to-year change in the consumer price index is used as a basic measure of inflation
+    - Year-to-year real returns can be calculated by subtracting inflation
+  - The return from reinvesting dividends each year is called the **holding period return**
+
+- Return Statistics
+
+  - The average return is the best estimate of the return that an investor could have realized in a particular year over a period of time
+
+    - Plotted by a **frequency distribution**, which can be used to calculate the **average** or **mean**
+
+      - $$
+        \text{Mean}=\bar{R}=\frac{(R_1+\ ...\ +R_{\mathcal{T}})}{\mathcal{T}}
+        $$
+
+- Average Stock Returns and Risk-Free Returns
+
+  - With the average return on the stock market calculated, it's sensible to compare it to the returns of other securities
+    - Most obviously, the low-variability returns of the government bond market
+    - Difference between risky returns and risk-free returns is often called the excess return on the risky asset
+      - The average excess return on common stocks is called the equity risk premium
+
+- Risk Statistics
+
+  - Characterize distribution of returns with a measure in the risk of returns
+
+    - One way to think about risk is how spread apart the frequency distribution is => more spread leads to more uncertainty
+
+  - Variance
+
+    - **Variance** and **standard deviation** are the most common measures of dispersion
+
+      - $$
+        \text{Var}=\sigma^2=\frac{1}{T-1}[(R_1-\bar{R})^2+(R_2-\bar{R})^2+\ ...\ (R_T-\bar{R})^2]\\\text{SD}=\sigma=\sqrt{\text{Var}}
+        $$
+
+    - The **Sharpe ratio** is the risk premium of the asset divided by the standard deviation
+
+      - Acts as a measure of return to the level of risk taken
+
+  - Normal Distribution and Its Implications for Standard Deviation
+
+    - A **normal distribution** us a bell-shaped curve that is symmetric about its mean
+
+- More on Average Returns
+
+  - Arithmetic versus Geometric Averages
+
+    - The **geometric average return** answers "what was your average compound return per year over a particular period"
+    - The **arithmetic average return** answers "what was your return in an average year over a particular period"
+
+  - Calculating Geometric Average Returns
+
+    - $$
+      \text{Geometric average return}=[(1+R_1)\times(1+R_2)\times\ ...\ \times(1+R_{\mathcal{T}})]^{1/\mathcal{T}}-1
+      $$
+
+      - Take each of the `T` annual returns `R_1`, `R_2`, ... , `R_T` and add `1` to each
+      - Multiply all the numbers together
+      - Take the result and raise it to the power of `1/T`
+      - Subtract `1` from the result
+
+    - Geometric average returns will always be less than or equal to the arithmetic average returns
+
+      - This difference is greater for more volatile investments => difference is approximately half the variance
+
+  - Arithmetic Average Return or Geometric Average Return?
+
+    - Geometric tells you what is actually earned per year on average, compounded annually
+      - Useful in describing the actual historical investment experience
+    - The arithmetic tells you what you earned in a typical year, and is an unbiased estimate of the true mean of the distribution
+      - Useful for making estimates for the future
+
+
+
+## Reading 11: Return and Risk: The CAPM
 
 - 
 
