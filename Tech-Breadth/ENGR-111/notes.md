@@ -759,7 +759,43 @@
 
 
 
-## Lecture 18:
+## Lecture 18: Stock Valuation
+
+- For a discount bond, the bond value is continuously increasing => leads to a positive capital gains yield
+
+  - Opposite for a premium bond
+
+- Holding Period Return
+
+  - The holding period return is the return that an investor would get when holding an investment over a period of `T` years
+
+  - $$
+    (1+R_1)+(1+R_2)+\ ...\ +(1+R_T)-1
+    $$
+
+- Historical Returns
+
+  - A famous set of studies dealing with rates of returns on common stocks, bonds, and Treasury bonds
+
+- Return Statistics
+
+  - The history of capital market returns can be summarized by describing the:
+
+    - Average return:
+
+      - $$
+        \bar{R}=\frac{(R_1+\ ...\ +R_T)}{T}
+        $$
+
+    - Standard deviation of those returns
+
+      - $$
+        \sigma=\sqrt{\text{VAR}}=\sqrt{\frac{(R_1-\bar{R})^2+(R_2-\bar{R})^2+\ ...\ +(R_T-\bar{R})^2}{T-1}}
+        $$
+
+
+
+## Lecture 19: 
 
 - 
 
