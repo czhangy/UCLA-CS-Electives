@@ -795,7 +795,31 @@
 
 
 
-## Lecture 19: 
+## Lecture 19: Risk Analysis
+
+- $$
+  \frac{\sum^T_{i=1}r_A^i}{T}=\bar{r_A}
+  $$
+
+- $$
+  \sigma^2=\frac{\Sigma(r_A^i-\bar{r_A})^2}{T-1}
+  $$
+
+- $$
+  \text{COV}(A,B)=\sigma_{A,B}=\frac{\sum^T_{i=1}(r_A^i-\bar{r_A})(r_B^i-\bar{r_B})}{T-1}
+  $$
+
+  - How two variables are related to each other
+
+- If the return of the portfolio is greater than either of the individual return levels, there must be a negative weight involved
+
+- Minimum variance portfolio:
+
+  - Minimize variance with respect to the weight
+
+
+
+## Lecture 20:
 
 - 
 
