@@ -2358,5 +2358,96 @@
 
 ## Reading 11: Return and Risk: The CAPM
 
-- 
+- Individual Securities
+
+  - Expected return - the return that an individual expects a stock to earn over the next period
+    - The actual return may be either higher or lower
+    - May be based on the average return per period based on past earnings or a detailed analysis of a firm's prospects
+  - Variance and standard deviation - assess the volatility of a security's return
+  - Covariance and correlation - a statistic measuring the interrelationship between two securities
+    - Restated in terms of the correlation between the two securities
+    - Building blocks for the beta coefficient
+
+- Expected Return, Variance, and Covariance
+
+  - Expected Return and Variance
+
+    - Financial analysts believe that there are four equally likely states of the economy: depression, recession, normal, and boom
+    - Steps to calculate variance:
+      - Calculate the expected return
+      - For each company, calculate the deviation of each possible return from the company's expected return given previously
+      - Multiply each deviation by itself to make all values positive
+      - Calculate the average squared deviation
+        - Can simplify by adding possible outcomes of economic situations if equally likely
+      - Calculate standard deviation if needed
+
+  - Covariance and Correlation
+
+    - Using the deviation of each possible return from the expected return of each firm:
+
+      - Multiply the deviation from its expected return of each firm together for each state of the economy
+
+        - $$
+          (R_{At}-\bar{R_A})\times(R_{Bt}-\bar{R_B})
+          $$
+
+          - Positive in any state where both returns are above their averages
+          - Positive in any state where both returns are below their averages
+            - Positive relationship between the two returns will give rise to a positive value for covariance
+            - Negative relationship between the two returns will give rise to a negative value for covariance
+            - If there is no relationship between the two returns, there will be no tendency for the deviations to be positive or negative together, and will offset each other and cancel them out => covariance is zero
+              - Doesn't actually work except for long historical samples
+
+      - Calculate the average value of the four states, giving you the covariance
+
+        - $$
+          \sigma_{AB}=\text{Cov}(R_A,R_B)=\text{Expected value of }[(R_A-\bar{R_A})\times(R_B-\bar{R_B})]
+          $$
+
+        - $$
+          \sigma_{AB}=\sigma_{BA}
+          $$
+
+        - Covariance doesn't give us a true indication of the size of the number, only the relation between the returns
+
+      - Divide the covariance by the standard deviations of both the two securities
+
+        - $$
+          \rho_{AB}=\text{Corr}(R_A,R_B)=\frac{\text{Cov}(R_A,R_B)}{\sigma_A\times\sigma_B}
+          $$
+
+          - The sign of the correlation must be the same as the sign of the covariance
+          - Positive correlation => variables are positively correlated
+          - Negative correlation => variables are negatively correlated
+          - 0 => variables are uncorrelated
+          - The correlation is always between `+1` and `-1`
+
+- The Return and Risk for Portfolios
+
+  - Investor wants a portfolio with a high expected return and a low standard deviation of return
+
+    - The relationship between the expected returns on individual securities and the expected return on a portfolio made up of these securities
+    - The relationship between the standard deviations of individual securities, the correlations between these securities, and the standard deviation of a portfolio made up of these securities
+
+  - The Expected return on a Portfolio
+
+    - The expected return on a portfolio is a weighted average of the expected returns on the individual securities
+
+      - $$
+        \text{Expected return on portfolio}=X_A\bar{R}_A+X_B\bar{R}_B=\bar{R}_P
+        $$
+
+        - `X_A` and `X_B` are the proportions of the total portfolio in the assets `A` and `B`
+        - `X_A + X_B` must equal 1% or 100%
+          - You don't reduce or dissipate your expected return by investing in a number of securities
+
+  - Variance and Standard Deviation of a Portfolio
+
+    - Variance of the Portfolio comprised of two securities:
+
+      - $$
+        \text{Var(portfolio)}=X_A^2\sigma_A^2+2X_AX_B\sigma_{A,B}+X_B^2\sigma_B^2
+        $$
+
+        
 
