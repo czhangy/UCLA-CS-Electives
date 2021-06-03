@@ -2438,7 +2438,7 @@
         $$
 
         - `X_A` and `X_B` are the proportions of the total portfolio in the assets `A` and `B`
-        - `X_A + X_B` must equal 1% or 100%
+        - `X_A + X_B` must equal 1 or 100%
           - You don't reduce or dissipate your expected return by investing in a number of securities
 
   - Variance and Standard Deviation of a Portfolio
