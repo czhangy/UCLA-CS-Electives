@@ -2429,7 +2429,7 @@
     - The relationship between the expected returns on individual securities and the expected return on a portfolio made up of these securities
     - The relationship between the standard deviations of individual securities, the correlations between these securities, and the standard deviation of a portfolio made up of these securities
 
-  - The Expected return on a Portfolio
+  - The Expected Return on a Portfolio
 
     - The expected return on a portfolio is a weighted average of the expected returns on the individual securities
 
@@ -2449,5 +2449,186 @@
         \text{Var(portfolio)}=X_A^2\sigma_A^2+2X_AX_B\sigma_{A,B}+X_B^2\sigma_B^2
         $$
 
-        
+    - The Diversification Effect
+    
+      - $$
+        \text{Weighted average of standard deviations}=X_A\sigma_A+X_B\sigma_B
+        $$
+    
+      - $$
+        \sigma_{A,B}=\rho_{A,B}\sigma_A\sigma_B
+        $$
+    
+        - Covariance incorporates both the correlation between the two assets and the variability of each of the two securities as measured by standard deviation
+    
+      - The standard deviation of a portfolio's return is equal to the weighted average of the standard deviations of the individual returns when the correlation is equal to `1`
+    
+      - As long as the correlation is less than 1, the standard deviation of a portfolio of two securities is less than the weighted average of the standard deviations of the individual securities
+    
+        - The diversification effect applies as long as there is less than perfect correlation
+    
+    - An Extension to Many Assets
+    
+      - As long as correlations between pairs of securities are less than `1`, the standard deviation of a portfolio of many assets is less than the weighted average of the standard deviations of the individual securities
+  
+- The Efficient Set for Two Assets
+
+  - Straight line between two securities in an expected return vs. standard deviation graph represents portfolios that are possible when the correlation is equal to `1`
+  - Curved line is always to the left of the straight line; result of the diversification effect
+    - Cannot coexist with the straight line
+      - Called the **opportunity set** or **feasible set**
+  - `MV` is the minimum variance portfolio
+    - Portfolio with the lowest possible variance/standard deviation
+  - An individual contemplating an investment in a portfolio of these two securities must fall into the opportunity set
+    - Balance between return and risk
+  - The curve is backwards bending towards the bottom (increased expected return leads to decreased standard deviation) due to the diversification effect
+    - Always occurs if the correlation is negative
+    - May or may not occur if the correlation is positive
+  - Portfolios below the `MV` are dominated by the `MV` => no one would pick them
+    - Only the curve from the `MV` up should be considered => the **efficient set** or the **efficient frontier**
+
+- The Efficient Set for Many Securities
+
+  - All combinations of securities in a portfolio fall within a shaded region
+
+    - An investor will tend to want to fall on the upper curve of the area to maximize return and minimize risk => the efficient set
+
+  - Variance and Standard Deviation in a Portfolio of many Assets
+
+    - Matrix method => term in row `i` column `j` is:
+
+      - $$
+        X_iX_j\text{Cov}(R_i,R_j)
+        $$
+
+      - Diagonal terms in the matrix contain the variances of the different stocks, while the off-diagonal terms contain the covariances
+
+    - The variance of the return on a portfolio with many securities is more dependent on the covariances between the individual securities than on the variances of the individual securities
+
+- Diversification
+
+  - The Anticipated and Unanticipated Components of News
+
+    - The return on a stock consists of two parts: the expected return and the uncertain/risky return
+
+      - The expected return is the part of the return that shareholders in the market predict/expect
+
+        - Depends on all of the information shareholders have that bears on the stock
+
+      - The uncertain return is the part of the return that comes from information revealed in the time period
+
+        - GNP, sudden drop in interest rates, internal company changes, rival products, etc.
+
+      - $$
+        R=\bar{R}+U
+        $$
+
+  - Risk: Systematic and Unsystematic
+
+    - The unanticipated part of the return is the true risk of any investment
+
+    - Two types of risk: systematic risk and unsystematic risk
+
+      - A systematic risk is any risk that affects a large number of assets, each to a greater or lesser degree
+        - Conditions that affect nearly all stocks to some degree
+        - All companies are susceptible
+      - An unsystematic risk is a risk that specifically affects a single asset or a small group of assets
+        - Unsystematic risk of one company is not related to the unsystematic risk on another
+      - Types cannot be split cleanly, small changes can have large ripple effects on the economy
+
+    - $$
+      R=\bar{R}+m+\epsilon
+      $$
+
+  - The Essence of Diversification
+
+    - Since the unsystematic risks of two securities are not related to one another, they may offset each other, resulting in the benefits of diversification
+      - As we add more securities, the unsystematic risks continue to disappear
+    - Systematic risk cannot be diversified away
+      - Diversification cannot cause total risk to decline to `0`
+
+- Riskless Borrowing and Lending
+
+  - In order for the expected return of the portfolio to be greater than any of the expected returns of the individual securities, borrowing must occur
+    - This results in a negative weight
+  - Investors are likely to combine an investment in the riskless asset with a portfolio of risky assets
+    - Can achieve points beyond the efficient set by borrowing from the investment into the riskless asset
+    - Find the line representing the riskless opportunities that is tangent to the efficient set for the efficient set of all assets (risky and riskless)
+  - The **separation principle**:
+    - After esimating the expected returns and variances of individual securities and the covariance between pairs of securities, the investor calculates the efficient set of risky assets
+      - They then determine the point of tangency between the risk-free rate and the efficient set of risky assets
+    - The investor then determines how to combine that point of tangency with his portfolio
+      - Their risk aversion decides whether they will invest in the riskless asset or borrow from the risk-free rate
+
+- Market Equilibrium
+
+  - Definition of the Market Equilibrium Portfolio
+
+    - The assumption that all investors possess the same estimates of expected returns, variances, and covariances is called **homogeneous expectations**
+    - In a world with homogeneous expectations, all investors would hold the portfolio of risky assets represented by the point of tangency
+      - This is the **market portfolio**
+    - In practice, a broad-based index like the S&P 500 is used as a proxy for the market portfolio
+
+  - Definition of Risk When Investors Hold the Market Ratio
+
+    - Expected returns are plotted for each possible return on the market
+      - Joined by the **characteristic line** of the security
+        - The slope of this line is the responsiveness coefficient of the security, called **beta**
+        - The slope of this line tells us how changes to the market are magnified on the security
+          - Higher slope => more responsive to changes in the market
+    - Adding negative beta securities help reduce the risk of the portfolio, as they do better as the market does worse
+    - Beta measures the responsiveness of a security to movements in the market portfolio
+
+  - The Formula for Beta
+
+    - $$
+      \beta_i=\frac{\text{Cov}(R_i,R_M)}{\sigma^2(R_M)}
+      $$
+
+    - The average beta across all securities when weighted by the proportion of each security's market value to that of the market portfolio is `1`
+
+      - $$
+        \sum^N_{i=1}X_i\beta_i=1
+        $$
+
+- Relationship between Risk and Expected Return (CAPM)
+
+  - Expected Return on Market
+
+    - $$
+      \bar{R}_M=R_F+\text{Risk premium}
+      $$
+
+      - The expected return on the market is the sum of the risk-free rate plus some compensation for the risk inherent in the market portfolio
+
+  - Expected Return on an Individual Security
+
+    - The expected return on a security should be positively related to its beta
+
+    - Capital asset pricing model
+
+      - $$
+        \bar{R}=R_F+\beta\times(\bar{R}_M-R_F)
+        $$
+
+      - Implies that the expected return on a security is positively, linearly related to its beta
+
+      - Line representing this is called the **security market line**
+
+      - Linearity - optimal portfolios must lie on the SML
+
+        - Securities lying above the SML are underpriced
+        - In equilibrium, all securities would be held only when prices changed so that the SML became straight
+
+      - Portfolios as well as securities - the CAPM holds for portfolios too
+
+      - The tangent line traces the efficient set of portfolios formed from all assets
+
+        - Each point on this line represents a portfolio of securities combined with the riskless asset
+        - Holds only for efficient portfolios
+        - Under homogenous expectations, called the **capital market line**
+
+      - The SML relates expected return to beta
+
+        - Holds for all individual securities and for all possible portfolios
 
