@@ -819,9 +819,68 @@
 
 
 
-## Lecture 20:
+## Lecture 20: Growth Models
 
-- 
+- Multiple securities in a portfolio can dampen the risk if the securities have a negative correlation
+
+  - $$
+    \sigma_p^2=X_A^2\sigma_A^2+2X_AX_B\rho_{AB}\sigma_A\sigma_B+X_B^2\sigma_B^2
+    $$
+
+  - Lower correlation => more backwards bending
+
+- Risk-free assets have 0 correlation
+
+- The intersection of the line tangent to the efficient set, originating from the risk-free rate and the efficient set is called the market portfolio
+
+- The risk level of a diversified portfolio is more dependent on the covariances between assets rather than the variances of individual assets
+
+- Beta < 1 is less risky than the market, beta > 1 is more risky, beta = 1 is as risky
+
+  - Beta of a portfolio is the weighted average of assets in the portfolio
+
+- CAPM
+
+  - $$
+    \bar{r}_i=r_f+\beta_i(\bar{r}_m-r_f)
+    $$
+
+  - Acts as a proxy for the cost of equity financing
+
+    - Equity => expected return
+    - Debt => interest
+
+- Zero Growth Case
+
+  - Assume dividends are going to remain at the same level forever
+
+  - $$
+    P_0=\frac{\text{Div}}{R}
+    $$
+
+- Constant Growth Case
+
+  - Assume dividends are going to grow at a constant rate
+
+  - $$
+    P_0=\frac{\text{Div}_1}{R-g}
+    $$
+
+- `g`
+
+  - $$
+    \text{Earnings next year}=\text{Earnings this year}+b(\text{Earnings this year})\times\text{Return on RE}
+    $$
+
+  - $$
+    (1+g)=1+b\times\text{Return on RE}
+    $$
+
+  - $$
+    g=b\times\text{ROE}
+    $$
+
+  - Derivative of `P` in terms of `b` is positive if `ROE > R`
 
 
 
