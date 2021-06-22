@@ -20,7 +20,7 @@
 | :--: | :----: |
 |  1   | 83/100 |
 |  2   | 85/100 |
-|  3   |  ???   |
+|  3   | 97/100 |
 |  4   | 65/100 |
 |  5   |  ???   |
 
@@ -41,9 +41,9 @@
 
 ## Misc.
 
-|      Deliverable      | Score |
-| :-------------------: | :---: |
-|      Group Paper      |  ???  |
-| Online Poll Questions |  ???  |
-|         Final         |  ???  |
+|      Deliverable      |   Score   |
+| :-------------------: | :-------: |
+|      Group Paper      |    ???    |
+| Online Poll Questions |  100/100  |
+|         Final         | 83.75/100 |
 
