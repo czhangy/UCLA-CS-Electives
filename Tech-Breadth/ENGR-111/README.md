@@ -2,7 +2,7 @@
 
 # Bulu-Taciroglu - Spring '21
 
-## Overall: IP | Raw Percentage: IP
+## Overall: A | Raw Percentage: 86.2%
 
 ## Grading
 
@@ -43,7 +43,7 @@
 
 |      Deliverable      |   Score   |
 | :-------------------: | :-------: |
-|      Group Paper      |    ???    |
+|      Group Paper      |  79/100   |
 | Online Poll Questions |  100/100  |
 |         Final         | 83.75/100 |
 
