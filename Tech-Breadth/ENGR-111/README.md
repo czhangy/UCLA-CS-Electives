@@ -2,7 +2,7 @@
 
 # Bulu-Taciroglu - Spring '21
 
-## Overall: A | Raw Percentage: 86.2%
+## Overall: A- | Raw Percentage: 86.2%
 
 ## Grading
 
