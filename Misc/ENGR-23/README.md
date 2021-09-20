@@ -6,5 +6,24 @@
 
 ## Grading
 
+|     Category      | Percentage |
+| :---------------: | :--------: |
+|  Elevator Pitch   |    10%     |
+|      Resume       |    15%     |
+|   Cover Letter    |    10%     |
+| LinkedIn Profile  |    10%     |
+| Handshake Profile |    10%     |
+| Final Career Plan |    15%     |
+|   Participation   |    30%     |
 
+## Assignments
 
+|    Deliverable    | Score |
+| :---------------: | :---: |
+|  Elevator Pitch   |  ???  |
+|      Resume       |  ???  |
+|   Cover Letter    |  ???  |
+| LinkedIn Profile  |  ???  |
+| Handshake Profile |  ???  |
+| Final Career Plan |  ???  |
+|   Participation   |  ???  |
