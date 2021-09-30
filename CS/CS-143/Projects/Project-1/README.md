@@ -77,5 +77,5 @@
 - Submission
   - [x] Install the `p1_package` packaging script using `wget http://oak.cs.ucla.edu/classes/cs143/project1/p1_package`
   - [x] Package the `create.sql`, `load.sql`, and `README.md` files using `./p1_package`
-  - [ ] Submit `project1.zip` to Gradescope
+  - [x] Submit `project1.zip` to Gradescope
 
