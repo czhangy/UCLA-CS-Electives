@@ -446,85 +446,84 @@
         \Pi_{name} (\sigma_{Student.sid\ =\ Enroll.sid} (Student \times \Pi_{sid} (\sigma_{dept\ =\ 'CS'} (Enroll))))
         $$
         
-
       - $$
         \Pi_{name} (\sigma_{Student.sid\ =\ Enroll.sid} (Student \times \sigma_{dept\ =\ 'CS'} (Enroll)))
         $$
-
+      
         
-
+      
       - $$
         \Pi_{name} (\sigma_{Student.sid\ =\ Enroll.sid\ \and\ dept\ =\ 'CS'} (Student \times Enroll))
         $$
-
+      
         
-
+      
       - $$
         \Pi_{name} (Student \bowtie \sigma_{dept\ =\ 'CS'} (Enroll))
         $$
-
+      
         
-
+      
     - Names of students who take classes offered by "Dick Muntz"
-
+    
       - $$
         \Pi_{name} (Student \bowtie Enroll \bowtie σ_{instructor\ =\ 'Dick\ Muntz'} (Class))
         $$
-
+    
         
-
+    
     - Names of students pairs who live at the same address
-
+    
       - $$
         \Pi_{S1.name,\ S2.name} (\sigma_{S1.addr\ =\ S2.addr\ \and\ S1.name\ >\ S2.name} (ρ_{S1} (Student) \times ρ_{S2} (Student)))
         $$
-
+    
         
-
+    
     - All students and instructors' names
-
+    
       - $$
         \rho_{Person(name)} (π_{name} (Student)) \cup \rho_{Person(name)} (π_{instructor} (Class))
         $$
-
+    
         
-
+    
     - Courses (`dept`, `cnum`, `sec`) that no one takes
-
+    
       - $$
         \Pi_{dept,\ cnum,\ sec} (Class) - \Pi_{dept,\ cnum,\ sec} (Enroll)
         $$
-
+    
         
-
+    
     - Titles of courses that no one takes
-
+    
       - $$
         \Pi_{title} ((\Pi_{dept,\ cnum,\ sec} (Class) − \Pi_{dept,\ cnum,\ sec} (Enroll)) \bowtie Class)
         $$
-
+    
         
-
+    
     - Instructor names who teach both CS and EE courses
-
+    
       - $$
         \Pi_{instructor} (\sigma_{dept\ =\ 'CS'} (Class)) \cap \Pi_{instructor} (\sigma_{dept\ =\ 'EE'} (Class))
         $$
-
+    
         
-
+    
       - $$
         \Pi_{instructor} (\sigma_{dept\ =\ 'CS'} (Class)) \bowtie \Pi_{instructor} (\sigma_{dept\ =\ 'EE'} (Class))
         $$
-
+    
     - IDs of students who did not take any CS class
-
+    
       - $$
         \Pi_{sid}(Student)-\Pi_{sid}(\sigma_{dept\ =\ 'CS'}(Enroll))
         $$
-
+    
   - Questions:
-
+  
     - Is it ever useful to compose two projection operators next to each other?
       - No, the first projection operator would retrieve only the columns it was told to project, therefore the next projection operator's column(s) would already have been filtered out
     - Is it ever useful to compose two selection operators next to each other?
@@ -533,9 +532,9 @@
       - See seventh example above
     - If `|R| = r` and `|S| = s`, what is `|R x S|`?
       - `r x s`
-
+  
   - Core Relational Operators
-
+  
     - `σ`, `π`, `x`, `⋈`, `ρ`, `∪`, `−`, `∩`
     - Which ones are "core" and which ones can be expressed with others?
       - Core: `σ`, `π`, `x`, `ρ`, `∪`, `−`
@@ -550,7 +549,7 @@
     - Prove that `∪` is core:
       - `x` and `∪` are the only operators that take in 2 inputs
       - `∪` is the only one that stacks schema on top of each other vertically, `x` does so horizontally
-
+  
 - Summary
 
   - Relational algebra: formal query language for relational model
