@@ -562,7 +562,227 @@
 
 
 
-## Lecture 4
+## Lecture 4: Basic SQL
+
+- SQL (Structured Query Language)
+
+  - *The* query language for RDBMS
+  - SQL has many aspects
+    - DDL, DML, transactions, etc.
+  - In this lecture, we're learning the DML part of SQL
+    - How to query and modify the existing database
+  - SQL and DBMS
+    - SQL is a high-level description of what a user wants
+    - Given a SQL query, DBMS figures out how best to execute it automatically
+      - Beauty and success of DBMS
+      - Users don't need to worry about efficiency usually
+  - We say two queries are logically equivalent if they return the same exact result for any set of tables
+
+- Basic SQL `SELECT` statement
+
+  - ```sql
+    SELECT A_1, ... , A_n
+    FROM R_1, ... , R_m
+    WHERE C
+    ```
+
+  - Approximately:
+
+    - $$
+      \Pi_{A_1,...,A_n}(\sigma_C(R_1\times\ ...\ \times R_m))
+      $$
+
+  - `SELECT *`: all attributes
+
+  - Note:
+
+    - `SELECT` is "projection", not "selection"
+    - SQL does not remove duplicates: main difference between SQL and relational algebra
+      - Multiset/bag semantics for SQL, set semantics for relational algebra
+      - Use `SELECT DISTINCT` to remove duplicates
+
+- Set Operators
+
+  - SQL Set operators: `UNION`, `INTERSECT`, `EXCEPT`
+    - Can be applied to relations or to the result of `SELECT` statements
+  - Schemas of input relations should be the same
+    - In practice, just having the compatible types is find
+  - Set operators follow set semantics and remove duplicates
+    - Most people don't know multiset semantics of set operators
+    - No efficiency penalty for duplicate elimination for set operation
+    - To keep duplicates, use `UNION ALL`, `INTERSECT ALL`, `EXCEPT ALL`
+  - MySQL supports only `UNION`, but not `INTERSECT` or `EXCEPT`
+    - A major pain since `EXCEPT` is a core operator
+    - People often use a subquery to simulate `EXCEPT`
+      - Use `NOT IN` operator in MySQL, which we will learn soon
+  - MariaDB supports `INTERSECT` and `EXCEPT` (starting from v10.3)
+    - Our container uses MariaDB
+
+- Subqueries
+
+  - `SELECT` statement may appear inside another `SELECT` statement
+    - Nested `SELECT` statements
+  - Interpretation of subquery
+    - The result from the inner `SELECT` statement is treated like a regular relation
+    - Scalar-valued subquery: if the result is a one-attribute, one-tuple relation, the result can be used like a constant
+  - Un-nesting subquery
+    - Does the addition of subqueries to MySQL make it more expressive than relational algebra?
+    - A large body of theory and algorithms exist on how to "un-nest" a subquery to non-subquery SQL
+      - We can rewrite subqueries to non-subqueries as long as there is no negation (`NOT`)
+      - With negation, we need `EXCEPT`
+    - Another demonstration of the success of the relational model
+      - Simple theoretical model makes it possible to create important theorems and algorithms
+  - Set Membership Operator
+    - `IN`, `NOT IN`
+      - `(a IN R)` is TRUE if `a` appears in `R`
+  - Set Comparison Operator
+    - `(a > ALL R)`, `(a <= SOME R)`, etc.: compare `a` against tuples in `R`
+      - `a > ALL R` is TRUE if `a` is larger than all tuples in `R`
+    - Q: Is `= SOME` equivalent to `IN`? Yes
+  - Correlated Subquery
+    - When the subquery references a table defined in the outer clause, it's a correlated subquery
+    - `EXISTS()` is true when the contents contain at least one tuple
+
+- Example Database: School Information
+
+  - `Student(sid, name, addr, age, GPA)`
+
+    `Class(dept, cnum, sec, unit, title, instructor)`
+
+    `Enroll(sid, dept, cnum, sec)`
+
+  - Q1: Titles and instructors of all CS classes
+
+    - ```sql
+      SELECT title, instructor
+      FROM Class
+      WHERE dept = 'CS';
+      ```
+
+  - Q2: Names and GPAs of all students who take CS classes
+
+    - ```sql
+      SELECT DISTINCT name, GPA
+      FROM Enroll AS E, Student AS S
+      WHERE dept = 'CS' AND E.sid = S.sid;
+      ```
+
+      - `S` and `E` are called tuple variables => they bind to every pair from `Student` and `Enroll`
+      - Attributes can also be renamed
+
+  - Q3: All student names and GPAs who live on Wilshire
+
+    - ```sql
+      SELECT name, GPA
+      FROM Student
+      WHERE addr LIKE '%Wilshire%';
+      ```
+
+      - `%` - matches 0 or more characters
+      - `_` - matches one character
+      - `%Wilshire%` - any string containing `Wilshire`
+      - Q: What does `'___%'` mean?
+        - Any string of length 3+
+      - Common string functions exist: `UPPER()`, `LOWER()`, `CONCAT()`, etc.
+
+  - Q4: Students' and instructors' names
+
+    - ```sql
+      (SELECT name
+      FROM Student)
+      UNION
+      (SELECT Instructor name
+      FROM Class)
+      ```
+
+  - Q5: IDs of students who do not take any CS classes
+
+    - ```sql
+      (SELECT sid
+      FROM Student)
+      EXCEPT
+      (SELECT sid
+      FROM Enroll
+      WHERE dept = 'CS');
+      ```
+
+  - Q6: IDs of students who live with student 301
+
+    - ```sql
+      SELECT sid
+      FROM Student
+      WHERE addr = (SELECT addr
+      			  FROM Student
+      			  WHERE sid = 301);
+      ```
+
+      - This is not a feature of relational algebra
+
+      - ```sql
+        SELECT S2.sid
+        FROM Student AS s1, Student AS S2
+        WHERE S1.sid = 301 AND S1.addr = S2.addr;
+        ```
+
+  - Q7: Student names who take CS classes
+
+    - ```sql
+      SELECT name
+      FROM Student
+      WHERE sid IN (SELECT sid
+      			  FROM Enroll
+      		      WHERE dept = 'CS');
+      ```
+
+    - ```sql
+      SELECT DISTINCT name
+      FROM Student AS S, Enroll AS E
+      WHERE S.sid = E.sid AND E.dept = 'CS';
+      ```
+
+  - Q8: Student names who take no CS classes
+
+    - ```sql
+      SELECT name
+      FROM Student
+      WHERE sid NOT IN (SELECT sid
+      			  FROM Enroll
+      		      WHERE dept = 'CS');
+      ```
+
+  - Q9: Student IDs who have higher GPAs than all students of age 18 or less
+
+    - ```sql
+      SELECT sid
+      FROM Student
+      WHERE GPA > ALL (SELECT GPA
+      				 FROM Student
+      				 WHERE age <= 18);
+      ```
+
+  - Q10: Student IDs who have higher GPA than at least one student of age 18 or less
+
+    - ```sql
+      SELECT sid
+      FROM Student
+      WHERE GPA > SOME (SELECT GPA
+      				 FROM Student
+      				 WHERE age <= 18);
+      ```
+
+  - Q11: Student names who take any class
+
+    - ```sql
+      SELECT name
+      FROM Student AS S
+      WHERE EXISTS(SELECT *
+                   FROM Enroll AS E
+                   WHERE E.sid = S.sid);
+      ```
+
+
+
+## Lecture 5:
 
 - 
 
