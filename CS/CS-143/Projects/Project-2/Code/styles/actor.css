@@ -1,0 +1,49 @@
+/* Actor info styling */
+#actor-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    font-size: 32px;
+    color: black;
+}
+
+#info-labels {
+    text-align: right;
+    margin-right: 32px;
+}
+
+.info-label {
+    display: block;
+    margin: 16px 0;
+}
+
+/* Divider styling */
+#divider {
+    height: 2px;
+    width: 60vw;
+    border: none;
+    background: black;
+}
+
+/* Actor roles styling */
+#actor-roles {
+    border: 1px solid black;
+    margin: 32px 0;
+    width: 35vw;
+}
+
+th, tr, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 4px 0;
+    text-align: center;
+}
+
+#no-roles {
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-top: 32px;
+}
