@@ -1,0 +1,38 @@
+/* Header styling */
+#page-header {
+  margin-bottom: 72px;
+}
+
+/* Content styling */
+.nav-button {
+  font-size: 32px;
+  border-radius: 10px;
+  padding: 16px 24px;
+  display: block;
+  background: black;
+  color: white;
+}
+
+.nav-button:hover {
+  background: grey;
+}
+
+#divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  margin: 48px 0;
+}
+
+#divider > hr {
+  height: 2px;
+  background: black;
+  border: none;
+  width: 20%;
+}
+
+#divider > p {
+  font-size: 24px;
+  margin: 0 16px;
+}
