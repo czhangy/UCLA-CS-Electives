@@ -67,3 +67,13 @@
   - [ ] Package all necessary files using `./p2_package`
   - [ ] Submit the `project2.zip` to Gradescope
 
+## Relevant Links
+
+- **[Demo Site (User: project, Pass: demo)](http://oak.cs.ucla.edu/classes/cs143/demos/project2/)**
+- **[MySQL + PHP Tutorial](https://oak.cs.ucla.edu/refs/php/php_mysql_cs143.html)**
+- **[MySQL Timestamp Documentation](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html)**
+- **[MySQLi Documentation](https://www.php.net/manual/en/book.mysqli.php)**
+- **[PHP Tutorial](https://www.w3schools.com/php/php_intro.asp)**
+- **[PHP User Input Tutorial](https://oak.cs.ucla.edu/refs/php/php_input.html)**
+- **[Project 1 Spec](https://oak.cs.ucla.edu/classes/cs143/project1/)**
+
