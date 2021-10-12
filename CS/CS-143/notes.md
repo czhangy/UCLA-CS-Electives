@@ -622,9 +622,11 @@
 
   - `SELECT` statement may appear inside another `SELECT` statement
     - Nested `SELECT` statements
+    
   - Interpretation of subquery
     - The result from the inner `SELECT` statement is treated like a regular relation
     - Scalar-valued subquery: if the result is a one-attribute, one-tuple relation, the result can be used like a constant
+    
   - Un-nesting subquery
     - Does the addition of subqueries to MySQL make it more expressive than relational algebra?
     - A large body of theory and algorithms exist on how to "un-nest" a subquery to non-subquery SQL
@@ -632,16 +634,45 @@
       - With negation, we need `EXCEPT`
     - Another demonstration of the success of the relational model
       - Simple theoretical model makes it possible to create important theorems and algorithms
+    
   - Set Membership Operator
     - `IN`, `NOT IN`
       - `(a IN R)` is TRUE if `a` appears in `R`
+    
   - Set Comparison Operator
     - `(a > ALL R)`, `(a <= SOME R)`, etc.: compare `a` against tuples in `R`
       - `a > ALL R` is TRUE if `a` is larger than all tuples in `R`
     - Q: Is `= SOME` equivalent to `IN`? Yes
+    
   - Correlated Subquery
     - When the subquery references a table defined in the outer clause, it's a correlated subquery
     - `EXISTS()` is true when the contents contain at least one tuple
+    
+  - Subquery in `FROM`
+
+    - ```sql
+      SELECT name
+      FROM (SELECT name, age FROM Student) S
+      WHERE age > 17;
+      ```
+
+    - A new name must be given to the subquery in this case
+
+- Common Table Expression (SQL99)
+
+  - ```sql
+    WITH (alias) AS (subquery)
+    SELECT ... FROM (alias) ...
+    ```
+
+    - Very convenient for using the same subquery multiple times
+
+  - Example:
+
+    - ```sql
+      WITH S AS (SELECT name, age FROM Student)
+      SELECT name FROM S WHERE age > 17;
+      ```
 
 - Example Database: School Information
 
@@ -780,9 +811,323 @@
                    WHERE E.sid = S.sid);
       ```
 
+- What We Learned: Basic `SELECT` Query
+  - `SELECT ... FROM ... WHERE`
+    - Multiset semantics: duplicates are preserved unless `DISTINCT` is used
+  - Set operators
+  - Subqueries
+    - Scalar-valued subquery
+    - Set membership
+    - Set comparison
+    - Correlated subquery
+  - Common table expression
 
 
-## Lecture 5:
+
+## Lecture 5: Advanced SQL
+
+- What's in this Lecture:
+
+  - Aggregate Functions
+
+    - Allows "aggregating" results from multiple tuples to produce a single output tuple
+
+    - `AVG`, `SUM`, `COUNT`, `MIN`, `MAX` on single attribute
+
+      - `COUNT(*)`: counts the number of matching tuples
+
+    - `GROUP BY` and `SELECT` attributes
+
+      - Is the following query meaningful?
+
+        - ```sql
+          SELECT sid, age, AVG(GPA)
+          FROM Student
+          GROUP BY age;
+          ```
+
+        - With `GROUP BY`, `SELECT` can have only aggregate functions or attributes that have a single value in each group
+
+    - `HAVING` Clause
+
+      - Check aggregate conditions
+        - Example: Q6
+      - Appear after `GROUP BY`
+
+  - Window Functions
+
+    - Introduced in SQL 2003
+    - Syntax: `FUNCTION(attr) OVER()`
+      - Use the same aggregate `FUNCTION(attr)`, but append `OVER()`
+      - Example: `MAX(GPA) OVER()`
+    - Interpretation
+      - Generate one output tuple per input tuple, but `FUNCTION(attr)` is computed over all input tuples
+    - Read Section 5.5 in the textbook for more information on window functions
+      - `ORDER BY`, `RANK()`, `NTILE()`, window range, etc.
+
+  - `CASE` Expression
+
+    - Limited version of "if-then-else"
+
+      - Returns different values depending on conditions
+
+    - Syntax:
+
+      - ```sql
+        CASE
+        	WHEN <condition> THEN <expr>
+        	WHEN <condition> THEN <expr>
+        	ELSE <expr>
+        END
+        ```
+
+    - Can be used anywhere a column name can be referenced
+
+      - `SELECT`, `WHERE`, `GROUP BY`, etc.
+
+  - `ORDER BY` and `FETCH FIRST`
+
+    - `ORDER BY`
+
+      - SQL is based on multiset semantics
+
+        - Duplicates are allowed
+        - Tuple order is ignored
+
+      - Still, for presentation purposes, it may be useful to order the result tuples by certain attribute(s)
+
+        - Example: Order student tuples by GPA
+
+          - ```sql
+            SELECT sid, GPA
+            FROM Student
+            ORDER BY GPA DESC, sid ASC
+            ```
+
+        - Default is `ASC` (ascending) if omitted
+
+        - `ORDER BY` doesn't change SQL semantics, it's purely for presentation
+
+    - `FETCH FIRST`
+
+      - Clause added in SQL 2008
+      - `[ OFFSET <num> ROWS] FETCH FIRST <count> ROWS ONLY`
+        - Skip the first `<num>` tuples and return the subsequent `<count>` rows
+        - Unfortunately, this was standardized too late, many variations already existed
+          - MySQL: `LIMIT <count> OFFSET <num>`
+      - Changes multiset semantics
+
+  - Data Modification in SQL
+
+    - Insert tuple `(301, 'CS', 201, 1)` to `Enroll` table
+
+      - ```sql
+        INSERT INTO Enroll VALUES (301, 'CS', 201, 1);
+        ```
+
+    - Insert multiple tuples
+
+      - ```sql
+        INSERT INTO Enroll VALUES (301, 'CS', 201, 1), (302, 'CS', 143, 1);
+        ```
+
+    - Populate `Honors` table with students of `GPA > 3.7`
+
+      - ```sql
+        INSERT INTO Honors (SELECT *
+                           FROM Student
+                           WHERE GPA > 3.7);
+        ```
+
+    - Delete all students who are not taking classes
+
+      - ```sql
+        DELETE FROM Student
+        WHERE sid NOT IN (SELECT sid
+                         FROM Enroll);
+        ```
+
+      - Syntax: `DELETE FROM <relation> WHERE <condition>;`
+
+    - Increase all CS course numbers by 100
+
+      - ```sql
+        UPDATE Class
+        SET cnum = cnum + 100
+        WHERE dept = 'CS';
+        ```
+
+      - Syntax:
+
+        - ```sql
+          UPDATE <relation>
+          SET A1 = V1, ... , An = Vn
+          WHERE <condition>;
+          ```
+
+  - `NULL` and three-valued logic
+
+  - Outer join
+
+  - Multiset semantics for set operators
+
+  - SQL expressive power and recursion
+
+- General SQL `SELECT`
+
+  - ```sql
+    SELECT <attributes>, <aggregates>
+    FROM <relations>
+    WHERE <conditions>
+    GROUP BY <attributes>
+    HAVING <aggregate_condition>
+    ORDER BY <attributes>
+    FETCH FIRST <n> ROWS ONLY
+    ```
+
+  - `SELECT` appears first, but is the last clause to be "interpreted"
+
+- Example queries:
+
+  - Q1: Average GPA of all students
+
+    - Key challenge: we've been dealing with collecting information from one input tuple per output, we haven't learned how to combine information from multiple tuples into a single tuple yet
+
+    - ```sql
+      SELECT AVG(GPA)
+      FROM Student;
+      ```
+
+      - Use of the aggregate function `AVG()`
+
+  - Q2: Number of students taking CS classes
+
+    - ```sql
+      SELECT COUNT(DISTINCT sid)
+      FROM Enroll
+      WHERE dept = 'CS';
+      ```
+
+      - Example where duplicates can make our answer incorrect => must ensure `sid`s are distinct
+
+  - Q3: Average GPA of students who take CS classes
+
+    - ```sql
+      SELECT AVG(GPA)
+      FROM Student S, Enroll E
+      WHERE S.sid = E.sid AND dept = 'CS';
+      ```
+
+      - Wrong => duplicate instances of students who are taking multiple CS courses
+        - Cannot be fixed in same manner as Q2, since `GPA` is not a unique field
+
+    - ```sql
+      SELECT AVG(GPA)
+      FROM Student
+      WHERE sid IN
+      (SELECT sid
+      FROM Enroll
+      WHERE dept = 'CS');
+      ```
+
+  - Q4: Average GPA for each age group
+
+    - ```sql
+      SELECT age, AVG(GPA)
+      FROM Student
+      GROUP BY age;
+      ```
+
+  - Q5: Number of classes each student takes
+
+    - ```sql
+      SELECT sid, COUNT(*)
+      FROM Enroll
+      GROUP BY sid;
+      ```
+
+      - What about students who take no classes (dangling tuples)?
+
+  - Q6: Students who take 2+ classes
+
+    - ```sql
+      SELECT sid
+      FROM Enroll
+      WHERE COUNT(*) >= 2
+      GROUP BY sid;
+      ```
+
+      - Wrong => the `WHERE` applies before the `GROUP BY`
+        - In general, the aggregate functions shouldn't appear in the `WHERE` clause
+
+    - ```sql
+      SELECT sid
+      FROM Enroll
+      GROUP BY sid
+      HAVING COUNT(*) >= 2;
+      ```
+
+  - Q7: Per each student, return their name, GPA, and the overall GPA average
+
+    - ```sql
+      SELECT name, GPA, AVG(GPA)
+      FROM Student;
+      ```
+
+      - Wrong => the use of `AVG` without any other aggregate function expressions results in the input tuples collapsing into a single tuple
+
+    - ```sql
+      SELECT name, GPA, AVG(GPA) OVER()
+      FROM Student;
+      ```
+
+  - Q8: Per each student, return their name, GPA, and the average GPA of their age group
+
+    - Apply `AVG(GPA)` only within their "group"/"partition", not over the entire input tuples
+
+      - Use `PARTITION BY` => similar to aggregate functions' `GROUP BY`
+
+    - ```sql
+      SELECT name, GPA, AVG(GPA) OVER(PARTITION BY age)
+      FROM Student;
+      ```
+
+  - Q9: Average GPA within child/adult group
+
+    - ```sql
+      SELECT AVG(APG)
+      FROM Student
+      GROUP BY CASE
+      	WHEN (age < 18) THEN 'child'
+      	ELSE 'adult'
+      END;
+      ```
+
+    - What if we want to show `child` and `adult` as part of the output tuples?
+
+      - ```sql
+        WITH S AS (SELECT CASE WHEN (age < 18) THEN 'child'
+                   		       ELSE 'adult'
+                   	      END age-group, GPA
+                   FROM Student)
+        SELECT age-group, AVG(GPA)
+        FROM S
+        GROUP BY age-group
+        ```
+
+  - Q10: Top 3 students ordered by their GPA
+
+    - Sometimes, we just want a few rows from the result; is there a way to limit the result size?
+
+    - ```sql
+      SELECT *
+      FROM Students
+      ORDER BY GPA DESC
+      FETCH FIRST 3 ROWS ONLY
+      ```
+
+      
+
+## Lecture 6
 
 - 
-
