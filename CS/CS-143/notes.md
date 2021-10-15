@@ -965,14 +965,6 @@
           WHERE <condition>;
           ```
 
-  - `NULL` and three-valued logic
-
-  - Outer join
-
-  - Multiset semantics for set operators
-
-  - SQL expressive power and recursion
-
 - General SQL `SELECT`
 
   - ```sql
@@ -1129,5 +1121,241 @@
       
 
 ## Lecture 6: Advanced SQL II
+
+- SQL: More Tricky Details
+
+  - `NULL` values
+
+    - Dealing with `NULL`
+
+      - Q: What will be returned from the following query if `GPA` is `NULL`?
+
+        - ```sql
+          SELECT name
+          FROM Student
+          WHERE GPA * 100 / 4 > 90;
+          ```
+
+        - When the `NULL` value is an input into one of the arithmetic operators, the result is `NULL`
+
+        - We use three-valued logic to evaluate the `>` operator: value must be `True`, `False`, or `Unknown`
+
+    - SQL is based on three-valued logic
+
+      - SQL returns a tuple if the result from the condition is `True`
+
+        - `False` or `Unknown` tuples will not be returned
+
+      - Truth Table of Three-valued Logic
+
+        - Assume `GPA` is `NULL` and `age` is `17`
+
+          - Q: `GPA > 3.7 AND age > 18` - what is the result of this condition?
+
+            - | AND       | True  | False | Unknown |
+              | --------- | ----- | ----- | ------- |
+              | **True**  | True  | False | Unknown |
+              | **False** | False | False | False   |
+
+          - Q: `GPA > 3.7 OR age > 18` - what is the result of this condition?
+
+            - | AND       | True | False | Unknown |
+              | --------- | ---- | ----- | ------- |
+              | **True**  | True | True  | True    |
+              | **False** | True | False | Unknown |
+
+        - `NOT Unknown != Known`
+
+    - `NULL` and Aggregates
+
+      - Aggregate functions ignore tuples containing `NULL` values
+
+        - Except `COUNT(*)`, which counts a `NULL` valued tuple as a valid tuple
+        - Note that `COUNT(attr)` does ignore a `NULL` valued `attr`
+
+      - When an input to an aggregate function is empty (= no input tuples):
+
+        - `COUNT()` returns 0
+        - All other aggregate functions return `NULL`
+
+      - | sid  | GPA  |
+        | :--: | :--: |
+        |  1   | 3.0  |
+        |  2   | 3.6  |
+        |  3   | 2.4  |
+        |  4   | NULL |
+
+      - Q: What should be the result for the following queries?
+
+        - ```sql
+          SELECT SUM(GPA)
+          FROM Student;
+          ```
+
+          - `9.0`
+
+        - ```sql
+          SELECT AVG(GPA)
+          FROM Student;
+          ```
+
+          - `3.0`
+
+        - ```sql
+          SELECT COUNT(GPA)
+          FROM Student;
+          ```
+
+          - `3`
+
+        - ```sql
+          SELECT COUNT(*)
+          FROM Student;
+          ```
+
+          - `4`
+
+    - `NULL` and Set Operators
+
+      - `NULL` is treated like other regular values for set operators
+      - Q: What should be the result of `{ 2.4, 3.0, NULL } ∪ { 3.6, NULL }`?
+        - `{ 2.4, 3.0, 3.6, NULL }`
+
+    - Checking `NULL`
+
+      - In the case we need to explicitly check whether an attribute value is `NULL`, we can use the `IS NULL` or `IS NOT NULL` operators
+        - Note that `= NULL` or `<> NULL` do not work => the output is always `Unknown`
+      - `COALESCE()` function
+        - Return first non-`NULL` value in the list
+        - Example: `COALESCE(phone, email, addr)`
+          - Tries `phone` field first, then `email`, then `addr`
+
+  - Outer join
+
+    - An outer join preserves dangling tuples
+
+    - ```sql
+      Student LEFT OUTER JOIN Enroll
+      ON Student.sid = Enroll.sid;
+      ```
+
+      - Only dangling tuples from `Student` are preserved
+
+    - ```sql
+      Student RIGHT OUTER JOIN Enroll
+      ON Student.sid = Enroll.sid;
+      ```
+
+      - Only dangling tuples from `Enroll` are preserved
+
+    - ```sql
+      Student FULL OUTER JOIN Enroll
+      ON Student.sid = Enroll.sid;
+      ```
+
+      - All dangling tuples are preserved
+
+    - More on `JOIN`s
+
+      - MySQL doesn't support `FULL OUTER JOIN`
+        - Only `LEFT` and `RIGHT` `OUTER JOIN`s
+      - `R (INNER) JOIN S ON R.A = S.A`
+        - Standard cross product with join condition `R.A = S.A`
+      - `R NATURAL JOIN S`
+        - Natural join from relational algebra
+        - Equality on shared attributes
+        - Keep only one copy of shared attributes
+
+  - SQL and Multiset Semantics
+
+    - Multiset (= Bag)
+      - A set with duplicate elements
+      - Order of elements doesn't matter
+      - `{a, a, b, c} = {a, b, a, c} != {a, b, c}`
+    - SQL is based on multiset semantics
+      - We already learned how duplicates are generated and kept in SQL
+      - Use `DISTINCT` to eliminate duplicates in the result
+      - Exception: set operators are based on set semantics
+    - Multiset Semantics for Set Operators
+      - To use bag semantics for set operators, use the `ALL` keyword
+        - `UNION ALL`, `INTERSECT ALL`, `EXCEPT ALL`
+      - Q: `{ a, a, b } ∪ { a, b, c }`?
+        - `{ a, a, a, b, b, c }`
+      - Q: `{ a, a, a, b, c } ∩ { a, a, b }`?
+        - `{ a, a, b }`
+      - Q: `{ a, a, b, b } - { a, b, b, c }`
+        - `{ a }`
+      - Under multiset semantics:
+        - `R ∪ S = S ∪ R`? => Always true
+        - `R ∩ S = S ∩ R`? = ? Always true
+        - `R ∩ (S ∪ T) = (R ∩ S) ∪ (R ∩ T)`? => No longer true
+        - Be mindful that some rules change when operating under multi set semantics
+
+  - Expressive power of SQL and recursion
+
+    - SQL is a very expressive language, but its expressive power is limited
+
+      - SQL is not a "Turing-complete" language
+
+    - For example, the closure of a set cannot be computed using SQL92
+
+      - Example: all ancestors, all reachable nodes
+      - Support for recursion is needed to compute a closure
+
+    - SQL99 added support for recursion
+
+      - ```sql
+        WITH RECURSIVE Ancestor(child, ancestor)
+        AS (SELECT *
+            FROM Parent)
+            UNION
+            (SELECT P.child, A.ancestor
+             FROM Parent P, Ancestor A
+             WHERE P.parent = A.child))
+        SELECT ancestor
+        FROM Ancestor
+        WHERE child = 'Susan';
+        ```
+
+        - Union the base case with the recursive case
+
+  - Example queries:
+
+    - Q1: Number of classes each student takes, returning 0-class students as well
+
+      - ```sql
+        SELECT sid, COUNT(*)
+        FROM Enroll
+        GROUP BY sid;
+        ```
+
+        - Ignores students taking no classes
+
+      - ```sql
+        SELECT sid, COUNT(*)
+        FROM Student S, Enroll E
+        WHERE S.sid = E.sid
+        GROUP BY sid;
+        ```
+
+        - Here, students that aren't present in the `Enroll` table have no partner to pair with, therefore they are represented by a dangling tuple and will be dropped from the final table
+
+    - Q2: Find all ancestors of Susan
+
+    - ```sql
+      (SELECT parent
+       FROM Parent
+       WHERE child = 'Susan')
+      UNION
+      (SELECT P2.parent
+       FROM Parent P1, Parent P2
+       WHERE P1.parent = P2.child AND P1.child = 'Susan');
+      ```
+
+      - Would need to manually list all ancestor relations
+
+
+
+## Lecture 7:
 
 - 
