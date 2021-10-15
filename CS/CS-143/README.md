@@ -16,7 +16,7 @@
 
 |  Homework  | Score |
 | :--------: | :---: |
-| Homework 1 |  ???  |
+| Homework 1 |  4/4  |
 | Homework 2 |  ???  |
 | Homework 3 |  ???  |
 | Homework 4 |  ???  |
