@@ -40,14 +40,14 @@
     - [x] Page shows relevant data from the `Actor` table
     - [x] Page contains a list of all movies the actor has starred in
     - [x] Movie titles hyperlink to the correct movie page
-  - [ ] `movie.php`
+  - [x] `movie.php`
     - [x] Page takes in the `id` of an movie as the parameter and displays the corresponding information properly
     - [x] Page shows relevant data from the `Movie` table
     - [x] Page shows the correct genre of the movie, according to the `MovieGenre` table
     - [x] Page contains a cast list
     - [x] Actor names hyperlink to the correct actor page
     - [x] Page contains the average user rating of the movie
-    - [ ] Page contains a list of user reviews for the movie
+    - [x] Page contains a list of user reviews for the movie
     - [x] Page contains a link to the movie's review page
   - [x] `search.php`
     - [x] Search bars are displayed when no parameter is given

@@ -1,0 +1,121 @@
+/* Movie info styling */
+#movie-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  font-size: 32px;
+  color: black;
+}
+
+#info-labels {
+  text-align: right;
+  margin-right: 32px;
+}
+
+.info-label {
+  display: block;
+  margin: 16px 0;
+}
+
+/* Divider styling */
+.divider {
+  height: 2px;
+  width: 60vw;
+  border: none;
+  background: black;
+}
+
+/* Typography styling */
+.section-header {
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 32px;
+}
+
+/* Cast table styling */
+#movie-cast {
+  border: 1px solid black;
+  margin: 32px 0;
+  width: 35vw;
+}
+
+th,
+tr,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 4px 0;
+  text-align: center;
+}
+
+/* Rating styling */
+#ratings {
+  display: flex;
+}
+
+.rating-text {
+  display: block;
+  margin: 16px 8px;
+  font-size: 32px;
+}
+
+/* Review styling */
+#review-link {
+  margin: 32px 0;
+}
+
+#review-button {
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+#review-button:hover {
+  background: grey;
+}
+
+#reviews {
+  margin-bottom: 32px;
+}
+
+.review-comment {
+  margin-bottom: 24px;
+  width: 60vw;
+}
+
+.review-comment:last-child {
+  margin-bottom: 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-name {
+  font-size: 24px;
+}
+
+.comment-time {
+  font-size: 16px;
+}
+
+.comment-rating {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.comment-body {
+  font-size: 20px;
+}
