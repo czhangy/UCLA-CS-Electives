@@ -1,0 +1,45 @@
+form {
+  margin-top: 48px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+input,
+select,
+textarea {
+  padding: 4px 6px;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  width: 30%;
+  margin-bottom: 48px;
+}
+
+#hide {
+    display: none;
+}
+
+textarea {
+  height: 180px;
+}
+
+input[type="submit"] {
+  background: black;
+  color: white;
+  margin-bottom: 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+
+p {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
