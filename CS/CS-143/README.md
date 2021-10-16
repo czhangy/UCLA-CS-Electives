@@ -28,7 +28,7 @@
 |                      Project                       |  Score  |
 | :------------------------------------------------: | :-----: |
 | Project 1: Setting Up Container and MySQL Database | 100/100 |
-|                     Project 2                      |   ???   |
+|         Project 2: Internet Movie Database         | 100/100 |
 |                     Project 3                      |   ???   |
 |                     Project 4                      |   ???   |
 |                     Project 5                      |   ???   |
