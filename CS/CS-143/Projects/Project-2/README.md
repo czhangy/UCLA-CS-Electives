@@ -56,14 +56,14 @@
     - [x] The page only displays actors/movies whose names/titles contain the user-inputted strings
     - [x] The page supports multi-word search
     - [x] The page supports case-insensitive search
-  - [ ] `review.php`
-    - [ ] The page shows all fields necessary to populate the `Review` table
-    - [ ] The user is able to submit a review for posting
-    - [ ] A success message appears upon a successful post
+  - [x] `review.php`
+    - [x] The page shows all fields necessary to populate the `Review` table
+    - [x] The user is able to submit a review for posting
+    - [x] A success message appears upon a successful post
 - Submission
-  - [ ] Install the `p2_test` testing script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_test`
+  - [x] Install the `p2_test` testing script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_test`
   - [ ] Test the web application using `./p2_test`
-  - [ ] Install the `p2_package` packaging script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_package`
+  - [x] Install the `p2_package` packaging script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_package`
   - [ ] Package all necessary files using `./p2_package`
   - [ ] Submit the `project2.zip` to Gradescope
 
