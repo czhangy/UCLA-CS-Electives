@@ -61,10 +61,10 @@
     - [x] The user is able to submit a review for posting
     - [x] A success message appears upon a successful post
 - Submission
-  - [x] Install the `p2_test` testing script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_test`
-  - [ ] Test the web application using `./p2_test`
   - [x] Install the `p2_package` packaging script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_package`
-  - [ ] Package all necessary files using `./p2_package`
+  - [x] Package all necessary files using `./p2_package`
+  - [x] Install the `p2_test` testing script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_test`
+  - [x] Test the web application using `./p2_test`
   - [ ] Submit the `project2.zip` to Gradescope
 
 ## Relevant Links
