@@ -65,7 +65,7 @@
   - [x] Package all necessary files using `./p2_package`
   - [x] Install the `p2_test` testing script using `wget http://oak.cs.ucla.edu/classes/cs143/project2/p2_test`
   - [x] Test the web application using `./p2_test`
-  - [ ] Submit the `project2.zip` to Gradescope
+  - [x] Submit the `project2.zip` to Gradescope
 
 ## Relevant Links
 
