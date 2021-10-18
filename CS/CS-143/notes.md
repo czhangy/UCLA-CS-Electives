@@ -1356,6 +1356,119 @@
 
 
 
-## Lecture 7:
+## Lecture 7: Entity-Relationship Model
+
+- Entity-Relationship (E/R) Model
+  - Q: How should we design tables in our database?
+    - Tables are not "given"
+    - "Good" tables may not be easy to come up with
+  - E/R model: graphical, intuitive, and "informal" representation of information on database
+    - Used to "capture" what we learn from domain experts/database users
+    - Not directly implemented by DBMS
+    - Tools exist to automatically convert E/R model into tables
+  - Two main components
+    - Entity sets and relationship sets
+- Entity Set
+  - Entity: "thing" or "object" in the real world
+    - e.g. me, a book, UCLA
+  - Entity set: a set of entities (objects), like a class in OOP
+    - Rectangle in ER
+    - Consists of name and attributes
+  - Entities with attributes can be thought of as "tuples" (or records)
+    - `(301, John, 13 Hilgard, 18, 3.3)`, `(303, James, 12 De Neve, 19, 2.5)`
+  - Key: a set of attributes that uniquely identifies an entity in an entity set
+    - Underline in E/R
+    - All entity sets in E/R need a key
+- Relationship Set
+  - Relationship: "connection" between entities
+  - Relationship set: a set of relations of the same kind
+    - Diamond in ER
+    - Relationships can be thought of as "edges" between entities
+  - Relationships can have attributes
+  - Not all entities have to participate in a relationship
+- Cardinality of Relationships
+  - Cardinality: how many times do entities participate in a relationship?
+    - One-to-one
+      - Each entity can only participate in a single relationship
+    - One-to-many
+      - One entity in one set can participate in multiple relationships 
+    - Many-to-many
+      - Entities in either set can participate in multiple relationships
+  - Cardinality: Add arrow on the "one" side
+  - Total participation
+    - Every entity participates in the relationship at least once
+    - Double line in E/R model
+- Meaning of Cardinality
+  - Q: What does it mean?
+    - Many-to-one in `Teach`?
+      - One faculty member may teach multiple classes
+      - Each class can have at most one faculty member teaching it
+    - One-to-one in `Teach`?
+      - One faculty member can teach at most one class
+      - Each class can have at most one faculty member teaching it
+    - Double-line between `Classes` and `Teach`?
+      - All classes should be taught by at least one faculty member
+    - Double-line and arrow between `Teach` and `Faculty`
+      - All classes should be taught by at least one faculty member
+      - Each class can have at most one faculty member teaching it
+    - Double lines at both sides of `Teach` vs. one-to-one of `Teach`, are they the same?
+      - No, the first ensures that entities on both sides must participate in the relationship, the second ensures each entity only participates in a single relationship
+- General Cardinality Notation
+  - Label an edge with `a..b`
+    - The entity participates in the relationship between `a` through `b` times
+    - `*` means unlimited
+    - Don't get confused: for one-to-many relationship `0..*` appears on the "one" side and `0..1` appears on the "many" side
+- N-ary Relationship
+  - We may need more than a binary relationship sometimes
+  - Ex: `Students`, `TAs`, and `Classes`
+    - All TA's help all students
+    - Each student is assigned to a particular TA
+- Roles
+  - We can designate a "role" to each entity set that participates in a relationship set
+    - Labels on edges of a relationship in E/R model
+    - Useful if an entity set participates more than once in a relationship
+- Superclass and Subclass
+  - ISA relationship in E/R connects superclass and subclass
+  - Notes:
+    - Specialization: superclass => subclass
+    - Generalization: subclass => superclass
+    - Subclass inherits all attributes of its superclass
+    - Subclass participates in the relationships of its superclass
+    - Subclass may participate in its own relationship
+    - Disjoint specialization vs. overlapping specialization
+      - Either-or vs. multiple specialization
+      - Single hollow arrow vs. multiple hollow arrows (towards the superclass)
+- Weak Entity Set
+  - Entity set that doesn't have enough attributes to uniquely identify an entity
+  - Double rectangle in E/R model
+  - Part of its key comes from one or more entity sets it is linked to
+    - Owner entity set: entity set providing part of the key
+    - Identifying relationship: relationship between a weak entity set and owner entity set
+      - Double diamond in E/R model
+    - Discriminator: attributes in a weak entity set that become part of the key
+      - Dashed underline
+- E/R Design Principles
+  - Often it is not clear what choices to make
+    - One gigantic entity set with many attributes vs. many smaller entity sets?
+    - Attribute vs. Entity set?
+  - General rule of thumb for good design: avoid redundancy
+    - Saying the same thing more than once
+    - Space waste and potential inconsistency
+  - Things to consider for entity set vs. attribute
+    - Do we need more attributes than keys?
+    - Is it a one-to-one relationship?
+      - Create multiple entity sets for many-to-many or many-to-one relationships
+- E/R to Relation
+  - Converting E/R diagram to tables is mostly straightforward
+    - Automatic conversion tools exist
+  - (Strong) entity set: one table with all attributes for each entity set
+  - Relationship set: one table with keys from the linked entity sets and its own attributes
+    - If attribute names conflict, prefix them with entity set name
+    - Look at the relationship cardinality to determine the key
+
+
+
+## Lecture 8:
 
 - 
+
