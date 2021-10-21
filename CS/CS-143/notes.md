@@ -1468,7 +1468,134 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Normalization
+
+- Redundancies in Tables
+
+  - | `sid` | `name` | `addr`   | `dept` | `cnum` | `title`           | `unit` |
+    | ----- | ------ | -------- | ------ | ------ | ----------------- | ------ |
+    | 301   | James  | 11 West  | CS     | 143    | Database          | 04     |
+    | 105   | Elaine | 84 East  | EE     | 284    | Signal Processing | 03     |
+    | 301   | James  | 11 West  | ME     | 143    | Mechanics         | 05     |
+    | 105   | Elaine | 84 East  | CS     | 143    | Database          | 04     |
+    | 207   | Susan  | 12 North | EE     | 128    | Microelectronics  | 03     |
+
+  - The same information is included multiple times
+
+  - Redundancy leads to potential anomalies down the road
+
+    - Update anomaly: information may be updated partially and inconsistently
+
+      - What if a student changes their address? They must change each entry related to that student
+
+      wInsertion anomaly: We may not include some information at all
+
+      - What if a student doesn't take a class? They would have to use a placeholder `NULL`
+
+    - Deletion anomaly: while deleting information, we may delete others
+
+      - What if the only class that a student takes gets cancelled? That student would then be removed from the database
+
+  - Is there a better table design? What table(s) will we use?
+
+    - `Class(dept, cnum, title, unit)`
+    - `Student(sid, name, addr)`
+    - `Enroll(sid, dept, cnum)`
+
+- Coming up with Better Tables
+
+  - Any way to arrive at the better design more systematically?
+    - Where is the redundancy from?
+
+- Intuition behind Normalization Theory
+
+  - Functional Dependency (FD)
+    - Some attributes are "determined" by other attributes:
+      - e.g. `sid -> (name, addr)` and `(dept, cnum) -> (title, unit)`
+    - When there is a functional dependency we may have redundancy
+      - e.g. `(105, Elaine, 84 East)` is stored redundantly, so is `(CS, 143, database, 04)`
+
+- "Decomposing" `StudentClass` Table
+  - `StudentClass(sid, name, addr, dept, cnum, title, unit)`
+    - FD: `sid -> (name, addr)`, `(dept, cnum) -> (title, unit)`
+    - `A(sid, name, addr)`
+    - `B(sid, dept, cnum, title, unit)`
+    - `C(dept, cnum, title, unit)`
+    - `D(sid, dept, num)`
+  - Basic idea of "normalization"
+    - Whenever there is FD, the table may be "bad" due to redundancy
+    - We use FDs to split (or "decompose") table and remove the redundancy
+  - We learn the functional dependency and decomposition theory as the next topic
+
+- Overview
+  - Functional Dependency (FD)
+    - Definition
+    - Trivial functional dependency
+    - Logical implication
+    - Closure
+    - FD and key
+  - Decomposition
+    - Lossless decomposition
+  - Boyce-Codd Normal Form (BCNF)
+    - Definition
+    - BCNF decomposition algorithm
+  - Most theoretical part of the class, pay attention!
+- Functional Dependency (FD)
+  - Definition
+    - Notation: `u[X]` - values for the attributes of `X` if tuple `u`
+      - Ex: `u = (sid: 100, name: James, addr: Wilshire)`
+        - `u[sid, name] = (100, James)`
+    - Functional dependency `X -> Y`
+      - For any `u_1, u_2 ∈ R`, if `u_1[X]` = `u_2[X]`, then `u_1[Y] = u_2[Y]`
+      - Informally, `X -> Y` means "no two tuples in `R` can have the same `X` values but different `Y` values"
+    - Ex: `StudentClass(sid, name, addr, dept, cnum, title, unit)`
+      - Q: `sid -> name`? Yes
+      - Q: `dept, cnum -> title, unit`? Yes
+      - Q: `dept, cnum -> sid`? No
+      - Whether FD holds or not is dependent on real-world semantics
+  - Trivial Functional Dependency
+    - Trivial FD: `X -> Y` is a trivial functional dependency when `Y ⊆ X`
+      - `X -> Y` is always true regardless of real-world semantics
+    - Non-trivial FD: `X -> Y` when `Y ⊄ X`
+    - Completely non-trivial FD: `X -> Y` when `X ∩ Y = ∅`
+  - Logical Implication
+    - `R(A, B, C, G, H, I)`
+      `F = { A -> B, A -> C, CG -> H, CG -> I, B ->H }`
+    - Q: Is `A -> H` true given `F`?
+      - `F` logically implies `A -> H`
+    - Canonical database: a method to check logical implication
+  - Closure
+    - Closure of functional dependency set `F`: `F+`
+      - `F+`: the set of all FDs that are logically implied by `F`
+    - Closure of attribute set `X`: `X+`
+      - `X+`: the set of all attributes that are functionally determined by `X`
+      - Ex: what is `{ sid, dept, cnum }+` given `{ sid -> name, (dept, cnum) -> (title, unit) }`?
+        - `X+ = { sid, dept, cnum, name, title, unit }`
+    - Closure `X+` Computation Algorithm
+      - Start with `X+ = X`
+      - Repeat until there is no change in `X+`:
+        - If there is `Y -> Z` with `Y ⊂ X+`, then `X+ <- ∪ Z`
+    - Attribute Closure Example
+      - `R(A, B, C, G, H, I)`
+        `F = { A -> B, A -> C, CG -> H, CG -> I, B -> H }`
+      - Q: `{A}+`?
+        - `{ A, B, C, H }`
+      - Q: `{A, G}+`
+        - `{ A, G, B, C, H, I }`
+  - Functional Dependency and Key
+    - `R(A, B, C, G, H, I)`
+      `F = { A -> B, A -> C, CG -> H, CG -> I, B -> H }`
+    - Q: Is `{ A, G }` a key of `R`? Is `{ A, B }` a key of `R`?
+    - `X` is a key of `R` if and only if
+      - `X -> all attributes of R` (i.e. `X+ = R`)
+      - No subset of `X` satisfies the first condition (i.e. `X` is minimal)
+  - Projecting Functional Dependency
+    - `R(A, B, C, D)`
+      `F = { A -> B, B -> A, A -> C }`
+    - Q: What FDs hold for `R'(B, C, D)`, which is a projection of `R`?
+
+
+
+## Lecture 9:
 
 - 
-
