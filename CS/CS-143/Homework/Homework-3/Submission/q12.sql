@@ -4,5 +4,5 @@ WITH YearlyCredits AS (SELECT stud_id, year, SUM(credits) AS credits
                        GROUP BY stud_id, year),
      MaxCredits AS (SELECT stud_id, MAX(credits) OVER(PARTITION BY stud_id) AS credits
                     FROM YearlyCredits)
-SELECT *
+SELECT DISTINCT stud_id, year
 FROM MaxCredits NATURAL JOIN YearlyCredits;
