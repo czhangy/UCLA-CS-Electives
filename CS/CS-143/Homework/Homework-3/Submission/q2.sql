@@ -1,3 +1,3 @@
-SELECT D.dept, MAX(credits) AS maximum_course_credit
+SELECT DISTINCT D.dept, MAX(credits) OVER(PARTITION BY D.dept) AS maximum_course_credit
 FROM Department D, Class C
-GROUP BY D.dept;
+WHERE D.dept = C.dept;
