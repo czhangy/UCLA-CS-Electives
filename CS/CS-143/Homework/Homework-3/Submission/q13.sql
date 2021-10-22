@@ -1,0 +1,4 @@
+SELECT id
+FROM Student
+ORDER BY tot_cred DESC
+LIMIT 4;
