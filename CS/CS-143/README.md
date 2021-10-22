@@ -22,6 +22,8 @@
 | Homework 4 |  ???  |
 | Homework 5 |  ???  |
 | Homework 6 |  ???  |
+| Homework 7 |  ???  |
+| Homework 8 |  ???  |
 
 ## Projects
 
@@ -29,7 +31,7 @@
 | :------------------------------------------------- | :-----: |
 | Project 1: Setting Up Container and MySQL Database | 100/100 |
 | Project 2: Internet Movie Database                 | 100/100 |
-| Project 3                                          |   ???   |
+| Project 3: Data Conversion                         |   ???   |
 | Project 4                                          |   ???   |
 | Project 5                                          |   ???   |
 | Project 6                                          |   ???   |
