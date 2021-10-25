@@ -1596,6 +1596,147 @@
 
 
 
-## Lecture 9:
+## Lecture 9: BCNF Decomposition
+
+- Decomposition
+
+  - Our previous "decomposition" example:
+
+    - `StudentClass(sid, name, addr, dept, cnum, title, unit)` => `A(sid, name, addr)`, `B(sid, dept, cnum, title, unit)`
+
+  - Hopefully, we can "remove redundancy" through a sequence of decompositions using FDs
+
+  - General Decomposition
+
+    - $$
+      R(A_1, ..., A_n)\rightarrow R_1(A_1,...,A_i), R_2(A_j,...,A_n)\\\{A_1,...,A_n\}=\{A_1,...,A_i\}\cup\{A_j,...A_n\}
+      $$
+
+  - Lossless Decomposition
+
+    - Q: When we decompose `R` to `R_1` and `R_2`, what should we watch out for?
+      - Do not lose any data
+    - Lossless-Join Decomposition
+      - Decomposition of `R` into `R_1` and `R_2` is lossless-join decomposition if and only if `R = R_1 ⋈ R_2`
+      - After a lossless-join decomposition, we can always get back the original table `R` if needed
+      - Q: When is a decomposition lossless-join?
+        - Q: Decomposition of `S(cnum, sid, name)` into `S1(cnum, sid)` and `S2(cnum, name)` => is it lossless?
+          - No, duplicates break things
+          - Decomposition into `S1(cnum, sid)` and `S2(sid, name)`? => is it lossless
+            - Yes!
+        - The decomposition `R(X, Y, Z) -> R1(X, Y), R2(Y, Z)` is lossless-join if `Y -> X` or `Y -> Z`
+          - Shared attribute(s) are the key of one of the decomposed tables
+          - This condition can be checked using FDs
+
+- Boyce-Codd Normal Form
+
+  - FD, Key, and Redundancy
+    - Q: `StudentClass(sid, name, addr, dept, cnum, title, unit)` => does the FD `sid -> (name, addr)` cause redundancy under `StudentClass`
+      - Yes, if `sid` is ever repeated
+    - Q: `Student(sid, name, addr)` => does the FD `sid -> (name, addr)` cause redundancy under `Student`?
+      - No, there would be no reason to store multiple copies of `sid`
+    - Q: Why does the same FD cause reduncancy in one case, but not in the other?
+      - In `StudentClass`, `sid` isn't a key, but in `Student` it is
+      - If the LHS of a FD is a key, then it cannot introduce redundancy and vice versa
+  - Relation `R` is in BCNF with regard to the set of FDs `F` if and only if for every non-trivial FD `(X -> Y) ∈ F+`, `X` contains a key
+    - Informally, "normal form" means "good table design"
+    - BCNF ensures that there is no redundancy in the table due to FD
+  - When a table `R` is not in BCNF, we know that there is redundancy in the table and the design is "bad"
+    - When table `R` violates the BCNF condition, we have to redesign the table so that the new design is in BCNF => "BCNF decomposition algorithm"
+    - Decompose `R` until all decomposed tables are in BCNF
+
+- BCNF Example 1
+
+  - `Class(dept, cnum, title, unit)`
+    FD `(dept, cnum) -> (title, unit)`
+  - Intuitively, is it a good table design? Any redundancy? Any better design?
+  - Q: Is it in BCNF?
+    - Yes, the only functional dependency has an LHS that contains a key for this table
+
+- BCNF Example 2
+
+  - `Employee(name, dept, manager)`
+    `F = { name -> dept, dept -> manager }`
+  - Is it in BCNF?
+    - `{ name }+ = { name, dept, manager }`
+    - `{ dept }+ = { dept, manager }`
+      - Violates BCNF, redundancy is present
+      - Intuitively, detects that redundancy is present when many employees work for a department
+
+- BCNF Violation and Table Decomposition
+
+  - Decompose tables until all tables are in BCNF
+
+    - For each FD `X -> Y` that violates the BCNF condition, separate those attributes out into another table to remove redundancy
+    - We also have to ensure that this decomposition is lossless
+
+  - BCNF Decomposition Algorithm
+
+    - ```
+      For any R in the schema
+      	If (non-trivial X -> Y holds on R AND X doesn't contain a key), then
+      		1) Compute X+ (Closure of X)
+      		2) Decompose R into R1(X+) and R2(X, Z)
+      			// X becomes the common attribute
+      			// Z consists of all attributes in R except X+
+      Repeat until no more decomposition
+      ```
+
+- BCNF Decomposition Example 1
+
+  - `ClassInstructor(dept, cnum, title, unit, instructor, office, fax)`
+    `F = { instructor -> office, office -> tax, (dept, cnum) -> (title, unit), (dept, cnum) -> instructor }`
+  - Is it in BCNF?
+    - `{ inst }+ = { inst, office, fax }` => violates BCNF
+      - Decompose into `R1(inst, office, fax)` and `R2(inst, dept, cnum, title, unit)`
+    -  `{ office }+ = { office, fax }` => violates BCNF
+      - Decompose into `R3(office, fax)` and `R4(inst, office)`
+    - `{ (dept, cnum) }+ = { dept, cnum, title, unit, inst }` => fine
+  - Decomposed: `R2(inst, dept, cnum, title, unit)`, `R3(office, fax)`, and `R4(inst, office)`
+
+- BCNF Deomposition Example 2
+
+  - `R(A, B, C, G, H, I)`
+    `F = { A -> B, A -> C, CG -> H, CG -> I, B -> H }`
+
+  - Is it in BCNF?
+
+    - `{ A }+ = { A, B, C, H }`
+      - Decompose into `R1(A, B, C, H)` and `R2(A, G, I)`
+
+    - `{ B }+ = { B, H }`
+      - Decompose into `R3(B, H)` and `R4(A, B, C)`
+    - Be careful of logicially implied FDs
+
+  - Decomposed: `R2(A, G, I)`, `R3(B, H)`, and `R4(A, B, C)`
+
+- Revisiting BCNF Decomposition Algorithm
+  - Is guaranteed to guide lossless decomposition
+- Uniqueness of BCNF Decomposition
+  - Q: Does the BCNF decomposition algorithm always lead to a unique set of relations?
+    - No, the order by which you decompose based on FDs that violate BCNF may change the resultant tables
+  - Each possible resultant set of relations is equally good under BCNF criteria
+- Good Table Design in Practice
+  - Normalization splits tables to reduce redundancy
+    - However, splitting tables has negative performance implication
+  - As a rule of thumb, start with normalized tables and merge them if performance isn't good enough
+- What We Learned
+  - Relational design theory
+  - Functional dependency
+    - Trivial functional dependency
+    - Logical implication
+    - Closure
+  - Decomposition
+    - Lossless-join decomposition
+  - Boyce-Codd Normal Form (BCNF)
+    - BCNF decomposition algorithm
+  - There exist other definitions of "Normal forms"
+    - Third normal form, fourth normal form, etc.
+    - BCNF is most useful and widely used
+
+
+
+## Lecture 10:
 
 - 
+
