@@ -1694,7 +1694,7 @@
     - `{ (dept, cnum) }+ = { dept, cnum, title, unit, inst }` => fine
   - Decomposed: `R2(inst, dept, cnum, title, unit)`, `R3(office, fax)`, and `R4(inst, office)`
 
-- BCNF Deomposition Example 2
+- BCNF Decomposition Example 2
 
   - `R(A, B, C, G, H, I)`
     `F = { A -> B, A -> C, CG -> H, CG -> I, B -> H }`
@@ -1736,7 +1736,309 @@
 
 
 
-## Lecture 10:
+## Lecture 10: Database Integrity
+
+- What We Will Learn
+
+  - How can we ensure that data in our database is "consistent"?
+    - Referential integrity constraint
+    - `CHECK` constraint
+
+- Data integrity Enforcement in RDBMS
+
+  - Domain
+    - `GPA` is `REAL`
+    - `NOT NULL`
+  - Integrity constraints
+    - If violated, the DBMS generates and error and aborts
+    - e.g., key, referential integrity, `CHECK`
+
+- Key Constraint
+
+  - A set of attributes should be unique in a table
+
+  - `Class(dept, cnum, sec, unit, instructor, title)`
+
+    - The primary key is `(dept, cnum, sec)`
+    - The tuple `(dept, sec, title)` should be unique
+
+  - ```sql
+    CREATE TABLE Class(
+    	dept CHAR(2) NOT NULL, cnum INT NOT NULL, sec INT NOT NULL,
+        unit INT, instructor VARCHAR(100), title VARCHAR(100),
+        PRIMARY KEY(dept, cnum, sec),
+        UNIQUE(dept, sec, title)
+    );
+    ```
+
+  - One `PRIMARY KEY` per table, others should be `UNIQUE`
+
+    - `PRIMARY KEY` and `UNIQUE` are enforced through index (more on this later)
+
+- Referential Integrity (RI)
+
+  - Examples
+
+    - If `sid` appears in `Enroll`, it should also appear in `Student`
+    - If `(dept, cnum, sec)` appears in `Enroll`, it should also appear in `Class`
+
+  - Q: Is the reverse true?
+
+    - No!
+
+  - Terminology
+
+    - `E.B` references `S.B`
+      - `E.B`: foreign key (= referencing attribute)
+      - `S.B`: referenced attribute
+    - Referential integrity
+      - Referencing attribute should always exist in the reference attribute
+      - When foreign key is `NULL`, no referential integrity check is performed
+
+  - SQL Referential Integrity Syntax
+
+    - ```sql
+      CREATE TABLE Enroll(
+      	sid INT,
+          dept CHAR(2),
+          cnum INT,
+          sec INT,
+          FOREIGN KEY(sid) REFERENCES Student(sid)
+          FOREIGN KEY(dept, cnum, sec) REFERENCES Class(dept, cnum, sec)
+      );
+      ```
+
+    - Referenced attributes must be `PRIMARY KEY` or `UNIQUE`
+  
+- Violation of Referential Integrity
+
+  - Assume `E.B` references `S.B`
+
+  - Q: When can RI be violated?
+
+    - `INSERT INTO E`
+    - `DELETE FROM S`
+    - `UPDATE E`
+    - `UPDATE S`
+
+  - RI violation from referencing table `E` is never allowed
+
+    - DBMS rejects the statement
+
+  - RI violation from referenced table `S` is not allowed by default, but we can instruct the DBMS to "fix" the violation automatically
+
+    - Q: How can we fix `DELETE FROM S`?
+
+      - Delete the corresponding tuple from `E`
+      - Change the referencing attribute to `NULL`
+
+    - Q: How can we fix `UPDATE S`?
+
+      - Update the corresponding tuple in `E`
+      - Change the referencing attribute to `NULL`
+
+    - Specifying Automatic Fix of RI Violation
+
+      - Syntax
+
+        - ```sql
+          CREATE TABLE E(
+          	A INT, B INT,
+              FOREIGN KEY(B) REFERENCES S(B)
+              ON UPDATE { CASCADE | SET NULL | SET DEFAULT }
+              ON DELETE { CASCADE | SET NULL | SET DEFAULT }
+          );
+          ```
+
+          - `CASCADE` cascades changes in the referenced attribute to the referencing attribute
+
+- More Comments on Referential Integrity
+
+  - Referential integrity is the only SQL constraint that can "fix itself"
+    - Other constraints simply reject the statement and generate an error
+  - Some DBMS do not support all "fixing" actions
+    - Oracle supports `ON DELETE` , but not `ON UPDATE`, for example
+  - Q: Why should referenced attributed be unique?
+    - Non-uniqueness introduces ambiguity
+
+- Self-Referencing Table
+
+  - ```sql
+    CREATE TABLE R(
+    	A INT PRIMARY KEY,
+        B INT,
+        FOREIGN KEY(B) REFERENCES R(A)
+        ON DELETE CASCADE
+    );
+    ```
+
+  - Def: a table that references itself
+
+  - `CASCADE` may be problematic
+
+    - Cyclic relationship in the table => may delete the whole table
+
+- Circular Constraint
+
+  - How can we create the two tables?
+
+    - Whenever we try to establish references, the other table doesn't exist yet
+
+  - How can we insert tuples?
+
+    - Whenever we try to establish references, the referenced attribute doesn't exist yet
+
+  - Creating tables: `ALTER TABLE`
+
+    - ```sql
+      CREATE TABLE Chicken(cid INT PRIMARY KEY, eid INT);
+      CREATE TABLE Egg(eid INT PRIMARY KEY, cid INT REFERENCES Chicken);
+      ALTER TABLE Chicken ADD FOREIGN KEY(eid) REFERENCES Egg(eid);
+      ```
+
+  - Inserting tuples: two options
+
+    - Create the first chicken or egg that came from nowhere (= `NULL`)
+
+    - Create a chicken (and egg) that came from itself
+
+      - ```sql
+        INSERT INTO Chicken VALUES (1, NULL);
+        INSERT INTO Egg VALUES (1, 1);
+        UPDATE CHICKEN SET eid = 1 WHERE eid IS NULL;
+        ```
+
+- `CHECK` Constraint
+
+  - Example:`GPA` should be between `0.0` and `4.0`
+
+    - ```sql
+      CREATE TABLE Student(
+      	sid INT,
+          name VARCHAR(50),
+          addr VARCHAR(50),
+          GPA REAL,
+          CHECK(GPA >= 0 AND GPA <= 4)
+      );
+      ```
+
+  - `CHECK(<condition>)`
+
+    - `<condition>` can be any condition that may appear in a `WHERE` clause
+      - May include subqueries
+
+  - Constraint is attached to a particular table
+
+    - Constraint is checked when the attached table is updated, and the statement is rejected if the condition is violated
+
+  - Examples
+
+    - Q1: `cnum` should be `< 600` and `unit` should be `< 10`
+
+      - ```sql
+        CREATE TABLE Class(
+        	dept CHAR(2),
+            cnum INT,
+            sec INT,
+            unit INT,
+            title VARCHAR(100),
+            instructor VARCHAR(100),
+            CHECK(cnum < 600 AND unit < 10)
+        );
+        ```
+
+    - Q2: The units of all CS classes should be `> 3`
+
+      - ```sql
+        CREATE TABLE Class(
+        	dept CHAR(2),
+            cnum INT,
+            sec INT,
+            unit INT,
+            title VARCHAR(100),
+            instructor VARCHAR(100),
+            CHECK(dept <> 'CS' OR unit > 3)
+        );
+        ```
+
+        - `A -> B` is the same as `~A or B`
+
+    - Q3: Students whose `GPA < 2` cannot take CS classes
+
+      - ```sql
+        CREATE TABLE Student(
+        	sid INT,
+            name VARCHAR(50),
+            GPA REAL,
+            ...
+        );
+        
+        CREATE TABLE Enroll(
+        	sid INT,
+            dept CHAR(2),
+            cnum INT,
+            sec INT,
+            CHECK(dept <> 'CS' OR sid IN (SELECT sid
+                                          FROM Student
+                                          WHERE GPA >= 2))
+        );
+        ```
+
+        - Q: When will the constraint be checked?
+          - Only when the `Enroll` table is updated
+
+    - Q4: Can we express referential integrity constraint using the `CHECK` constraint?
+
+      - For example, can we express `Enroll.sid` is in `Student.sid`?
+
+        - ```sql
+          CREATE TABLE Student(
+          	sid INT,
+          	name VARCHAR(50),
+          	GPA REAL,
+          	...
+          );
+          
+          CREATE TABLE Enroll(
+          	sid INT,
+          	dept CHAR(2),
+          	cnum INT,
+          	sec INT,
+          	CHECK(sid IN (SELECT sid FROM Student))
+          );
+          ```
+
+          - Won't check the constraint both ways, like an RI would
+
+- MySQL Support
+
+  - Domain constraint
+  - Key constraint
+  - Under InnoDB engine, referential integrity constant
+    - But not under MyISAM engine
+    - Does not support single-column `REFERENCES` shorthand
+    - Cannot omit column names even if names are the same
+  - No `CHECK` constraint support in standard MySQL
+    - MariaDB supports (limited) `CHECK` constraint
+  - Warning: MySQL silently ignores constraints that it doesn't support
+    - No warning or error messages
+    - You may believe the constraint is there when it isn't
+    - It is safer to user the most conservative syntax
+
+- What We Learned
+
+  - How to preserve database integrity
+  - Key constraint: `PRIMARY KEY`, `UNIQUE`
+  - Referential integrity constraint
+    - `FOREIGN KEY`
+    - Reference attributes should be unique
+    - Violation from referenced table may be fixed by DBMS
+      - `ON DELETE`/`UPDATE CASCADE`/`SET NULL`
+    - `CHECK` constraint
+
+
+
+## Lecture 11: 
 
 - 
 
