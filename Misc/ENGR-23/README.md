@@ -20,7 +20,7 @@
 
 |    Deliverable    | Score  |
 | :---------------: | :----: |
-|  Elevator Pitch   |  ???   |
+|  Elevator Pitch   | 80/100 |
 |      Resume       | 86/100 |
 |   Cover Letter    |  ???   |
 | LinkedIn Profile  |  ???   |
