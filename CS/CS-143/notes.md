@@ -2038,7 +2038,249 @@
 
 
 
-## Lecture 11: 
+## Lecture 11: MongoDB and MapReduce
+
+- JSON (JavaScript Object Notation)
+
+  - Syntax to represent objects in JavaScript
+
+    - `[{ "x": 3, "y": "Good" }, { "x": 4, "y": "Bad" }]`
+
+  - One of the most popular data-exchange formats over internet
+
+    - As JavaScript gained popularity, JSON's popularity grew
+    - Simple and easy to learn
+    - Other popular formats include XML, CSV, etc.
+
+  - Basic JSON Syntax
+
+    - Supports basic data types like numbers and strings, as well as arrays and "objects"
+
+    - Double quotes for string: `"Best"`, `"UCLA"`, `"Worst"`, `"USC"`
+
+    - Square brackets for array: `[ 1, 2, 3, "four", 5 ]`
+
+    - Objects: `(attribute, name)` pairs => use curly braces
+
+      - `{ "sid": 301, "name": "James Dean" }`
+
+    - Things can be nested
+
+      - ```json
+        { "sid": 301,
+          "name": { "first": "James", "last": "Dean" },
+          "classes": [ "CS143", "CS144" ]}
+        ```
+
+- RDBMS for JavaScript Object Persistence
+
+  - JavaScript applications need a "persistence layer" to store and retrieve JavaScript objects
+  - Traditionally (until mid-2010) this was done with RDBMS
+    - RDBMS as a massive, safe, efficient, multi-user storage engine
+  - Q: How can we store JavaScript objects in RDBs?
+  - "Impedance mismatch": Two choices
+    - Store object's JSON as a string in a column
+    - "Normalize" the object into a set of relations
+    - Pros and cons of each approach?
+  - Q: Can we just create a "native database" for JSON?
+
+- MongoDB
+
+  - Database for JSON objects
+
+    - Perfect as a simple persistence layer for JavaScript objects
+    - "NoSQL database"
+
+  - Data is stored as a collection of documents
+
+    - Document: (almost) JSON object
+    - Collection: group of "similar" documents
+
+  - Analogy
+
+    - Document in MongoDB ~ row in RDB
+    - Collection in MongoDB ~ table in RDB
+
+  - MongoDB document
+
+    - ```json
+      {
+          "_id": ObjectId(8df38ad8902c),
+          "title": "MongoDB",
+          "description": "MongoDB is NoSQL database",
+          "tags": [ "mongodb", "database", "NoSQL" ],
+          "likes": 100,
+          "comments": [
+              { "user": "lover", "comment": "Perfect!" },
+              { "user": "hater", "comment": "Worst!" }
+          ]
+      }
+      ```
+
+      - `_id` field: primary key
+        - May be of any type other than array
+        - If not provided, automatically added with a unique `ObjectID` value
+      - Stored as BSON (Binary representation of JSON)
+        - Supports more data types than JSON
+        - Does not require double quotes for field names
+
+  - MongoDB philosophy
+
+    - Adopts JavaScript's "laissez faire" philosophy
+      - Don't be too strict! Be accommodating! Handle user requests in a "reasonable" way
+    - Schema-less: no predefined schema
+      - Give me anything, I will store it anywhere you want
+      - One collection will store documents of *any* kind with no complaint
+      - No need to "plan ahead"
+        - A "database" is created when a first collection is created
+        - A "collection" is created when a first document is inserted
+      - Both a blessing and a curse
+
+  - Basic MongoDB Commands
+
+    - `mongo`:" start MongoDB shell
+    - `use <dbName>`: use the database
+    - `show dbs`: show list of databases
+    - `show collections`: show list of collections
+    - `db.colName.drop()`: delete `colName` collection
+    - `db.dropDatabase`: delete current database
+    - CRUD operations
+      - `insertOne()`, `insertMany()`
+      - `findOne()`, `find()`
+      - `updateOne()`, `updateMany()`
+      - `deleteOne()`, `deleteMany()`
+    - Insertion: `insertX(doc(s))`
+      - `db.books.insertOne({ title: "MongoDB", likes: 100 })`
+      - `db.books.insertMany([ { title: "a" }, { title: "b"} ])`
+    - Retrieval: `findX(condition)`
+      - `db.books.findOne({ likes: 100 })`
+      - `db.books.find({ $and: [ { likes: { $gte: 10 } }, { likes: { $lt: 20 } } ] })`
+        - Other Boolean/comparison operators: `$or`, `$not`, `$gt`, `$ne`, etc.
+    - Update: `updateX(condition, update_operation)`
+      - `db.books.updateOne({ title: "MongoDB" }, { $set: { title: "MongoDB II" } })`
+      - `db.books.updateMant({ title: "MongoDB" }, { $inc: { likes: 1 } })`
+        - Other update operators: `$mul` (multiply), `$unset` (remove field), etc.
+    - Deletion: `deleteX(condition)`
+      - `db.books.deleteOne({ title: "MongoDB" })`
+      - `db.books.deleteMany({ likes: { $lt: 100 } })`
+  
+  - MongoDB Aggregates
+  
+    - MongoDB supports complex queries through "aggregates"
+    
+    - MongoDB aggregates are very much like SQL's `SELECT` queries
+    
+      - Stages - SQL's `SELECT` clause
+      - Pipeline - SQLs `SELECT` statement 
+      
+    - Example
+    
+      - ```json
+        { id: 1, cust_id: "a", status: "A", amount: 50 }
+        { id: 2, cust_id: "a", status: "A", amount: 100 }
+        { id: 3, cust_id: "c", status: "D", amount: 25 }
+        { id: 4, cust_id: "d", status: "C", amount: 125 }
+        { id: 5, cust_id: "d", status: "A", amount: 25 }
+        ```
+    
+      - ```mongodb
+        db.orders.aggregate([
+        	{ $match: { status: "A" }},
+        	{ $group: {
+        		_id: "$cust_id",
+        		total: { $sum: "$amount" },
+        		count: { $sum: 1 }
+        	}},
+        	{ $sort: { total: -1 }}
+        ])
+        ```
+    
+        - Equivalent to SQL's `SELECT`
+          - Just `$match` is fine, for example
+          - In `$group` stage, `_id` is "group by attributes"
+    
+    - Common Aggregate Stages
+    
+      - `$match` ~ `WHERE`
+      - `$group` ~ `GROUP BY`
+      - `$sort` ~ `ORDER BY`
+      - `$limit` ~ `FETCH FIRST`
+      - `$project` ~ `SELECT`
+      - `$unwind`: replicate document per every element in the array
+        - `{ $unwind: "y" }: { "x": 1, "y": [ 1, 2 ] } -> { "x": 1, "y": 1 }, { "x": 1, "y": 2 }`
+      - `$lookup`: "look up and join" another document based on the attribute value
+        - `{ $lookup: { from: <collection to join>, localField: <local join attr>, foreignField: <remote join attr>, as: <output field name> } }`
+        - Matching documents are returned as an array in `<output field name>`
+    
+  - MongoDB vs. RDB
+  
+    - MongoDB
+      - MongoDB document
+        - Preserves structure
+          - Nested objects
+        - Potential redundancy
+        - Restructuring or combining data is complex and inefficient
+      - MongoDB: "laissez faire"
+        - No explicit DB/collection creation
+        - No schema => anything is fine
+    - RDB
+      - RDB tuple
+        - "Flattens" data
+          - Set of flat rows
+        - Removes redundancy
+        - Data can be easily "combined" using relational operators
+      - RDB: "straightjacket"
+        - Declare everything before use
+        - Reject if not compliant
+  
+  - More on MongoDB
+  
+    - We learned just the basics
+    - MongoDB has many more features
+      - Transactions, replication, autosharding, etc.
+    - Read MongoDB documentation and online tutorials to learn more
+  
+- MapReduce
+
+  - Distributed Analytics using Cluster
+
+    - Often, our data is non-relational (e.g. flat file) and huge
+      - Billions of query logs, billions of web pages, etc.
+    - Q: Can we perform analytics on large data quickly using thousands of machines?
+
+  - Example 1: Search Log Analysis
+
+    - Log of billions of queries => count the frequency of each query
+
+      - Input query log:
+
+        - ```
+          cat, time, userid1, ip1, referrer1
+          dog, time, userid2, ip2, referrer2
+          ...
+          ```
+
+      - Output query frequency
+
+        - ```
+          cat 200000
+          dog 120000
+          ```
+
+    - Q: How can we perform this task?
+
+      - Step 1: "Transform" each line of the query log into `(query, 1)`
+      - Step 2: Collect all tuples with the same query and aggregate them
+      - Q: How can we parallelize the two steps?
+        - Q: In step 1, can the transformation of each line be done independently of each other?
+          - Yes! This step can be safely parallelized
+        - Q: How do we parallelize the second "aggregation" step?
+          - Move the tuples with the same query to the same machine
+          - Perform aggregation on multiple machines in parallel
+
+
+
+## Lecture 12: MapReduce
 
 - 
 
