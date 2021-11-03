@@ -1,0 +1,658 @@
+1	Montclair, NJ	USA
+3	[object Object]	[object Object]
+3	Copenhagen	Denmark
+4	Haifa	British Protectorate of Palestine
+5	Zelvas	Lithuania
+6	Jhang Maghiāna	India
+7	Mumbai	India
+8	Beshasha	Ethiopia
+9	Jerusalem	British Mandate of Palestine
+10	Washington, DC	USA
+11	Bremerhaven-Lehe	Germany
+12	Berlin	Prussia
+13	Berlin	Germany
+14	Buenos Aires	Argentina
+15	Damanhur	Egypt
+16	Mukawa	Japan
+17	Suita	Japan
+18	Sioux City, IA	USA
+19	Banbury	United Kingdom
+20	Masterton	New Zealand
+21	Strelno	Prussia
+22	Mondovi	French Algeria
+23	Longlier	Belgium
+24	Ulm	Germany
+25	Carcassonne	France
+26	Tramelan	Switzerland
+27	Bulawayo	Southern Rhodesia
+28	Kaysersberg	Germany
+29	Budapest	Austria-Hungary
+30	Rostock	Mecklenburg
+31	Atherton	Australia
+32	Kislovodsk	Russia
+33	Moscow	USSR
+34	Sainte-Foy-lès-Lyon	France
+35	Zamora	Mexico
+36	Owosso, MI	USA
+37	Vienna	Austria
+38	New Haven, CT	USA
+39	Guebwiller	Germany
+40	Mulhouse	France
+41	Wingham	Canada
+42	Johannesburg	South Africa
+43	Landskrona	Sweden
+44	Paris	France
+45	Uppsala	Sweden
+46	New York, NY	USA
+47	Santiniketan	India
+48	London	United Kingdom
+49	Sochi	Russia
+50	Ainay-le-Château	France
+51	Moscow	Russia
+52	Hampstead	United Kingdom
+53	Wilno	Poland
+54	Stanford, CA	USA
+55	Edinburgh	Scotland
+56	Fowey	United Kingdom
+57	Mit Abu al-Kawm	Egypt
+58	Bristol	United Kingdom
+59	Kibbutz Sde-Nahum	British Mandate of Palestine
+60	Nantes	France
+61	Stockholm	Sweden
+62	Munich	Germany
+63	Sydney	Canada
+64	Wooster, OH	USA
+65	Manchester	United Kingdom
+66	Glasgow	Scotland
+67	Brooklyn, NY	USA
+68	Mount Vernon, NY	USA
+69	Helsinki	Russian Empire
+70	Grenå	Denmark
+71	Ostend	Belgium
+72	Rangoon	Burma
+73	Karcag	Hungary
+74	Savur	Turkey
+75	Honolulu, HI	USA
+76	Hartford, CT	USA
+77	Omaha, NE	USA
+79	undefined	undefined
+79	Kalgoorlie	Australia
+80	Philadelphia, PA	USA
+81	Caracas	Venezuela
+82	Chicago, IL	USA
+83	Helsinki	Finland
+84	Halmstad	Sweden
+85	Barger-Compascuum	the Netherlands
+86	Stuttgart	Germany
+87	Prague	Austrian Empire
+88	Klippan	Sweden
+89	Lethbridge, Alberta	Canada
+90	Trelleck	United Kingdom
+91	Belfast	Northern Ireland
+92	Kvikne	Norway
+93	Duluth, MN	USA
+94	Cardiff	United Kingdom
+95	Little Falls, MN	USA
+96	Missoula, MT	USA
+97	Fort Worth, TX	USA
+98	Glencorse	Scotland
+99	Corteno	Italy
+100	Iria Flavia	Spain
+101	Cologne	Germany
+102	Prague	Austria-Hungary
+103	Liestal	Switzerland
+104	Hamburg	Germany
+105	Corvallis, OR	USA
+106	Gorizia	Italy
+107	Wailacama	East Timor
+108	San Diego, CA	USA
+109	Tonbridge	United Kingdom
+110	Bahia Blanca	Argentina
+111	Halifax, Nova Scotia	Canada
+112	Fleurier	Switzerland
+113	Marietta, OH	USA
+114	Widnes	United Kingdom
+115	Greenville, SC	USA
+116	Pusan	Korea
+117	Shanghai	China
+118	Sacramento, CA	USA
+119	Rouen	France
+120	Hofei, Anhwei	China
+121	Nijkerk	the Netherlands
+122	Monessen, PA	USA
+123	Thames Ditton	United Kingdom
+124	Stavanger	Norway
+125	Magdeburg	Germany
+126	Nicosia	Cyprus
+127	Constantine	French Algeria
+128	Tananarive	Madagascar
+129	Pittsburgh, PA	USA
+130	Bloomington, IL	USA
+131	Swansea	United Kingdom
+132	Olympus, TN	USA
+133	Ghent	Belgium
+134	Śeteniai	Russian Empire
+135	Yonkers, NY	USA
+136	Jönköping	Sweden
+137	Enterprise, OR	USA
+138	Tel Aviv	British Mandate of Palestine
+139	Neuchâtel	Switzerland
+140	Henan	China
+141	Raleigh, NC	USA
+142	Wilmington, DE	USA
+143	Leggiuno-Sangiano	Italy
+144	Windsor, ON	Canada
+145	Bearsden	United Kingdom
+146	Milwaukee, WI	USA
+147	Rye, NY	USA
+148	Bukavu	Belgian Congo
+149	Budapest	Hungary
+150	Gravesend	United Kingdom
+151	Castries	Saint Lucia
+152	Klerksdorp	South Africa
+153	Orange, NJ	USA
+154	Geneva	Switzerland
+155	Cleveland, OH	USA
+156	Chester, VT	USA
+157	Guelph	Canada
+158	Kermanshah	Persia
+159	Cairo	Egypt
+160	Aberdeen, WA	USA
+161	Cambridge, MA	USA
+162	San José, CA	USA
+163	Mart, TX	USA
+164	Taylorville, IL	USA
+165	Burlingame, KS	USA
+166	Evanston, IL	USA
+167	Munich	Bavaria
+168	Ålesund	Norway
+169	Hume, IL	USA
+170	Wilkes-Barre, PA	USA
+171	South Norwalk, CT	USA
+172	Glens Falls, NY	USA
+173	Boulder, CO	USA
+174	Bradford	United Kingdom
+175	Lansing, IA	USA
+176	Redondo Beach, CA	USA
+177	Avanca	Portugal
+178	Changchun	China
+179	Tabuse	Japan
+180	Mürzzuschlag	Austria
+181	Ruse	Bulgaria
+182	Methuen, MA	USA
+183	Sighet	Romania
+184	Clinton, NY	USA
+185	Los Angeles, CA	USA
+186	Hobart, Tasmania	Australia
+187	Monrovia	Liberia
+188	Euskirchen	Prussia
+189	Hansdorf	Prussia
+190	Tivoli	Italy
+191	Jamaica Plain, MA	USA
+192	Juvisy-sur-Orge	France
+193	Rome	Italy
+194	Ann Arbor, MI	USA
+195	Palo Alto, CA	USA
+196	South Bend, IN	USA
+197	Karlbo	Sweden
+198	Oak Park, IL	USA
+199	Canton, SD	USA
+200	Nelson	New Zealand
+201	Dungarvan	Ireland
+202	Milan	Austrian Empire
+203	Heidelberg	Germany
+204	Landsberg	Germany
+205	Boston, MA	USA
+206	Genoa	Italy
+207	\N	\N
+208	Svartbjörnsbyn	Sweden
+209	Delaware, OH	USA
+210	Zurich	Switzerland
+211	Fulda	Hesse-Kassel
+212	Whiting, IN	USA
+213	Gjesdal	Norway
+214	Northampton	United Kingdom
+215	Harborne	United Kingdom
+216	Etterbeek	Belgium
+217	Nancy	France
+218	Bordeaux	France
+219	Potsdam, NY	USA
+220	Hämeenkyrö	Russian Empire
+221	Maillane	France
+222	Auburn, AL	USA
+223	Alliston	Canada
+224	Paterson, NJ	USA
+225	Rendcombe	United Kingdom
+226	Eastbourne	United Kingdom
+227	Næstved	Denmark
+228	Kristiania	Norway
+229	Goldschmieden, near Breslau	Germany
+230	Amsterdam	the Netherlands
+231	Breslau	Prussia
+232	Koenigsberg	Germany
+233	Laibach	Austria-Hungary
+234	Aracataca	Colombia
+235	Hollerich	Luxembourg
+236	Vicuña	Chile
+237	Ganzhou	China
+238	Pottsville, PA	USA
+239	Todmorden	United Kingdom
+240	Wahoo, NE	USA
+241	Dublin	Ireland
+242	Uniontown, PA	USA
+243	Bradford, MA	USA
+244	Iasi	Romania
+245	White Plains, NY	USA
+246	Yukon, FL	USA
+247	Hoquiam, WA	USA
+248	Ashland, NH	USA
+249	Renton, WA	USA
+250	Norwalk, CT	USA
+251	Cambridge	United Kingdom
+252	Stainforth	United Kingdom
+253	Dabrovica	Poland
+254	Dinant	Belgium
+255	Calais	France
+256	Albertville	France
+257	Den Helder	the Netherlands
+258	Frankfurt-on-the-Main	West Germany
+259	Lagow	Germany
+260	Bad Cannstatt	Germany
+261	Bad Salzbrunn	Prussia
+262	Smyrna	Ottoman Empire
+263	Val di Castello	Tuscany
+264	Imperia	Italy
+265	Ishpeming, MI	USA
+266	Newark	United Kingdom
+267	Dhaka	Bangladesh
+268	Nuoro, Sardinia	Italy
+269	Bologna	Italy
+270	Skattungbyn	Sweden
+271	Waltersdorf	Germany
+272	Danzig	Free City of Danzig
+273	Stenstorp	Sweden
+274	Raipur	India
+275	Reykjavik	Iceland
+276	Norrköping	Sweden
+277	Strasbourg	Germany
+278	Hoechst	Germany
+279	Görlitz	Prussia
+280	Hildesheim	Germany
+281	Stuttgart	Württemberg
+282	Augsburg	Germany
+283	Gelsenkirchen	Germany
+284	Walkerton, IN	USA
+285	Oceanside, NY	USA
+286	Jämshög	Sweden
+287	Ludwigsburg	West Germany
+288	Groningen	the Netherlands
+289	Buchs	Switzerland
+290	Pforzheim	Germany
+291	Arnhem	the Netherlands
+292	Brussels	Belgium
+293	Fredericia	Denmark
+294	Fürth	Germany
+295	Neudorf	Canada
+296	Wola Okrzejska	Poland
+297	Weimar	Germany
+298	Platteville, WI	USA
+299	Calw	Germany
+300	Worms	Germany
+301	Nitzkydorf, Banat	Romania
+302	Tokyo	Japan
+303	Hamamatsu	Japan
+304	Linköping	Sweden
+305	Vladivostok	Russia
+306	Leningrad	Russia
+307	Kharkov	Russian Empire
+308	\N	Australia
+309	\N	USA
+310	Leoncin	Russian Empire
+311	Chiran	Japan
+312	Rymanow	Austria-Hungary
+313	Voronezh	Russia
+314	Ryazan	Russia
+315	Bergen	Norway
+316	Dolac	Bosnia
+317	Neuenkirchen	West Germany
+318	Cape Town	South Africa
+319	York, PA	USA
+320	Aberdeen	United Kingdom
+321	Adelaide	Australia
+322	Cheetham Hill	United Kingdom
+323	Madrid	Spain
+324	Jefferson City, MO	USA
+325	Bad Kissingen	Germany
+326	Rotterdam	the Netherlands
+327	Aigle	Switzerland
+328	Minnigaff	Scotland
+329	Canton, MA	USA
+330	Swanage	United Kingdom
+331	Haverhill, MA	USA
+332	Murfreesboro, TN	USA
+333	Alice, TX	USA
+334	Winnipeg	Canada
+335	Council, ID	USA
+336	Champaign, IL	USA
+337	the Hague	the Netherlands
+338	Cedarville, IL	USA
+339	Lille	France
+340	Toulouse	France
+341	Troyes	France
+342	Nice	France
+343	Rosheim	France
+344	Lemvig	Denmark
+345	Plains, GA	USA
+346	Siegen	Germany
+347	Putney, VT	USA
+348	Zusamaltheim	Germany
+349	Leiden	the Netherlands
+350	Silkeborg	Denmark
+351	Schickenhof	Germany
+352	Farsø	Denmark
+353	Jena	Germany
+354	Madison, WI	USA
+355	Oxford	United Kingdom
+356	Roanoke, VA	USA
+357	Sydney	Australia
+358	Halifax	United Kingdom
+359	West Hartford, CT	USA
+360	Bluefield, WV	USA
+361	Kingston Hill	United Kingdom
+362	Middletown, CT	USA
+363	Londonderry	Northern Ireland
+364	Denver, CO	USA
+365	Cluny	Scotland
+366	Burnham-on-Sea	United Kingdom
+367	Warwick	United Kingdom
+368	Livingston Manor, NY	USA
+369	Tardebigg	United Kingdom
+370	Salinas, CA	USA
+371	Dili	East Timor
+372	Azinhaga	Portugal
+373	Leningrad	USSR
+374	Milford, MA	USA
+375	Gary, IN	USA
+376	San Francisco, CA	USA
+377	Sumter, SC	USA
+378	Warsaw	Russian Empire
+379	Bogotá	Colombia
+380	Moguer	Spain
+381	Echternach	Luxembourg
+382	Soignies	Belgium
+383	Wels	Austria
+384	Basel	Switzerland
+385	Lund	Sweden
+386	Vidisha	India
+387	Roholte	Denmark
+388	Vienna	Austrian Empire
+389	Helsa	Germany
+390	Lenoir, NC	USA
+391	Nagasaki	Japan
+392	Bloomsburg, PA	USA
+393	Nara	Japan
+394	Waltham, MA	USA
+395	Uchiko	Japan
+396	Mokpo	Korea
+397	Logan, UT	USA
+398	Gothenburg	Sweden
+399	Schroda	German-occupied Poland
+400	Lom	Norway
+401	Kumasi	Gold Coast
+402	Toyama City	Japan
+403	Neisse	Germany
+404	Nizhny Tagil	Russia
+405	Königshütte	Prussia
+406	Aarberg	Switzerland
+407	Urbana, IL	USA
+408	Nam Ha province	Vietnam
+409	Popowo	Poland
+410	Osaka	Japan
+411	St. Petersburg	Russian Empire
+412	Vukovar	Austria-Hungary
+413	Toronto	Canada
+414	Baku	Russian Empire
+415	Seattle, WA	USA
+416	Portland, OR	USA
+417	Kilmaurs	Scotland
+418	Langford Grove, Maldon, Essex	United Kingdom
+419	Dieppe	France
+420	Lyon	France
+421	Autun	France
+422	Chabris	France
+423	Bremen	Germany
+424	Agrigento, Sicily	Italy
+425	\N	United Kingdom
+426	Nagoya	Japan
+427	Mingora	Pakistan
+428	Bochum	Germany
+429	Örebro	Sweden
+430	Kattowitz	Germany
+431	Mexico City	Mexico
+432	Verona	Italy
+433	Arequipa	Peru
+434	Atlanta, GA	USA
+435	Baltimore, MD	USA
+436	Brighton	United Kingdom
+437	Waalwijk	the Netherlands
+438	Viipuri	Finland
+439	Toyohashi	Japan
+440	Pongaroa	New Zealand
+441	Breslau	Germany
+442	Kiel	Schleswig
+443	Pretoria	South Africa
+444	Pfaffendorf	Germany
+445	Fosnavåg	Norway
+446	St. Paul, MN	USA
+447	Brest Litovsk	Russian Empire
+448	\N	[object Object]
+449	Kansas City, MO	USA
+450	Blackpool	United Kingdom
+451	Miami, FL	USA
+452	Lausanne	Switzerland
+453	Guatemala City	Guatemala
+454	Privolnoye	USSR
+455	Veshenskaya	Russia
+456	Gaomi	China
+457	Uskup	Ottoman Empire
+458	Chittagong	British India
+459	Timmins, ON	Canada
+460	Kojo	Iraq
+461	Springs	South Africa
+462	Trönö	Sweden
+463	Qunu	South Africa
+464	Elizabeth, NJ	USA
+465	Dordrecht	the Netherlands
+466	Usman	USSR
+467	Thorshavn	Faroe Islands (Denmark)
+468	Saratov	Russia
+469	Cresco, IA	USA
+470	Chorley	United Kingdom
+471	Iráklion	Crete
+472	Sulechów	Poland
+473	Superior, WI	USA
+474	Istanbul	Turkey
+475	Kyoto	Japan
+476	Heredia	Costa Rica
+477	Frankfurt-on-the-Main	Germany
+478	Hanover	Germany
+479	Sorau	Germany
+480	Freiburg im Breisgau	Germany
+481	Dewsbury	United Kingdom
+482	Parral	Chile
+483	Växjö	Sweden
+484	Sidney, OH	USA
+485	Provo, UT	USA
+486	Strehlen	Prussia
+487	La Flèche	France
+488	Sterling, IL	USA
+489	Raton, NM	USA
+490	Olten	Switzerland
+491	Detroit, MI	USA
+492	Novaya Chigla	Russia
+493	Hillsboro, WV	USA
+494	Bern	Switzerland
+495	Northfield, MN	USA
+496	Brisbane	Australia
+497	Maastricht	the Netherlands
+498	Plzen	Czechoslovakia
+499	Griffen	Austria
+500	Newcastle upon Tyne	United Kingdom
+501	Rio de Janeiro	Brazil
+502	Mitcham	United Kingdom
+503	Indianapolis, IN	USA
+504	Pressburg	Hungary
+505	Falmouth, KY	USA
+506	Zonnemaire	the Netherlands
+507	Blankenburg	Germany
+508	Pugwash	Canada
+509	Kronshtadt	Russian Empire
+510	Calcutta	India
+511	Oslo	Norway
+512	Montreal	Canada
+513	Fareham	United Kingdom
+514	Bad Homburg vor der Höhe	Germany
+515	Catanzaro	Italy
+516	Bayonne	France
+517	Akron, OH	USA
+518	Medicine Hat, Alberta	Canada
+519	Springfield, MA	USA
+521	undefined	[object Object]
+521	East Orange, NJ	USA
+522	Derby	United Kingdom
+523	Vienna	Austria-Hungary
+524	Liverpool	United Kingdom
+525	Winterthur	Switzerland
+526	Berne, IN	USA
+527	Karlsruhe	Germany
+528	Aldea Chimel	Guatemala
+529	Turin	Italy
+530	Zloczov	Poland
+531	Morrison, IL	USA
+532	Visalia, CA	USA
+533	Geneva, NE	USA
+534	Yakima, WA	USA
+535	Syracuse, NY	USA
+536	Charleston, SC	USA
+537	Batley	United Kingdom
+538	Possum Trot, KY	USA
+539	Clausthal	Germany
+540	Kingston, ON	Canada
+541	Newburyport, MA	USA
+542	Houston, TX	USA
+543	Burlington, MA	USA
+544	Newton-le-Willows	United Kingdom
+545	St. Louis, MO	USA
+546	Dijon	France
+547	Neuilly-sur-Seine	France
+548	Colchester	United Kingdom
+549	Clamecy	France
+550	Willesden	United Kingdom
+551	Almora	India
+552	Aurich	East Friesland
+553	Bombay	British India
+554	Kobe	Japan
+555	Pointe-à-Pitre	Guadeloupe Island
+556	Modica	Italy
+557	Petilla de Aragón	Spain
+558	Yamanashi Prefecture	Japan
+559	Champaign-Urbana, IL	USA
+560	Casteldàwson	Northern Ireland
+561	Mårbacka	Sweden
+562	Priluka	Russian Empire
+563	Casablanca	Morocco
+564	Luarca	Spain
+565	Vishneva	Poland
+566	Hamadan	Iran
+567	Buczacz	Austria-Hungary
+568	Ikata	Japan
+569	Kalundborg	Denmark
+570	Pinsk	Russian Empire
+571	Sauk Centre, MN	USA
+572	Lochfield	Scotland
+573	Castries	British West Indies
+574	Birmingham	United Kingdom
+575	Leipzig	Germany
+576	Tiruchirappalli	India
+577	Traralgon	Australia
+578	Leicester	United Kingdom
+579	Wisbech	United Kingdom
+580	Edinburgh	United Kingdom
+581	Uddingston	Scotland
+582	Dippenhall	United Kingdom
+583	Melbourne	Australia
+584	Stroud	United Kingdom
+585	Leeds	United Kingdom
+586	Holbeach	United Kingdom
+587	Norwich	United Kingdom
+588	Lancashire	United Kingdom
+589	Rufford, near Chesterfield	United Kingdom
+590	Des Moines, IA	USA
+591	Arad	Romania
+592	Lahore	India
+593	Vik	Sweden
+594	Ivano-Frankivsk	Ukraine
+595	Germiston	South Africa
+596	Wloclawek	Poland
+597	Higashimatsuyama	Japan
+598	Ta'izz	Yemen
+599	Taktser	Tibet
+600	Fleräng	Sweden
+601	Garding	Schleswig
+602	Germantown, PA	USA
+603	Arlington, SD	USA
+604	Oakland, CA	USA
+605	Göttingen	Germany
+606	Lexington, KY	USA
+607	Pasadena, CA	USA
+608	Lübeck	Germany
+609	Neston	United Kingdom
+610	's Graveland	the Netherlands
+611	Lorain, OH	USA
+612	Skedsmo	Norway
+613	Zhejiang Ningbo	China
+614	Chaguanas	Trinidad and Tobago
+615	Merriman, NE	USA
+616	Chidambaram, Tamil Nadu	India
+617	Olshammar	Sweden
+618	Wichita, KS	USA
+619	Sevilla	Spain
+620	Peggau	Austria
+621	Cherbourg	France
+622	Sarajevo	Austria-Hungary
+623	Amoy	China
+624	Frauenfeld	Switzerland
+625	Oranienburg	Germany
+626	Briesen	Prussia
+627	Nyeri	Kenya
+628	St. Petersburg	Russia
+629	Ridgeville, IN	USA
+630	Gränichen	Switzerland
+631	Würzburg	Germany
+632	Lennep	Prussia
+633	Riga	Russian Empire
+634	Gaffken	Prussia
+635	Grand Valley, CO	USA
+636	Amherst, NS	Canada
+637	Semarang	Java, Dutch East Indies
+638	Wigton	United Kingdom
+639	Ramelton	Ireland
+640	Albuquerque, NM	USA
+641	Pleasanton, CA	USA
+642	Niagara Falls	Canada
+643	New Albany, MS	USA
+644	St. Columb Minor	United Kingdom
+645	Taunton, MA	USA
+646	Stoughton, WI	USA
+647	Victoria, BC	Canada
+648	Woodstock	United Kingdom
+649	Bnin	Poland
+650	Kobiele Wielkie	Russian Empire
+651	Abeokuta	Nigeria
+652	Heidelberg	West Germany
+653	Lorenzkirch	Germany
+654	Staunton, VA	USA
+655	Fukuoka	Japan
+656	Hsinchu	Taiwan
+657	Menin	Belgium
+658	Vitebsk, Belorussia	USSR
