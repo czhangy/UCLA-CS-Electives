@@ -111,22 +111,24 @@ for (let laureate of data) {
     if (nobel.affiliations) {
       for (let affiliation of nobel.affiliations) {
         // Get Affiliated attributes
-        let affKey = affiliation.city + "#" + affiliation.country;
+        let affCity = affiliation.city ? affiliation.city.en : "\\N";
+        let affCountry = affiliation.country ? affiliation.country.en : "\\N";
+        let affKey = affCity + "#" + affCountry;
         let pid;
         if (affKey in placeDict) pid = placeDict[affKey];
         else {
           // Update ID
           pid = placeID;
           placeDict[affKey] = pid;
-          placeID++;
           // Write to place.del
           fs.writeFileSync(
             "./place.del",
-            `${placeID}\t${affiliation.city}\t${affiliation.country}\n`,
+            `${placeID}\t${affCity}\t${affCountry}\n`,
             {
               flag: "a+",
             }
           );
+          placeID++;
         }
         let affName = affiliation.name.en;
         // Write to affiliated.del
