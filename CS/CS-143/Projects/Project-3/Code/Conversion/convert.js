@@ -128,7 +128,7 @@ for (let laureate of data) {
             }
           );
         }
-        let affName = affiliation.name;
+        let affName = affiliation.name.en;
         // Write to affiliated.del
         fs.writeFileSync(
           "./affiliated.del",
