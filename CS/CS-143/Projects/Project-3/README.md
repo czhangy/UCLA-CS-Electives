@@ -89,11 +89,11 @@
 ## Deliverables
 
 - Coding
-  - [ ] Download the JSON data
-  - [ ] Design the relational schema
-  - [ ] Write the data transformation program
-  - [ ] Load the data into MySQL, creating necessary scripts
-  - [ ] Write the SQL queries and debug
+  - [x] Download the JSON data
+  - [x] Design the relational schema
+  - [x] Write the data transformation program
+  - [x] Load the data into MySQL, creating necessary scripts
+  - [x] Write the SQL queries and debug
   - [ ] Implement the PHP page
 - Submission
   - [ ] Download and use `p3_package` to zip all required files
