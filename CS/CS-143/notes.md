@@ -2280,7 +2280,235 @@
 
 
 
-## Lecture 12: MapReduce
+## Lecture 12: MapReduce and Disks
+
+- MapReduce
+
+  - Example 2: Web Indexing
+
+    - 1 billion pages => build "inverted index"
+
+      - Input documents:
+
+        - ```
+          1: cat chases dog
+          2: dog loves cat
+          ...
+          ```
+
+      - Output index:
+
+        - ```
+          cat 1, 2, 5, 10, 20
+          dog 1, 2, 3, 8, 9
+          ```
+
+    - Q: How can we do this?
+
+      - Step 1: "Transform" every document into `(word, doc_id)` tuples
+      - Step 2: Collect all tuples with the same word and "aggregate" (or concatenate) the `doc_id`s
+      - Q: How can we parallelize the two steps on multiple machines?
+        - Q: How can the transformation of each document be done independently of each other?
+          - Split input data into multiple independent chunks
+          - Move each chunk to a separate machine
+          - Perform "transformation" on multiple machines in parallel
+        - Q: How can we parallelize the second "concatenation step"?
+          - Move the tuples with the same word to the same machine
+          - Perform aggregation on multiple machines in parallel
+
+  - Generalization
+
+    - "Mapping Step": Input data consists of multiple independent units
+      - Examples
+        - Query log: each line of the query log
+        - Indexing: each web page
+      - Partition input data into multiple "chunks" and distribute them to multiple machines
+      - Transform/map input into `(key, value)` pairs
+        - Query log: `query_log_line -> (query, 1)`
+        - Indexing: `web_page -> (word1, page_id), (word2, page_id), ...`
+    - "Reduction Step": Aggregate the types of matching keys
+      - Examples:
+        - Query log: `(query, 1), (query, 1), ... -> (query, count)`
+        - Indexing: `(word, 1), (word, 3), ... -> (word, [1, 3, ...])`
+      - Reshuffle tuples of the same key to the same machine
+      - Collect and output the aggregation results
+
+  - MapReduce Model
+
+    - Programmer provides:
+      - The map function: `unit_data -> (k, v), (k', v'), ...`
+      - The reduce function: `(k, v1), (k, v2), ... -> (k, aggr(v1, v2, ...))`
+    - MapReduce handles the rest
+      - Automatic data partition, distribution, and collection
+      - Failure and speed-disparity handling
+    - Many systems exist supporting MapReduce model
+
+  - Hadoop
+
+    - First open-source implementation of MapReduce and GFS (Google File System)
+      - Implemented in Java
+    - User implements map and reduce functions
+
+  - Spark
+
+    - Open-source cluster computing infrastructure
+
+    - Supports MapReduce and SQL
+
+      - Supports data flow more general than simple MapReduce
+
+    - Input data is converted into RDD (Resilient Distributed Dataset)
+
+      - A collection of independent tuples
+      - The tuples are automatically distributed and shuffled by Spark
+
+    - Supports multiple programming languages
+
+      - Scala, Java, Python, etc.
+      - Scala and Java are much more performant than others
+
+    - Example: Count Words
+
+      - Count all words in a document
+
+        - Dog loves cat but cat loves pig => `(cat, 2), (dog, 1), (pig, 1), (loves, 1), ...`
+
+      - Spark Python code:
+
+        - ```python
+          lines = sc.textFile("input.txt")
+          words = lines.flatMap(lambda line: line.split(""))
+          word1s = words.map(lambda word: (word, 1))
+          wordCounts = word1s.reduceByKey(lambda a, b: a + b)
+          wordCounts.saveAsTextFile("output")
+          ```
+
+    - Key Spark Function
+
+      - Transformation: Convert RDD tuple into RDD tuple(s)
+        - `map()`: convert one input tuple into one output tuple
+        - `flatMap()`: conver one input into multiple output tuples
+        - `reduceByKey()`: specify how two input "values" should be aggregated
+        - `filter()`: filter out tuples based on condition
+      - Action: Perform "actions" on RDD
+        - `saveAsTextFile()`: save RDD in a directory as text file(s)
+        - `collect()`: create Python tuples from Spark RDD
+        - `textFile()`: create RDD from text (each line becomes an RDD tuple)
+
+  - What We Learned
+
+    - Large-scale data analytics on distributed clusters
+    - MapReduce model
+    - Spark
+
+- Disk
+
+  - System architecture
+
+    - CPU: where the computation occurs
+    - Main memory: where the data accessed by the CPU resides
+      - Transferred to CPU in words (1B - 64B) at a rate of ~100GB/s
+    - Disk: where data is stored
+    - Disk controller/system bus: facilitates the connection between disk and main memory
+      - Transferred to main memory in blocks (512B - 50kB) at a rate of ~10GB/s
+      - Much slower than the transfer between main memory and the CPU
+
+  - Magnetic Disk vs. SSD
+
+    - Magnetic disk
+      - Stores data on a magnetic disk
+      - Typical capacity: 1TB - 20TB
+      - Structure of a Platter
+        - Track, cylinder, sector (= block, page)
+        - Data is transferred in the unit of blocks (not bytes) to amortize high access delay
+    - Solid state drive (SSD)
+      - Stores data in NAND flash memory
+      - Typical capacity: 100GB - 10TB
+      - Faster than magnetic disks, particularly random disk access
+      - 5x more expensive and has limited write cycles (~2000)
+
+  - Access Time
+
+    - Q: How long does it take to read a page of disk to memory?
+      - Reading a Page From Disk
+        - Seek time
+          - Time to move a disk head between tracks
+          - Delay due to acceleration of the disk head
+          - Average seek time: 10ms
+        - Rotational delay
+          - Depends on the speed at which the disk is spinning
+          - Typical disk: 1000 rpm - 15000 rpm
+          - Q: For 6000 rpm, what is the average rotational delay?
+            - 1 full rotation => 10ms
+            - 5ms
+        - Transfer time
+          - Q: How long will it take to read one sector on a disk with 6000 rpm and 10000 sectors/track
+            - We need to do 1/10000th of a rotation
+            - 0.01ms
+      - `Access Time = Seek Time + Rotational Delay + Transfer Time`
+    - Q: What needs to be done to read a page?
+
+  - Transfer Rate
+
+    - The rate at which we can transfer data from disk
+
+      - Measured in bytes/sec
+
+    - Q: 6000 rpm, 10000 sectors/track, 1kB/sector => what is the transfer rate of this disk?
+
+      - Burst transfer rate vs. Sustained transfer rate
+
+        - Burst transfer rate is the maximum rate that can be achieved
+
+          - $$
+            \frac{\text{RPM}}{60}\times\frac{\text{sectors}}{\text{track}}\times\frac{\text{bytes}}{\text{sector}}
+            $$
+
+        - Sustained transfer rate is the transfer rate over a long period of time
+
+      - `1KB x 10000 = 10MB` every 10ms
+
+      - 1000MB/sec
+
+  - Random I/O
+
+    - For magnetic disks:
+
+      - Random I/O is VERY expensive compared to sequential I/O
+
+    - For SSD disks:
+
+      - Random I/O is still expensive, but not as much as for magnetic disks
+
+    - Avoid random I/O to minimize delay
+
+    - |                   | **Magnetic** | **SSD**      |
+      | ----------------- | ------------ | ------------ |
+      | **Random I/O**    | ~100 IO/sec  | ~100K IO/sec |
+      | **Transfer rate** | ~100MB/sec   | ~10GB/sec    |
+
+  - Buffers and Buffer Pool
+
+    - Temporary main memory "cache" for disk blocks
+      - Avoid future reads
+      - Hide disk latency
+      - Most DBMSs let users change buffer pool size
+
+  - Abstraction by OS
+
+    - Sequential blocks => no need to worry about head, cylinder, sector
+      - Access to non-adjacent blocks => random I/O
+      - Access to adjacent blocks => sequential I/O
+
+  - Things to Remember
+
+    - Platter, track, cylinder, block (sector)
+    - `Access Time = Seek Time + Rotational Delay + Transfer Time`
+    - Random I/O vs. Sequential I/O
+
+
+
+## Lecture 13:
 
 - 
 
