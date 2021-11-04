@@ -94,11 +94,11 @@
   - [x] Write the data transformation program
   - [x] Load the data into MySQL, creating necessary scripts
   - [x] Write the SQL queries and debug
-  - [ ] Implement the PHP page
+  - [x] Implement the PHP page
 - Submission
-  - [ ] Download and use `p3_package` to zip all required files
-  - [ ] Download and use `p3_test` to test the submission
-  - [ ] Submit to Gradescope
+  - [x] Download and use `p3_package` to zip all required files
+  - [x] Download and use `p3_test` to test the submission
+  - [x] Submit to Gradescope
 
 
 
