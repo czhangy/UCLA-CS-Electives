@@ -38,8 +38,8 @@
 
 ## Quizzes
 
-|  Quiz  | Score |
-| :----: | :---: |
-| Quiz 1 |  ???  |
-| Quiz 2 |  ???  |
+|  Quiz  |  Score   |
+| :----: | :------: |
+| Quiz 1 | 86.5/100 |
+| Quiz 2 |   ???    |
 
