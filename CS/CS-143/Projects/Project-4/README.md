@@ -71,7 +71,7 @@
   - [x] Download and run the `mongo-apache` container
   - [x] Download the JSON data
   - [x] Write a program that loads the data to MongoDB
-  - [ ] Implement a PHP web service that connects to MongoDB
+  - [x] Implement a PHP web service that connects to MongoDB
   - [ ] Write aggregate queries and debug
 - [ ] Submission
   - [ ] Download and use `p4_package` to zip all required files
