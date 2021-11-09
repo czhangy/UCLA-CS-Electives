@@ -67,16 +67,16 @@
 
 ## Tasks
 
-- [ ] Coding
+- [x] Coding
   - [x] Download and run the `mongo-apache` container
   - [x] Download the JSON data
   - [x] Write a program that loads the data to MongoDB
   - [x] Implement a PHP web service that connects to MongoDB
-  - [ ] Write aggregate queries and debug
-- [ ] Submission
-  - [ ] Download and use `p4_package` to zip all required files
-  - [ ]  Download and use `p4_test` to test the submission
-  - [ ] Submit to Gradescope
+  - [x] Write aggregate queries and debug
+- [x] Submission
+  - [x] Download and use `p4_package` to zip all required files
+  - [x]  Download and use `p4_test` to test the submission
+  - [x] Submit to Gradescope
 
 ## Related Links
 
