@@ -1,4 +1,4 @@
-# COM SCI 143 - Fall '21 - Cho
+# **COM** SCI 143 - Fall '21 - Cho
 
 [TOC]
 
@@ -2508,9 +2508,182 @@
 
 
 
-## Lecture 13: Files and 
+## Lecture 13: Files and Index
 
 - Files
-  - 
 
+  - Main Problem: how do we store tables into disks?
+
+    - Q: Assume we have a 512B block and 80B tuples => how to store?
+    - Spanned vs. Unspanned
+      - Unspanned => Tuples must be contained in a single block, wasting extra space
+      - Spanned => tuples may span over multiple blocks, maximizing space usage
+      - Q: Maximum space waste for unspanned?
+        - In our 512B/80B example, we're wasting 32B per block
+        - If our tuples are 1 byte more than 50% of the block size, we would end up wasting 50% - 1B of the entire block => upper limit
+
+      - Unspanned is more common
+
+  - Variable-Length Tuples
+
+    - Ex: `VARCHAR(100)`
+    - How do we store them?
+      - Reserved Space
+        - Reserve the maximum space for each tuple
+        - Q: Any problem?
+          - May see a lot of wasted space, just like in an unspanned system
+          - No upper limit on this wasted space
+
+      - Variable-Length Space
+        - Pack tuples tightly
+        - Q: How do we know the end of a tuple?
+          - Inclusion of a unique sequence of bytes that marks the end of a tuple
+          - Store the length of the tuple
+
+        - Q: What to do for update/delete?
+
+          - Delete and insert at the end => results in fragmentation
+            - We may need to reshuffle these fragments to resolve the issue
+
+          - Insert and move everything behind it back => inefficient
+
+        - Q: How can we "point to" a tuple?
+
+          - We need the block number and the beginning location of the tuple
+            - May be compromised by periodic updates to tuples => need to update the pointer
+
+      - Slotted Page
+        - 3 main ideas in data management for problem solving: sorting, hashing, adding a layer of abstraction
+        - At the beginning of each block, we have an array of pointers that point to the location of the tuples
+
+  - Long Tuples
+
+    - Assume the following:
+
+      - ```sql
+        ProductReview(
+        	pid INT,
+            reviewer VARCHAR(50),
+            date DATE,
+            rating INT,
+            comments VARCHAR(4000)
+        )
+        ```
+
+      - Block size 512B
+
+    - Q: How should we store it?
+
+      - Splitting tuples
+        - Most of the attributes are reasonably short, long attributes tend to be rare
+          - Therefore, we treat long attributes as an exception
+
+        - Long attributes are stored separately (often as a separate file)
+          - These can then be dealt with separately
+
+        - This way, queries to shorter attributes suffer no performance implications
+
+  - Column-Oriented Storage
+
+    - The storage methods discussed so far are row-oriented
+
+    - For analytical queries, reading the entire row of a tuple may not be needed
+
+      - Row-oriented storage forces us to read the entire row even if most columns are not needed for query processing => wasting disk I/Os
+
+      - Example:
+
+        - ```sql
+          SELECT name FROM Students WHERE GPA > 3.7;
+          ```
+
+    - Idea is to store by column, not by row
+
+    - Unneeded columns can be skipped for query processing
+
+      - Better compression and caching behavior
+
+    - Downsides:
+
+      - Column values of matching rows must be "joined"
+      - Insertion/update of a row is more expensive (multiple I/Os per row)
+
+  - Sequential File
+
+    - Tuples are ordered by certain attribute(s) (search key)
+
+    - Example:
+
+      - | name   | addr          | GPA  |
+        | ------ | ------------- | ---- |
+        | Elaine | 1 Le Conte    | 3.7  |
+        | James  | 3 Mississippi | 2.9  |
+        | John   | 12 Wilshire   | 1.8  |
+        | Peter  | 4 Olympic     | 3.9  |
+        | Susan  | 7 Pico        | 1.0  |
+        | Tony   | 12 Sunset     | 2.4  |
+
+      - Ordered by `name`
+
+    - Inserting a new tuple
+
+      - 2 options:
+
+        - Rearrange in an array
+        - Maintain a linked list
+
+      - Q: What happens if the block the tuple should be inserted into is full?
+
+        - Overflow page - reserving free space to avoid overflow
+
+        - `PCTFREE` in DBMS
+
+          - ```sql
+            CREATE TABLE R(a INT) PCTFREE 40;
+            ```
+
+        - Slows down performance by forcing random I/O, breaking physical sequentiality while maintaining logical sequentiality
+
+  - Things to Remember
+
+    - Spanned/unspanned tuples
+    - Variable-length tuples (slotted page data structure)
+    - Long tuples
+    - Row-oriented vs. column-oriented storage
+    - Sequential file and search key
+      - Problems with insertion (overflow page)
+      - `PCTFREE`
+
+- Index
+
+  - Basic Problem
+
+    - ```sql
+      SELECT * FROM Student WHERE sid = 30;
+      ```
+
+    - | sid  | name    | GPA  |
+      | ---- | ------- | ---- |
+      | 20   | Susan   | 3.5  |
+      | 60   | James   | 1.7  |
+      | 70   | Peter   | 2.6  |
+      | 40   | Elaine  | 3.9  |
+      | 30   | Christy | 2.9  |
+
+    - Q: How can we answer the query?
+
+      - Iterate until we find `sid = 30`, then return
+
+  - Random-Order File
+
+    - How do we find `sid = 30`?
+      - If there is no ordering to the data, we have to just scan through all tuples
+      - Table sequenced by `sid` => use binary search
+
+
+
+
+## Lecture 14: Index
+
+- 
 
