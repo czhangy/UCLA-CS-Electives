@@ -68,9 +68,9 @@
 ## Tasks
 
 - [ ] Coding
-  - [ ] Download and run the `mongo-apache` container
-  - [ ] Download the JSON data
-  - [ ] Write a program that loads the data to MongoDB
+  - [x] Download and run the `mongo-apache` container
+  - [x] Download the JSON data
+  - [x] Write a program that loads the data to MongoDB
   - [ ] Implement a PHP web service that connects to MongoDB
   - [ ] Write aggregate queries and debug
 - [ ] Submission
