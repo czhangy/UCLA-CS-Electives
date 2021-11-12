@@ -2683,7 +2683,253 @@
 
 
 
-## Lecture 14: Index
+## Lecture 14: Index and B+Tree
+
+- Index
+
+  - Basic Idea
+
+    - Build an "index" on the table
+      - An auxiliary structure to help us quickly locate a tuple given a "search key"
+
+  - Dense, Primary Index
+
+    - Primary index (= clustering index)
+
+      - Underlying table is sequenced by a key
+      - Index is build on the same key (= search key)
+
+    - Dense index
+
+      - One `(key, pointer)` index entry per every tuple
+
+    - Search algorithm
+
+      - Find the key from index and follow the pointer
+      - Possibly use binary search
+
+    - Q: Why dense index, isn't binary search on the file the same?
+
+      - Example:
+
+        - 100,000,000 tuples (900B/tuple)
+        - 4B search key, 4B pointer
+        - 4096B block, unspanned tuples
+
+      - Q: How many blocks for a table (how big)?
+
+        - $$
+          \lfloor\frac{4096}{900}\rfloor=4\text{ tuples/block}
+          $$
+
+        - $$
+          \lceil\frac{100,000,000}{4}\rceil=25,000,000\text{ blocks}
+          $$
+
+        - $$
+          4\text{KB}\times 25,000,000=100\text{GB}
+          $$
+
+      - Q: How many blocks for index (how big)?
+
+        - $$
+          \lfloor\frac{4096}{8}\rfloor=512\text{ index entries/block}
+          $$
+
+        - $$
+          \lceil\frac{100,000,000}{512}\rceil=195,313
+          $$
+
+        - $$
+          4\text{KB}\times 195,313\approx4\text{KB}\times200,000=800\text{MB}
+          $$
+
+      - Binary search on the table (100GB) requires disk access, while binary search on the index (800MB) can be done in main memory
+
+  - Sparse, Primary Index
+
+    - Primary Index
+      - Index is built on the same search key as the underlying sequential file
+
+    - Sparse Index
+      - `(key, pointer)` pair per every "block"
+      - `(key, pointer)` pair points to the first tuple in the block
+      - We cannot tell if a given key exists from just the index, we must look at the underlying blocks
+      - Smaller => better for disk I/O
+
+    - Q: How can we find `80`?
+      - Find the greatest search key less than `80`, follow the pointer to the block and search it
+
+  - Multi-Level Index
+
+    - Nth level of index points to another level of indexes, etc. (think multi-level page tables)
+    - Q: Why multi-level index?
+      - If the Nth underlying level is too big for main memory to cache, we can make another level of indexes to make caching easier
+
+    - Q: Does a dense, 2nd level index make sense?
+      - No, it would be the same size as the underlying level
+      - Any Nth level index where `N > 1` must be sparse
+
+  - Secondary (non-clustering) Index
+
+    - Secondary (non-clustering) index
+      - When tuples in the table are no ordered by the index search key
+        - Index on a non-search-key for sequential file
+        - Unordered file
+
+      - Q: What index?
+        - Does a sparse index make sense? No, the underlying table is unordered
+        - First level must always be dense
+          - Second level and on must be sparse
+
+  - Overflow Problem
+
+    - Q: What happens if we want to insert a tuple to a block which would overflow the block?
+      - An overflow block needs to be created
+      - In addition, an overflow index needs to be created to point to the overflow block
+      - Over time, more and more disk I/Os would be required
+
+    - Performance problems after many insertions
+      - After many insertions, there can be a long chain of overflow pages
+      - A new index needs to be rebuilt at this point
+
+  - Indexed Sequential Access Method (ISAM)
+
+    - Pros
+      - Simple
+      - Sequential blocks
+
+    - Disadvantage
+      - Not suitable for updates
+      - Becomes ugly (loses sequentiality and balance) over time
+
+  - Index Creation in SQL
+
+    - ```sql
+      CREATE INDEX <index_name> ON <table> (<attr>, <attr>, ...)
+      ```
+
+    - Example:
+
+      - ```sql
+        CREATE INDEX sid_idx ON Student (sid)
+        ```
+
+      - Creates a B+tree on the attributes
+
+      - Speeds up lookup on `sid`
+
+  - Primary (Clustering) Index
+
+    - MySQL:
+
+      - Primary key becomes the clustering index
+
+    - DB2:
+
+      - ```sql
+        CREATE INDEX idx ON Student (sid) CLUSTER
+        ```
+
+      - Tuples in the table are sequenced by `sid`
+
+    - Oracle: Index-Organized Table (IOT)
+
+      - ```sql
+        CREATE TABLE T (
+        	...
+        ) ORGANIZATION INDEX
+        ```
+
+      - B+tree on primary key
+
+      - Tuples are stored in the leaf nodes of a B+tree
+
+    - Periodic reorganization may still be necessary to improve range scan performance
+
+
+  - Important Terms
+    - Search key (!= primary key)
+      - Primary keys are unique, primary attributes used to identify a tuple
+      - A search key is the attribute being searched for and depends on the query
+    - Primary index vs. secondary index
+      - Clustering index vs. non-clustering index
+    - Dense index vs. sparse index
+    - Multi-level index
+    - Indexed Sequential Access Method (ISAM)
+
+- B+Tree
+
+  - Most popular index structure in RDBMS
+
+  - Pros
+
+    - Suitable for dynamic updates
+    - Balanced
+    - Minimum space usage guarantee
+
+  - Cons
+
+    - Non-sequential index blocks
+
+  - `n`: the number of pointer spaces in a node
+
+  - Balanced: all leaf nodes are at the same level
+
+  - Leaf Node
+
+    - All pointers (except the last one) point to tuples
+    - At least half of the pointer spaces are used
+
+  - Non-Leaf Node
+
+    - Points to the nodes one level below
+      - No direct pointers to tuples
+
+    - At least half of the pointer spaces used
+      - Except the root, where at least 2 pointer spaces are used
+
+  - Space Usage Guarantee
+
+    - B+Tree nodes have at least:
+      - Leaf (non-root): `⌈(n + 1) / 2⌉` pointers, `⌈(n + 1) / 2⌉ - 1` keys
+      - Non-leaf (non-root): `⌈n / 2⌉` pointers, `⌈n / 2⌉ - 1` keys
+      - Root: 2 pointers, 1 key
+
+  - Search on B+Tree
+
+    - Find a greater key and follow the link on the left
+
+      - ```
+        function find(value V)
+        	/* Returns leaf node C and index i such that C.Pi points to first record
+        	with search key value V */
+        	Set C = root node
+        	while (C is not a leaf node) begin
+        		Let i = smallest number such that V <= C.Ki
+        		if there is no such number i then begin
+        			Let Pm = last non-null pointer in the node
+        			Set C = C.Pm
+                end else if (V = C.Ki) then
+                	Set C = C.Pi+1
+                else C = C.Pi // V < C.Ki
+            end
+            // C is a leaf node
+            Let i be the least value such that Ki = V
+            if there is such a value i then
+            	return (C, i)
+            else
+            	return null // No record with key value V exists
+        ```
+
+  - B+Tree Insertion
+
+    - No overflow
+      - Run the traversal algorithm to find the space the tuple should be inserted in, and insert if there's space
+
+
+
+## Lecture 15: B+Tree
 
 - 
 
