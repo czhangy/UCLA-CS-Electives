@@ -2929,7 +2929,137 @@
 
 
 
-## Lecture 15: B+Tree
+## Lecture 15: B+Tree and Hash Index
 
-- 
+- B+Tree
+
+  - B+Tree Insertion
+
+    - Leaf Overflow
+      - The leaf node is split into 2 so that there is enough space
+      - Keys are split between the nodes
+      - The first key of the new node is copied to the parent, along with a pointer to the newly allocated node
+      - We can stop as long as there is no overflow
+      - Q: After split, are the leaf nodes always half full?
+        - Yes, we only split when one node has more nodes than it can accommodate, therefore, since we assign half the keys to each node, they will always be half full
+
+    - Non-Leaf Overflow
+      - Starts with leaf overflow, but the parent node cannot fit the extra pointer/key
+      - Split the non-leaf node in two, moving the middle key up to its parent
+        - If the number of keys is even, either of the middle keys can be used
+
+      - We can stop as long as there is no overflow
+      - Q: After the split, are the non-leaf nodes at least half full?
+        - Yes, same reason as above
+
+    - New Root
+      - Overflow traces all the way back up the tree
+      - A new node is allocated, as there is no parent to move the middle node up to
+      - The root is guaranteed to point to at least 2 nodes
+
+
+    - Summary
+      - Leaf node overflow
+        - The first key of the new node is copied to the parent
+      - Non-leaf node overflow
+        - The middle key is moved to the parent
+      - Detailed algorithm is found in Figure 11.17
+
+  - B+Tree Deletion
+
+    - No Underflow
+      - Traverse until the search key of interest is found
+      - Check underflow conditions based on the minimum space guarantee
+
+    - Leaf Underflow
+      - Coalesce with neighbor
+        - After deletion, the minimum space guarantee is not met
+        - We can try to merge the node with its neighbor first to resolve the underflow
+        - Check left and then right neighbor to see if there is available space to merge
+        - If there's space, we need to update pointers in the merged node and delete the key from the parent
+        - The parent must also be checked for underflow
+
+      - Redistribute with neighbor
+        - After deletion, the minimum space guarantee is not met
+        - We try to borrow keys from the neighbor if merge fails
+        - Redistribute the keys in the underflowed node from its siblings
+        - Both nodes should end up roughly half full
+          - Guaranteed, since we know the merge failed because both neighbors are too full
+
+        - The key in the parent must now be updated, as the first key of one of the leaf nodes has changed
+        - The parent node's value is simply being updated, so it cannot underflow
+
+    - Non-Leaf Underflow
+      - Coalesce with neighbor
+        - Deletion of parent from leaf underflow merge results in non-leaf node underflowing
+        - Merge with neighbor by pulling down the splitting key from the parent
+        - Delete the pointer to the merged node
+
+      - Redistribute with neighbor
+        - Occurs when neighbors are too full to merge
+        - Temporarily, make the node overflow by pulling down the splitting key and moving everything to the left
+        - Apply the overflow handling algorithm (the algorithm used for B+tree insertion) to the overflowed node
+          - Pick the new middle key in the node and move it to the parent
+          - Move everything to the right of the middle key to the empty node that was merged from
+
+    - Tree Depth Reduction
+      - Merging of non-leaf nodes results in an empty root node
+      - Delete the empty nodes, reducing the depth of the tree by 1
+
+    - Important Points
+      - Remember:
+        - For leaf node merging, we delete the mid-key from the parent
+        - For non-leaf node merging/redistribution, we pull down the mid-key from their parent
+
+      - Exact algorithm: Figure 11.21
+
+  - Where does `n` come from?
+
+    - `n` determined by:
+
+      - Size of a node
+      - Size of a search key
+      - Size of an index pointer
+
+    - Q: What is `n` if the node is 1024B, the key is 10B, and the pointer is 8B?
+
+      - $$
+        8n+10(n-1)\le 1024\\n\le57.44\\n=57
+        $$
+
+  - Range Search on B+Tree
+
+    - ```sql
+      SELECT *
+      FROM Student
+      WHERE sid > 60;
+      ```
+
+    - B+Tree can also handle this, finding the limit and corresponding leaf nodes
+
+- Hash Index
+
+  - What is a Hash Table?
+    - Hash Table
+      - Hash function: `h(k): key -> [0...n]`
+        - Should be very random and uniformly distributive
+
+      - Array for keys: `T[0...n]`
+      - Given a key `k`, store it in `T[h(k)]`
+
+  - Hashing for DBMS (Static Hashing)
+    - Think about individual disk blocks as buckets for the hash table
+    - Overflow and Chaining
+      - When the table size is small, we can experience all the benefits of hashing
+      - When a disk block overflows, we need to create an overflow block, which creates a need to search through overflow chains to locate tuples
+      - We lose the guarantee of a single lookup
+      - Main problem: as data grows in size, overflow blocks become unavoidable
+
+
+
+
+## Lecture 16: Hash Index
+
+- Hash Index
+  - Extendable Hashing
 
