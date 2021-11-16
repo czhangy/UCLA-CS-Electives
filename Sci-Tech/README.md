@@ -1,4 +1,4 @@
-# Sci-Tech
+# Sci-Tech - Linguistics
 
 | Course  |    Term    |   Professor    | Grade |
 | :------ | :--------: | :------------: | :---: |
