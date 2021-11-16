@@ -90,8 +90,8 @@
 ## Tasks
 
 - [ ] Coding
-  - [ ] Download and run the `spark` container
-  - [ ] Download the GoodReads dataset
+  - [x] Download and run the `spark` container
+  - [x] Download the GoodReads dataset
   - [ ] Write a program that outputs frequently paired books
   - [ ] Debug using subsets of the large dataset
 - [ ] Submission
