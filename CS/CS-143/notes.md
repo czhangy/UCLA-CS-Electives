@@ -3058,8 +3058,185 @@
 
 
 
-## Lecture 16: Hash Index
+## Lecture 16: Hash Index and Joins
 
 - Hash Index
   - Extendable Hashing
+    - Basic Idea
+      - Use `i` of `b` bits from hash output, increasing `i` as needed
+        - Dynamically increase `i` as we use more and more hash bits
+      - Add a level of indirection: directory of pointers to hash buckets
+        - In order to retrieve a tuple, we pass the search key into a hash function, which sends us to a directory, where we find a pointer that points to the proper hash bucket
+    - Insertion
+      - Starts with `i = 0`
+      - If no hash bucket overflow:
+        - Insert the tuple into the hash bucket
+      - If a hash bucket overflows:
+        - If the hash bucket `i == directory i`, then:
+          - Double the directory size by copying existing pointers from the directory
+          - Increase `directory i` value by `1`
+        - Split the overflowing hash bucket
+          - Move tuples in the bucket to the new bucket based on their hash values
+          - Update directory pointer
+          - Increase the hash bucket `i` value by `1`
+    - Deletion
+      - Merge Condition
+        - Hash bucket merge condition
+          - Bucket `i`'s are the same
+          - First `(i - 1)` bits of the hash key values are the same
+        - Directory shrink condition
+          - All bucket `i`'s are smaller than the `directory i`
+        - Comes with performance implications
+    - Questions on Extendable Hashing
+      - Can we provide minimum space guarantee? No, space waste is possible
+        - Can be mitigated to some degree with a good hash function
+  - Summary
+    - Static Hashing
+      - Overflow and chaining
+    - Extendable hashing
+      - Can handle growing files
+        - No periodic reorganizations
+      - Indirection
+        - Up to 2 disk accesses to access a key
+      - Directory doubles in size
+        - Not too bad if the data is not too large
+
+- Hashing vs. Tree
+
+  - Can an extendable-hash index support the following query efficiently?
+
+    - ```sql
+      SELECT *
+      FROM R
+      WHERE R.A > 5;
+      ```
+
+    - No, extendable hashing can only support point queries well, not range-based queries
+
+  - Which one is better for the following query, B+tree or extendable hashing?
+
+    - ```sql
+      SELECT *
+      FROM R
+      WHERE R.A = 5;
+      ```
+
+    - Hash is supposedly faster, but this benefit is unlikely to be relevant => dataset would have to be really big
+
+- Joins
+
+  - Motivation
+
+    - Q: How do we process:
+
+      - ```sql
+        SELECT *
+        FROM Student
+        WHERE sid > 30;
+        ```
+
+    - Q: How do we process:
+
+      - ```sql
+        SELECT *
+        FROM Student S, Enroll E
+        WHERE S.sid = E.sid;
+        ```
+
+  - `R ⋈ S`?
+
+    - Nested-Loop Join (NLJ)
+
+      - ```pseudocode
+        for each r ∈ R:
+        	for each s ∈ S:
+        		if r.A = s.A, then output (r, s)
+        ```
+
+      - Poor performance on large tables
+
+    - Sort-Merge Join (SMJ)
+
+      - ```pseudocode
+        sort R and S by A
+        i = 1, j = 1
+        while (i <= |R| and j <= |S|):
+        	if (R[i].A = S[j].A) then:
+        		output (R[i], S[j])
+        		i++
+        		j++
+        	else if (R[i].A > S[j].A) then j++
+        	else if (R[i].A < S[j].A) then i++
+        ```
+
+    - Index Join (IJ)
+
+      - ```pseudocode
+        create an index for S.A
+        for each r ∈ R:
+        	X := lookup index on S.A with r.A value
+        	for each s ∈ X:
+        		output (r, s)
+        ```
+
+      - Avoids scanning the entire table for each query
+
+  - 4 Join Algorithms
+
+    - Nested-Loop Join (NLJ)
+
+    - Index Join (IJ)
+
+    - Sort-Merge Join (SMJ)
+
+    - Hash Join (HJ)
+
+      - Hash function: `h(v) => [1, k]`
+
+      - Q: Given `(r ∈ R)` and `(s ∈ S)`, can `r` and `s` join if `h(r.A) != h(s.A)`?
+
+        - No, if they could be joined, the hash output would be the same
+
+      - Main idea
+
+        - Partition tuples in `R` and `S` based on hash values on join attributes
+        - Perform "joins" only between partitions of the same hash values
+
+      - ```pseudocode
+        // Hashing stage (bucketizing): hash tuples into buckets
+        hash R tuples into G1, ... , Gk buckets
+        hash S tuples into H1, ... , Hk buckets
+        // Join stage: join tuples in matching buckets
+        for i = 1 to k:
+        	match tuples in Gi, Hi buckets
+        ```
+
+  - Comparison of Join Algorithms
+
+    - Q: Which algorithm is better?
+      - Q: What does "better" mean?
+
+    - Ultimate bottom line: which algorithm is the "fastest"?
+      - Q: How does the system know which algorithm runs fast? Run all join algorithms and pick the fastest one?
+
+    - Cost Model
+      - A model to estimate the performance of a join algorithm
+        - Multiple cost models are possible depending on their sophistication
+
+      - Our cost model: # of disk blocks that are read/written during join
+        - Not perfect: ignores random vs. sequential I/O difference, CPU cost, etc.
+        - Simple to analyze
+        - "Good enough" to pick the best join algorithm
+          - Cost of join is dominated by disk I/O
+          - Most join algorithms have a similar disk access pattern
+
+        - Our cost model ignores the last I/O for writing the final result
+          - This cost is the same for all algorithms
+
+
+
+
+## Lecture 17:
+
+- 
 
