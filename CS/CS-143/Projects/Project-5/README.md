@@ -89,7 +89,7 @@
 
 ## Tasks
 
-- [ ] Coding
+- [x] Coding
   - [x] Download and run the `spark` container
   - [x] Download the GoodReads dataset
   - [x] Write a program that outputs frequently paired books
