@@ -33,7 +33,7 @@
 | Project 2: Internet Movie Database                 | 100/100 |
 | Project 3: Data Conversion                         | 100/100 |
 | Project 4: NoSQL – MongoDB                         | 100/100 |
-| Project 5: Distributed Computing with Apache Spark |   ???   |
+| Project 5: Distributed Computing with Apache Spark | 100/100 |
 | Project 6                                          |   ???   |
 
 ## Quizzes
