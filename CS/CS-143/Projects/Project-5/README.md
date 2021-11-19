@@ -92,12 +92,12 @@
 - [ ] Coding
   - [x] Download and run the `spark` container
   - [x] Download the GoodReads dataset
-  - [ ] Write a program that outputs frequently paired books
-  - [ ] Debug using subsets of the large dataset
-- [ ] Submission
-  - [ ] Download and use `p5_package` to zip all required files
-  - [ ]  Download and use `p5_test` to test the submission
-  - [ ] Submit to Gradescope
+  - [x] Write a program that outputs frequently paired books
+  - [x] Debug using subsets of the large dataset
+- [x] Submission
+  - [x] Download and use `p5_package` to zip all required files
+  - [x]  Download and use `p5_test` to test the submission
+  - [x] Submit to Gradescope
 
 ## Related Links
 
