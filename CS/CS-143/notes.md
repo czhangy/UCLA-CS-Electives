@@ -3143,7 +3143,7 @@
         WHERE S.sid = E.sid;
         ```
 
-  - `R ⋈ S`?
+  - 4 Join Algorithms: `R ⋈ S`
 
     - Nested-Loop Join (NLJ)
 
@@ -3155,6 +3155,18 @@
 
       - Poor performance on large tables
 
+    - Index Join (IJ)
+
+      - ```pseudocode
+        create an index for S.A
+        for each r ∈ R:
+        	X := lookup index on S.A with r.A value
+        	for each s ∈ X:
+        		output (r, s)
+        ```
+  
+      - Avoids scanning the entire table for each query
+  
     - Sort-Merge Join (SMJ)
 
       - ```pseudocode
@@ -3169,26 +3181,6 @@
         	else if (R[i].A < S[j].A) then i++
         ```
 
-    - Index Join (IJ)
-
-      - ```pseudocode
-        create an index for S.A
-        for each r ∈ R:
-        	X := lookup index on S.A with r.A value
-        	for each s ∈ X:
-        		output (r, s)
-        ```
-
-      - Avoids scanning the entire table for each query
-
-  - 4 Join Algorithms
-
-    - Nested-Loop Join (NLJ)
-
-    - Index Join (IJ)
-
-    - Sort-Merge Join (SMJ)
-
     - Hash Join (HJ)
 
       - Hash function: `h(v) => [1, k]`
@@ -3201,7 +3193,7 @@
 
         - Partition tuples in `R` and `S` based on hash values on join attributes
         - Perform "joins" only between partitions of the same hash values
-
+  
       - ```pseudocode
         // Hashing stage (bucketizing): hash tuples into buckets
         hash R tuples into G1, ... , Gk buckets
@@ -3210,33 +3202,205 @@
         for i = 1 to k:
         	match tuples in Gi, Hi buckets
         ```
-
+  
   - Comparison of Join Algorithms
-
+  
     - Q: Which algorithm is better?
       - Q: What does "better" mean?
-
+  
     - Ultimate bottom line: which algorithm is the "fastest"?
       - Q: How does the system know which algorithm runs fast? Run all join algorithms and pick the fastest one?
 
     - Cost Model
       - A model to estimate the performance of a join algorithm
         - Multiple cost models are possible depending on their sophistication
-
+  
       - Our cost model: # of disk blocks that are read/written during join
         - Not perfect: ignores random vs. sequential I/O difference, CPU cost, etc.
         - Simple to analyze
         - "Good enough" to pick the best join algorithm
           - Cost of join is dominated by disk I/O
           - Most join algorithms have a similar disk access pattern
-
+  
         - Our cost model ignores the last I/O for writing the final result
           - This cost is the same for all algorithms
 
 
 
 
-## Lecture 17:
+## Lecture 17: Cost Model
+
+- Cost Model
+
+  - Running Example
+
+    - Join two tables: `R ⋈ S`
+    - `|R| = 1000` and `|S| = 10,000`
+    - `b_R = 100 blocks` and `b_S = 1000 blocks` (`10 tuples/block`)
+    - `M` = main memory cache, 22 disk blocks 
+
+  - Sort-Merge Join (SMJ)
+
+    - ```pseudocode
+      sort R and S by A
+      i = 1, j = 1
+      while (i <= |R| and j <= |S|):
+      	if (R[i].A = S[j].A) then:
+      		output (R[i], S[j])
+      		i++
+      		j++
+      	else if (R[i].A > S[j].A) then j++
+      	else if (R[i].A < S[j].A) then i++
+      ```
+
+    - Take blocks into main memory cache from each table one at a time to compare
+
+    - An extra block must be used to stage output tuples
+
+    - When one block runs out, pull the next one into main memory
+
+    - 1 disk I/O per block
+
+      - Each block of `R` and `S` is read into main memory once
+
+    - Cost of Join Stage of Sort-Merge Join
+
+      - Q: Ignoring the final write of output, how many disk blocks are read during join?
+
+        - `1000 + 100 = 1100 disk I/Os`
+
+      - Q: We only used 3 memory blocks. Can we use the rest to make things better?
+
+        - No, regardless of how many memory blocks we use, we must read/write the exact same number of disk block reads
+
+      - In general:
+
+        - $$
+          b_R+b_S
+          $$
+
+  - Nested-Loop Join (NLJ)
+
+    - ```pseudocode
+      for each r ∈ R:
+      	for each s ∈ S:
+      		if r.A = s.A, then output (r, s)
+      ```
+
+    - Scan `S` table once for every tuple of `R`
+
+    - One block for the current `R` block, one block for the current `S` block, and one block for staging output tuples
+
+    - `100 + 1000 x 1000 = 1000000 disk I/Os`
+
+    - Q: Can we do better?
+
+      - Block Nested Loop Join
+        - Scan `S` table once for every block of `R`
+        - `100 + 100 x 1000 = 100100 disk I/Os`
+
+      - We can still do better
+        - Scan `S` table once for every 20 blocks of `R`
+        - Make full use of main memory caching
+        - `100 + 5 x 1000 = 5100 disk I/Os`
+
+    - Q: What if we read `S` first?
+
+      - `1000 + 50 x 100 = 6000 disk I/Os`
+      - Generally, putting the smaller table on the left will make the join more efficient
+
+    - In general:
+
+      - $$
+        b_R+\lceil\frac{b_R}{M-2}\rceil\times b_S
+        $$
+
+    - Summary
+
+      - Always use block nested loop join (not the naïve algorithm)
+      - Read as many blocks as possible for the left table in one iteration
+      - Use the smaller table on the left (i.e., outer loop)
+
+  - Hash Join (HJ)
+
+    - Step (1): Hashing stage: `h(v) -> [1, k]`
+
+    - Step (2): Join stage
+
+    - Bucketizing Stage
+
+      - Read `R` table and hash them into `k` buckets
+
+        - One buffer for each bucket
+        - One block used to read from `R`
+        - Q: Given `M = 22`, what is the maximum `k`? => 21
+        - Q: How many disk I/Os to bucketize `R`?
+          - We read each block from `R` once to bucketize it
+          - Each buffer tuple for each bucket is written out once
+          - How many tuples will be sent to each bucket? => `100/21 ~ 5` on average
+          - `105` disk writes
+          - Approximates to `b_R`
+          - `100 + 100 = 200`
+
+      - Read `S` table and hash them into `k` buckets
+
+        - Same process as with `R`
+        - Approximates to `1000 + 1000 = 2000`
+
+      - In general:
+
+        - $$
+          2b_R+2b_S=2(b_R+b_S)
+          $$
+
+    - Join Stage
+
+      - Join tuples in `Gi` with those in `Hi`
+
+      - Pull all blocks from `Gi` into main memory, then one block of `Hi` and produce the output
+
+        - 7 blocks used
+        - Each block in `Gi` is read once
+          - Same with each block in `Hi`
+
+      - What if `R` is large, and `Gi > M - 1 `?
+
+        - Usually doesn't happen
+
+        - We bucketize again with the hope that the resulting sub-buckets will fit into main memory
+
+        - Recursive Partitioning
+
+          - Use a new hash function `h'(v) -> [1, k]` to recursively partition `Gi` and `Hi` to even smaller partitions (until one of them fit in main memory)
+
+          - \# of bucketizing steps needed for `R`:
+
+            - $$
+              \lceil\log_{M-1}\frac{b_R}{M-2}\rceil
+              $$
+
+            - In each bucketing step, the number of disk I/Os performed is:
+
+              - $$
+                2(b_R+b_S)
+                $$
+
+      - In general:
+
+        - $$
+          b_R+b_S
+          $$
+
+    - Overall:
+
+      - $$
+        \lceil\log_{M-1}\frac{b_R}{M-2}\rceil\times 2(b_R+b_S)+b_R+b_S
+        $$
+
+
+
+
+## Lecture 18:
 
 - 
 
