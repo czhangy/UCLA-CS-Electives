@@ -20,11 +20,9 @@
       wget https://oak.cs.ucla.edu/classes/cs143/project6/adult.data
       ```
 
-    - ~50K rows of data to be used as an example "large" dataset
-
     - Is a well-formatted CSV file
 
-  - Get familiar with uses of the following commands: `cat`, `less`, `head`, `tail`, `shuf`, `wc`, `cut`, `grep`, `awk`, `sort`, `uniq`, `datamash`, `sed`, etc.
+  - Get familiar with uses of the following commands: `cat`, `less`, `head`, `tail`, `shuf`, `wc`, `cut`, `grep`, `awk`, `sort`, `uniq`, `datamash`, `sed`
 
 - Analyze Google's n-gram data
 
