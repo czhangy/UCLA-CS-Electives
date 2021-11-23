@@ -66,18 +66,18 @@
 
 ## Tasks
 
-- [ ] Coding
-  - [ ] Download and run the Unix container
-  - [ ] Learn Unix commands
-    - [ ] Download the adult dataset
-    - [ ] Walk through all of the examples
-  - [ ] Analyze Google's N-gram data
-    - [ ] Download the n-gram dataset
-    - [ ] Write queries to test on the dataset
-    - [ ] Debug queries
-- [ ] Submission
-  - [ ] Download and use `p6_package` to zip all required files
-  - [ ] Submit to Gradescope
+- [x] Coding
+  - [x] Download and run the Unix container
+  - [x] Learn Unix commands
+    - [x] Download the adult dataset
+    - [x] Walk through all of the examples
+  - [x] Analyze Google's N-gram data
+    - [x] Download the n-gram dataset
+    - [x] Write queries to test on the dataset
+    - [x] Debug queries
+- [x] Submission
+  - [x] Download and use `p6_package` to zip all required files
+  - [x] Submit to Gradescope
 
 ## Related Links
 
