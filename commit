@@ -3,30 +3,27 @@
 MSG=$(date +'%D')
 MSG+=" update"
 
-hold=""
+echo -n "Class Name: "
+read class
+MSG+=" | ${class}: "
+echo -n "Content: "
+read content
+MSG+=${content}
+hold+="x"
 
-while true
-do
-    echo -n "Class Name: "
-    read class
-    if [ -z "$class" ]
-    then
-        break
-    fi
-    MSG+=" | ${class}: "
-    echo -n "Content: "
-    read content
-    MSG+=${content}
-    hold+="x"
-done
+echo ""
+echo "Press Enter to confirm:"
+echo "-------------------------------------------------------"
+echo "$MSG"
+echo "-------------------------------------------------------"
+read -n 1 key
 
-if [ -z "$hold" ] 
-then
-    echo "Enter a commit message!"
-else
+if [[ $key == "" ]]; then
     git pull origin master && \
     git add -A . && \
     git commit -m "$MSG" && \
     git push origin master && \
     echo "Pushed!"
+else
+    echo "Commit aborted!"
 fi
