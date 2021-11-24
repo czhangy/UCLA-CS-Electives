@@ -3400,7 +3400,293 @@
 
 
 
-## Lecture 18:
+## Lecture 18: Cost Model and Query Optimization
+
+- Cost Model
+
+  - Index Join (IJ)
+
+    - ```pseudocode
+      create an index for S.A
+      for each r ∈ R:
+      	X := lookup index on S.A with r.A value
+      	for each s ∈ X:
+      		output (r, s)
+      ```
+
+    - Allocate a block for `R` tuples, a block for the index nodes, a block for `S` tuples, and a block for staging
+
+    - Pull in tuples from `R`, look up the tuple in the index, then read the tuple from `S`
+
+    - Cost is equivalent to the cost of scanning `R` plus the cost of the index look up plus the cost of reading `S`
+
+    - IJ Example 1
+
+      - 15 blocks for index
+        - 1 root, 14 leaves
+      - On average, 1 matching `S` tuple per `R` tuple
+      - Q: How many disk I/Os? How should we use the memory?
+        - Assuming a secondary index, there will be 1 disk I/O for each tuple in `R`
+          - If there were 10 matching `S` tuples per `R` tuple:
+            - In a secondary index, there could be up to 10 disk I/Os per `R` tuple
+            - In a primary index, there would be 1-2 disk I/Os, as the tuples in `S` would be ordered by search key
+        - We should use memory to cache more of the index blocks
+          - `R` tuples are read exactly once, there is no need to cache them
+          - `S` tuples are essentially being randomly accessed
+          - We must perform index retrieval on the same index many times throughout the join, so they should be cached in the beginning of the join
+      - Cost for `R` scan: 100 => each block of `R` is read once
+      - Cost for index lookup: 15 => we retrieve and cache each index block once
+      - Cost for read matching `S` tuple: 1000 => we do one disk I/O for retrieving each tuple in `R`
+
+    - IJ Example 2
+
+      - 40 blocks for index
+
+        - 1 root, 39 leaves
+
+      - On average, 10 matching `S` tuples per `R` tuple
+
+      - Q: How many disk I/Os? How should we use the memory?
+
+        - Caching `R` and `S` is not helpful, but we can no longer cache the entirety of the index
+        - Each lookup must be used for the root node, but this is not necessarily true for each leaf node
+        - We will cache the root node and as many leaf nodes as possible
+
+      - Cost for `R` scan: 100 => each block of `R` is read once
+
+      - Cost for index lookup:
+
+        - Depending on which blocks are cached, each lookup may take either 0 or 1 disk I/Os
+
+        - Take probabilities:
+
+          - $$
+            \frac{18}{39}\times0+\frac{21}{39}\times1=\frac{21}{39}\times1000
+            $$
+
+      - Cost for reading matching `S` tuple: 10,000 => 10 disk I/Os per tuple in `R`
+
+    - In general:
+
+      - $$
+        b_R+|R|(C_I+C_S)
+        $$
+
+  - SMJ: Cost of Sorting
+
+    - Q: How many disk I/Os during the sort stage?
+
+      - Q: How can we sort `R`? => Merge-sort
+
+        - Read as many disk blocks from `R` as possible into main memory
+
+        - Apply a sorting algorithm on that subset of `R`
+
+        - Generate a partition of sorted data
+
+        - Results in 5 sorted runs for the global example
+
+          - $$
+            \lceil\frac{100}{22}\rceil=5
+            $$
+
+        - Q: How many blocks can we sort in each batch? => 22
+
+          - Do we need to allocate one block for output? => No, use the input blocks
+
+        - 200 disk I/Os => each block of `R` is read and written once
+
+        - Q: What do we do with these sorted runs?
+
+          - Maintain a pointer for each sorted run, incrementing the pointer for the value that is the smallest
+          - Allocate a block in main memory for each sorted run and read blocks in one at a time
+          - Place the smallest values into a staging block, which can then be written to main memory
+          - 200 disk I/Os => each block of `R` is read and written once again
+
+      - 400 total disk I/Os for sorting `R`
+
+      - Q: What if the number of sorted runs is larger than the number of available blocks in main memory?
+
+        - Q: How can we sort `S`?
+
+          - $$
+            \lceil\frac{1000}{22}\rceil=46
+            $$
+
+          - Too many sorted runs to fit into main memory (`M = 22`)
+
+          - One main memory block is needed to stage the result, therefore 21 sorted runs can be merged at a time
+
+            - Take the first 21, merge them and produce the output => repeat for all 46 sorted runs
+            - Q: What do we do with the produced sorted runs?
+              - Just repeat the same process with the new sorted runs, as we now have 3 sorted runs, which can fit into main memory
+
+          - Each merging step takes `2b` disk I/Os
+
+          - 6000 total disk I/Os to sort `S`
+
+      - In general:
+
+        - 1 initial sorting
+
+        - Subsequent merging stages:
+
+          - $$
+            \lceil\log_{M-1}(\frac{b_R}{M})\rceil
+            $$
+
+        - `2b` disk I/Os per sorting/merging stage
+
+        - $$
+          2b_R(\lceil\log_{M-1}(\frac{b_R}{M})\rceil+1)
+          $$
+
+    - For both the sort and merge steps:
+
+      - $$
+        2b_R(\lceil\log_{M-1}(\frac{b_R}{M})\rceil+1)+2b_S(\lceil\log_{M-1}(\frac{b_S}{M})\rceil+1)+(b_R+b_S)
+        $$
+
+  - Cost of Join Algorithms
+
+    - |         | Cost (M = 22, b_R = 100, b_S = 1000) |
+      | ------- | :----------------------------------: |
+      | **NLJ** |                 5100                 |
+      | **SMJ** | 7500 (if unsorted), 1100 (if sorted) |
+      | **HJ**  |                 3300                 |
+      | **IJ**  |             1115 - 10640             |
+
+    - Formulas (`b_R < b_S`)
+
+      - NLJ:
+
+        - $$
+          b_R+\lceil\frac{b_R}{M-2}\rceil b_S
+          $$
+
+      - SMJ:
+
+        - $$
+          2b_R(\lceil\log_{M-1}(\frac{b_R}{M})\rceil+1)+2b_S(\lceil\log_{M-1}(\frac{b_S}{M})\rceil+1)+(b_R+b_S)
+          $$
+
+      - HJ:
+
+        - $$
+          2(b_R+b_S)\lceil\log_{M-1}\frac{b_R}{M-2}\rceil+(b_R+b_S)
+          $$
+
+      - IJ
+
+        - $$
+          b_R+|R|(C+J)
+          $$
+
+        - `C`: index lookup cost
+
+        - `J`: # of matching `S` tuples per `R` tuple
+
+  - Summary of Joins
+
+    - NLJ is fine for "small" relations (relative to memory size)
+    - HJ is usually the best for equi-join
+      - If tables have not been sorted and with no index
+      - Consider SMJ if tables have been sorted
+      - Consider IJ if index exists
+
+    - To pick the best, DBMS needs to maintain data statistics
+
+  - Statistics Collection for DBMS
+
+    - "Cost-based optimizer"
+
+      - DBMS uses statistics on tables/indexes to pick the best query execution plan
+      - Keeping correct stats is very important
+        - Without correct stats, the DBMS may do stupid things
+
+    - Oracle
+
+      - ```sql
+        ANALYZE TABLE <table> COMPUTE STATISTICS
+        ```
+
+      - ```sql
+        ANALYZE TABLE <table> ESTIMATE STATISTICS
+        ```
+
+        - Cheaper than `COMPUTE`
+
+    - DB2
+
+      - ```sql
+        RUN ON TABLE <userid>.<table> AND INDEXES ALL
+        ```
+
+    - MySQL doesn't have a cost-based optimizer
+
+      - Rule-based optimizer: use simple heuristics only without looking at the actual data
+
+- Query Optimization
+
+  - `R(A, B)`, `S(B, C)`, `T(C, D)`
+
+  - ```sql
+    SELECT *
+    FROM R, S, T
+    WHERE R.B = S.B AND S.C = T.C AND R.A = 10 AND T.D < 30
+    ```
+
+  - Q: How can we process the above query?
+
+    - In general  for `n` way joins:
+
+      - $$
+        \frac{(2(n-1))!}{(n-1)!}\text{ ways}
+        $$
+
+    - In reality, picking the very best is too difficult
+
+    - DBMS tries to avoid "obvious mistakes" using a number of heuristics to examine only those plans that are likely to be good
+
+      - Put the smallest table on the left
+      - "Left-deep" tree
+      - Push selection as deep as possible
+      - ...
+
+    - For 90% of queries, DBMS picks a good query execution plan
+
+      - To optimize the remaining 10%, companies pay big money to databse consultants
+
+  - Looking at Query Plan
+
+    - Many systems allow users to look at query plan
+
+      - No SQL standard
+      - Different systems use different syntax
+
+    - Examples:
+
+      - MySQL, PostgreSQL:
+
+        - ```sql
+          EXPLAIN SELECT...
+          ```
+
+      - Oracle:
+
+        - ```sql
+          EXPLAIN PLAN FOR SELECT...
+          ```
+
+      - MS SQL Server:
+
+        - ```sql
+          SET SHOWPLAN_TEXT ON
+          ```
+
+
+
+
+## Lecture 19: Transactions
 
 - 
-
