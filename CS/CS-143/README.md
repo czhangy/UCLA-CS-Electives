@@ -1,4 +1,4 @@
-# COM SCI 143 - Data Management Systems
+# CS 143 - Data Management Systems
 
 # Cho - Fall '21
 
