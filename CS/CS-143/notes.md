@@ -2158,7 +2158,7 @@
         - Other Boolean/comparison operators: `$or`, `$not`, `$gt`, `$ne`, etc.
     - Update: `updateX(condition, update_operation)`
       - `db.books.updateOne({ title: "MongoDB" }, { $set: { title: "MongoDB II" } })`
-      - `db.books.updateMant({ title: "MongoDB" }, { $inc: { likes: 1 } })`
+      - `db.books.updateMany({ title: "MongoDB" }, { $inc: { likes: 1 } })`
         - Other update operators: `$mul` (multiply), `$unset` (remove field), etc.
     - Deletion: `deleteX(condition)`
       - `db.books.deleteOne({ title: "MongoDB" })`
@@ -2387,7 +2387,7 @@
 
       - Transformation: Convert RDD tuple into RDD tuple(s)
         - `map()`: convert one input tuple into one output tuple
-        - `flatMap()`: conver one input into multiple output tuples
+        - `flatMap()`: convert one input into multiple output tuples
         - `reduceByKey()`: specify how two input "values" should be aggregated
         - `filter()`: filter out tuples based on condition
       - Action: Perform "actions" on RDD
@@ -2697,7 +2697,7 @@
     - Primary index (= clustering index)
 
       - Underlying table is sequenced by a key
-      - Index is build on the same key (= search key)
+      - Index is built on the same key (= search key)
 
     - Dense index
 
@@ -2773,7 +2773,7 @@
   - Secondary (non-clustering) Index
 
     - Secondary (non-clustering) index
-      - When tuples in the table are no ordered by the index search key
+      - When tuples in the table are not ordered by the index search key
         - Index on a non-search-key for sequential file
         - Unordered file
 
@@ -2957,13 +2957,12 @@
       - A new node is allocated, as there is no parent to move the middle node up to
       - The root is guaranteed to point to at least 2 nodes
 
-
-    - Summary
-      - Leaf node overflow
-        - The first key of the new node is copied to the parent
-      - Non-leaf node overflow
-        - The middle key is moved to the parent
-      - Detailed algorithm is found in Figure 11.17
+- Summary
+  - Leaf node overflow
+    - The first key of the new node is copied to the parent
+  - Non-leaf node overflow
+    - The middle key is moved to the parent
+  - Detailed algorithm is found in Figure 11.17
 
   - B+Tree Deletion
 
