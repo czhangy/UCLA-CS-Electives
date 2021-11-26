@@ -28,6 +28,7 @@
 
 ## Misc.
 
-| Course  |   Term   | Grade |
-| :-----: | :------: | :---: |
-| ENGR 23 | Fall '21 |  IP   |
+|  Course  |    Term    | Grade |
+| :------: | :--------: | :---: |
+| ENGR 23  |  Fall '21  |  IP   |
+| PSYCH 85 | Summer '20 |  A+   |
