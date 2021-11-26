@@ -1,4 +1,4 @@
-# COM SCI 161 - Fundamentals of Artificial Intelligence
+# CS 161 - Fundamentals of Artificial Intelligence
 
 # Gu - Winter '22
 
