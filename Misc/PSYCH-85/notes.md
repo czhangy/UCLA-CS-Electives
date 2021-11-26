@@ -1,0 +1,768 @@
+# PSYCH 85 - Summer '20 - McAuliffe
+
+
+
+[TOC]
+
+## **Lecture 1: Introduction/Philosophical Approach**
+
+- Thinking about the mind - think in a continuum rather than yes/no
+  - Dog (survival, basic commands) → chimpanzee (more complex problem solving, language-ish) → humans (self-awareness, a sense of individualism, language)
+- Theory of mind - The understanding that other things have different thoughts than yourself
+- Mind - combination of function and structure
+- We're aware of our own consciousness, but we can't be sure of others' consciousness, we assume they're there
+- Cognitive science - the study of the mind
+  - How do we recognize a mind?
+    - Perception/response
+    - Learning/memory
+    - Abstract reasoning
+    - Emotion/language/consciousness
+  - What does a mind do?
+    - It computes
+      - Light reflects off of 3D chair → 2D projection of light on retina processed → chair recognized
+    - Takes inputs and maps them to outputs
+    - Receives/stores/transfers/outputs information
+  - How do minds compute?
+    - They use representations
+      - Symbols in the mind - binary code, neurons, etc.
+      - Referents (usually in physical universe)
+      - Mapping between symbols and referents → intentionality - directed at an object
+- Tri-Level Hypothesis (Marr)
+  - Computation
+    - In the most abstract, mathematical form, what is the function being computed? What is the relation from input to output?
+    - Addition/subtraction
+  - Representation and Algorithm
+    - What is the actual procedure being used to perform the computation, and how are the input and output represented?
+    - Decimal/binary
+  - Physical Implementation
+    - What is the physical mechanism that is being used to carry out the computation?
+    - Calculator/memory
+  - Criticisms
+    - Physical implementation restrains R&A - computational limitations, for example, working memory is 7 plus/minus 2
+    - Alternative: Structural level of analysis
+      - Molecules → synapses → neurons → neural networks → brain regions
+- Mind-body problem
+  - Is the mind separate from the body?
+  - Is the mind made up of the same stuff as the body?
+  - 2 divisions: Monism and Dualism
+    - Monism - Aristotle
+      - There's only 1 type of substance in the universe
+      - Clay is matter, mind is form/shape of clay
+      - Idealism - universe is mental
+        - World is a simulation → unfalsifiable since we can't escape
+      - Physicalism/Materialism - Operations of mind are operations of brain
+      - Eliminativism - Mental states don't exist at all, only brain states
+    - Dualism - Plato
+      - There are 2 types of substances
+      - Mind exists in the world of forms
+        - Is immaterial, eternal
+      - Body exists in physical world
+        - Is material, perishable
+      - Classical - Mind controls body, hunger leads to eating
+      - Substance - Mind and body are fundamentally different, minds can do X, no physical object can do X
+      - If mind and body are made of different stuff, how can mind affect body? No description of mind
+    - Functionalism
+      - Structural kinds vs. functional kinds
+        - Brain is the structure, mind is the function
+        - A mind is something that functions as a mind
+
+## **Lecture 2: Philosophical Approach/Psychological Approach**
+
+- Schools of thought
+  - Nativism - Much knowledge is innate - Plato
+    - Learning is simply recollecting what is already known in the ideal world
+  - Rationalism - Not born with specific knowledge but born with facilities that help us learn through reason - Descartes
+    - In reality, we learn through senses and pattern recognition
+  - Empiricism - Knowledge is acquired through experience - John Locke
+    - Tabula rasa - "Blank Slate"
+      - Not completely blank - babies can orient towards faces as a special stimuli
+      - Simple ideas ("red", "sweet")
+      - Complex ideas ("cherry" = red and sweet)
+- What is actually hard-wired?
+  - Reflexes - Structure of CNS predisposes babies to reflexes
+    - Reactions to sweet and foul smells
+    - Important for early survival of baby
+    - Origins in evolutionary theory
+      - Responses or perceptual systems that are specially adapted for survival
+  - Complex interactions between hard-wired aspects and environment
+    - Balance between usefulness and difficulty in hard-wiring
+      - Difference in complexity between recognizing a face vs. recognizing a specific face
+    - Some genes are expressed under certain environmental conditions
+      - Provides more flexibility than static genes
+    - Environment includes prenatal environment
+      - Fetal alcohol syndrome/drugs
+      - Excess hormones (testosterone) may affect sexual preferences, etc.
+- Consciousness
+  - Unitary or divided?
+    - Appears unitary but may be an illusion?
+      - Intuitively believe there is 1 consciousness
+      - Possibly separate consciousnesses - may lose visual before auditory sense
+    - Brain processes different parts of experience at different times, then fuses them together
+  - Easy problems
+    - Define different states and map to brain area functioning
+  - Hard problems
+    - Describing subjective experience (qualia)
+    - What's it like to be a dog?
+    - The problem of measurement - how do we measure someone else's consciousness
+    - What would it be like to transfer someone's consciousness 1 neuron at a time to a computer?
+- Mind as an emergent property
+  - Reductionism - Whole can be understood through study of its parts
+    - Does this work for the brain?
+  - Emergence - The whole goes beyond its parts
+    - Criticism: This tells us nothing, maybe true but what do we do about it?
+- Consciousness: One or Many?
+  - One?
+    - Appears to be one
+    - "Cartesian Theatre" - all information is brought to one central location where it is perceived
+      - Criticisms:
+        - Information is not synchronous
+        - Hard to find a brain region corresponding to a central point
+        - Who would be watching? Infinite loop - homunculus
+  - Many?
+    - Multiple drafts theory - Dennet
+    - Different consciousness versions compete - one wins
+    - May allow for different levels of awareness
+      - Can be half-aware - daydreaming
+- Consciousness and Neuroscience
+  - Theories
+    - Consciousness arises from multiple areas - Popper and Eccles
+    - Consciousness is tied to specific types of neurons - Crick and Koch
+      - Intralaminar nuclei of the thalamus
+      - Connect to many sensory areas
+      - May connect to cortical neurons for consciousness in different modalities
+      - Difficult to test (freeze neurons?), but easy to imagine some neural networks have more of an effect on consciousness than others
+    - Churchland theory - recurrent network keeps information active
+      - Holds information over time
+      - Maintains activity without sensory input
+      - Explains why consciousness goes away during sleep
+      - Not wedded to particular location, more focused on the way the networks function
+- AI and Consciousness
+  - Strong AI : Artificial minds can be conscious
+    - Enough complexity leads to consciousness
+  - Weak AI : Consciousness is not physical
+    - Complexity needed for consciousness is practically impossible to replicate
+      - Responses:
+        - Machines getting faster all the time
+        - Learning algorithms replicating human senses could be developed
+        - Computer minds can be really good at some things, but are worse than humans at others
+- Searle's Chinese Room
+  - There's a man inside a room being fed pieces of paper through a slot in the wall. These pieces of paper have questions written in Chinese. He looks up the Chinese symbols in rulebooks, which answer the questions. This allows him to give answers in Chinese, even though he doesn't know Chinese.
+  - This man is like a computer - it can move symbols around without an understanding of the symbols themselves
+    - Intended conclusion - computers can't have true understanding since they act like the man in the room
+    - Objection: The understanding must still exist in the room, otherwise no answer would be given. The understanding is in the books, which really means the person on the outside is having a conversation with the person that wrote the books
+- Psychological Approach
+  - Studying human mind - structure vs. function
+    - Structuralism
+      - Describe elements of thought
+      - Voluntarism
+      - Structuralism
+        - More complicated version of voluntarism
+    - Functionalism
+      - Away from parts
+      - How parts interrelate/function
+        - Psycho-analytic - Freud
+        - Gestalt
+        - Cognition
+        - Neuroscience
+    - Behaviorism
+- Inspirations, Connections, and Reactions
+  - The use of analogy is a common method of explanation
+  - Structuralism → Chemistry and Physics
+  - Gestalt → Field Theory
+  - Reactions - School of thought is outed as insufficient, leads to other schools of thought
+    - Structuralism → Functionalism and Gestalt
+    - All other isms → Behaviorism
+      - Behaviorism ignored what's inside our heads, viewed only inputs and outputs
+- Voluntarism - Early idea of structural theory
+  - Goal: Identify mental elements
+    - Combine these individual elements with will
+      - Not necessarily like this, we don't consciously obey grammatical rule when speaking
+        - 2 large, red, Swiss clocks vs. red, 2, Swiss, large clocks
+  - Influenced by chemistry
+  - Experience divided into 2:
+    - Immediate: Direct experience
+      - Past $60-70k salary, more money doesn't translate to more happiness
+    - Mediate: Reflected upon experience
+      - Upon reflection, more money translates to more happiness - may not actually be happier moment-to-moment
+  - Tridimensional Theory of Feelings
+    - Pleasant vs. Unpleasant
+    - Tense vs. Relaxed
+    - Excited vs. Depressed
+    - Missing a lot of categorizations: regret, envy, disgust, awe, etc.
+  - Utilizes introspection
+- Problems with Introspection
+  - Introspection might change the process
+    - Limited amount of cognitive resources - thinking about what you're thinking about may change the thinking process
+  - Process might change over time
+  - Process might be inaccessible
+    - How do I recognize the color yellow?
+  - Subject agreement may be quite low
+  - We describe our experiences with language - language may be inadequate
+    - Variation in color cannot be described
+- Voluntarism 2.0 - Structuralism
+  - More careful cataloging of elements
+    - 32820 visual elements
+    - 11600 auditory elements
+  - More passive combination
+  - Dimensions: Quality, Intensity, Duration, Clearness, Extension
+  - Doesn't map very well onto our current understanding of neural function
+  - Criticisms largely the same as voluntarism
+    - Ignored the whole, assumed we could break down experience into these smaller fragments
+- Functionalism
+  - Mind is not elements, but rather a dynamic process
+    - Stream of consciousness
+    - Maps onto the neural firing basis of mind
+  - Substantive thoughts - focused attention when mind slows down
+  - Transitive thoughts - flights of fancy, mind drifts, and associates
+  - Criticism: What's a function/activity?
+    - Is it activity like perception or memory?
+    - Is it the usefulness of mental processes?
+- Gestalt Movement
+  - Focus on whole rather than parts
+  - Grouping Principles:
+    - Proximity
+    - Size
+    - Closure
+    - Pragnanz (good figure)
+  - Insight Learning
+    - Stages of Learning:
+      - Preparation
+        - Thinking about it for a long time
+      - Incubation
+        - Sits in back of head
+      - Illumination
+        - Aha moment
+      - Verification
+    - Mixed evidence from real world
+  - Criticisms:
+    - Explanations seen as just descriptive
+    - Competition of grouping principles in real world
+    - Definition of pragnanz
+    - Insight learning is not present in any real world studies
+      - Most problems we solve don't follow the guidelines
+- Psycho-analytic theory - mini-mind
+  - Conscious - tip of iceberg
+  - Preconscious - just below surface
+  - Subconscious - rest of iceberg
+    - Vast majority of thoughts aren't conscious thoughts
+  - Id - wants
+  - Superego - moral ideals
+  - Ego - mediates Id and Superego
+  - Defense Mechanisms:
+    - Repression
+      - Bad memories are repressed
+    - Sublimation
+      - Bad impulses are changed into good impulses
+  - Many of Freud's ideas can be counterproductive
+    - Analysis of childhood to help anxiety disorder may make disorder worse
+  - Criticisms:
+    - Painful memories may not be repressed - ever-present
+    - Analytic treatments not appropriate for many disorders
+    - Unscientific and unpredictable
+
+## **Lecture 3: Psychological Approach/Cognitive Approach**
+
+- Behaviorism
+  - Ignore the black box of the mind
+  - Observe input and outputs that are visible to us, stimulus and response
+  - Use of controlled environments + animals
+    - How useful is it to generalize this to humans?
+      - Certain types of learning (simpler types) generalize fairly well
+        - Classical conditioning
+          - Before: Unconditioned stimulus → unconditioned response
+          - During: Conditioned stimulus → unconditioned response
+          - After: Conditioned stimulus → conditioned response
+          - Over time, the link between CS and CR weakens without reinforcement
+        - Operant conditioning
+          - Positive/negative reinforcement/punishment
+            - Positive = add something
+            - Negative = take away
+  - Strengths:
+    - Good experiments
+    - Good theories
+    - Predicted behavior
+  - Weaknesses:
+    - Could not explain complex behavior
+      - Perception, language, high-level thought, attention
+- Scientific Method: Theory → Hypothesis → Experiment → Experimental
+  - Group/Control Group → Results/Data Analysis
+  - Compare experimental and control groups
+  - Need statistics to compare dependent variables of groups
+  - Samples used to make inferences about population
+  - Differences in dependent variables stem from variability between and within people
+    - Differences in experiment = differences in world + variability
+    - p-value: probability that the differences only came from variability
+      - `< 0.05` is a valid hypothesis - arbitrarily set at 2 standard deviations
+        - Balances type 1 error (groups aren't that different, experiment says they are) and type 2 error (groups are different, experiment says they aren't)
+      - Affected by variability and difference in means → p-value ~ variability / mean difference
+      - May be misleading - assumes blank slate before experiment
+        - Daryl Bem and precognition
+          - Flipped priming experiment with a truck
+          - Had 8 experiments showing valid p-values for reverse priming → future priming affects response time in the present
+          - File drawer problem - ignored non-significant results, publication bias
+            - Effect sizes should've been similar, replications should've been higher
+        - Bayesian approach - assuming an experiment has an extremely unlikely result based on prior knowledge
+          - Change the p-value necessary for success
+            - Getting this specific number is a challenge
+- Correlation vs. Causation
+  - Oregon - better insurance leads to more smokers
+  - Massachusetts minister salaries have positive relationship with rum price in Havana → really just inflation
+  - Children's arm length and reasoning ability are positively correlated → older kids reason better
+  - Bottled water and baby health are positively correlated → places with bottled water generally have money
+  - Espresso machine expenditure and baby health are positively correlated → also socioeconomic factors
+  - Cigarette smoking and GPA have a negative correlation → more rebellious/reckless on average
+  - Women's foot angle and age are positively correlated → dancing?
+  - Months of breastfeeding is positively correlated with IQ → really just higher population of higher IQ women breastfeed
+- Behaviorism fails to explain complex behaviors
+  - Perception/language/higher-level thought/attention
+  - Leads to cognitive approach
+- Cognitive approach
+  - Mind is an active process - goal is to figure out what that process is
+  - Perception
+    - Factors affecting perception: image, previous experience, goal, variability
+      - Vase vs. 2 faces or young woman vs. old woman → 1 image leads to 2 perceptions, perception is an active process
+      - Image: What is the information?
+      - Previous experience: Priming can change what you perceive
+      - Goal: What do you want to see?
+      - Variability: What perceptions are there for you to see?
+  - Rotating Snakes illusion - brain is constructing motion where there's none to be found
+    - Neurons provide information through our visual system
+      - Neurons that process the black/yellow/blue/black colors stop firing at different times → brain processes this as motion
+  - Technologies
+    - Brain imaging
+      - PET - Positron Emission Tomography scans
+      - FMRI - Functional Magnetic Resonance Imaging
+    - Mind as computer metaphor grew in strength as personal computer made accessible
+    - Neuroscience - Hubel and Wiesel - some neurons in the brain respond selectively to specific kinds of stimuli in the environment
+  - Human information processing
+    - Scientific method as primary tool
+    - Modelling + computer simulations
+      - Compare model behavior to human behavior
+      - Modelling process is problematic
+    - Created process models - describes what the process is
+  - Dichotic listening task
+    - Cocktail party effect
+    - Filtering of information
+    - Attended message vs. unattended message
+      - How much are we processing?
+    - 3 models - Broadbent, Treisman, Deutsch-Norman
+      - Sensory Store → Filter → Pattern Recognition → Selection → Short-term Memory
+      - Broadbent - Unattended message goes to filter
+      - Treisman - Unattended message goes to short-term memory
+      - Deutsch-Norman - Unattended message goes to selection
+      - All work, depends on stimuli and context - multimode theory of attention
+  - Visual Illusions
+    - Moon following you - moving, moon looks like it's following you off the horizon
+    - Inputs to motion system:
+      - Retinal motion - function of actual distance and actual motion
+        - Is 0 in relation to moon, too far away from us
+      - Distance perceived
+      - Our own motion perceived
+    - Things far away move less as you move
+    - We don't perceive the moon's distance accurately due to lack of context and points of reference
+      - Distance messed up leads to illusion of it following you
+    - Motion after-effect - we have different types of neurons that detect motion
+      - Some signal inward motion, some signal outward
+        - Usually, they balance when looking at stationary things → no motion perceived
+        - Video makes us adapt to inward neurons → inward motion neurons are listened to less, outward motion listened to more
+          - Off balance, stationary things become not so stationary
+  - Sensory Memory
+    - Iconic memory - visual - 250-300 ms
+      - Whole report - 4/5 items
+      - Partial report - 12 items
+      - Blinking creates error
+    - Echoic memory - auditory - lasts several seconds
+  - Working Memory
+    - Limited capacity - 7 p/m 2 items → strongly correlated with intelligence
+    - Rehearsal keeps items fresh in working memory
+    - Measured with digit span test
+  - Chunking
+    - Chase and Simon - chess memory
+    - Start with a snapshot of game in progress - memory test
+      - Grandmasters have an advantage
+    - Use random positions - memory test
+      - No more advantage
+    - Evidence of chunking
+  - Visual search - self-terminating
+    - On average 2x as long to say something isn't there than to find something is there
+  - Searching working memory - yes and no are exact same amount of time, is an exhaustive search
+  - Baddeley's Model of Working Memory
+    - Phonological loop - auditory loop used to rehearse items in working memory
+    - Visuospatial sketchpad - visualize object shapes/locations
+    - Central executive - controls processes
+  - Visual working memory - remember 4 items, working memory holds 4 items, not attributes
+
+## **Lecture 4: Cognitive Approach**
+
+- F-task: verbal is easier
+- Sentence task: visuospatial is easier
+  - Overloading one section of your memory
+- Central executive dysfunction
+  - Inability to control and direct resources
+  - Wisconsin card sort - cards with colors, shapes, and numbers
+    - Start sorting by something, in the middle of the task, begin sorting by something else
+    - Dysfunctional central executives have a hard time switching - perseverating
+- Memory Systems
+  - Primacy effect - words at the beginning of a list are more easily remembered because they have less competition
+  - Recency effect - words at the end of a list are more easily remembered because they're still located in your working memory
+    - Delayed recall task negates recency effect
+  - Types of interference:
+    - Retroactive: New learning interferes with old learning
+    - Proactive: Old learning interferes with new learning
+  - Explicit memories - memories we consciously have, linked to hippocampus
+    - HM with primed pictures
+    - Episodic memory (travelling) and facts
+  - Implicit memory
+    - Neurally separate from explicit memory
+    - Behaviorally dissociable from explicit memory
+    - Repetition priming, savings upon relearning (easier to relearn something), motor and skill learning
+    - Priming specific to certain tasks - auditory priming different from visual priming
+  - Experiment:
+    - Generate vs. context vs. no context
+      - Generate > context > no context for recognition, explicit memory
+      - Reverse order for perceptual identification, since the word was actually seen, implicit memory
+- Judgement systems
+  - System 1 - automatic, requires little effort, "intuition"
+  - System 2 - controlled, monitors/evaluates output of system 1
+    - Highly skilled performance transforms system 2 to system 1
+      - Chess grandmaster viewing board
+      - Learning stick shift
+- Decision making
+  - Free will?
+    - Genetic predispositions, environment, etc.
+    - Neurons must fire how they were designed to → no free will
+      - Free will requires the brain to take on a quality that goes beyond physics
+      - We're tricked into having free will
+
+## **Lecture 5: Judgement and Problem Solving**
+
+- Mismatch between physiology and modern technology
+- Heuristic judgement:
+  - What proportion of long-distance relationships break up within a year?
+    - Simplify question: How many instances of long-term break ups come to mind?
+    - Availability heuristic : whatever comes to mind is used as a judgement
+      - Murder or suicide more common? Murder more available → more common answer
+    - Target attribute: hard to access, heuristic attribute: easy to access
+  - How happy are you with your life in general? vs. How many dates did you have last month? (Creates evaluation of romantic satisfaction)
+    - 1 then 2: No correlation → expected
+    - 2 then 1: Correlation of 0.66
+    - Life satisfaction very hard to judge
+  - Representativeness and Probability
+    - How likely is X to be a Y?
+      - Substituted with how much does X resemble our stereotype of Y?
+      - People ignore base rates, only use representativeness when making judgements
+    - Conjunction fallacy - the conjunction of 2 items is more likely than just 1 of those items
+    - Scope neglect
+      - Save 2000 birds vs. 20000 birds vs. 200000 birds - same amount
+        - People have a hard time understanding large numbers.
+      - Scope makes very little difference
+- Pain - remembered pain = max + ending / 2
+  - Duration of pain is less relevant
+  - Compare to actual pain experienced - do you minimize actual pain or remembered pain?
+- Violations of dominance
+  - Probability of earthquake vs. probability of earthquake in US
+    - US less likely response
+- Utility vs. value
+  - 10% chance of $10 billion vs. 100% chance of $10 million
+  - Utility of $10 mil is almost as much as utility of $10 bil
+  - Equivalent gains and losses → losses perceived as more painful than gains are good
+- Problem solving
+  - Searching problem spaces
+    - Heuristic search: don't search all pathways just the ones likely to be the best
+    - Satisficing: don't look for best, just one that's good enough
+    - Means-end analysis: divide the problem up into subgoals, that direct your search towards the goal
+    - Chunking: states are represented in terms of meaningful arrangements, rather than individual pieces
+    - Composition: several separate steps in a process can be consolidated into a single step
+    - Schemas: experience with similar situations in the past can be used to guide new searches
+  - Insight problems: involve a sudden change in the mental representation of the problem
+
+## **Lecture 6: Linguistic Approach/Evolutionary Approach**
+
+- Language characteristics
+  - Communication
+    - Patterns, cross-species communication
+    - Humans by far the most complex
+  - Arbitrary
+  - Structured
+    - Parts of speech, grammar rules
+      - Generally used subconsciously
+    - Variation between languages
+  - Generative
+  - Dynamic
+    - Languages change over time
+- Language components
+  - Phonemes
+    - Smallest sound components of speech
+    - Varies by language
+    - Categorical perception - delay of vocal chords
+      - `b-` vs. `p-`: very distinct delays
+  - Morphemes
+    - Smallest sound units of speech with meaning
+  - Phonology
+    - Study of how language works
+  - Morphology
+    - Study of the meaning of language
+  - Semantics
+    - What words signify
+  - Grammar
+    - How words fit together
+- Linguistic Relativity Hypothesis
+  - Strong version: language shapes thought
+    - Sapir-Whorf Hypothesis
+      - Hopi Indians have a different perception of time
+  - Weak version: language has limited effect on thought
+    - English, Russian, and Setswana speakers
+    - Different color names, but group color chips in similar ways
+- Himba Color Perception
+  - Himba people have many words for green, none for blue
+  - Significantly more blue colors perceived as green
+  - People's ability to discriminate categories changes with expertise
+- Semantics and Grammar
+  - Domain specific - innate language module
+  - Domain general - statistical learning, perception, cognition
+- Language comprehension modality - visuals can override auditory
+- Evolutionary Psychology
+  - Variance - Individuals in species differ in physical traits
+  - Inheritance - Individuals inherit genes suited for survival in environment
+  - Selection - Survivors have best genes suited for environment
+  - Adaptation - Process by which species change to environment to succeed
+  - Sexual selection - As long as gain in attracting mates outweighs any costs, feature survives
+  - Brains and intelligence
+    - Total brain size?
+      - Whales/elephants win
+    - Cephalization index?
+      - Humans win
+    - Proportion of neocortex?
+    - Von Economo Neurons
+  - Comparing humans and non-humans
+    - Anthropomorphism - Over-attribution of human qualities to animals
+    - Anthropodenial - Under-attribution of human qualities to animals
+  - Critical time for evolution?
+    - Pleistocene Era - ~2 million years ago
+  - Wason Selection Task - If a card has a vowel on one side, then it has an even number on the other side
+    - Cheater detection improves performance, happens very early developmentally
+  - Gambler's fallacy - random events are not useful to survive, we're not good at understanding them
+  - Loss Aversion - don't lose stuff, it's scarce
+    - Studied through framing effects
+    - Sunk-cost fallacy
+- Gender differences
+  - Women
+    - Better at verbal tasks - society organizers
+    - Better at object location memory - gatherers
+  - Men
+    - Better at certain spatial tasks - hunters
+- Genes
+  - Mate preferences of women
+    - Symmetry of body and face in men is genetic marker
+    - Fertile time of reproductive cycle - other symmetrical
+    - Infertile time - long-term partners
+    - Moderated by partner symmetry
+
+## **Lecture 7: Signal Detection Theory/Cognitive Neuroscience**
+
+- Question: Is "it" there?
+- Testing for the existence of something cannot be described by a simple percentage
+  - There are 2 errors: false negative and false positive
+  - Hit, correct rejection, false alarm, miss
+  - False alarm and miss rarely have the same percentage
+- Is that other mind lying?
+  - Trust: key component of social interactions
+    - Without trust, society disintegrates (corruption)
+    - Without trust, tribal bonds disintegrate (war, murder)
+    - Without trust, individual relationships disintegrate (divorce)
+  - How do we know if someone is lying?
+    - Eyes, face, voice, body, physiology
+- There's variation in signal strength
+  - Variability = noise distribution
+  - Variation between truth and lies very distinct for young kids
+  - How many standard deviations are there between the signal curve and the noise curve? - Sensitivity
+  - Line between 2 curves - threshold
+  - Sensitivity and threshold drive signal detection theory
+    - You can change the threshold, not the sensitivity
+- Cognitive Neuroscience - examine how brain is physical implementation of cognitive functions
+  - Object recognition, attention, memory, problem solving
+  - Can the structure of the brain illuminate function?
+    - Higher-level → not so much
+    - Lower-level → yes
+      - Edge detection, color vision
+  - Methodology:
+    - Imaging - FMRI, EEG
+    - Brain stimulation
+    - Neuropsychology
+      - Damage to brain → impaired functions
+        - Humans: Wait for damage
+        - Animals: Create damage
+    - FMRI: Function Magnetic Resonance Imaging
+      - Use to take a picture of your brain as it thinks
+      - MRI is a technique that takes a picture of your brain at one time
+      - FMRI takes pictures over time as a task is performed
+      - Bad temporal resolution, good spatial resolution
+        - Detects blood flow instead of neurons → hemodynamic lag
+      - Uses subtraction method - assumes nothing is going on in control condition, must be careful
+      - Parametric studies - vary degree of activation of task
+        - Look at areas correlated with behavioral difficulty
+        - Working memory
+    - PET: Positron Emission Technology
+      - Uses radioactive isotopes which emit a positron
+      - Positron collides with an electron in the brain, creates gamma rays to be measured
+      - Limit subject exposure
+    - EEG: Electroencephalogram
+      - Measure electrical activity on scalp while task is performed
+      - Good temporal resolution, bad spatial resolution
+    - Imaging issues: may find correlative response that isn't necessary for task
+
+## **Lecture 8: Neuroscience Approach/Network Approach**
+
+- Vision
+  - Photoreceptor cells
+    - Rod and cone cells on back of eye
+      - Rod - periphery, movement, black and white
+      - Cone - fovea (center), detail, color
+        - Have blue, red, green cones centered on wide range of wavelengths
+          - Causes color blindness when missing certain cones
+    - Respond to different frequencies
+    - Very specifically tied to structure/function
+  - Bipolar cells
+    - Connect in between
+  - Ganglion cells
+    - Go to the brain
+    - Signal on the outside of its receptive field inhibit their firing, signals on inner receptive field increase activity → on-center/off-surround
+      - Creates difference of Gaussians
+  - Photoreceptors slightly covered by other cells → creates blind spot
+    - Cephalopods have it the right way around
+  - LGN is the visual processing portion of the thalamus
+  - Blind sight - primary visual cortex is damaged, LGN works fine, they process information without being aware of it
+  - Edge detection
+    - Discriminate between edges of objects
+    - Uses bipolar and horizontal cells
+    - Information passes between photoreceptors and bipolar cells t full strength
+      - Runs inverse to horizontal cell firing, which sends half-negative signals to adjacent bipolar cells → lateral inhibition
+  - All cells have a receptive field → the part of the world that the cells respond to
+- Brain pain
+  - Catastrophic reaction occurs 62% in the left hemisphere and 10% in the right
+  - Indifference erection occurs 11% of the time in the left hemisphere and 38% in the right
+- Language processing
+  - Left hemisphere more involved
+  - Depends on handedness
+- Hemispatial neglect - a failure to report, respond, or orient to stimuli presented contralateral to the side of a brain lesion in the absence of elementary motor or sensory deficits
+  - Much more right hemisphere damage - 86%, 7% left, 7% bilateral
+- Anosognosia - lack of awareness of denial of any problem
+- Anosodiaphoria - awareness of deficit but without appropriate concern
+- Alien hand syndrome - inability to control 1 hand, can still perform complex motor functions
+- Phantom limbs - experience a limb even though it's gone, up to 80% experience phantom pain
+  - Length of phantom limb may change
+  - Mirror therapy to relieve pain
+- Cortical reorganization - stimuli on certain parts may appear on phantom limbs
+- Explicit memory neural architecture
+  - Related to Hippocampal formation in medial temporal lobe can cause explicit memory deficits
+  - Korsakoff's syndrome damages mammillary bodies with alcohol abuse
+  - Amnesics have deficits in explicit memory
+- Amnesia
+  - Retrograde - Can't remember things in past
+    - Temporally graded - events just before accident are forgotten, memory improves as you go further back
+      - HF holds info for a while and teaches it to the rest of the cortex for permanent storage → consolidation
+  - Anterograde - new information cannot be learned
+- Deficits of vision
+  - Agnosia - cannot recognize objects in world
+    - Apperceptive - cannot identify objects in the world period
+    - Associative - cannot link perceived objects with memory
+  - Prosopagnosia - inability to recognize faces
+    - Fusiform face area
+    - Coding for face cells
+    - Specificity coding (grandmother cell)
+    - Distributed coding - people coded by grouping of cells
+- Neural coding
+  - Neural synchrony
+    - How does shape and color get bound together?
+      - Simpler: neurons fire together at the same time
+      - Complex: firing in similar patterns
+    - May be responsible for more than binding of perception
+      - Memory?
+      - Consciousness?
+- Artificial and real brains
+  - Is it theoretically possible for a computer to have a mind?
+  - Similarities:
+    - Both store and use info
+    - Both have working memory - RAM
+    - Both have long term memory - disk
+    - Both have control structures - CPU
+  - Differences:
+    - Brains - distributed parallel power
+      - Fault tolerant
+      - Very good at learning
+      - Coded in fuzzy analog format
+      - Distributed representation - concepts are spread out among a multitude of neurons
+        - Local representations code concepts with one node (unit)
+        - Distributed representations code information by a pattern of activations across a set of units
+    - Computer - Usually 1 single serial processor
+      - Very sensitive to damage
+      - Not naturally suited to learn
+      - Coded in 1s and 0s
+      - Local representation
+  - Can we simulate a brain with a computer?
+    - Yes - with neural networks
+- Neural networks 101
+  - Network has nodes (kind of like neurons)
+  - Network has link between nodes (like connections between neurons)
+  - Nodes have levels of activation and activation rules
+  - Link between nodes have connection strengths (weights)
+    - Learning changes weights
+  - Start with The Perceptron
+    - Fails to perform XOR, discriminate between parities, inside/outside, open/closed
+    - Adjusted with multi-layer Perceptron → much harder to manage
+      - Adds a hidden layer between input and output
+- Properties of neural networks
+  - Distributed representation - lot of redundancy
+  - Graceful degradation - performance of the system decreases gradually as the system is damaged
+  - Learning - delta rule/backpropagation
+  - Generalization - respond to inputs it was never officially trained on, generalizing based on similarities to previous learning
+  - Distributed process - processing also distributed, no central controlling function, more cooperative
+- Problems of neural networks
+  - Stability-plasticity dilemma - learn new info while retaining old info
+  - Catastrophic interference - system falls apart when new info is learned
+  - Supervised networks - where is the teacher?
+  - Biological plausibility of teacher
+
+## **Lecture 9: Network Approach/Artificial Intelligence**
+
+- Turing Test objections
+  - The judge has to be competent
+  - All possible conversations program
+    - Difficulty in reproduction
+    - Reference back to previous responses
+    - Is a finite number in the end
+  - The too smart argument
+  - Searle's Chinese Room argument
+- The Mind's Purpose
+  - Why do we have a mind?
+    - To process info so we can make good decisions for the physical implementation of the mind
+    - Sometimes the minds efficiency is compromised by the physical implementation
+      - Can lead to bad decisions
+  - Love: nature's trick of bias sampling
+    - Love chemicals
+    - Behavior is biased sample of you
+  - Biased samples
+    - Reviews end up being haters and lovers
+      - What is the basis for their judgements?
+      - What is the value of their judgements?
+    - Playing with other people's kids
+    - Fighting with someone you love
+    - Job interviews
+    - Inspirational speeches
+    - Politicians
+    - People talking about politics
+    - Evaluating your own behavior
+    - Bright side:
+      - Tragedies reported on news
+        - Nanny killer
+        - Child abduction
+      - Distribution changes
+        - Kids' problems sometimes disappear
+        - Spontaneous remission of health problems
+  - Avoiding biased samples
+    - Try and see the whole distribution
+    - Seek out new samples
+      - Unbiased (difficult to find)
+      - Biased in opposite direction
+    - Look for disconfirming evidence
+    - Look for changes in distribution over time
