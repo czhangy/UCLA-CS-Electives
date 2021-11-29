@@ -3688,4 +3688,313 @@
 
 ## Lecture 19: Transactions
 
-- 
+- Motivation
+
+  - Crash recovery
+
+    - Example: Transfer $1M from Susan to Jane
+
+    - ```sql
+      S1: UPDATE Account SET balance = balance - 1000000 WHERE owner = 'Susan'
+      S2: UPDATE Account SET balance = balance + 1000000 WHERE owner = 'Jane'
+      ```
+
+    - Imagine the system crashes after `S1` but before `S2`: what now?
+
+    - Q: How can DBMS guarantee that these "bad" scenarios will never happen?
+
+- Transaction
+
+  - A sequence of SQL statements that are executed as "one unit"
+
+  - Two key commands related to transaction:
+
+    - After a sequence of SQL commands, the user can issue either `COMMIT` or `ROLLBACK`
+    - `COMMIT`
+      - "I am done, commit everything I've done"
+      - All changes made by the transaction must be stored permanently
+    - `ROLLBACK`
+      - "I changed my mind. Ignore what I just did"
+      - Undo all changes made by the transaction
+
+  - Creating a Transaction
+
+    - All SQL commands until `COMMIT`/`ROLLBACK` become one transaction
+
+  - ACID Property of Transaction
+
+    - DBMS guarantees ACID property on all transactions
+      - Atomicity: "all or nothing"
+        - Either all or none of the operations in a transaction is executed
+        - If the system crashes in the middle of a transactions, all changes are undone
+      - Consistency
+        - If the database was a in a "consistent" state before the transaction, it is still in a consistent state after the transaction
+      - Isolation
+        - Even if multiple transactions run concurrently, the final result is the same as if each transaction ran in isolation in a sequential order
+      - Durability
+        - All changes made by committed transactions will remain even after a system crash
+
+  - Autocommit Mode
+
+    - Sometimes, it is too inconvenient to declare transactions explicitly
+
+    - Autocommit mode
+
+      - When on, every SQL statement automatically becomes one transaction
+      - When off, DBMS behaves as usual, all SQL commands through `COMMIT`/`ROLLBACK` become one transaction
+
+    - Setting Autocommit Mode
+
+      - Oracle:
+
+        - ```sql
+          SET AUTOCOMMIT ON/OFF
+          ```
+
+        - Default is off
+
+      - MySQL:
+
+        - ```mysql
+          SET AUTOCOMMIT = {0 | 1}
+          ```
+
+        - Default is on
+
+        - InnoDB only
+
+      - MS SQL Server:
+
+        - ```sql
+          SET IMPLICIT_TRANSACTIONS OFF/ON
+          ```
+
+        - Default is off
+
+        - `IMPLICIT TRANSACTION ON` means `AUTOCOMMIT OFF`
+
+      - DB2:
+
+        - ```sql
+          UPDATE COMMAND OPTIONS USING c ON/OFF
+          ```
+
+        - Default is on
+
+      - JDBC
+
+        - ```jdbc
+          connection.setAutoCommit(true/false)
+          ```
+
+        - Default is on
+
+      - In Oracle, MySQL, and MS SQL Server, `BEGIN TRANSACTION` command temporarily disables autocommit mode until `COMMIT` or `ROLLBACK`
+
+- SQL Isolation Levels
+
+  - By default, RDBMS guarantees ACID for transactions
+
+  - Some scenarios may not need ACID and may want to allow minor "bad scenarios" to gain more "concurrency"
+
+  - By specifying "SQL Isolation Level", app developers can specify what types of "bad scenarios" can be allowed for their apps
+
+    - Dirty read, non-repeatable read, and phantom
+
+  - |                      | Dirty Read | Non-Repeatable Read | Phantom |
+    | -------------------- | :--------: | :-----------------: | :-----: |
+    | **Read uncommitted** |     Y      |          Y          |    Y    |
+    | **Read committed**   |     N      |          Y          |    Y    |
+    | **Repeatable read**  |     N      |          N          |    Y    |
+    | **Serializable**     |     N      |          N          |    N    |
+
+  - Dirty Read
+
+    - Reading a value from an uncommitted transaction
+
+    - Example:
+
+      - ```sql
+        T1: UPDATE Employee SET salary = salary + 100;
+        T2: SELECT salary FROM Employee WHERE name = 'Amy';
+        ```
+
+      - Q: Under ACID, once `T1` updates Amy's salary, can `T2` read Amy's salary?
+
+        - No, we have no idea if `T1` will be rolled back
+        - Under ACID, `T2` has to wait for `T1` to be committed
+
+      - If we just want an estimate of Amy's salary, we may be fine performing a dirty read
+
+        - Among 4 SQL isolation levels, `READ UNCOMMITTED` allows dirty reads
+
+  - Non-repeatable Read
+
+    - When `Ti` reads the same tuple multiple times, `Ti` may get a different value
+
+    - Example:
+
+      - ```sql
+        T1: UPDATE Employee SET salary = salary + 100 WHERE name = 'John';
+        T2: (S1) SELECT salary FROM Employee WHERE name = 'John';
+        	...
+        	(S2) SELECT salary FROM Employee WHERE name = 'John';
+        ```
+
+      - Q: Under ACID, can `T2` get different values for `S1` and `S2`?
+
+        - No, because of atomicity and isolation
+
+    - `READ UNCOMMITTED` and `READ COMMITTED` allow non-repeatable read
+
+  - Phantom
+
+    - When new tuples are inserted, statements may or may not see (part of) them
+
+      - Preventing phantom can be very costly
+      - Exclusive lock on the entire table or a range of tuples
+
+    - Example:
+
+      - ```sql
+        T1: INSERT INTO Employee VALUES (Beverly, 1000), (Zack, 1000);
+        T2: SELECT SUM(salary) FROM Employee;
+        ```
+
+      - Q: Under ACID, what may `T2` return?
+
+        - 5000 if `T1` is executed after `T2` or 7000 if `T1` is executed before `T2`
+
+      - Imagine `T2` starts executing and `T1` begins in the middle of execution
+
+        - `T1` then inserts a tuple in a section that `T2` has already summed and commits
+        - Neither tuple is read multiple times, therefore no non-repeatable read occurred
+        - By the time `T2` reads `Zack`, it is a committed value, so no dirty read occurred
+        - This results in a sum of 6000
+
+    - Phantoms are allowed, except in the `SERIALIZABLE` isolation level
+
+  - Access Mode
+
+    - A transaction can be declared to be read only, when it has `SELECT` statements only (no `INSERT`, `DELETE`, `UPDATE`)
+    - DBMS may use this information to optimize for more concurrency
+
+  - Declaring SQL Isolation Level
+
+    - ```sql
+      SET TRANSACTION [READ ONLY] ISOLATION LEVEL <level>
+      ```
+
+      - Example:
+
+        - ```sql
+          SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+          ```
+
+    - More precisely:
+
+      - ```sql
+        SET TRANSACTION [access_mode] ISOLATION LEVEL <level>
+        ```
+
+        - `access_mode`: `READ ONLY`/`READ WRITE` (default: `READ WRITE`)
+        - `level`:
+          - `READ UNCOMMITTED`
+          - `READ COMMITTED` (default in Oracle, MS SQL Server)
+          - `REPEATABLE READ` (default in MySQL, IBM DB2)
+          - `SERIALIZABLE`
+        - `READ UNCOMMITED` is allowed only for `READ ONLY` access mode
+
+    - Isolation level needs to be set before every transaction
+
+  - Mixing Isolation Levels
+
+    - Example:
+
+      - John's initial salary is 1000
+
+      - ```sql
+        T1: UPDATE Employee SET salary = salary + 100; ROLLBACK;
+        T2: SELECT salary FROM Employee WHERE name = 'John';
+        ```
+
+      - Q: `T1` and `T2` are `SERIALIZABLE`, what may `T2` return? => 1000
+
+      - Q: `T1` is `SERIALIZABLE` and `T2` is `READ UNCOMMITTED`, what may `T2` return => 1000 or 1100
+
+        - ACID is only guaranteed for `T1`, not `T2`
+
+    - Isolation level is in the eye of the beholding operation
+
+      - Global ACID is guaranteed when all transactions are `SERIALIZABLE`
+
+- Logging
+
+  - Guaranteeing ACID
+
+    - ```sql
+      T1: UPDATE Student SET GPA = 3.0 WHERE sid = 30;
+      ```
+
+      - To perform this update, we read the disk block containing the target tuple into main memory from disk, update it in main memory, then write it back to disk => guarantees durability
+
+    - DBMS doesn't immediately write the update disk block back to disk for performance reasons
+
+      - Q: What happens if the system crashes before the block is written back?
+        - Durability is violated
+      - Q: Is there a way to maintain durability without incurring the performance implications of writing tuples back to disk after every transaction?
+        - Log changed values, send the log to disk
+
+  - Rolling Back to Earlier State
+
+    - ```pseudocode
+      T: read(A), write(A), read(B), write(B)
+      ```
+
+    - Q: What if we execute up to `read(B)` and decide to `ROLLBACK`? How can we go back to the old value of `A`?
+
+      - Log all old values of updated tuples
+
+  - Partial Execution
+
+    - ```pseudocode
+      T: read(A), write(A), read(B), write(B)
+      ```
+
+    - Q: What if the system executes up to `write(A)` and the system crashes? What should the system do when it reboots? How does the system know whether `T` did not finish?
+
+      - The system needs to log what has been executed so that it may either finish `T` or rollback, ensuring atomicity
+
+  - Intuition
+
+    - In a separate log file, save the following log records before `Ti` takes any action:
+
+      - | Log record                      | When                                                         |
+        | ------------------------------- | ------------------------------------------------------------ |
+        | `<Ti, start>`                   | Before transaction `Ti` starts                               |
+        | `<Ti, commit/abort>`            | Before transaction `Ti` is committed/aborted                 |
+        | `<Ti, X, old-value, new-value>` | Before a statement in `Ti` changes value of `X` from `old-value` to `new-value` |
+
+    - These records are used during `ROLLBACK` or during crash recovery
+
+  - Rules for Log-Based Recovery
+
+    - DBMS generates a log record before start and end and modification by `Ti`
+    - Before `Ti` is committed, all log records until `Ti`'s commit must be flushed to disk
+    - Before any modified tuple is written back to disk, all log records through the tuple modification must be flushed to disk first
+      - Example: the log record `<Ti, A, 5, 10>` should be written to the disk before the tuple `A` is updated to `10` in disk
+    - During `ROLLBACK`, DBMS reverts to old value of tuples using log records
+    - During crash recovery, DBMS:
+      - Re-executes all actions in the log file from beginning to end
+      - Rolls back all actions from non-committed transactions in the reverse order
+
+  - Summary
+
+    - DBMS uses a log file to ensure ACID for transactions
+      - Helps rolling back partially executed transactions
+      - Helps recovery after crash
+    - Before modifying any data, DBMS generates a log record
+    - Before commit, DBMS flushes records to disk to ensure durability
+    - During recovery, records in the log file are replayed to put the system in the proper state
+
+  
