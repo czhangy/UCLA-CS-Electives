@@ -18,12 +18,12 @@
 
 ## Assignments
 
-|    Deliverable    | Score  |
-| :---------------: | :----: |
-|  Elevator Pitch   | 80/100 |
-|      Resume       | 86/100 |
-|   Cover Letter    | 80/100 |
-| LinkedIn Profile  | 96/100 |
-| Handshake Profile | 96/100 |
-| Final Career Plan |  ???   |
-|   Participation   |  ???   |
+|    Deliverable    |  Score  |
+| :---------------: | :-----: |
+|  Elevator Pitch   | 80/100  |
+|      Resume       | 86/100  |
+|   Cover Letter    | 80/100  |
+| LinkedIn Profile  | 96/100  |
+| Handshake Profile | 96/100  |
+| Final Career Plan |   ???   |
+|   Participation   | 100/100 |
