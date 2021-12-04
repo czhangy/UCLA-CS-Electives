@@ -21,8 +21,8 @@
 | Homework 3 | 100/100 |
 | Homework 4 |   8/8   |
 | Homework 5 |   6/6   |
-| Homework 6 |   ???   |
-| Homework 7 |   ???   |
+| Homework 6 |  30/30  |
+| Homework 7 |   4/4   |
 
 ## Projects
 
