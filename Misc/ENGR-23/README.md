@@ -2,7 +2,7 @@
 
 # Herrera - Fall '21
 
-## Overall: IP | Raw Percentage: IP
+## Overall: P | Raw Percentage: 89.8%
 
 ## Grading
 
@@ -25,5 +25,5 @@
 |   Cover Letter    | 80/100  |
 | LinkedIn Profile  | 96/100  |
 | Handshake Profile | 96/100  |
-| Final Career Plan |   ???   |
+| Final Career Plan | 78/100  |
 |   Participation   | 100/100 |
