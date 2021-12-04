@@ -30,5 +30,5 @@
 
 |  Course  |    Term    | Grade |
 | :------: | :--------: | :---: |
-| ENGR 23  |  Fall '21  |  IP   |
+| ENGR 23  |  Fall '21  |   P   |
 | PSYCH 85 | Summer '20 |  A+   |
