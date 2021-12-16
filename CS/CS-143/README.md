@@ -2,7 +2,7 @@
 
 # Cho - Fall '21
 
-## Overall: IP | Raw Percentage: 93.3%
+## Overall: A | Raw Percentage: 93.3%
 
 ## Grading:
 
