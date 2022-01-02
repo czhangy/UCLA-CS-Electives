@@ -6,3 +6,22 @@
 
 ## Grading
 
+| Category | Percentage |
+| :------: | :--------: |
+| Homework |    50%     |
+| Midterm  |    25%     |
+|  Final   |    25%     |
+
+## Homeworks
+
+|  #   | Score |
+| :--: | :---: |
+| ???  |  ???  |
+
+## Exams
+
+|  Exam   | Score |
+| :-----: | :---: |
+| Midterm |  ???  |
+|  Final  |  ???  |
+
