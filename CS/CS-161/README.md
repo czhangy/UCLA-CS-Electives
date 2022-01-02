@@ -2,7 +2,7 @@
 
 # Gu - Winter '22
 
-## Overall: PL | Raw Percentage: PL
+## Overall: IP | Raw Percentage: IP
 
 ## Grading:
 
