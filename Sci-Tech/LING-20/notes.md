@@ -61,5 +61,54 @@
     - Linguists are interested in discovering these rules
     - Big question: what is the system of rules and expressions that underlies our ability to speak and understand a human language?
 - Vocal-Tract Anatomy
-  - 
+  - The Tongue
+    - Tip of the tongue
+    - Blade (or front) of the tongue
+    - Body (or back) of the tongue
+  - The Larynx
+    - In the middle of your throat is the larynx
+    - Inside your larynx are muscles called the vocal folds
+    - The opening between the vocal folds is the glottis
+      - The vocal folds have the ability to open and close the glottis
+        - When the glottis is closed, air can't leave the lungs
+        - When the glottis is open, air freely leaves the lungs
+      - When the vocal folds come so close together that they are almost closed, they vibrate
+        - This vibration is your voice
+  - The Velum
+    - The soft area at the very back of your mouth is your velum
+    - It is the doorway to the nasal passage
+    - If it is lowered, air can go into the nasal cavity and out the nose
+    - If it is raised, air has to go through your mouth
+  - The (Hard) Palate
+    - The (hard) palate is the hardest area of the roof of your mouth
+    - Just in front of the velum
+  - The Alveolar Ridge
+    - The fleshy ridge just behind your top teeth is the alveolar ridge
+  - The Post-Alveolar Region
+    - The area between your palate and your alveolar ridge is the post-alveolar (or alveo-palatal) region
+    - The area where the roof of your mouth rises sharply
+  - The Teeth
+    - The teeth are involved in making some speech sounds ("th", "f", etc.)
+  - The Lips
+    - The lips are involved in making speech sounds ("f", "p", "m", etc.)
+  - The Problem with Spelling
+    - In order to talk about sounds, we need a way of representing them in written form
+    - Why not use English spelling to represent sounds?
+      - English spelling is often ambiguous
+        - Same sound, different spelling: their, there, they're
+        - Same spelling, different sound: read, bow, roof
+      - Some sounds don't have a designated symbol: (th)orn, (th)is, si(ng), etc.
+    - Other languages have sounds that English lacks and therefore English doesn't have a symbol for; for example:
+      - ñ in Spanish
+      - ‘ in Hawaiian
+      - đ in Vietnamese
+      - ch or ö in German
+  - International Phonetic Alphabet (IPA)
+    - Developed over 100 years ago by the International Phonetic Association
+    - Unambiguous: 1 symbol per sound, 1 sound per symbol
+    - Universal: all known human phones represented
+    - Many symbols used in the IPA are the same symbols used in our orthography (spelling)
+      - These aren't the same thing!
+    - If a symbol is from the IPA, it is enclosed in square brackets
+    - When speech is represented in the IPA, we say that we are forming a phonetic transcription
 
