@@ -112,3 +112,9 @@
     - If a symbol is from the IPA, it is enclosed in square brackets
     - When speech is represented in the IPA, we say that we are forming a phonetic transcription
 
+
+
+## Lecture 2:
+
+- 
+
