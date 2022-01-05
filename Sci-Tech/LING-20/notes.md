@@ -114,7 +114,143 @@
 
 
 
-## Lecture 2:
+## Lecture 2: Consonants and Vowels
+
+- Consonants
+  - Main parameters for describing consonants
+    - Manner of articulation
+      - How the gesture in the vocal tract occurs
+      - Stops/Plosives: sounds that create a complete blockade in the oral tract
+        - Bilabial stops
+          - `[p]`: bilabial, voiceless, oral (<u>p</u>an)
+          - `[b]`: bilabial, voiced, oral (<u>b</u>an)
+          - `[m]`: bilabial, voiced, nasal (<u>m</u>an)
+        - Alveolar stops
+          - `[t]`: alveolar, voiceless, oral (<u>t</u>an)
+          - `[d]`: alveolar, voiced, oral (<u>D</u>an)
+          - `[n]`: alveolar, voiced, nasal (Da<u>n</u>)
+          - `[ɾ]`: alveolar, voiced, oral, tap/flap (le<u>tt</u>er)
+          - `[r]`: alveolar, voiced, oral, trill (pe<u>rr</u>o)
+        - Velar stops
+          - `[k]`: velar, voiceless, oral (<u>c</u>an)
+          - `[g]`: velar, voiced, oral (<u>G</u>et)
+          - `[ŋ]`: velar, voiced, nasal (si<u>ng</u>)
+        - Glottal stop
+          - `[ʔ]`: glottal, voiceless, oral (<u>u</u>h-<u>o</u>h)
+          - Always voiceless
+      - Fricatives: produced by creating a radical narrowing in the oral tract
+        - Through that radical narrow, a turbulence in the air-flow is created that makes a characteristic "hissing" sound
+        - Bilabial fricatives
+          - `[ɸ]`: bilabial, voiceless, oral (<u>F</u>uji)
+          - `[β]`: bilabial, voiced, oral (de<u>b</u>er)
+          - Don't exist in English
+        - Labio-dental fricatives
+          - `[f]`: labio-dental, voiceless, oral (<u>f</u>an)
+          - `[v]`: labio-dental, voiced, oral (<u>v</u>an)
+        - Dental fricatives
+          - `[θ]`: dental, voiceless, oral (<u>th</u>igh)
+          - `[ð]`: dental, voiced, oral (<u>th</u>e)
+        - Alveolar fricatives
+          - `[s]`: alveolar, voiceless, oral (<u>s</u>ip)
+          - `[z]`: alveolar, voiced, oral (<u>z</u>ip)
+        - Post-alveolar fricatives
+          - `[ʃ]`: post-alveolar, voiceless, oral (mi<u>ss</u>ion)
+          - `[ʒ]`: post-alveolar, voiced, oral (vi<u>s</u>ion)
+        - Glottal fricative
+          - `[h]`: glottal, voiceless, oral (<u>h</u>eap)
+      - Affricates: produced as a stop that is released into a fricative
+        - Sometimes treated as a single speech sound
+        - In this class, treated as the combination of two sounds
+        - `[tʃ]`: alveo-palatal, voiceless, oral (<u>ch</u>ump)
+        - `[dʒ]`: alveo-palatal, voiced, oral (<u>J</u>ump)
+      - Approximants: involve a less radial narrowing in the oral tract than is found with fricatives, but greater than is found with vowels
+        - For this reason, often called semi-vowels
+        - Labial approximants
+          - `[w]`: labio-velar, voiced, oral (<u>w</u>in)
+        - Alveolar approximants
+          - `[l]`: alveolar, voiced, oral, lateral (<u>l</u>ed)
+          - `[ɹ]`: alveolar, voiced, oral (<u>r</u>ed)
+        - Palatal approximants
+          - `[j]`: palatal, voiced, oral (<u>y</u>es)
+    - Place of articulation
+      - Where in the vocal tract the gesture occurs
+    - Nasality
+      - Whether or not the velum is lowered, allowing vibrating air into the nasal cavity
+      - Nasal: the velum is lowered so the air flows into the nasal cavity
+      - Oral/Non-nasal: the velum is raised so the air doesn't flow into the nasal cavity
+      - The nasal sounds of English:
+        - `[n]` (ba<u>n</u>)
+        - `[m]` (ba<u>m</u>)
+        - `[ŋ]` (ba<u>ng</u>)
+        - These sounds are all voiced
+    - Voicing
+      - Whether or not the vocal folds are vibrating while the sound is being made
+      - Voiced: vocal folds vibrate while the sound is being made
+      - Voiceless: vocal folds don't vibrate while the sound is being made
+      - English has many pairs of consanants that only differ in voicing:
+        - `[s]` vs. `[z]` (<u>s</u>ip vs. <u>z</u>ip)
+        - `[f]` vs. `[v]` (<u>f</u>at vs. <u>v</u>at)
+        - `[θ]` vs. `[ð]` (<u>th</u>igh vs. <u>th</u>y)
+        - `[ʃ]` vs. `[ʒ]` (mi<u>ss</u>ion vs. vi<u>s</u>ion)
+        - `[tʃ]` vs. `[dʒ]` (<u>ch</u>ump vs. <u>J</u>ump)
+        - `[p]` vs. `[b]` (<u>p</u>at vs. <u>b</u>at)
+        - `[t]` vs. `[d]` (<u>t</u>ip vs. <u>d</u>ip)
+        - `[k]` vs. `[g]` (<u>c</u>ap vs. <u>G</u>ap)
+- Vowels
+  - A vowel is a speech sound that is articulated while the vocal tract is completely open
+  - There is no air pressure build-up at any point above the glottis
+  - Parameters for describing vowels
+    - Tongue position
+      - Height: height of the tongue's highest point in the mouth
+        - Distance between the tongue and the roof of the mouth
+        - h<u>ea</u>t (high) vs. h<u>oo</u>t (low)
+      - Backness: how far back in the mouth is the tongue position
+        - h<u>ea</u>t (front) vs. h<u>oo</u>t (back)
+        - Front vowels
+          - `[i]`: high, unrounded, tense (b<u>ee</u>t)
+          - `[ɪ]`: high, unrounded, lax (b<u>i</u>t)
+          - `[e]`: mid, unrounded, tense (d<u>e</u>ber)
+          - `[ɛ]`: mid, unrounded, lax (r<u>e</u>d)
+          - `[æ]`: low, unrounded, lax (r<u>a</u>d)
+          - `[a]`: low, unrounded, tense (c<u>a</u>r)
+        - Central vowels
+          - `[ɨ]`: high, unrounded, lax (ros<u>e</u>s)
+          - `[ə]`: mid, unrounded, lax (Ros<u>a</u>'s)
+        - Back vowels
+          - `[u]`: high, rounded, tense (f<u>oo</u>d)
+          - `[ʊ]`: high, rounded, lax (p<u>u</u>t)
+          - `[o]`: mid, rounded, tense (perr<u>o</u>)
+          - `[ɔ]`: mid, rounded, lax (<u>o</u>range)
+          - `[ʌ]`: mid, unrounded, lax (c<u>u</u>t)
+          - `[ɑ]`: low, unrounded, tense (c<u>o</u>t)
+    - Rounding of lips
+      - Rounded vs. Unrounded
+      - Are the lips rounded while the vowel is produced?
+      - h<u>ea</u>t (unrounded) vs. h<u>oo</u>t (rounded)
+    - Tenseness
+      - Tense
+        - Produced with greater muscle tension
+        - Usually longer
+      - Lax
+        - Produced with less muscle tension
+        - Usually shorter
+  - Diphthongs
+    - All the vowels we have seen so far are pure vowels
+      - There is no noticeable change in the quality of the vowel over the course of the production
+    - A second group of vowels is called diphthongs
+      - The vowel ends differently than it starts
+      - Diphthongs are basically a combination of two vowels, or a vowel and a glide, with a gradual transition between them
+    - Front diphthongs
+      - `[ej]`: mid, front, unrounded (b<u>ai</u>t)
+      - `[aj]`: low, front, unrounded (<u>i</u>ce)
+      - `[aw]`: low, front, rounded (bl<u>ou</u>se)
+    - Back diphthongs
+      - `[ow]`: mid, back, rounded (b<u>oa</u>t)
+      - `[ɔj]`: mid, back, rounded (b<u>oy</u>)
+
+
+
+## Lecture 3:
 
 - 
 
