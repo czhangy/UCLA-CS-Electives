@@ -48,7 +48,13 @@
 
 
 
-## Lecture 2:
+## Lecture 2: Introduction to Lisp
+
+- 
+
+
+
+## Lecture 3:
 
 - 
 
