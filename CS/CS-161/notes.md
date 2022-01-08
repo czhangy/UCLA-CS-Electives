@@ -516,6 +516,56 @@
     - AI necessitates intelligence and an artifact (the computer)
     - Computer generations bring with them an increase in speed/capacity and a decrease in price
       - Performance was doubling every ~18 months until power dissipation problems led to manufacturers turning attention away from clock speed and towards multiplying CPU cores
+    - The software side of computer engineering has supplied the OSes, programming languages, and tools needed to write modern programs
+      - Work in AI has assisted in the development of aspects of mainstream computer science: time sharing, interactive interpreters, personal computers, rapid development environments, linked lists, automatic storage management, and key concepts of symbolic/functional/declarative/OOP
+  - Control Theory and Cybernetics
+    - Main idea: how can artifacts operate under their own control?
+    - Control Theory
+      - View of purposive behavior as arising from a regulatory mechanism trying to minimize "error" - the difference between current state and goal state
+      - Modern control theory has its goal as the design of systems that maximize an objective function over time
+        - Roughly matches our view of AI: designing systems that behave optimally
+      - Different from AI in that the main tools of control theory (calculus and matrix algebra) lend themselves to systems that are describable by fixed sets of continuous variables
+        - AI was founded in part as a way to escape from these perceived limitations
+        - Logical inference and computation allow AI researchers to consider problems like language, vision, and planning that fall outside the realm of control theory
+  - Linguistics
+    - Main idea: how does language relate to thought?
+    - Computational linguistics/natural language processing
+      - Understanding language requires an understanding of the subject matter and context, not just the structure of sentences
+      - Early work in knowledge representation (how to put knowledge into a form that computers can interact with) was tied to language
+
+- The State of the Art
+  - Robotic Vehicles
+  - Speech Recognition
+  - Autonomous Planning and Scheduling
+  - Game Playing
+  - Spam Fighting
+  - Logistics Planning
+  - Robotics
+  - Machine Translation
+
+- Summary
+  - Different people approach AI with different goals in mind
+    - Two important questions:
+      - Are you concerned with thinking or behavior?
+      - Do you want to model humans or work from an ideal standard?
+  - We focus on rational action
+    - Ideally, an intelligent agent should take the best possible course of action in a situation
+    - Study the problem of building agents that are intelligent in this sense
+  - Philosophers made AI conceivable by considering the ideas that the mind is in some ways like a machine, that it operates on knowledge encoded in some internal language, and that thought can be used to choose what actions to take
+  - Mathematicians provided the tools to manipulate statements of logical certainty as well as uncertain, probabilistic statements
+    - They also set the groundwork for understanding computation and reasoning about algorithms
+  - Economists formalized the problem of making decisions that maximize the expected outcome to the decision maker
+  - Neuroscientists discovered some facts about how the brain works and the ways in which it is similar to and different from computers
+  - Psychologists adopted the idea that humans and animals can be considered information-processing machines
+    - Linguists showed that language use fits into this model
+  - Computer engineers provided the ever-more-powerful machines that make AI applications possible
+  - Control theory deals with designing devices that act optimally on the basis of feedback from the environment
+    - Initially, the mathematical tools of control theory were quite different from AI, but the fields are coming closer together
+  - The history of AI has had cycles of success, misplaced optimism, and resulting cutbacks in enthusiasm and funding
+    - There have also been cycles of introducing new creative approaches and systematically refining the best ones
+  - AI has advanced more rapidly in the past decade because of greater use of the scientific method in experimenting with and comparing approaches
+  - Recent progress in understanding the theoretical basis for intelligence has gone hand in hand with improvements in the capabilities of real systems
+    - The subfields of AI have become more integrated, and AI has found common ground with other disciplines
 
 
 
