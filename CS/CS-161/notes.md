@@ -412,8 +412,110 @@
       - How does the mind arise from a physical brain?
       - Where does knowledge come from?
       - How does knowledge lead to action?
-      
-    - 
+    - The Mind
+      - Rationalism: focus on the power of reasoning in understanding the world
+        - Descartes, Aristotle, Leibnitz, etc.
+      - Dualism: there is a part of the human mind/soul/spirit beyond nature, exempt from physical laws
+        - Animals didn't possess this quality, and could therefore be treated as machines
+      - Materialism: the brain's operation based on the laws of physics constitutes the mind
+        - Free will is just the way possible choices appear to the entity in question
+    - The Source of Knowledge
+      - Empiricism: "Nothing is in the understanding, which was not first in the senses"
+      - Principle of induction: general rules are acquired by exposure to repeated associations between their elements
+      - Logical positivism: all knowledge can be characterized by logical theories connects to observation sentences that correspond to sensory inputs
+        - Combines rationalism and empiricism
+      - Confirmation theory: attempts to analyze the acquisition of knowledge from experience
+    - The Connection between Knowledge and Action
+      - Only by understanding how actions are justified can we understand how to build an agent whose actions are rational
+      - Goal-based analysis useful, but limited
+        - Doesn't say what to do when multiple actions achieve the goal or when no action successfully achieves it
+  - Mathematics
+    - Main ideas:
+      - What are the formal rules to draw valid conclusions?
+      - What can be computed?
+      - How do we reason with uncertain information?
+    - While philosophers staked out the fundamental ideas of AI, its transition to a formal science involves mathematical formalization in the areas of logic, computation, and probability
+    - Formal Logic
+      - Development begins with the working out of details of propositional/Boolean logic
+      - Later extended to include objects and relations, resulting in today's first-order logic
+      - Theory of reference introduced that shows how to relate the objects in logic to real-world objects
+    - Limits of Logic and Computation
+      - The first nontrivial algorithm is Euclid's algorithm for computing GCDs
+      - Efforts to formalize general mathematical reasoning as logical deduction
+        - Effective procedure developed to prove any true statement in first-order logic
+        - First-order logic could not capture the principle of mathematical induction needed to characterize the natural numbers
+      - Limits on deduction shown by the incompleteness theorem
+        - Any formal theory as strong as Peano arithmetic contains true statements that are undecidable in the sense that they have no proof within the theory
+        - Some functions on the integers cannot be represented by an algorithm/computed
+      - The Church-Turing Thesis
+        - States that the Turing machine is capable of computing any computable function
+          - Serves as the definition for "computable"
+        - Shows that there are some problems that no Turing machine can compute
+          - i.e., the halting problem
+    - Tractability
+      - A problem is called intractable if the time required to solve instances of the problem grows exponentially with the size of the instances
+      - Emphasis on the distinction between polynomial and exponential growth in complexity
+        - Strive to solve the overall problem of generating intelligent behavior into tractable subproblems rather than intractable ones
+    - NP-Completeness
+      - Solution for how to recognize an intractable problem
+      - Shows the existence of large classes of canonical combinatorial search and reasoning problems that are NP-complete
+      - Any problem class to which the class of NP-complete problems can be reduced is likely to be intractable
+        - This has not been formally proved
+      - Increasing speed of computers contrasted with the requirement for a careful use of resources needed to characterize intelligent systems
+      - Work in AI helps differentiate between NP-hard and NP-complete problem classes
+    - Probability
+      - Development of theories helps to deal with uncertain measurements and incomplete theories
+      - Underlies most modern approaches to uncertain reasoning in AI systems
+  - Economics
+    - Main ideas:
+      - How should we make decisions so as to maximize payoff?
+      - How should we do this when others may not go along?
+      - How should we do this when the payoff may be far in the future?
+    - Economics as a study of how people make choices that lead to preferred outcomes
+      - Mathematical treatment of "preferred outcomes"/utility was formalized
+    - Decision Theory
+      - Combines probability theory with utility theory
+      - Provides a formal and complete framework for decisions made under uncertainty
+      - Suitable for "large" economies where each agent doesn't need to worry about the actions of other agents
+        - "Small" economies are much more like a game: the actions of agents impact the utility of other agents
+        - Game theory introduces the surprising result that a rational agent should adopt policies that appear to be randomized in some games
+          - Does not offer unambiguous prescription for selecting actions
+    - Operations Research
+      - Economists didn't address how to make rational decisions when payoffs from actions are not immediate but are instead a result of several actions taken in sequence
+      - Formalization of a class of sequential decision problems called Markov decision processes
+    - Satisficing
+      - Despite importance of economics and operations research, AI developed on a separate path for a long period of time
+        - Due to apparent complexity of making rational decisions
+      - Models based on satisficing gave a better description of actual human behavior
+        - Making decisions that aren't optimal, but are good enough
+  - Neuroscience
+    - Main idea: how do brains process information?
+    - The study of neuroscience, particularly the brain
+    - Data on mappings between areas of the brain and parts of the body they control or receive sensory input from
+    - Brains vs. Digital Computers
+      - Computers have a cycle time that is a million times faster than a brain
+      - Brains have far more storage and interconnection
+        - Largest supercomputers are an exception
+      - Futurists point to an approaching singularity at which computers will reach a superhuman level of performance
+        - Despite reaching the brain's capacity, we still don't know how to achieve the brain's level of intelligence
+  - Psychology
+    - Main idea: how do humans and animals think and act?
+    - Branches
+      - Behaviorism: studied only objective measures of the percepts/stimulus given to an animal and its response
+        - Worked for animals, found less success with humans
+      - Cognitive psychology: views the brain as an information-processing device
+        - Reestablished the legitimacy of beliefs and goals, arguing for their scientific nature
+        - Specified 3 key steps for processing:
+          - The stimulus is translated into an internal representation
+          - The representation is manipulated by cognitive processes to derive new internal representations
+          - These are in turn translated back to action
+        - Idea that a cognitive theory should be like a computer program
+          - Should describe a detailed information-processing mechanism whereby some cognitive function might be implemented
+  - Computer Engineering
+    - Main idea: how can we build an efficient computer?
+    - AI necessitates intelligence and an artifact (the computer)
+    - Computer generations bring with them an increase in speed/capacity and a decrease in price
+      - Performance was doubling every ~18 months until power dissipation problems led to manufacturers turning attention away from clock speed and towards multiplying CPU cores
 
 
 
