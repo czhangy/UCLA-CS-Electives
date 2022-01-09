@@ -571,5 +571,32 @@
 
 ## Reading 2: Intelligent Agents
 
+- Agents and Environments
+  - Agents
+    - An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators
+    - Human agents have eyes, ears, and other senses as sensors, and hands, legs, vocal tract, etc. for actuators
+    - Robotic agents might have cameras and infrared range finders for sensors and various motors for actuators
+    - Software agents might have keystrokes, file contents, and network packets as sensors and displays, writing to files, and sending network packets as actuators
+
+  - Percepts
+    - Percepts refer to the agent's perceptual inputs at any given instant
+    - An agent's percept sequence is the complete history of everything the agent has ever perceived
+      - An agent's choice of action at any given instant can depend on the entire percept sequence so far, but not on anything it hasn't perceived
+
+    - An agent's behavior is described by the agent function that maps any given percept sequence to an action
+
+  - Agent Program
+    - For most agents, the process of tabulating the agent function that describes the agent would produce an infinite table
+      -  Unless the length of percept sequences was bounded
+
+- Good Behavior: The Concept of Rationality
+- The Nature of Environments
+- The Structure of Agents
+- Summary
+
+
+
+## Reading 3: Solving Problems by Searching
+
 - 
 
