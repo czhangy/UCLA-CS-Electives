@@ -250,7 +250,129 @@
 
 
 
-## Lecture 3:
+## Lecture 3: Syllable Structure and Phonotactics
+
+- Syllables
+  - When we pronounce words like "understanding", we do not just pronounce them as a simple string of sounds
+  - Rather, the sounds are grouped into syllables
+  - Syllable boundaries are indicated in the IPA with a period `[.]`
+  - Examples:
+    - `[ʌn.dɨɹ.stæn.dɪŋ]`
+    - `[ɹɛ.kɹi. ͡eȷ.ʃən]`
+    - `[bʌ.l ͡ow.ni]`
+  - Syllables are Fixed
+    - Native speakers of a language have clear intuitions about where syllable breaks can and cannot occur
+  -  Syllables are Rule-Governed
+    - Question: is it possible that speakers have simply memorized the syllable breaks for all the words of a language?
+      - No, speakers have clear intuitions about syllable breaks in words that they have never seen before and even more nonce words (strings of sounds that could be words in a language but happen not to be)
+    - Conclusion: the placement of syllables is not memorized, but instead is the result of a regular process, i.e., a rule
+    - Refresher: when you know a language, you know:
+      - A finite set of basic elements
+        - What sounds does a word consist of?
+      - A set of rules for combining basic elements (i.e., a grammar)
+        - How are sounds arranged into syllables?
+  - What is the mechanism that groups sounds into syllables?
+    - To answer this question, we will need to learn a bit about the structure of syllables and the phonotactics of English
+  - The Structure of Syllables
+    - Every syllable is made up of (at most) three basic parts:
+      - Onset: the consonant(s) at the front of the syllable
+      - Nucleus: the sound (typically, a vowel) in the middle of the syllable
+      - Coda: The consonant(s) at the end of the vowel
+    - Not all of these parts are present in all syllables
+      - Some syllables have no onset, e.g. `[it]`
+      - Some syllables have no coda, e.g. `[ti]`
+      - However, every syllable does have a nucleus
+    - Examples:
+      - `[bæn]`
+        - Onset: `[b]`
+        - Nucleus: `[æ]`
+        - Coda: `[n]`
+      - `[bi]`
+        - Onset: `[b]`
+        - Nucleus: `[i]`
+        - Coda: None
+      - `[ɛɡ]`
+        - Onset: None
+        - Nucleus: `[ɛ]`
+        - Coda: `[g]`
+      - `[stænd]`
+        - Onset: `[st]`
+        - Nucleus: `[æ]`
+        - Coda: `[nd]`
+      - `[b ͡ɔȷ]`
+        - Onset: `[b]`
+        - Nucleus: [` ͡ɔȷ]`
+        - Coda: None
+      - `[spɹ ͡eȷ]`
+        - Onset: `[spɹ]`
+        - Nucleus: `[ ͡eȷ]`
+        - Coda: None
+      - `[ ͡aȷ]`
+        - Onset: None
+        - Nucleus: `[ ͡aȷ]`
+        - Coda: None
+    - Rhymes
+      - The nucleus and coda group together to the exclusion of the onset because syllables that have the same nucleus and coda stand in a special relationship to each other: they rhyme
+      - Words that don't have a coda may still rhyme
+  - Syllabification Trees
+    - `σ`: syllable
+    - `R`: rhyme
+    - `O`: onset
+    - `C`: coda
+    - `N`: nucleus
+  - Building Syllables
+    - How do we decide which sounds become onsets, nuclei, and codas?
+      - To answer this question, we need to learn a bit about phonotactic constraints
+- Phonotactics
+  - The rules that determine possible onsets and codas are called phonotactic constraints
+  - The Most Complex Onsets
+    - `[s]`
+      - Followed by the voiceless stops: `[p]`, `[t]`, and `[k]`
+        - Each of these are followed by approximants
+    - When thinking about constraints, we think about them in terms of groupings
+  - Phonotactics and Syllabification
+    - Phonotactic constraints guide how a word is syllabified
+      - `[nd]` is not a possible onset in English
+    - How to tell whether a sequence of sounds is a possible onset or coda?
+      - A string is a legal onset if it can begin a word
+      - A string is a legal coda if it can end a word
+  - The Syllabification Algorithm
+    - All vowels become nuclei (diphthong => one nucleus)
+    - For each nucleus, find the largest continuous sequence immediately preceding the nucleus and allowed by the language's phonotactics to be an onset, make it an onset
+    - For each nucleus, find the largest continuous sequence:
+      - Immediately following the nucleus
+      - Not part of an onset
+      - Allowed by the language's phonotactics to be a coda, make it a coda
+    - For each nucleus, make a rhyme out of the nucleus and, if there is one, the immediately following coda
+    - For each rhyme, make a syllable out of the rhyme, and, it there is one, the immediately preceding onset
+  - Syllabification: Beyond Phonotactics
+    - Observation: there is more to syllabification than just phonotactics
+    - Example:
+      - `[bʌ.l ͡ow.ni]` vs. `*[bʌl. ͡own.i]`
+    - Question: both syllabifications respect the phonotactic constraints of English, yet only the one on the left is correct, why?
+      - Onsets Before Codas
+        - The answers to this question comes from the syllabification algorithm itself:
+          - The algorithm determines onsets before codas
+          - Therefore, if a sound or combination of sounds could in principle be either an onset or a coda, it will be an onset
+        - Only sounds that cannot become onsets become codas
+  - Syllabic Consonants
+    - In some cases, the sounds `[l]`, `[n]`, `[m]`, and `[ɹ]` can be nuclei in English
+    - A more complicated syllabification algorithm is necessary for these cases, which we will not develop in this class
+  - Constraints on Syllable Shapes
+    - English allows a fair number of possible syllable shapes because it allows onsets and codas to consist of multiple consonants
+    - Possible Syllable Shapes
+      - `V`: `[ʌ]`
+      - `VCCC`: `[æskt]`
+      - `CCCV`: `[spɹi]`
+      - `CCCVCCC`: `[stɹɛŋθs]`
+    - Some languages have stronger constraints on possible syllable shapes:
+      - Hawaiian: `CV`, `V`
+      - Indonesian: `CV`, `V`, `VC`, `CVC`
+      - Hebrew: `CV`, `CCV`, `CCVC`, `CVC`, `CVCC`
+
+
+
+## Lecture 4:
 
 - 
 
