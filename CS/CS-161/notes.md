@@ -314,9 +314,133 @@
 
 
 
-## Lecture 3:
+## Lecture 3: Problem Solving
 
-- 
+- More Practice
+
+  - Recursion - check if list contains an element
+
+    - ```lisp
+      (defun contains (e x)
+        (cond ((not x) nil)
+          ((atom x) (equal e x))
+          (t (or (contains e (car x)) (contains e (cdr x))))
+        )
+      )
+      ```
+
+  - Recursion - check if list contains a number
+
+    - ```lisp
+      (defun contains_number (x)
+        (if (atom x) ; NIL if x is a list
+            (numberp x) ; numberp: check if x is a number
+            (or (contains_number (car x))
+                (contains_number (cdr x)) ; recursively flatten
+            )
+        )
+      )
+      ```
+
+  - Recursion - find `k`th element (top-level)
+
+    - ```lisp
+      (defun find_kth (k x)
+        (if (= k 1)
+            (car x)
+            (find_kth (- k 1) (cdr x))
+        )
+      )
+      ```
+
+  - Recursion - delete `k`th element
+
+    - ```lisp
+      (defun delete_kth (k x)
+        (if (= k 1)
+            (cdr x)
+            (cons (car x)
+                  (delete k_th (- k 1) (cdr x))
+            )
+        )
+      )
+      ```
+
+- Recursion
+
+  - ```lisp
+    (defun x () (x))
+    ```
+
+    - This runs forever
+
+- Iteration
+
+  - ```lisp
+    (loop for x in '(1 2 3 4 5)
+          do (print x)
+    )
+    ```
+
+  - ```lisp
+    (loop for x in '(1 2 3 4 5)
+          for y in '(1 2 3 4 5)
+          collect (+ x y) ; => (2 4 6 8 10)
+    )
+    
+    (loop for x in '(1 2 3 4 5)
+          for y in '(1 2 3 4)
+          collect (+ x y) ; => (2 4 6 8)
+    )
+    ```
+
+  - How do we calculate a factorial iteratively?
+
+    - ```lisp
+      (setf fact 1)
+      (defun factorial (n)
+        (loop for x from 2 to n
+              do (setf fact (* x fact))
+        )
+        (print fact)
+      )
+      ```
+
+- Problem Solving
+
+  - Problem Solving as a Search Problem
+    - Many AI problems can be formulated as search
+    - For example: "Farmer Crosses River Puzzle", "Vacuum World"
+  - Problem-Solving Agents - Example: Romania
+    - On holiday in Romania: currently in Arad, flight leaves tomorrow from Bucharest
+    - Formulate goal: be in Bucharest
+    - Formulate problem:
+      - States: various cities
+      - Actions: drive between cities
+    - Find solution: sequence of cities
+  - Single-State Problem Formulation
+    - A problem is defined by the following items:
+      - States (e.g., city names)
+      - Initial state (e.g., "at Arad")
+      - Actions (e.g., `<Arad => Zerind>`)
+      - Successor function `S(x)` = set of action-state pairs
+        - e.g., `S(Arad) = {<Arad => Zerind, Zerind>, ...}`
+      - Goal test, which can be:
+        - Explicit (e.g., "at Bucharest")
+        - Implicit (e.g., `NoDirt(x)`)
+      - Path cost (additive)
+        - e.g., sum of distances, number of actions executed, etc.
+        - `c(x, a, y)` is the step/action cost, assumed to be `>= 0`
+    - A solution is a sequence of actions leading from the initial state to the goal state
+  - Selecting a State Space
+    - Real world is absurdly complex
+      - State space must be abstracted for problem solving
+    - (Abstract) state = set of real states
+    - (Abstract) action = complex combination of real actions
+      - e.g., `<Arad => Zerind>` represents a complex set of possible routes, detours, rest stops, etc.
+    - For guaranteed realizability any real state "in Arad" must get to some real state "in Zerind"
+    - (Abstract) solution = set of real paths that are solutions in the real world
+    - Any abstract action should be easier than the original problem 
 
 
 
