@@ -966,9 +966,429 @@
 ## Reading 3: Solving Problems by Searching
 
 - Problem-Solving Agents
+
+  - Goal Formulation
+
+    - The first step in problem solving, based on the current situation and the agent's performance measure
+    - Goals help to organize behavior by limiting the objectives that the agent is trying to achieve and hence the actions it needs to consider
+    - Find out how to act, now and in the future, to reach a goal state
+      - Before this, it needs to decide what sorts of actions and states it should consider, given a goal => problem formulation
+
+    - In general, an agent with several immediate options of unknown value can decide what to do by first examining future actions that eventually lead to states of known value
+    - Assume the environment is observable, discrete, known, and deterministic
+      - Under these conditions, the solution to any problem is a fixed sequence of actions
+
+  - Search
+
+    - The process of looking for a sequence of actions that reaches the goal
+    - Search algorithms take in a problem as input, and returns a solution in the form of an action sequence
+
+  - Execution
+
+    - Once a solution is found, the actions it recommends can be carried out
+
+    - Afterwards, the agent will formulate a new goal, repeating the "formulate, search, execute" design
+
+      - ```pseudocode
+        function SIMPLE_PROBLEM_SOLVING_AGENT(percept) returns an action
+        	persistent: seq, an action sequence, initially empty
+        				state, some description of the current world state
+        				goal, a goal, initially null
+        				problem, a problem formulation
+        				
+        	state <- UPDATE_STATE(state, percept)
+        	if seq is empty then
+        		goal <- FORMULATE_GOAL(state)
+        		problem <- FORMULATE_PROBLEM(state, goal)
+        		seq <- SEARCH(problem)
+        		if seq = FAILURE then return a null action
+        	action <- FIRST(seq)
+        	seq <- REST(seq)
+        	return action
+        ```
+
+    - During this phase, the agent ignores percepts when choosing actions because it knows in advance what they will be
+
+      - Open-loop system: ignoring the percepts breaks the loop between agent and environment
+
+  - Well-Defined Problems and Solutions
+
+    - A problem can be defined in 5 components:
+      - The initial state that the agent starts in
+      - A description of the possible actions available to the agent
+        - We say that the set of actions that can be executed in a particular state `s` are "applicable in `s`"
+
+      - The transition model: a description of what each action does
+        - Any state reachable from a given state by a single action is a successor to that state
+        - The initial state, actions, and transition model implicitly define the state space of the problem
+          - This is the set of all states reachable from the initial state by any sequence of actions
+          - This forms a directed network/graph in which that nodes are states and the edges are actions
+          - A path in the state space is a sequence of states connected by a sequence of actions
+
+      - The goal test determines whether a given state is a goal state
+        - Works for either an explicitly defined set of goal states or goal states defined by an abstract property
+
+      - The path cost function assigns a numeric cost to each path
+        - This cost function reflects the agent's performance measure
+
+    - A solution to the problem is an action sequence that leads from the initial state to a goal state
+      - Solution quality is measured by the path cost function
+      - An optimal solution has the lowest path cost among all solutions
+
+  - Formulating Problems
+
+    - The process of removing detail from a representation is called abstraction
+      - The process defined above is an abstraction of the state descriptions
+      - We must abstract the actions themselves as well
+
+    - An abstraction is valid if we can expand any abstract solution into a solution in the more detailed world
+    - An abstraction is useful if carrying out each of the actions in the solution is easier than the original problem
+      - Choice of a good abstraction thus involves removing as much detail as possible while retaining validity and ensuring that the abstract actions are easy to carry out
+
+    - Without abstraction, intelligent agents would be completely swamped by the real world
+
 - Searching for Solutions
+
+  - The possible action sequences starting from the initial state form a search tree with the initial state at the root
+
+  - General Tree Search Algorithm
+
+    - The branches are actions and the nodes correspond to states in the state space of the problem
+
+    - We start by testing if the initial state is the goal state
+
+    - We then expand the current state by applying each legal action to the current state, generating a new set of states
+
+      - This will add branches from the parent node to one child node for each new state
+      - We then must choose which of the possibilities to consider further
+        - Essence of search: following up one option now and putting the others aside for later, in case the first choice doesn't lead to a solution
+
+    - These child nodes become leaf nodes, nodes with no children
+
+      - The set of all leaf nodes available for expansion at any given point is called the frontier/open list
+        - The process of expanding nodes on the frontier continues until either a solution is found or there are no more states to expand
+
+    - ```pseudocode
+      function TREE_SEARCH(problem) returns a solution, or failure
+      	initialize the frontier using the initial state of problem
+      	loop do
+      		if the frontier is empty then return failure
+      		choose a leaf node and remove it from the frontier
+      		if the node contains a goal state then return the corresponding solution
+      		expand the chosen node, adding the resulting nodes to the frontier
+      ```
+
+    - Search algorithms all share this basic structure
+
+      - They vary on their search strategy: how they choose which state to expand next
+
+  - Redundant Paths
+
+    - Exist whenever there is more than one way to to get from one state to another
+
+    - Loops
+
+      - Loops can generate repeated states
+      - Consideration of loops may cause complete search trees for problems to be infinite, making otherwise solvable problems unsolvable
+      - There is no need to consider loops, since path costs are additive and non-negative, a loop to a given state is never better than the same path with the loop removed
+      - Special case of redundant paths
+
+    - If concerned with reaching the goal, there is never a reason to keep more than one path to a given state, as any goal state that is reachable by extending one path is reachable by extending the other
+
+    - In some cases, redundant paths can be eliminated by redefining the problem
+
+    - In other cases, redundant paths are unavoidable
+
+      - Route-finding on a rectangular grid, reversible action problems, etc.
+
+    - Redundant paths can cause a tractable problem to become intractable
+
+    - Algorithms that forget their history are doomed to repeat it
+
+      - Avoid exploring redundant paths by remembering where one has been
+
+      - Augment the `TREE_SEARCH` algorithm with the explored set/closed list data structure, which remembers every expanded node
+
+        - Newly generated nodes that match previously generated nodes can be discarded instead of added to the frontier
+
+      - ```pseudocode
+        function GRAPH_SEARCH(problem) returns a solution, or failure
+        	initialize the frontier using the initial state of problem
+        	initialize the explored set to be empty
+        	loop do
+        		if the frontier is empty then return failure
+        		choose a leaf node and remove it from the frontier
+        		if the node contains a goal state then return the corresponding solution
+        		add the node to the explored set
+        		expand the chosen node, adding the resulting nodes to the frontier
+        			only if not in the frontier or explored set
+        ```
+
+        - Think of this as growing a tree directly on the state-space graph, as the tree now contains at most one copy of each state
+        - The frontier separates the state-space graph into the explored region and the unexplored region
+          - Every path from the initial state to an unexplored state now has to pass through the frontier
+
+  - Infrastructure for Search Algorithms
+
+    - For each node `n` of the tree, we have a structure that contains 4 components:
+
+      - `n.STATE`: the state in the state space to which the node corresponds
+      - `n.PARENT`: the node in the search tree that generated this node
+        - Pointers string nodes together into a tree structure
+        - Allow the solution to be extracted when a goal node is found
+
+      - `n.ACTION`: the action that was applied to the parent to generate the node
+      - `n.PATH_COST`: the cost, traditionally denoted by `g(n)`, of the path from the initial state to the node, as indicated by the parent pointers
+
+    - Taking a parent node and action and returning the resultant child node:
+
+      - ```pseudocode
+        function CHILD_NODE(problem, parent, action) returns a node
+        	return a node with
+        		STATE = problem.RESULT(parent.STATE, action),
+        		PARENT = parent, ACTION = action,
+        		PATH_COST = parent.PATH_COST + problem.STEP_COST(parent.STATE, action)
+        ```
+
+    - Be careful to distinguish between nodes and states
+
+      - A node is a bookkeeping data structure used to represent the search tree
+        - On particular paths
+        - Two different nodes can contain the same world state if that state is generated via two different search paths
+
+      - A state corresponds to a configuration of the world
+
+    - The Queue Data Structure
+
+      - The queue stores the frontier so that the search algorithm can easily choose the next node to expand according to its preferred strategy
+      - Operations:
+        - `EMPTY?(queue)`: returns true only if there are no more elements in the queue
+        - `POP(queue)`: removes the first element of the queue and returns it
+        - `INSERT(element, queue)` inserts an element and returns the resulting queue
+
+      - Characterized by the order in which they store the inserted nodes
+        - FIFO queue: pops the oldest element of the queue
+        - LIFO queue: pops the newest element of the queue
+        - Priority queue: pops the element with the highest priority, according to some ordering function
+
+    - The Explored Set
+
+      - Can be implemented with a hash table to allow efficient checking for repeated states
+        - Insertion and lookup can be done in roughly constant time, no matter how many states are stored
+        - Take care to implement the hash table with the correct notion of equality for the given problem
+          - Can be achieved by insisting that the data structures for states be in some canonical form
+            - Logically equivalent states should map to the same data structure
+
+  - Measuring Problem Solving Performance
+
+    - Evaluation of an algorithm's performance in 4 ways:
+      - Completeness: is the algorithm guaranteed to find a solution when there is one?
+      - Optimality: does the strategy find the optimal solution?
+      - Time complexity: how long does it take to find a solution?
+      - Space complexity: how much memory is needed to perform the search?
+
+    - Time and space complexity are always considered with some respect to the problem difficulty
+      - The typical measure is the size of the state-space graph, `|V| + |E|`, where `V` is the set of vertices/nodes and `E` is the set of edges
+        - Correct when the graph is an explicit data structure that is input to the search program
+
+    - In AI, the graph is often represented implicitly by the initial state, actions, and transition model, and is frequently infinite
+      - For this situation, we express complexity in terms of 3 quantities:
+        - `b`: the branching factor (maximum number of successors of any node)
+        - `d`: the depth of the shallowest goal node (the number of steps along the path from the root)
+        - `m`: the maximum length of any path in the state space
+
+      - Time measured in terms of the number of nodes generated during the search, and space in terms of the number of nodes stored in memory
+      - Usually done for search on a tree
+        - For a graph, the answer depends on how redundant the paths in the state space are
+
+    - To assess the effectiveness of a search algorithm, we can use the search cost or the total cost
+      - Search cost: depends on the time complexity but can also include a term for memory usage
+      - Total cost: combines the search cost and the path cost of the found solution
+        - Enables the agent to find an optimal tradeoff point at which further computation to find a shorter path becomes counterintuitive
+
 - Uninformed Search Strategies
+
+  - This section contains several search strategies that are considered uninformed/blind searches
+
+    - These strategies have no additional information about states beyond that provided in the problem definition
+    - They can only generate successors and distinguish a goal state from a non-goal state
+
+  - Breadth-First Search
+
+    - Strategy where the root node is expanded first, then all the successors of the root node are expanded next, then their successors, and so on
+
+      - In general, all the nodes are expanded at a given depth in the search tree before any nodes at the next level are expanded
+
+    - The shallowest node unexpanded node is selected for expansion
+
+      - Done simply using a FIFO queue for the frontier
+      - The goal test is applied to each node upon its generation
+      - Always generates the shallowest path to each node by discarding paths to states already in the frontier or explored set
+
+    - ```pseudocode
+      function BREADTH_FIRST_SEARCH(problem) returns a solution, or failure
+      	node <- a node with STATE = problem.INITIAL_STATE, PATH_COST = 0
+      	if problem.GOAL_TEST(node.STATE) then return SOLUTION(node)
+      	frontier <- a FIFO queue with node as the only element
+      	explored <- an empty set
+      	loop do
+      		if EMPTY?(frontier) then return failure
+      		node <- POP(frontier) // Chooses the shallowest node in frontier
+      		add node.STATE to explored
+      		for each action in problem.ACTIONS(node.STATE) do
+      			child <- CHILD_NODE(problem, node, action)
+      			if child.STATE is not in explored or frontier then
+      				if problem.GOAL_TEST(child.STATE) then return SOLUTION(child)
+      				frontier <- INSERT(child, frontier)
+      ```
+
+    - The 4 criteria:
+
+      - We can see BFS is complete, as the shallowest goal node is at some finite depth `d`, therefore BFS will eventually find it after generating all shallower nodes (provided `b` is finite)
+
+        - Note that when a goal node is generated, we know it's the shallowest (not most optimal) goal node since all shallower nodes have been generated and failed the goal test
+
+      - Optimal when the path cost is a nondecreasing function of the depth of the node
+
+        - Most common when all actions have the same cost
+
+      - For time complexity, the algorithm searches a tree where each node has `b` successors:
+
+        - $$
+          b+b^2+b^3+...+b^d=O(b^d)
+          $$
+
+      - For the space complexity, we note that we store all nodes in the explored set and the frontier, leaving us with `O(b^d)`
+
+    - Memory requirements are a bigger problem for BFS than the execution time
+
+      - Time is still a major factor
+
+    - In general, exponential-complexity search problems cannot be solved by uninformed methods for any but the smallest instances
+
+  - Uniform-Cost Search
+
+    - Instead of expanding the shallowest node, uniform-cost search expands the node `n` with the lowest path cost `g(n)`
+
+      - Stores the frontier as a priority queue ordered by `g`
+
+    - ```pseudocode
+      function UNIFORM_COST_SEARCH(problem) returns a solution, or failure
+      	node <- a node with STATE = problem.INITIAL_STATE, PATH_COST = 0
+      	frontier <- a priority queue ordered by PATH_COST, with node as the only element
+      	explored <- an empty set
+      	loop do
+      		if EMPTY?(frontier) then return failure
+      		node <- POP(frontier) // Chooses the lowest-cost node in frontier
+      		if problem.GOAL_TEST(node.STATE) then return SOLUTION(node)
+      		add node.STATE to explored
+      		for each action in problem.ACTIONS(node.STATE) do
+      			child <- CHILD_NODE(problem, node, action)
+      			if child.STATE is not in explored or frontier then
+      				frontier <- INSERT(child, frontier)
+                  else if child.STATE is in frontier with higher PATH_COST then
+                  	replace that frontier node with child
+      ```
+
+    - 2 other significant differences from BFS
+
+      - Goal test is applied to a node when it is selected for expansion rather than when it is first generated
+        - Reason is that the first goal node generated may be on a suboptimal path
+
+      - A test is added in case a batter path is found to a node currently on the frontier
+
+    - Easy to see optimality
+
+      - Observe that whenever uniform-cost search selects a node `n` for expansion, the optimal path to that node has been found
+        - Were this not the case, there would have to be another frontier node `n'` on the optimal path from the start node to `n`
+        - By definition, `n'` would have lower `g`-cost than `n` and would have been selected first
+
+      - Since step costs are non-negative, paths never get shorter as nodes are added
+      - These together imply that uniform-cost search expands nodes in order of their optimal path cost
+        - Hence the first goal node selected for expansion must be the optimal solution
+
+    - Doesn't care about the number of steps a path has, but only about their total costs
+
+      - Can get stuck in an infinite loop if there is a path with an infinite sequence of zero-cost actions
+      - Completeness is guaranteed provided the cost of every step exceeds some small positive constant `ϵ`
+
+    - Complexity is not easily characterized in terms of `b` and `d`
+
+      - Let `C*` be the cost of the optimal solution and assume every action costs at least `ϵ`
+
+        - $$
+          O(b^{1+\lfloor C^{{\star}/\varepsilon}\rfloor})
+          $$
+
+          - May be worse than BFS, as uniform-cost search may explore large trees of small steps before exploring paths involving large and perhaps useful steps
+
+      - If all step costs are the same, the time complexity reduces down to `O(b^d+1)`
+
+        - Like BFS, except uniform-cost search examines all the nodes at the goal's depth to see if one has a lower cost
+          - Does strictly more work
+
+  - Depth-First Search
+
+    - Always expands the deepest node in the current frontier of the search tree
+      - As these nodes are expanded, they are dropped from the frontier, so then the search "backs up" to the next deepest node that still has unexplored successors
+      - Uses a LIFO queue, choosing the most recently generated node for expansion
+        - Must be the deepest node because it is one deeper than its parent, which was the deepest unexpanded node when it was selected
+    - Properties are dependent on the variant of DFS used
+      - Graph-search avoids repeated states and redundant paths
+        - Is complete because it will eventually expand every node
+      - Tree-search is not complete
+        - Victim to redundant paths
+
+      - Both variants are incomplete in infinite state spaces
+      - DFS is not optimal
+      - Graph search time complexity bounded by the size of the state space
+      - Tree search time complexity can generate all of the `O(b^m)` nodes of the search tree, where `m` is the maximum depth of any node
+        - Can be much greater than the size of the state space
+
+      - Space complexity is where DFS shines
+        - Once a node has been expanded, it can be removed from memory once all of its descendants have been fully explored
+        - For a state space with branching factor `b` and maximum depth `d`, DFS requires storage of only `O(bm)` nodes
+        - Leads to adoption of DFS as the basic workhorse of many areas of AI
+          - Constraint satisfaction, propositional satisfiability, logic programming, etc.
+    - Variant of DFS called backtracking search uses even less memory
+      - Only one successor is generated at a time rather than all successors
+        - Each partially expanded node remembers which successor to generate next
+        - Requires only `O(m)` memory
+      - Uses idea of modifying the current state description rather than copying it first
+        - Reduces memory requirements to just one state description and `O(m)` actions
+        - We must be able to undo each modification when we go back to generate the next successor
+
+  - Depth-Limited Search
+
+    - Works to supply DFS with a predetermined depth limit `l` to alleviate failures in infinite state spaces
+
+      - Nodes at depth `l` are treated as if they have no successors
+      - Solves the infinite-path problem
+      - Can still be incomplete if `l < d`, or if the selected depth limit is shallower than the shallowest goal
+        - Is also nonoptimal if `l > d`, as time complexity is `O(b^l)` and space complexity is `O(bl)`
+      - DFS can be viewed as a special case of depth-limited search where `l = ∞`
+
+    - Depth limits can be based on the knowledge of the problem
+
+      - For example, using the diameter of the state space can lead to a more efficient depth-limited search
+      - For most problems, we will not know a good depth limit until we have solved the problem
+
+    - ```pseudocode
+      function DEPTH_LIMITED_SEARCH(problem, limit) returns a solution, or failure/cutoff
+      	
+      ```
+
+      
+
 - Informed (Heuristic) Search Strategies
+
 - Heuristic Functions
+
 - Summary
+
+
+
+## Reading 4:
+
+- 
 
