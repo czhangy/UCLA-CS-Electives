@@ -372,7 +372,60 @@
 
 
 
-## Lecture 4:
+## Lecture 4: Tone and Plurals
+
+- Phonotactics
+  - Borrowing
+    - If a language borrows a word from another language that violates a phonotactic constraint of that language, this word will be modified to avoid this violation
+  - Summary
+    - Sounds are grouped into syllables, which have internal structure: onset, nucleus, coda, and rhyme
+    - There is a deterministic algorithm that assigns syllable structure to strings of sounds
+    - Phonotactic constraints play a key role
+    - The syllabification algorithm seems to be universal
+    - Different languages allow different syllable shapes because they differ in their phonotactics
+- Tone
+  - Suprasegmentals
+    - In addition to individual sounds (segments), languages also have phonetic features that hold at the level of syllables
+    - These are called suprasegmentals
+  - In many languages, there are words that differ only in their pitch contour
+    - These are called tonal languages (i.e., Mandarin)
+    - This is not a property of individual sounds, but rather a property of syllables as a while
+  - Preview: Stress
+    - Another kind of suprasegmental is stress, where some syllables are typically more prominent than others
+      - "banana" vs. "Canada"
+    - Grammatical rules can be sensitive to stress (and other suprasegmentals)
+      - Ex: -freaking- infixation
+    - We will talk more about stress in a week or so
+- Plurals
+  - Refresher
+    - We have seen 2 interconnected parts of language
+      - A finite set of idiosyncratic, memorized basic elements (words, sounds, etc.)
+      - Rules manipulating these elements (syllabification)
+    - Heuristic for analysis: everything predictable is handled by a rule
+  - A New Type of Rule
+    - We are going to look at a second type of rule
+    - These rules are used when a phonotactic constraint is violated within a language
+    - These rules then change a sound so that the result satisfies the phonotactic constraint
+  - The English Plural
+    - `[z]` vs. `[s]` vs. `[ɨz]`
+      - `[z]`: follows vowels and voiced consonant
+      - `[s]`: follows a voiceless consonant
+      - `[ɨz]`: follows alveolar/postalveolar fricatives
+    - Productivity
+      - The Wug Test
+      - The form of the plural is not just memorized
+      - Therefore, there must be a rule that picks out the right form
+    - Complementary Distribution
+      - When two elements occur in mutually exclusive environments, they are in complementary distribution
+      - English plural: `[z]` and `[s]`
+        - One occurs in precisely those environments where the other never occurs
+        - In other words, it is possible to predict from the preceding sound whether `[z]` or `[s]` will occur as the plural element
+        - These are in complementary distribution
+  - A Constraint on English Codas
+    - A voiceless sound may not be immediately followed by a voiced sound within the same coda
+
+
+
+## Lecture 5:
 
 - 
-
