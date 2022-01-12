@@ -1410,8 +1410,8 @@
       			child <- CHILD_NODE(problem, node, action)
       			if child.STATE is not in explored or frontier then
       				frontier <- INSERT(child, frontier)
-                  else if child.STATE is in frontier with higher PATH_COST then
-                  	replace that frontier node with child
+      			else if child.STATE is in frontier with higher PATH_COST then
+             replace that frontier node with child
       ```
 
     - 2 other significant differences from BFS
@@ -1499,10 +1499,73 @@
 
     - ```pseudocode
       function DEPTH_LIMITED_SEARCH(problem, limit) returns a solution, or failure/cutoff
+      	return RECURSIVE_DLS(MAKE_NODE(problem.INITIAL_STATE), problem, limit)
       	
+      function RECURSIVE_DLS(node, problem, limit) returns a solution or failure/cutoff
+      	if problem.GOAL_TEST(node.STATE) then return SOLUTION(node)
+      	else if limit = 0 then return cutoff
+      	else
+      		cutoff_occurred? <- false
+      		for each action in problem.ACTIONS(node.STATE) do
+      			child <- CHILD_NODE(problem, node, action)
+      			result <- RECURSIVE_DLS(child, problem, limit - 1)
+      			if result = cutoff then cutoff_occurred? <- true
+      			else if result != failure then return result
+      		if cutoff_occurred? then return cutoff else return failure
+      ```
+      
+      - Notice this can return 2 different failure conditions:
+        - `failure` indicates no solution
+        - `cutoff` indicates no solution within the depth limit
+    
+  - Iterative Deepening Depth-First Search
+
+    - A general strategy, often used in combination with DFS, that finds the best depth limit
+
+      - Gradually increases the limit until a goal is found, which occurs when the depth limit reachs `d`, the depth of the shallowest goal node
+
+    - Combines the benefits of DFS and BFS
+
+      - Modest memory requirements: `O(bd)`
+      - Complete when the branching factor is finite and optimal when the path cost is a nondecreasing function of the depth of the node
+
+    - ```pseudocode
+      function ITERATIVE_DEEPENING_SEARCH(problem) returns a solution, or failure
+      	for depth = 0 to INFINITY do
+      		result <- DEPTH_LIMITED_SEARCH(problem, depth)
+      		if result != cutoff then return result
       ```
 
-      
+    - Seems wasteful due to repeated generation of states
+
+      - Ends up being not too costly, as most of the nodes are in the bottom level, so it doesn't matter that the upper nodes are generated multiple times
+
+    - In general, this is the preferred uninformed search method when the search space is large and the depth of the solution is not known
+
+    - Explores a complete layer of new nodes at each iteration before going on to the next layer, like BFS
+
+  - Bidirectional Search
+
+    - Run 2 simultaneous searches, one forward from the initial state and one backward from the goal
+      - Hope the searches meet in themiddle
+    - Replaces the goal test with a check to see whether the frontiers of the two searches interact
+      - The first solution found may not be optimal, even if the searches are both breadth-first
+      - Check done when each node is generated/selected with a hash table
+    - Time/space complexity is `O(b^d/2)` if both are done with BFS
+      - Can reduce space by changing one search to iterative deepening
+        - One BFS is required so that we can check for overlapping frontiers
+    - Difficult part is how to search backwards
+      - Requires a method for computing predecessors, all the states that have a given state as a successor
+        - Easy when all actions are reversible, difficult otherwise
+
+  - Comparing Uninformed Search Strategies
+
+    - | Criterion |   BFS    |  Uniform  |   DFS    |    DL    |    ID    |     Bi     |
+      | --------- | :------: | :-------: | :------: | :------: | :------: | :--------: |
+      | Complete? |    Y     |     Y     |    N     |    N     |    Y     |     Y      |
+      | Time      | `O(b^d)` | See above | `O(b^m)` | `O(b^l)` | `O(b^d)` | `O(b^d/2)` |
+      | Space     | `O(b^d)` | See above | `O(b^m)` | `O(bl)`  | `O(bd)`  | `O(b^d/2)` |
+      | Optimal   |    Y     |     Y     |    N     |    N     |    Y     |     Y      |
 
 - Informed (Heuristic) Search Strategies
 
