@@ -444,6 +444,20 @@
 
 
 
+## Lecture 4: Uninformed Search
+
+- Tree Search Algorithms
+  - Basic idea:
+    - Offline, simulated exploration of state space by generating successors of already-explored states (aka expanding states)
+
+
+
+## Lecture 5:
+
+- 
+
+
+
 ## Reading 1: Introduction
 
 - What is AI?
