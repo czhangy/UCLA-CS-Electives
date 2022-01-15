@@ -447,8 +447,164 @@
 ## Lecture 4: Uninformed Search
 
 - Tree Search Algorithms
+
   - Basic idea:
+
     - Offline, simulated exploration of state space by generating successors of already-explored states (aka expanding states)
+
+  - ```pseudocode
+    function TREE_SEARCH(problem, strategy) returns a solution, or failure
+    	initialize the search tree using the initial state of problem
+    	loop do
+    		if there are no candidates for expansion then return failure
+    		choose a leaf node for expansion according to strategy
+    		if the node contains a goal state then return the corresponding solution
+    		else expand the node and add the resulting nodes to the search tree
+      end
+    ```
+
+- Implementation: States vs. Nodes
+
+  - A state is a (representation of) a physical configuration
+  - A node is a data structure constituting part of a search tree
+    - Includes parent, children, depth, and path cost `g(x)`
+    - States don't have parents, children, depth, or path cost
+  - The `EXPAND` function creates new nodes, filling in the various fields and using the `SUCCESSOR_FN` of the problem to create the corresponding states
+
+- Implementation: General Tree Search
+
+  - ```pseudocode
+    function TREE_SEARCH(problem, fringe) returns a solution, or failure
+    	fringe <- INSERT(MAKE_NODE(INITIAL_STATE[problem]), fringe)
+    	loop do
+    		if fringe is empty then return failure
+    		node <- REMOVE_FRONT(fringe)
+    		if GOAL_TEST(problem, STATE(node)) then return node
+    		fringe <- INSERTALL(EXPAND(node, problem), fringe)
+    		
+    function EXPAND(node, problem) returns a set of nodes
+    	successors <- the empty set
+    	for each action, result in SUCCESSOR_FN(problem, STATE[node]) do
+    		s <- a new NODE
+    		PARENT_NODE[s] <- node; ACTION[s] <- action; STATE[s] <- result
+    		PATH_COST[s] <- PATH_COST[node] + STEP_COST(STATE[node], action, result)
+    		DEPTH[s] <- DEPTH[node] + 1
+    		add s to successors
+    	return successors
+    ```
+
+- Search Strategies
+
+  - A strategy is defined by picking the order of node expansion
+  - Strategies are evaluated along the following dimensions:
+    - Completeness - does it always find a solution if one exists?
+    - Time complexity - number of nodes generated/expanded
+    - Space complexity - maximum number of nodes in memory
+    - Optimality - does it always find a least-cost solution?
+  - Time and space complexity are measured in terms of:
+    - `b` - maximum branching factor of the search tree
+    - `d` - depth of the least-cost solution
+    - `m` - maximum depth of the state space (may be infinite)
+      - `d <= m`
+
+- Uninformed Search Strategies
+
+  - Uninformed strategies use only the information available in the problem definition
+
+  - Breadth-First Search
+
+    - Expand shallowest unexpanded node
+
+    - Implementation:
+
+      - ```pseudocode
+        function BREADTH_FIRST_SEARCH(problem) returns a solution or failure
+        	node <- NODE(problem.INITIAL)
+        	if problem.IS_GOAL(node.STATE) then return node
+        	frontier <- a FIFO queue, with node as an element
+        	reached <- { problem.INITIAL }
+        	while not IS_EMPTY(frontier) do
+        		node <- POP(frontier)
+        		for each child in EXPAND(problem, node) do
+        			s <- child.STATE
+        			if problem.IS_GOAL(s) then return child
+        			if s is not in reached then
+        				add s to reached
+        				add child to frontier
+          return failure
+        ```
+
+        - `fringe` is a FIFO queue, i.e., new successors go to the end
+
+    - Properties:
+
+      - Complete if `b` is finite
+      - `O(b^d)` time
+      - `O(b^d)` space
+      - Optimal if the cost is `1` per step; not optimal in general
+      - Space is the largest problem
+
+  - Depth-First Search
+
+    - Expand deepest unexpanded node
+    - Implementation:
+      - `fringe` is a LIFO queue, i.e., put successors at front
+    - Properties:
+      - Not complete, fails in infinite-depth spaces and spaces with loops
+        - Modify to avoid repeated states along path => complete in finite space
+      - `O(b^m)` time
+        - Terrible if `m` is much greater than `d`
+        - If solutions are dense, may be much fast than BFS
+      - `O(bm)` space
+      - Not optimal
+
+  - Depth-Limited Search
+
+    - DFS with depth limit `l`
+
+      - i.e., nodes at depth `l` have no successors
+
+    - Implementation:
+
+      - ```pseudocode
+        function ITERATIVE_DEEPENING_SEARCH(problem) returns solution or failure
+        	for depth = 0 to INF do
+        		result <- DEPTH_LIMITED_SEARCH(problem, depth)
+        		if result != cutoff then return result
+        ```
+
+    - Properties:
+
+      - Complete
+      - `O(b^d)` time
+      - `O(bd)` space
+      - Optimal if step cost is `1`
+
+  - Repeated States
+
+    - Failure to detect repeated states can turn a linear problem into an exponential one
+
+  - Uniform Cost Sesrch
+
+    - When all step costs are equal, BFS is optimal, what to do otherwise?
+
+    - ```pseudocode
+      function UNIFORM_COST_SEARCH(problem) returns a solution, or failure
+      	node <- a node with STATE = problem.INITIAL_STATE, PATH_COST = 0
+      	frontier <- a priority queue ordered by PATH_COST, with node
+      	explored <- an empty set
+      	loop do
+      		if EMPTY?(frontier) then return failure
+      		node <- POP(frontier)
+      		if problem.GOAL_TEST(node.STATE) then return SOLUTION(node)
+      		add node.STATE to explored
+      		for each action in problem.ACTIONS(node.STATE) do
+      			child <- CHILD_NODE(problem, node, action)
+      			if child.STATE is not in explored or frontier then
+      				frontier <- INSERT(child, frontier)
+      			else if child.STATE is in frontier with higher PATH_COST then
+      				replace that frontier node with child
+      ```
 
 
 
