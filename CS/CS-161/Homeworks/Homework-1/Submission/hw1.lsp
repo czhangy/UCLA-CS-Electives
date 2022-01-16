@@ -6,6 +6,11 @@
 ;                                         PAD(0) = PAD(1) = PAD(2) = 1
 ; ------------------------------------------------------------------------------
 
+; This implementation checks the base cases (PAD(0) = PAD(1) = PAD(2) = 1) of
+; the Padovan sequence. If the value isn't a base case, it recursively calls
+; itself twice, once with N - 2 as the argument, and once with N - 3 as the
+; argument, and adds the results. This recursive case implements the recurrence
+; relation PAD(N + 1) = PAD(N - 1) + PAD(N - 2).
 (defun PAD (N)
     ; Check the base case
     (if (or (= N 0) (= N 1) (= N 2))
@@ -36,6 +41,11 @@
 ;   - The implementation should not use PAD
 ; ------------------------------------------------------------------------------
 
+; This implementation mirrors the PAD implementation. We first check the base
+; cases of the Padovan sequence, which all require 0 summations to compute. We
+; then note that, in all other cases, each call to PAD generates a single
+; summation. Therefore, we recursively call SUMS with N - 2 and N - 3 arguments,
+; adding 1 for each call to represent the single summation per PAD call.
 (defun SUMS (N)
     ; Check the base case
     (if (or (= N 0) (= N 1) (= N 2))
@@ -73,6 +83,13 @@
 ;         subtree of N
 ; ------------------------------------------------------------------------------
 
+; This implementation first checks for the empty list, and returns nil. It then
+; checks if the current "tree" is a single atom, which represents a leaf node.
+; In that case, the function returns ?, replacing the atom in the input with ?.
+; Finally, in the recursive case, this function appends the result of calling
+; itself on the current node (head of TREE) to the result of calling itself on
+; the tail of the list. This should generate a deep search of the list,
+; replacing all symbols with ?.
 (defun ANON (TREE)
     ; Handle base cases
     (cond
