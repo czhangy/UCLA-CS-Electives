@@ -554,7 +554,7 @@
         - Modify to avoid repeated states along path => complete in finite space
       - `O(b^m)` time
         - Terrible if `m` is much greater than `d`
-        - If solutions are dense, may be much fast than BFS
+        - If solutions are dense, may be much faster than BFS
       - `O(bm)` space
       - Not optimal
 
@@ -584,7 +584,7 @@
 
     - Failure to detect repeated states can turn a linear problem into an exponential one
 
-  - Uniform Cost Sesrch
+  - Uniform Cost Search
 
     - When all step costs are equal, BFS is optimal, what to do otherwise?
 
@@ -608,7 +608,161 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Informed Search
+
+- Uninformed Search
+
+  - Uniform-Cost Search
+
+    - Expand least-cost unexpanded node
+
+    - Let `g(n)` be the sum of the cost (path cost) from start to node `n`
+
+    - Implementation:
+
+      - `fringe` = queue ordered by path cost, lowest first
+      - Equivalent to BFS if step costs all equal
+
+    - Properties:
+
+      - Complete if step cost greater than some finite constant
+
+      - Complexity, where `C*` is the cost of the optimal solution
+
+        - $$
+          O(b^{\lceil C^*/\epsilon\rceil})
+          $$
+
+        - Defined by the number of nodes with `g(n)` less than the cost of the optimal solution
+
+      - Optimal, as long as nodes are expanded in increasing order of `g(n)`
+
+  - Summary
+
+    - Problem formulation usually requires abstracting away real-world details to define a state space that can feasibly be explored
+    - Variety of uninformed search strategies
+    - Iterative deepening search uses only linear space and not much more time than other uninformed algorithms
+    - Graph search can be exponentially more efficient than tree search
+
+- Informed Search
+
+  - Outline
+
+    - Best-first search
+    - A* search
+    - Heuristics
+
+  - Best-First Search
+
+    - Idea: use an evaluation function for each node
+      - Estimate of "desirability"
+      - Expand the most desirable unexpanded node
+    - Implementation:
+      - `fringe` is a queue sorted in decreasing order of desirability
+      - Special cases:
+        - Greedy search
+        - A* search
+
+  - Greedy Search
+
+    - Evaluation function `h(n)` (heuristic)
+      - Estimate of cost from `n` to the closest goal
+      - e.g., `hSLD(n)` is the straight-line distance from `n` to Bucharest
+    - Greedy search expands the node that appears to be closest to the a goal
+    - Properties:
+      - Not complete, can get stuck in infinite loop
+        - Complete in finite space with repeated-space checking
+      - `O(b^m)` time
+        - A good heuristic can give dramatic improvements
+      - `O(b^m)` space
+      - Not optimal
+
+  - A* Search
+
+    - Idea: avoid expanding paths that are already expensive
+
+    - Evaluation function: `f(n) = g(n) + h(n)`
+
+      - `g(n)` = cost so far to reach node `n`
+      - `h(n)` = estimated cost to goal from `n`
+      - `f(n)`= estimated total cost of path through `n` to goal
+
+    - A* search uses an admissible heuristic
+
+      - i.e., `h(n) <= h*(n)`, where `h*(n)` is the true cost from `n`
+        - e.g., `hSLD(n)` never overestimates the actual road distance
+      - Requires that `h(n) >= 0` so that `h(G) = 0` for any goal `G`
+
+    - Properties:
+
+      - Theorem: A* search is optimal
+
+        - Suppose some suboptimal goal `G2` has been generated and is in the queue
+
+          - Let `n` be an unexpanded node on a shortest path to an optimal goal `G`
+
+          - $$
+            f(G_2)=g(G_2)>g(G)=g(n)+h^*(n)\ge g(n)+h(n)=f(n)
+            $$
+
+            - Since `f(G2) > f(n)`, A* will never select `G2` for expansion
+
+        - Lemma: A* expands nodes in order of increasing `f` value
+
+          - Gradually adds "`f`-contours" of nodes
+            - Contour `i` has all nodes with `f <= fi`, where `fi < fi+1`
+
+      - Complete unless there are infinitely many nodes with `f <= f(G)`
+
+      - `O(b^Δ)` time, `Δ = h* - h`
+
+        - `h*`: actual cost from the root to the foal
+        - `h`: estimated cost
+
+      - `O(b^Δ)` space, keeps all nodes in memory
+
+      - Optimal
+
+        - A* expands all nodes with `f(n) < C*`
+        - A* expands some nodes with `f(n) = C*`
+        - A* expands no nodes with `f(n) > C*`
+
+  - Proof of Lemma: Consistency
+
+    - A heuristic is consistent if:
+
+      - $$
+        h(n)\le c(n,a,n')+h(n')
+        $$
+
+        - `c(n, a, n')` is the cost of path from `n` to `n'` by choosing action `a`
+
+    - If `h` is consistent, we have:
+
+      - $$
+        f(n')=g(n')+h(n')=g(n)+c(n,a,n')+h(n')\ge g(n)+h(n)=f(n)
+        $$
+
+        - i.e., `f(n)` is nondecreasing along any path
+
+    - The goal state with the lowest `f`-cost will be found first
+
+    - Every consistent heuristic is admissible
+
+  - Summary
+
+    - Heuristic functions estimate costs of shortest paths
+    - Good heuristics can dramatically reduce search cost
+    - Greedy best-first search expands lowest `h`
+      - Incomplete and not always optimal
+    - A* search expands lowest `g + h`
+      - Complete and optimal
+      - Also optimally efficient (up to tiebreaks, for forward search)
+    - Admissible heuristics can be derived from exact solution of relaxed problems
+
+
+
+## Lecture 6:
 
 - 
 
