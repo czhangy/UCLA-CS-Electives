@@ -26,13 +26,13 @@
 )
 
 ; Function to test PAD
-(defun PAD_TEST ()
-    (format t "PAD tests:~%")
-    (loop for N from 0 to 10
-        do (format t "PAD(~D): ~D~%" N (PAD N))
-    )
-    t
-)
+;; (defun PAD_TEST ()
+;;     (format t "PAD tests:~%")
+;;     (loop for N from 0 to 10
+;;         do (format t "PAD(~D): ~D~%" N (PAD N))
+;;     )
+;;     t
+;; )
 
 ; ------------------------------------------------------------------------------
 ; Question 2 - SUMS
@@ -63,13 +63,13 @@
 )
 
 ; Function to test SUMS
-(defun SUMS_TEST ()
-    (format t "SUMS tests:~%")
-    (loop for N from 0 to 10
-        do (format t "SUMS(~D): ~D~%" N (SUMS N))
-    )
-    t
-)
+;; (defun SUMS_TEST ()
+;;     (format t "SUMS tests:~%")
+;;     (loop for N from 0 to 10
+;;         do (format t "SUMS(~D): ~D~%" N (SUMS N))
+;;     )
+;;     t
+;; )
 
 ; ------------------------------------------------------------------------------
 ; Question 3 - ANON
@@ -106,14 +106,14 @@
 )
 
 ; Function to test ANON
-(defun ANON_TEST ()
-    (format t "ANON tests:~%")
-    (format t "(ANON ’42):~% ~D~%" (ANON '42))
-    (format t "(ANON ’FOO)::~% ~D~%" (ANON 'FOO))
-    (format t "(ANON ’(((L E) F) T))::~% ~D~%" (ANON '(((L E) F) T)))
-    (format t "(ANON ’(5 FOO 3.1 -0.2))::~% ~D~%" (ANON '(5 FOO 3.1 -0.2)))
-    (format t "(ANON ’(1 (FOO 3.1) -0.2))::~% ~D~%" (ANON '(1 (FOO 3.1) -0.2)))
-    (format t "(ANON ’(((1 2) (FOO 3.1)) (BAR -0.2)))::~% ~D~%" (ANON '(((1 2) (FOO 3.1)) (BAR -0.2))))
-    (format t "(ANON ’(R (I (G (H T)))))::~% ~D~%" (ANON '(R (I (G (H T))))))
-    t
-)
+;; (defun ANON_TEST ()
+;;     (format t "ANON tests:~%")
+;;     (format t "(ANON ’42):~% ~D~%" (ANON '42))
+;;     (format t "(ANON ’FOO)::~% ~D~%" (ANON 'FOO))
+;;     (format t "(ANON ’(((L E) F) T))::~% ~D~%" (ANON '(((L E) F) T)))
+;;     (format t "(ANON ’(5 FOO 3.1 -0.2))::~% ~D~%" (ANON '(5 FOO 3.1 -0.2)))
+;;     (format t "(ANON ’(1 (FOO 3.1) -0.2))::~% ~D~%" (ANON '(1 (FOO 3.1) -0.2)))
+;;     (format t "(ANON ’(((1 2) (FOO 3.1)) (BAR -0.2)))::~% ~D~%" (ANON '(((1 2) (FOO 3.1)) (BAR -0.2))))
+;;     (format t "(ANON ’(R (I (G (H T)))))::~% ~D~%" (ANON '(R (I (G (H T))))))
+;;     t
+;; )
