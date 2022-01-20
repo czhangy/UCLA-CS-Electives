@@ -2191,7 +2191,203 @@
 
 
 
-## Reading 4:
+## Reading 4: Beyond Classical Search
+
+- Local Search Algorithms and Optimization Problems
+
+  - In many problems, the path to the goal doesn't matter
+
+    - In these cases, we consider a different class of algorithms that don't worry about paths
+
+  - Local search algorithms operate using a single current node (rather than multiple paths)
+
+    - Generally only move to neighbors of that node
+    - Typically, the paths followed by the search are not retained
+    - 2 key advantages:
+      - Use very little memory, usually a constant amount
+      - Can often find reasonable solutions in large or infinite (continuous) state space for which systematic algorithms are unsuitable
+    - Useful for solving pure optimization problems
+      - Aim is to find the best state according to an objective function
+
+  - State-space landscape
+
+    - Landscape has both "location" (defined by the state) and "elevation" (defined by the value of the heuristic cost function or objective function)
+      - If elevation corresponds to cost, then the aim is to find the global minimum
+      - If elevation corresponds to an objective function, then the aim is to find the global maximum
+    - Local search algorithms explore this landscape
+      - Complete local search algorithms always find a goal if one exists
+      - Optimal local search algorithms always find a global minimum/maximum
+
+  - Hill-Climbing Search
+
+    - ```pseudocode
+      function HILL_CLIMBING(problem) returns a state that is a local maximum
+      	current <- MAKE_NODE(problem.INITIAL_STATE)
+      	loop do
+      		neighbor <- a highest-valued successor of current
+      		if neighbor.VALUE <= current.VALUE then return current.STATE
+      		current <- neighbor
+      ```
+
+      - Loop that continually moves in the direction of increasing value
+      - Terminates when it reaches a peak where no neighbor has a higher value
+
+    - Algorithm doesn't maintain a search tree or look beyond the immediate neighbors of the current state
+
+    - Sometimes called greedy local search because it grabs a good neighbor state without thinking ahead about where to go next
+
+      - Often makes rapid progress towards a solution because its usually easy to improve a bad state
+
+    - Often gets stuck due to the following reasons:
+
+      - Local maxima cause the algorithm to get stuck with nowhere to go
+      - Ridges result in sequences of local maxima that are hard for the algorithm to navigate
+      - Plateaus, which can be flat local maxima or a shoulder, might cause the algorithm to get lost
+        - If sideways moves are allowed, flat local maxima will generate infinite loops
+
+    - Various forms of this algorithm have been invented
+
+      - Stochastic hill climbing chooses at random from among uphill moves, with the probability of selecting varying with the steepness of the uphill move
+        - Converges slower, but may find better solutions
+      - First-choice hill climbing generates successors randomly to implement stochastic hill climbing
+        - Good strategy when a state has many successors
+      - Random-restart hill climbing conducts searches from randomly generated initial states until a goal is found
+        - Trivially complete
+        - Expected number of restarts is `1/p`, where `p` is the probability of success
+
+    - Success depends on the shape of the state-space landscape
+
+      - Few local maxima and plateaus are conducive to success
+
+  - Simulated Annealing
+
+    - Hill-climbing algorithms that never make downhill moves are guaranteed to be incomplete, as they get stuck on local maxima
+
+    - Random selection is complete, but inefficient
+
+    - Simulated annealing combines randomness and hill climbing to attempt to yield efficiency and completeness
+
+      - Shake hard and gradually reduce the intensity of the shaking
+
+    - ```pseudocode
+      function SIMULATED_ANNEALING(problem, schedule) returns a solution state
+      	inputs: problem, a problem
+      	        schedule, a mapping from time to "temperature"
+        current <- MAKE_NODE(problem.INITIAL_STATE)
+        for t = 1 to INF do
+        	T <- schedule(t)
+        	if T = 0 then return current
+        	next <- a randomly selected successor of current
+        	ΔE <- next.VALUE - current.VALUE
+        	if ΔE > 0 then current <- next
+        	else current <- next only with probability e^(ΔE/T)
+      ```
+
+  - Local Beam Search
+
+    - Keeps track of `k` state rather than just one
+      - Begins with `k` randomly generated states
+      - All successors of `k` states are generated
+        - If a goal is found, the algorithm halts
+      - Select the `k` best successors from the complete list and repeat
+    - Passes useful information among the parallel search threads
+      - Allows the algorithm to quickly abandon unfruitful searches and move to where the most progress is being made
+    - Can suffer from a lack of diversity in `k` states
+      - Remedied by stochastic beam search, which picks successors at random, with probabilities weighted by the successors' values
+
+  - Genetic Algorithms
+
+    - A variant of stochastic beam search in which successor states are generated by combining 2 parent states rather than by modifying a single value
+
+    - Begins with a set of `k` randomly generated states called the population
+
+      - Each state/individual is represented as a string over a finite object
+      - Each state is rated by the objective/fitness function, which returns higher values for better states
+      - Pairs selected at random for reproduction
+        - Crossover point selected from positions in the string
+      - Children created from crossovers
+      - Children subject to random mutations of varying probabilities
+
+    - Combination of uphill tendencies with random exploration and exchange of information
+
+    - Crossover combines large blocks of letters that have evolved independently to perform useful function, raising the level of granularity at which the search operates
+
+      - Operates with schema and instances of schema
+
+    - ```pseudocode
+      function GENETIC_ALGORITHM(population, FITNESS_FN) returns an individual
+      	inputs: population, a set of individuals
+      	FITNESS_FN, a function that measures the fitness of an individual
+      	
+      	repeat
+      		new_population <- empty set
+      		for i = 1 to SIZE(population) do
+      			x <- RANDOM_SELECTION(population, FITNESS_FN)
+      			y <- RANDOM_SELECTION(population, FITNESS_FN)
+      			child <- REPRODUCE(x, y)
+      			if (small random probability) then child <- MUTATE(child)
+      			add child to new_population
+      		population <- new_population
+        until some individual is fit enough, or enough time has elapsed
+        return the best individual in population, according to FITNESS_FN
+        
+      function REPRODUCE(x, y) returns an individual
+      	inputs: x, y, parent individuals
+      	
+      	n <- LENGTH(x); c <- some random number from 1 to n
+      	return APPEND(SUBSTRING(x, 1, c), SUBSTRING(y, c + 1, n))
+      ```
+
+- Local Search in Continuous Spaces
+
+  - One way to avoid continuous problems is the discretize the neighborhood of each state
+
+  - Many methods attempt to use the gradient of the landscape to find a maximum
+
+    - Given a locally correct expression for the gradient, we can perform steepest-ascent hill climbing by updating the current state using:
+
+      - $$
+        x\leftarrow x+\alpha\nabla f(x)
+        $$
+
+      - `α` is a small constant called the step size
+
+        - If it's too small, too many steps are needed 
+        - If it's too large, the search may overshoot the maximum
+        - Line search extends the current gradient direction until `f` starts to decrease again
+
+  - If the objective function is not in a differentiable form, we can use an empirical gradient, which results from a response to small increments and decrements in each coordinate
+
+  - For many problems, the most effective is the Newton-Raphson method, used to solve equations of the form `g(x) = 0`
+
+    - Computes a new estimate for the root `x` according to Newton's formula:
+
+      - $$
+        x\leftarrow x-g(x)/g'(x)
+        $$
+
+    - To find a maximum or minimum of `f`, we need to find `x` such that the gradient is `0`
+
+      - $$
+        x\leftarrow x-H_f^{-1}(x)\nabla f(x)
+        $$
+
+        - `Hf(x)` is the Hessian matrix of second derivatives
+
+          - $$
+            H_{ij}=\partial^2f/\partial x_i\partial x_j
+            $$
+
+  - Methods still suffer from local maxima, ridges, and plataeus
+
+    - Random restarts and simulated annealing can be used and are often helpful
+
+  - Constrained optimization is an optimization problem where solutions must satisfy some hard constraints on the values of the variables
+
+    - Linear programming problems have constraints that must be linear inequalities forming a convex set
+
+
+
+## Reading 5:
 
 - 
-
