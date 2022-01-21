@@ -426,6 +426,149 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Plurals, Phonemes, and Allophones
+
+- Plurals
+
+  - Generalization:
+
+    - `[z]`: after vowels and voiced consonants
+    - `[s]`: after voiceless consonants
+
+  - Constraint:
+
+    - A voiceless sound may not be immediately followed by a voiced sound within the same coda
+
+    - `*[-voice][+voice]`
+
+  - The General Picture
+
+    - The plural element has a single underlying form
+    - This form sometimes gives rise to violations of a phonotactic constraint
+    - A rule is applied to change a sound so that the constraint is no longer violated
+
+  - The English Plural System, Part 1
+
+    - Underlying form: `/z/`
+      - Why not `/s/`?
+        - Question:
+          - Why did we pick `/z/` as the underlying form?
+          - Could we instead have picked `/s/` and postulated a rule that changes it to `[z]`?
+        - Answer: no
+        - Reason:
+          - We assume that rules that change sounds apply only if a phonotactic constraint would be violated otherwise
+          - The plural element is `[z]` in many cases in which `[s]` would not violate a phonotactic constraint
+    - Phonotactic constraint: `*[-voice][+voice]` in coda
+    - Rule: `/z/` becomes `[s]` if preceded by a `[-voice]` consonant in the same coda
+      - Underlying form turns into something in an environment
+
+  - Notation
+
+    - By assumption, the underlying form is what a speaker has memorized, and in some cases this form is changed by a phonological rule
+    - It is useful to have a way of distinguishing between a word's representation in the speaker's memory and how it's actually pronounced
+      - Actual spoken sounds are enclosed between square brackets: `[]`
+      - Underlying forms are represented between slashes `//`
+
+  - Where Does `[ɨz]` Occur?
+
+    - After `[s]`, `[z]`, `[ʃ]`, and `[ʒ]`
+      - `*[+fricative][-dental][-labiodental][-glottal]`
+        - Side note: `[-glottal]` is not necessary here since `[h]` never occurs in a coda position in English
+    - `[z]` and `[s]` only occur after sounds other than `[s]`, `[z]`, `[ʃ]`, and `[ʒ]`
+      - Complementary distribution => predictable
+    - A Second Coda Constraint
+      - A non-dental, non-labiodental, and non-glottal fricative may not be immediately followed by another non-dental, non-labiodental, non-glottal fricative within the same coda
+
+  -  The English Plural System, Part 2
+
+    - Underlying form: `/z/`
+    - Phonotactic constraint: `*[+fricative][-dental][-labiodental][-glottal]` in coda
+    - Rule: `/z/` becomes `[ɨz]` if it is immediately preceded by a `[+fricative][-dental][-labiodental][-glottal]` consonant in the same coda
+
+- Phonemes and Allophones
+
+  - The Big Picture
+    - New observation: sometimes the distribution of certain sounds within a language is entirely predictable
+      - Given two sounds `A` and `B`, we can predict at any given point whether it is `A` or `B` that will appear
+      - These two sounds are in complementary distribution throughout the entire language
+    - We will capture this observation in the same way that we did for the English plural
+      - One of the sounds is underlying (say `A`)
+      - In some environments, this sound violates a phonotactic constraint
+      - A rule applies that changes `A` to `B` in these environments
+  - English Aspiration
+    - English speakers know where aspiration goes in words that they have never heard before
+      - This shows that the distribution of aspirated and unaspirated sounds is conditioned by a rule
+    - Generalization: `[t^h]`, `[k^h]`, and `[p^h]` occur as the first sound of a syllable
+      - Predictable!
+      - `[t]` and `[t^h]` are in complementary distribution
+      - `[p]` and `[p^h]` are in complementary distribution
+      - `[k]` and `[k^h]` are in complementary distribution
+    - Phonotactic constraints
+      - Constraints on English onsets:
+        - `[t]` cannot be the first sound of an onset
+        - `[p]` cannot be the first sound of an onset
+        - `[k]` cannot be the first sound of an onset
+      - Note:
+        - These are three separate constraints but clearly look very similar to each other
+        - We will combine them into a single constraint later on
+    - Rule:
+      - Just as in the case of the plural, a rule applies to avoid violating a phonotactic constraint
+      - Underlying sounds: `/t/`, `/k/`, `/p/`
+      - Rules:
+        - Change `/t/` to `[t^h]` when it is the first sound of an onset
+        - Change `/p/` to `[p^h]` when it is the first sound of an onset
+        - Change `/k/` to `[k^h]` when it is the first sound of an onset
+      - Application:
+        - `/tap/` => `[t^hap]`
+        - `/kap` =? `[k^hap]`
+    - Reminder about notation
+      - We distinguish between a sound's representation in the speaker's memory and how it's actually pronounced
+      - Surface form: actual spoken sounds are enclosed between square brackets (`[]`)
+      - Underlying form: the sounds in memory are represented between slashes (`//`)
+    - Principle of Simplicity
+      - If something already follows from a general rule, speakers do not memorize it
+      - Since the aspiration rule already predicts where aspiration goes, speakers do not put that information into memory
+      - Therefore, only unaspirated sounds are ever memorized
+    - A remaining complication
+      - While our analysis works, we have three separate constraints and three separate rules that look very similar to each other
+    - Articulatory features
+      - We can improve on our analysis
+      - The three constraints and three rules can be collapsed into a single constraint and a single rule if we make use of articulatory features
+      - Feature-based constraint formulation:
+        - `[-voice, -glottal, +stop, -aspirated]` cannot be the first sound of an onset
+      - Feature-based rule formation:
+        - Change `/-voice, -glottal, +stop, -aspirated/` to `[+aspirated]` if it is the first sound in a syllable
+  - Terminology: Phonemes and Allophones
+    - A phoneme is a sound (phone) as it is stored in memory (`//`)
+    - An allophone is a sound (phone) as it is pronounced (`[]`)
+    - Examples:
+      - `[X]` is an allophone of a phoneme `/Y/` if `[X]` is one way that speakers pronounce `/Y/`
+      - `[t]` and `[t^h]` are allophones of the phoneme `/t/` in English
+  - Aspiration Analysis vs. Plural Analysis
+    - There are two central differences between our analysis of English aspiration and our analysis of English plurals:
+      - With aspiration, the phonotactic conflict does not arise from combining elements
+        - Rather it is the underlying form of a word itself that violates the constraint
+      - Thus, we care making claims about all the words of a language
+  - Allophones of Different Phonemes
+    - Reminder: phonotactic constraints differ from language to language
+    - Prediction: if rules are triggered by phonotactic constraints, then rules should differ between languages too
+    - Whether or not two sounds are allophones of the same phoneme or different phonemes depends on the language
+      - If they are not, it becomes impossible to predict which sound will occur based on the environment => no rule
+  - Minimal Pairs
+    - A minimal pair is a pair of words that differ in exactly one sound
+    - A minimal pair for `[X]` and `[Y]` is a minimum pair where one word contains `[X]` and the other contains `[Y]`
+    - Examples:
+      - `[miɹ]` and `[niɹ]`
+      - `[sɪp]` and `[ʃɪp]`
+      - `[sejf]` and `[sejv]`
+    - If a language contains a minimal pair for `[X]` and `[Y]`, then:
+      - It is not possible to predict whether `[X]` or `[Y]` will occur based on the environment
+      - `[X]` and `[Y]` are not in complementary distribution
+      - `[X]` and `[Y]` are allophones of different phonemes
+
+
+
+## Lecture 6:
 
 - 
+
