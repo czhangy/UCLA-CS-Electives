@@ -762,7 +762,140 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Local Search Algorithms
+
+- Motivation: attempt to achieve constant space complexity
+
+- Outline:
+
+  - Hill-Climbing
+  - Simulated Annealing
+  - Local Beam Search
+  - Genetic Algorithms
+  - Local Search in Continuous Spaces
+
+- Iterative Improvement Algorithms
+
+  - In many optimization problems, the path is irrelevant, the goal state itself is the solution
+    - Ex) In the 8-queens problem, only the final configuration of the queens matters
+  - In such cases, we can use iterative improvement algorithms
+    - Keep a current state and try to improve it
+    - Constant space, suitable for both offline and online searches
+    - No guarantee of optimality
+  - Example: Traveling Salesperson Problem
+    - Goal: to find the shortest path that visits each city and returns to the origin city
+    - Start with any complete tour (may have cross-paths, not optimal)
+    - Perform pairwise exchanges, each iteration reduces the length of the path
+      - Variants of this approach get within 1% of the optimal solution very quickly with thousands of cities
+  - Example: `n`-Queens
+    - Goal: put `n` queens on an `n x n` board with no two queens on the same row, column, or diagonal
+    - Move a queen to reduce number of conflicts
+      - Almost always solves `n`-queens problems almost instantaneously for very large `n`
+
+- State-Space Landscape
+
+  - Goal: to find global maximum
+  - Complete: finds a goal if one exists
+  - Optimal: finds a global maximum/minimum
+
+- Hill-Climbing (or gradient ascent/descent)
+
+  - Moves in the direction of increasing value
+
+  - ```pseudocode
+    function HILL_CLIMBING(problem) returns a state that is a local maximum
+    	inputs: problem, a problem
+    	local variables: current, a node
+    	                 neighbor, a node
+    	
+    	current <- MAKE_NODE(INITIAL_STATE[problem])
+    	loop do
+    		neighbor <- a highest-valued successor of current
+    		if VALUE[neighbor] <= VALUE[current] then return STATE[current]
+    		current <- neighbor
+      end
+    ```
+
+  - Useful to consider the state-space landscape
+
+    - Escape from shoulders: random sideways moves, maybe loop on flat maxima
+    - Escape from local maxima: random-restart hill climbing, trivially complete
+
+- Simulated Annealing
+
+  - Idea: escape local maxima by allowing some "bad" moves, but gradually decrease their size and frequency
+
+  - ```pseudocode
+    function SIMULATED_ANNEALING(problem, schedule) returns a solution state
+    	inputs: problem, a problem
+    	        schedule, a mapping from time to "temperature"
+    	local variables: current, a node
+    	                 next, a node
+    	                 T, a "temperature" controlling prob. of downward steps
+    	
+    	current <- MAKE_NODE(INITIAL_STATE[problem])
+    	for t <- 1 to INF do
+    		T <- schedule[t]
+    		if T = 0 then return current
+    		next <- a randomly selected successor of current
+    		ΔE <- VALUE[next] - VALUE[current]
+    		if ΔE > 0 then current <- next
+    		else current <- next only with probability e^(ΔE/T)
+    ```
+
+  - Properties:
+
+    - If the move improves the situation, it is always accepted
+
+      - Otherwise, the algorithm accepts the move with some probability less than `1`
+
+    - The probability decreases exponentially with the "badness" of the move (the amount `ΔE` by which the evaluation is worsened)
+
+    - The probability also decreases as the "temperature" `T` goes down: "bad" moves are more likely to be allowed at the start when `T` is high, and they become more unlikely as `T` decreases
+
+    - If the schedule lowers `T` slowly enough, the algorithm will find a global optimum with probability approaching `1`
+
+    - At fixed temperature `T`, state occupation probability reaches Boltzmann distribution:
+
+      - $$
+        p(x)=\alpha e^{\frac{E(x)}{kT}}
+        $$
+
+      - `T` decreased slowly enough => always reaches best state `x*` 
+
+        - For small `T`:
+
+          - $$
+            e^{\frac{E(x^*)}{kT}}/e^{\frac{E(x)}{kT}}=e^{\frac{E(x^*)-E(x)}{kT}}>> 1
+            $$
+
+        - Thus, very likely to choose `x*`
+
+- Local Beam Search
+
+  - Idea: keep `k` states instead of 1
+    - At each step, all the successors of all `k` states jare generated
+    - If any one is a goal, the algorithm halts
+    - Otherwise, it selects the best `k` successors from the complete list and repeats
+  - Not the same as `k` searches running in parallel!
+    - Searches that find good states recruit other searches to join them
+  - Problem: quite often, all `k` states end up on the same local hill
+  - Stochastic beam search: choose `k` successors randomly, biased towards good ones
+    - Observe the close analogy to natural selection
+
+- Evolutionary Algorithms/Genetic Algorithms
+
+  - Stochastic local beam search + generate successors from pairs of states
+  - Fitness => Selection => Pairs => Crossover => Mutation
+    - Fitness function: higher score, higher chance to be selected
+    - Crossover: crossover point is chosen randomly
+    - Mutation: small probability
+  - GAs require states encoded as strings
+  - Crossover helps iff substrings are meaningful components
+
+
+
+## Lecture 7: Local Search in Continuous Space
 
 - 
 
