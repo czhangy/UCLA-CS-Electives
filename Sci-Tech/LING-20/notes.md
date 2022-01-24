@@ -568,7 +568,43 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Flapping
+
+- Introduction
+  - As we have already seen, some phonological properties pertain to syllables rather than segments (i.e., sounds)
+  - Such properties are called suprasegmentals
+  - Tone and stress are two suprasegmental properties
+- Stress
+  - Some syllables are more prominent than others:
+    - `[bə.næ.nə]` ‘banana’ => `[bə.ˈnæ.nə]`
+    - `[kæ.nə.də]` ‘Canada’ => `[ˈkæ.nə.də]`
+  - We call prominent syllables stressed
+  - Stress is indicated in the IPA with a `[ˈ]` before the syllable
+  - Primary and Secondary Stress
+    - Longer words have more than one stressed syllable
+      - `[tɛ.lə.ɡɹæ.fɪk]` ‘telegraphic’ => `[ˌtɛ.lə.ˈɡɹæ.fɪk]`
+    - Typically each word has one syllable with primary stress `[ˈ]` and may have other syllables with secondary stress `[ˌ]`
+  - Examples
+    - `[mɪ.nə.sow͡ .tə]` 'Minnesota' => `[ˌmɪ.nə.ˈsow͡ .tə]`
+    - `[mæ.sə.tʃu.sɪts]` 'Massachusetts' => `[ˌmæ.sə.ˈtʃu.sɪts]`
+    - `[θəɹ.mɑ.mɪ.ɾiɹ̵]` 'thermometer' => `[θəɹ.ˈmɑ.mɪ.ɾiɹ̵]`
+    - `[mæ.nə.fə.ste͡ȷ.ʃən]` 'manifestation' => `[ˌmæ.nə.fə.ˈste͡ȷ.ʃən]`
+- Stress-Conditioned Allophony
+  - We have seen that grammatical rules can be sensitive to stress:
+    - Ex) -Freaking- Infixation
+  - In some cases, allophony is dependent on stress too
+  - Vowel Reduction
+    - Examples:
+      - `[ˈtɛ.lə.ˌɡɹæf]` ‘telegraph’
+      - `[tə.ˈlɛ.ɡɹə.ˌfi]` ‘telegraphy’
+      - `[ˌtɛ.lə.ˈɡɹæ.fɪk]` ‘telegraphic’
+    - Vowels in unstressed syllables are often realized as schwa (`[ə]`), or `[ɨ]`
+    - Rule: change any vowel to `[ə]` in an unstressed syllable
+      - `/+vowel -stress/ -> [-low -high -back -front]`
+
+
+
+## Lecture 7:
 
 - 
 
