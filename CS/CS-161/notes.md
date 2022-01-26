@@ -895,9 +895,148 @@
 
 
 
-## Lecture 7: Local Search in Continuous Space
+## Lecture 7: Local Search and Constraint Satisfaction
 
-- 
+- Local Search in Continuous State Spaces
+
+  - Discretization methods turn continuous space into discrete space
+
+    - e.g., empirical gradient considers `±δ` change in each coordinate
+
+  - Gradient Methods
+
+    - Compute:
+
+      - $$
+        \nabla f=(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial y_1},\frac{\partial f}{\partial x_2},\frac{\partial f}{\partial y_2},\frac{\partial f}{\partial x_3},\frac{\partial f}{\partial y_3})
+        $$
+
+      - To increase/decrease `f` by:
+
+        - $$
+          x\leftarrow x+\alpha\nabla f(x)
+          $$
+
+          - ` α` is the step size
+
+  - Newton-Raphson Method
+
+    - Sometimes can solve for `∇f(x) = 0` exactly
+
+    - Newton-Raphson iterates:
+
+      - $$
+        x\leftarrow x-H_f^{-1}(x)\nabla f(x)
+        $$
+
+      - $$
+        H_{ij}=\partial^2f/\partial x_i\partial x_j
+        $$
+
+    - Avoid explicit choice of the step size
+
+- Constraint Satisfaction
+
+  - Outline
+
+    - CSP Examples
+    - Constraint Propagation
+    - Backtracking Search for CSPs
+    - Problem Structure and Problem Decomposition
+
+  - Constraint Satisfaction Problems (CSPs)
+
+    - A constraint satisfaction problem (CSP) consists of three components: `X`, `D`, and `C`
+      - `X`: a set of variables, `{X_1, ..., X_n}`
+      - `D`: a set of domains, `{D_1, ..., D_n}`, one for each variable
+      - `C`: a set of constraints, `<scope, rel> ∈ C`
+        - `scope`: tuple of variables
+        - `rel`: values that those variables can take on
+    - State of CSP: an assignment of values to some or all of the variables
+      - Complete assignment: every variable is assigned
+      - Partial assignment: assigns values to only some of the variables
+      - Consistent: not violate any constraints
+    - Solution: a consistent, complete assignment
+
+  - Example: Map-Coloring
+
+    - Variables: `WA`, `NT`, `Q`, `NSW`, `V`, `SA`, `T`
+    - Domains: `D_i = {red, green, blue}`
+    - Constraints: adjacent regions must have different colors
+    - Solutions are assignments satisfying all constraints
+      - e.g. `{WA = red, NT = green, Q = red, NSW = green, V = red, SA = blue, T = green}`
+
+  - Varieties of CSPs
+
+    - Discrete Variables
+      - Finite domains; size `d`  =>  `O(d^n)` complete assignments
+        - e.g., Boolean CSPs, including Boolean satisfiability (NP-complete)
+      - Infinite domains (integers, strings, etc.)
+        - e.g., job scheduling, variables are start/end days for each job
+        - Need a constraint language
+          - e.g., `StartJob_1 + 5 <= StartJob_3`
+    - Continuous Variables
+      - e.g., start/end times for Hubble Telescope observations
+      - Linear constraints solvable in polynomial time by linear programming
+
+  - Varieties of Constraints
+
+    - Unary constraints involve a single variable
+      - e.g., `SA != green`
+    - Binary constraints involve pairs of variables
+      - e.g., `SA != WA`
+    - Higher-order (Global) constraints involve 3+ variables
+      - e.g., crypt-arithmetic column constraints, `alldiff`, etc.
+    - Preferences (soft constraints)
+      - e.g., `red` is better than `green`
+      - Often representable by a cost for each variable assignment
+      - Constrained optimization problems
+
+  - Constraint Graph
+
+    - Binary CSP: each constraint relates at most two variables
+    - Constraint graph: nodes are variables, arcs show constraints
+    - General-purpose CSP algorithms use the graph structure to speed up search
+
+  - Constraint Propagation
+
+    - Using the constraints to reduce the number of legal states for a variable
+
+    - May be done as a preprocessing step before search starts
+
+    - Node consistency: all the values in the variable's domain satisfy the variable's unary constraints
+
+    - Arc consistency: every value in its domain satisfies the variable's binary constraints
+
+      - For any variables `X_i`, `X_j`, `X_i` is arc-consistent with respect to `X_j` if for every value in `D_i`, there is some value in `D_j` that satisfies the binary constraint on the arc `(X_i, X_j)`
+
+      - Algorithm
+
+        - Each binary constraint becomes two arcs, one in each direction
+
+        - AC-3: remove values from the domains of variables until no more arcs are in the queue
+
+        - ```pseudocode
+          function AC-3(csp) returns the CSP, possibly with reduced domains
+          	inputs: csp, a binary CSP with variables {X_1, ..., X_n}
+          	local variables: queue, a queue of arcs, initially all the arcs in csp
+          	
+          	while queue is not empty do
+          		(X_i, X_j) <- REMOVE_FIRST(queue)
+          		if REMOVE_INCONSISTENT_VALUES(X_i, X_j) then
+          			for each X_k in NEIGHBORS[X_i] do
+          				add (X_k, X_i) to queue
+          	return true
+          	
+          function REMOVE_INCONSISTENT_VALUES(X_i, X_j) returns true iff succeeds
+          	removed <- false
+          	for each x in DOMAIN[X_i] do
+          		if no value y in DOMAIN[X_j] allows (x, y) to satisfy the constraint X_i <-> X_j
+          			then delete x from DOMAIN[X_i]; removed <- true
+          	return removed
+          ```
+
+    - 
 
 
 
