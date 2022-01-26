@@ -568,7 +568,7 @@
 
 
 
-## Lecture 6: Flapping
+## Lecture 6: Stress
 
 - Introduction
   - As we have already seen, some phonological properties pertain to syllables rather than segments (i.e., sounds)
