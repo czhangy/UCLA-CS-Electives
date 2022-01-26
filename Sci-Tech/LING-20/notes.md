@@ -604,7 +604,98 @@
 
 
 
-## Lecture 7:
+## Lecture 7: Flapping and Rule Interactions
+
+- Stress-Conditioned Allophony
+  - Vowel Reduction
+    - Constraints: `*[+high -stress] *[+back -stress] *[+low -stress]`...
+      - Too long and convoluted
+    - New constraint: `*[+long -stress]`
+      - `+long` related to the acoustics of the sound
+  - Flapping
+    - In some cases, `[d]` or `[t]` will become a `[ɾ]` in casual speech
+    - First stab: `[t]` and `[d]` are changed to `[ɾ]` between vowels
+    - The Role of Stress
+      - `[ə.ˈt^hɑ.mɪk]` => `[ˈæ.ɾəm]`
+      - `[ˌkhəm.p^hju.ˈt^he͡ȷ.ʃən]` => `[k^həm.ˈp^hju.ɾəɹ]`
+      - `[ə.ˈdɪ.ʃən]` => `[ˈɛ.ɾɪt]`
+    - Flapping Rule
+      - Change `[d]` and `[t]` to `[ɾ]` if it is preceded and followed by a vowel AND the `[d]` or `[t]` occurs in an unstressed syllable
+      - In features: change `[alveolar, plosive]` to `[voiced, flap]` if it is preceded and followed by a vowel AND the `[alveolar, plosive]` occurs in an unstressed syllable
+      - Flapping in English: `/+alveolar +stop -stress/ => [+voiced +flap] / v_v`
+- Rule Interactions
+  - Review
+    - In some cases, the underlying form of a word violates a phonotactic constraint
+    - In these cases, a rule is applied that changes the offending sound
+    - The resulting representation no longer violates the phonotactic constraint
+  - In some cases, more than one rule applies to a word
+  - We care going to take a look at possible interactions between the rules that can arise in such cases
+  - Scenario 1: Unrelated Rules
+    - Rule 1 (Aspiration)
+      - Change `/-aspirated -voice +plosive/` to `[+aspirated]` if it occurs at the beginning of an onset
+    - Rule 2 (Devoicing)
+      -  Change `/z/` to `[s]` if it follows a `[-voice]` sound in the same coda
+      - Example:
+        - `/tɪpz/` => `[t^hɪps]`
+        - The order that we apply the unrelated rules doesn't matter, they don't interact
+  - In other cases, rules must be applied in a specific order
+  - English Devoiced `[ɹ]`
+    - Generalization: devoiced `[ɹ]` occurs after aspirated sounds, while `[ɹ]` occurs anywhere else
+    - Underlying form: `/ɹ/`
+    - Phonotactic constraint: `*[+aspirated][ɹ]`
+    - Rule: change `/ɹ/` to devoiced `[ɹ]` if it follows an aspirated sound
+  - Scenario 2: Related Rules
+    - `/pɹawd/` => `[p^hɹaed]`
+    - Order 1:
+      - Aspiration: `[p^hrawd]`
+      - `[ɹ]`-devoicing: `[p^hrawd]`
+    - Order 2:
+      - `[ɹ]`-devoicing: doesn't apply
+      - Aspiration: `[p^hrawd]`
+    - Only Order 1 produces the right sound
+      - This is because `[ɹ]`-devoicing only applies in the context of an aspirated sound
+  - Feeding
+    - Aspiration creates the environment for `[ɹ]`-devoicing
+    - This interaction between rules is called feeding
+    - Aspiration feeds `[ɹ]`-devoicing
+    - Rule `A` feeds Rule `B` when `A` creates a context for `B` and `B` wouldn't apply otherwise
+  - Bleeding
+    - Another type of interaction is called bleeding
+    - We will look at 2 rules in Canadian English that illustrate bleeding
+  - Scenario 3: Bleeding
+    - Rule 1: Flapping
+    - Rule 2: Raising
+      - In Canadian English, the diphthongs `[aj]` and `[ʌj]` are in complementary distribution
+      - The diphthongs `[aw]` and `[ʌw]` are also in complementary distribution
+      - Generalization: `[ʌj]` and `[ʌw]` appear before voiceless consonants, `[aj]` and `[aw]` appear everywhere else
+      - Underlying form: `/aj/` and `/aw/`
+      - Phonotactic constraint: `*[+diphthong +low +back +tense][-voice]`
+      - Rule: change `/+diphthong +low +back +tense/` to `[-low]` before `[-voice]`
+    - Rule Ordering
+      - `/ɹajtɨɹ/`
+      - Order 1:
+        - Raising: `[ɹʌjtɨɹ]`
+        - Flapping: `[ɹʌjɾɨɹ]`
+      - Order 2:
+        - Flapping: `[ɹajɾɨɹ]`
+        - Raising: doesn't apply
+      - Only Order 2 produces the right result
+    - The relationship between the 2 rules
+      - No raising rakes place because the flap is voiced and hence there is no need to raise
+      - Flapping destroys the context in which raising rakes place
+        - Flapping bleeds raising
+    - Rule `A` bleeds Rule `B` when `A` creates a context in which `B` can no longer apply
+  - Summary
+    - No interaction: the rules have nothing to do with each other; they are completely independent
+    - Feeding: Rule `A` creates the context for Rule `B`
+      - Rule `A` applies first, followed by Rule `B`
+    - Bleeding:
+      - Rule `A` destroys the context for Rule `B`
+        - Rule `A` applies first and prevents Rule `B` from taking place
+
+
+
+## Lecture 8:
 
 - 
 
