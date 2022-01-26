@@ -1036,7 +1036,22 @@
           	return removed
           ```
 
-    - 
+          - If AC-3 revises `D_i`, then we add `(X_k, X_i)`, where `X_k` is a neighbor of `X_i`, since the change in `D_i` might enable further reductions in the domains of `D_k`
+          - Time complexity: `O(n^2d^3)`
+            - Each arc `(X_k, X_i)` can be inserted in the queue only `d` times because `X_i` has at most `d` values to delete
+            - At most `n^2` arcs
+            - Checking consistency of an arc can be done in `d^2` time
+
+      - Simplest form of propagation makes each arc consistent
+
+        - `X -> Y` is consistent iff for every value `x` of `X` there is some allowed `y`
+        - If `X` loses a value, neighbors of `X` need to be rechecked
+
+
+
+## Lecture 8:
+
+- 
 
 
 
