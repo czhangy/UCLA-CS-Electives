@@ -2675,6 +2675,410 @@
 
 
 
-## Reading 5:
+## Reading 5: Constraint Satisfaction Problems
+
+- Defining Constraint Satisfaction Problems
+
+  - A constraint satisfaction problem consists of three components, `X`, `D`, and `C`
+    - `X` is a set of variables, `{X_1, ..., X_n}`
+    - `D` is a set of domains, `{D_1, ..., D_n}`, one for each variable
+      - Each `D_i` consists of a set of allowable values, `{v_1, ..., v_k}` for variable `X_i`
+    - `C` is a set of constraints that specify allowable combinations of values
+      - Each constraint `C_i` consists of a pair `<scope, rel>`
+        - `scope` is a tuple of variables that participate in the constraint
+        - `rel` is a relation that defines the values that those variables can take on
+          - Can be represented as an explicit list of all tuples of values that satisfy the constraint, or as an abstract relation that supports two operations:
+            - Testing if the tuple is a member of the relation
+            - Enumerating the members of the relation
+  - To solve a CSP, we need to define a state space and the notion of a solution
+    - Each state in a CSP is defined by an assignment of values to some or all of the variables
+      - An assignment that doesn't violate any constraints is called a consistent/legal assignment
+      - An assignment in which all of the variables are assigned is called a complete assignment
+      - An assignment in which only some of the variables are assigned is called a partial assignment
+    - A solution is a complete, consistent assignment
+  - CSPs can be visualized as a constraint graph
+    - The nodes of the graph correspond to variables of the problem
+    - A link connects any two variables that participate in a constraint
+  - Why formulate a problem as a CSP?
+    - CSPs yield a natural representation for a wide variety of problems
+      - If you already have a CSP-solving system, it is often easier to solve a problem using it than to design a custom solution using another search technique
+    - CSP solvers can be faster than state-space searchers because the CSP solver can quickly eliminate large swatches of the search space
+      - Regular state-space search can only ask if specific states are goals
+      - CSPs can use the information that a partial assignment is not a solution to discard further refinements of the partial assignment
+      - CSPs can see why certain assignments aren't solutions, allowing us to focus on the variables that break constraints
+  - Variations on the CSP Formalism
+    - Simplest kinds of CSPs involve variables that have discrete, finite domains
+    - Infinite Domains
+      - Discrete domains can be infinite
+        - Ex) set of integers, set of strings, etc.
+      - No longer possible to describe constraints by enumerating all allowed combinations of values
+        - Must now use a constraint language that understands the constraints without having to enumerate the set of pairs of allowable values
+        - Special solution algorithms exist for linear constraints on integer variables
+          - It can be shown that no algorithm exists for solving general nonlinear constraints on integer variables
+    - Continuous Domains
+      - Best known category is that of linear programming problems
+        - Constraints must be linear equalities or inequalities
+        - Can be solved in time polynomial in the number of variables
+    - Types of Constraints
+      - Unary constraints restrict the value of a single variable
+      - Binary constraints relate two variables
+        - A binary CSP is one with only binary CSPs, and can be represented as a constraint graph
+      - Higher-order constraints relate 3+ variables
+      - Global constraints involve an arbitrary number of variables
+        - Can be represented in a constraint hypergraph, consisting of ordinary nodes and hypernodes, which represent `n`-ary constraints
+    - Every finite-domain constraint can be reduced to a set of binary constraints if enough auxiliary variables are introduced
+      - This means we can transform any CSP into one with only binary constraints
+      - Can be done through the dual graph transformation
+        - Create a new graph in which there will be one variable for each constraint in the original graph
+        - Create one binary constraint for each pair of constraints in the original graph that share variables
+      - We may prefer global constraints to binary constraints for two reasons:
+        - Easier and less error-prone to write the problem description in some instances
+        - Possible to design special-purpose inference algorithms for global constraints that are not available for a set of more primitive constraints
+    - Preference Constraints
+      - Included in many real-world CSPs
+      - Indicate which solutions are preferred
+      - CSPs with preferences can be solved with optimization search methods
+        - Called constraint optimization problems, or COPs
+
+- Constraint Propagation: Inference in CSPs
+
+  - In CSPs, algorithms have a choice:
+
+    - To search by choosing a new variable assignment from several possibilities
+    - To do a specific type of inference called constraint propagation
+      - Uses the constraints to reduce the number of legal values for a variable, which can in turn reduce the number of legal values for another variable and so on
+    - These steps can be intertwined, or, constraint propagation may be used as a preprocessing step for the the search
+
+  - Key idea is local consistency
+
+    - If each variable is treated as a node and each constraint as an arc, the process of enforcing local consistency in each part of the graph causes inconsistent values to be eliminated throughout the graph
+
+  - Node Consistency
+
+    - A single variable is node-consistent if all the values in the variable's domain satisfy the variable's unary constraints
+      - A network is node-consistent if every variable in the network is node-consistent
+
+  - Arc Consistency
+
+    - A variable in a CSP is arc-consistent if every value in its domain satisfies the variable's binary constraints
+
+      - `X_i` is arc-consistent with respect to another variable `X_j` if for every value in the current domain `D_i` there is some value in the domain `D_j` that satisfies the binary constraint on the arc `(X_i, X_j)`
+      - A network is arc-consistent if every variable is arc-consistent with every other variable
+
+    - The most popular algorithm for applying arc consistency is AC-3
+
+      - ```pseudocode
+        function AC-3(csp) returns false if an inconsistency is found and true otherwise
+        	inputs: csp, a binary CSP with components (X, D, C)
+        	local variables: queue, a queue of arcs, initially all the arcs in csp
+        	
+        	while queue is not empty do
+        		(X_i, X_j) <- REMOVE_FIRST(queue)
+        		if REVISE(csp, X_i, X_j) then
+        			if size of D_i = 0 then return false
+        			for each X_k in X_i.NEIGHBORS - {X_j} do
+        				add (X_k, X_i) to queue
+            return true
+            
+        function REVISE(csp, X_i, X_j) returns true iff we revise the domain of X_i
+        	revised <- false
+        	for each x in D_i do
+        		if no value y in D_j allows (x, y) to satisfy the constraint between X_i 		 and X_j then
+        			delete x from D_i
+        			revised <- true
+            return revised
+        ```
+
+      - Maintains a queue of arcs to consider
+
+      - Pops off an arbitrary arc `(X_i, X_j)` and makes `X_i` arc-consistent with `X_j`
+
+        - If this leaves `D_i` unchanged, the algorithm moves on to the next arc
+        - If this revises `D_i`, then we add to the queue all arcs `(X_k, X_i)`, where `X_k` is a neighbor of `X_i`
+          - This is because the change in `D_i` might enable further reductions in the domains of `D_k`
+          - If `D_i` is revised down to nothing, then we know the whole CSP has no consistent solution
+
+      - If the algorithm succeeds, we are left with a CSP that is equivalent to the original CSP, but the arc-consistent CSP will be faster to search because its variables have smaller domains
+
+      - Complexity Analysis
+
+        - Assume a CSP with `n` variables, each with domain size at most `d`, and with `c` binary constraints
+        - Each arc can only be inserted in the queue `s` times because `X_i` has at most `d` values to delete
+        - Checking consistency of an arc can be done in `O(d^2)` time
+        - Worst-case time is therefore `O(cd^3)`
+
+    - Possible to generalize arc consistency to handle `n`-ary constraints as well
+
+      - Called generalized arc consistency or hyperarc consistency
+      - A variable `X_i` is generalized arc consistent with respect to an `n`-ary constraint if for every value `v` in the domain of `X_i`, there exists a tuple of values that is a member of the constraint, has all its values taken from the domains of the corresponding variables, and have its `X_i` component equal to `v`
+
+  - Path Consistency
+
+    - Path consistency tightens the binary constraints by using implicit constraints that are inferred by looking at triples of values
+    - A two variable set `{X_i, X_j}` is path-consistent with respect to a third variable `X_m` if, for every assignment `{X_i = a, X_j = b}` consistent with the constraints on `{X_i, X_j}`, there is an assignment to `X_m` that satisfies the constraints on `{X_i, X_m}` and `{X_m, X_j}`
+      - One can think of this as looking at a path from `X_i` to `X_j` with `X_m` in the middle
+    - The PC-2 algorithm achieves path consistency in the same way that AC-3 achieves arc consistency
+
+  - `K`-Consistency
+
+    - A CSP is `k`-consistent if, for any set of `k - 1` variables and for any consistent assignment to those variables, a consistent value can always be assigned to any `k`th variable
+      - 1-consistency says that, given the empty set, we can make any set of one variable consistent, aka, node consistency
+      - 2-consistency is the same as arc consistency
+      - 3-consistency is the same as path consistency for binary constraint networks
+    - A CSP is strongly `k`-consistent if it is `k` consistent and is also `(k - 1)`-consistent, `(k - 2)`-consistent, etc. all the way down to 1-consistent
+      - Assume we have a CSP with `n` nodes and make it strongly `n`-consistent
+      - We can then solve the problem as follows:
+        - Choose a consistent value for `X_1`
+        - We are guaranteed to be able to choose a value for `X_2` because the graph is 2-consistent
+        - Repeat
+      - For each variable `X_i`, we only need to search through the `d` values in the domain to find a value consistent with `X_1, ..., X_i-1`
+        - Guaranteed to find a solution in time `O(n^2d)`
+      - Algorithm for establishing `n`-consistency takes time and space exponential in `n`
+
+  - Global Constraints
+
+    - Global constraints occur frequently in real problems and can be handled by special-purpose algorithms that are more efficient than the general-purpose methods described so far
+    - `Alldiff`
+      - If `m` variables are involved in the constraint, and if they have `n` possible distinct values together, and `m > n`, then the constraint cannot be satisfied
+      - Simple algorithm:
+        - Remove any variable in the constraint that has a singleton domain, and delete that variable's value from the domains of the remaining variables
+        - Repeat as long as there are singleton variables
+        - If at any point an empty domain is produced or there are more variables than the domain values left, then an inconsistency has been detected
+    - Resource Constraint
+      - Called the `Atmost` constraint
+    - Bounds Propagation
+      - Used for resource-limited problems with integer values in which the domain of each variable cannot be represented as a large set of integers
+        - Represent the domains as upper and lower bounds
+      - A CSP is bounds consistent if for every variable `X`, and for both the lower-bound and upper-bound values of `X`, there exists some value of `Y` that satisfies the constraint between `X` and `Y` for every variable `Y`
+
+- Backtracking Search for CSPs
+
+  - CSPs have the property of commutativity, as the order of application of any given set of actions has no effect on the outcome
+
+    - When assigning values to variables, the same partial assignment is reached, regardless of order
+    - Build a search tree by considering a single variable at each node in the search tree
+
+  - Backtracking search refers to a DFS 5that chooses values for one variable at a time and backtracks when a variable has no legal values left to assign
+
+  - ```pseudocode
+    function BACKTRACKING_SEARCH(csp) returns a solution, or failure
+    	return BACKTRACK({}, csp)
+    	
+    function BACKTRACK(assignment, csp) returns a solution, or failure
+    	if assignment is complete then return assignment
+    	var <- SELECT_UNASSIGNED_VARIABLE(csp)
+    	for each value in ORDER_DOMAIN_VALUES(var, assignment, csp) do
+    		if value is consistent with assignment then
+    			add {var = value} to assignment
+    			inferences <- INFERENCE(csp, var, value)
+    			if inferences != failure then
+    				add inferences to assignment
+    				result <- BACKTRACK(assignment, csp)
+    				if result !=- failure then
+    					return result
+            remove {var = value} and inferences from assignment
+        return failure
+    ```
+
+    - Repeatedly chooses an unassigned variable, and then tries all values in the domain of that variable in turn, trying to find a solution
+    - If an inconsistency is detected, `BACKTRACK` returns failure, causing the previous call to try another value
+    - Only keeps a single representation of a state and alters the representation rather than creating new ones
+
+  - CSPs can be solved efficiently without domain-specific knowledge
+
+    - Can improve algorithm by adding sophistication to the functions used in `BACKTRACKING_SEARCH`
+      - Which variable should be assigned next, and in what order should its values be tried?
+      - What inferences should be performed at each step in the search?
+      - When the search arrives at an assignment that violates a constraint, can the search avoid repeating this failure?
+
+  - Variable and Value Ordering
+
+    - The simplest strategy for `SELECT_UNASSIGNED_VARIABLE` is to choose the next unassigned variable in order
+    - The minimum-remaining-values heuristic tells us to choose the variable with the fewest "legal" values
+      - Picks the variable that is most likely to cause a failure soon, pruning the search tree
+      - Can detect failure much faster
+    - The degree heuristic selects the variable that is involved in the largest number of constraints on other unassigned variables
+      - Less powerful than MRV, but can be a useful tiebreaker
+    - The least-constraining value heuristic prefers the value that rules out the fewest choices for the neighboring variables in the constraint graph
+      - Tries to leave the maximum flexibility for subsequent variable assignments
+      - Doesn't matter in the cases where we are trying to find all solutions to a problem or there isn't a solution
+    - Variable selection is fail-first while value selection is fail-last
+      - Variable ordering that chooses a variable with the minimum number of remaining values minimizes the number of nodes in the search tree
+      - Value ordering only needs one solution, so it makes sense to look for the most likely values first
+
+  - Interleaving Search and Inference
+
+    - Every time we make a choice of a value for a variable, we have a brand-new opportunity to infer new domain reductions on the neighboring variables
+    - Forward Checking
+      - When a variable is assigned, the forward-checking process establishes arc-consistency for it
+      - No reason to do this if arc consistency was already established in preprocessing
+    - MAC (Maintaining Arc Consistency)
+      - After a variable `X_i` is assigned a value, the `INFERENCE` procedure calls `AC-3`
+        - This starts with only in the arcs `(X_j, X_i)` for all `X_j` that are unassigned variables that are neighbors of `X_i` in the queue
+        - If any variable has its domain reduced to the empty set, the call to `AC-3` fails and we know to backtrack immediately
+
+  - Intelligent Backtracking: Looking Backward
+
+    - `BACKTRACKING_SEARCH` backs up to the preceding variable and tries a different value for it when the search fails
+
+      - Called chronological backtracking because the most recent decision point is revisited
+
+    - More intelligent approach involves backtracking to a variable that might fix the problem
+
+      - Track the conflict set, the set of assignments that are in conflict with the failed value
+        - Can be built using forward checking with no extra work
+      - Backjumping backtracks to the most recent assignment in the conflict set
+        - Redundant in a forward-checking search
+
+    - Redefine conflict set as the set of preceding variables that caused a variable, along with any subsequent variables to have no consistent solution
+
+      - Conflict-directed backjumping
+
+      - Let `X_j` be the current variable and let `conf(X_j)` be its conflict set
+
+      - If every possible value for `X_j` fails, backjump to the most recent variable `X_i` in `conf(X_i)` and set:
+
+        - $$
+          conf(X_i)\leftarrow conf(X_i)\cup conf(X_j)-\{X_i\}
+          $$
+
+      - When we reach a contradiction, backjumping can tell us how far to back up, so we don't waste time changing variables that won't fix the problem
+
+    - When the search arrives at a contradiction, we know that some subset of the conflict set is responsible for the problem
+
+      - Constraint learning is the idea of finding a minimum set of variables from the conflict set that causes the problem
+        - This set of variables, along with their corresponding values is called a no-good
+
+- Local Search for CSPs
+
+  - Local search algorithms are effective at solving many CSPs
+
+  - In choosing a new value for a variable, the most obvious heuristic is to select the value that results in the minimum number of conflicts with other variables
+
+    - Min-conflicts heuristic
+
+    - ```pseudocode
+      function MIN_CONFLICTS(csp, max_steps) returns a solution or failure
+      	inputs: csp, a constraint satisfaction problem
+      	        max_steps, the number of steps allowed before giving up
+      	        
+      	current <- an initial complete assignment for csp
+      	for i = 1 to max_steps do
+      		if current is a solution for csp then return current
+      		var <- a randomly chosen conflicted variable from csp.VARIABLES
+      		value <- the value v for var that minimizes CONFLICTS(var, v, current, csp)
+      		set var = value in current
+          return failure
+      ```
+
+  - Constraint Weighting
+
+    - Helps concentrate the search on important constraints
+    - Each constraint is given a numeric weight `W`, initially all `1`
+    - At each step of the search, the algorithm chooses a variable/value pair to change that will result in the lowest total weight of all violated constraints
+    - Weights are then adjusted by incrementing the weight of each constraint that is violated by the current assignment
+    - Two benefits:
+      - Adds topography to plateaus, making sure it is possible to improve from the current state
+      - Adds weight to the constraints that are proving difficult to solve over time
+
+  - Can be used in an online setting when the problem changes
+
+- The Structure of Problems
+
+  - Independent subproblems are subproblems for which any solution for one subproblem can be combined with any solutions of the other subproblems to generate a solution for the overall problem
+
+    - Independence can be ascertained by finding connected components of the constraint graph
+
+  - Tree Structures
+
+    - A constraint graph is a tree when any two variables are connected by only one path
+
+    - Any tree-structured CSP can be solved in time linear in the number of variables
+
+      - Key is directed arc consistency
+      - A CSP is directed arc-consistent under an ordering of variables `X_1`, `X_2`, ..., `X_n` iff every `X_i` is arc-consistent with each `X_j` for `j > i`
+
+    - Solving Tree-Structured CSPs
+
+      - First, pick any variable to be the root of the tree, and choose an ordering of the variables such that each variable appears after its parent in the tree
+
+        - This ordering is called a topological sort
+
+      - Any tree with `n` nodes has `n - 1` arcs, so we can make this graph directed arc-consistent in `O(n)` steps, each of which must compare up to `d` possible domain values for two variables, for a total time of `O(nd^2)`
+
+      - We can now march down the list of variables and choose any remaining value, guaranteed to be available due to the directed arc consistency
+
+      - ```pseudocode
+        function TREE_CSP_SOLVER(csp) returns a solution, or failure
+        	inputs: csp, a CSP with components X, D, C
+        	
+        	n <- number of variables in X
+        	assignment <- an empty assignment
+        	root <- any variable in X
+        	X <- TOPOLOGICAL_SORT(X, root)
+        	for j = n down to 2 do
+        		MAKE_ARC_CONSISTENT(PARENT(X_j), X_j)
+        		if it cannot be made consistent then return failure
+        	for i = 1 to n do
+        		assignment[X_i] <- any consistent value from D_i
+        		if there is no consistent value then return failure
+        	return assignment
+        ```
+
+  - Knowing that we have an efficient algorithm for trees, the next goal is to find a way to convert more general constraint graphs to trees
+
+    - Removing Nodes
+      - Involves assigning values to some variables so that the remaining variables form a tree
+      - General Algorithm:
+        - Choose a subset `S` of the CSP's variables such that the constraint graph becomes a tree after removal of `S`
+          - `S` is called a cycle cutset
+        - For each possible assignment to the variables in `S` that satisfies all conditions on `S`:
+          - Remove from the domains of the remaining variables any values that are inconsistent with the assignment for `S`
+          - If the remaining CSP has a solution, return it together with the assignment for `S`
+      - If the cycle cutset has size `c`, then the total runtime is `O(d^c(n - c)d^2)`
+        - We have to try each of the `d^c` combinations of values for the variables ub `S`
+        - For each combination, we must solve a tree problem of size `n - c `
+      - Finding the smallest cycle cutset is NP-hard, but several efficient approximation algorithms are known
+      - Overall approach is called cutset conditioning
+    - Collapsing Nodes
+      - Constructing a tree decomposition of the constraint graph into a set of connected subproblems
+        - Each subproblem is solved independently, and the solutions are then combined
+      - Tree decomposition must satisfy the following requirements:
+        - Every variable in the original problem appears in at least one of the subproblems
+        - If two variables are connected by a constraint in the original problem, they must appear together (along with the constraint) in at least one of the subproblems
+        - If a variable appears in two subproblems in the tree, it must appear in every subproblem along the path connecting those subproblems
+      - We solve each subproblem independently
+        - If any one has no solution, we know the entire problem has no solution
+          - If we can solve all the subproblems, we construct a global solution as follows:
+            - View each subproblem as a "mega-variable" whose domain is the set of all solutions for the subproblem
+            - Then solve the constraints connecting the subproblems using the algorithm for trees
+            - Constraints between subproblems insist that the subproblem solutions agree on their shared variables
+      - In choosing a decomposition, the aim is to make the subproblems as small as possible
+        - The tree width of a tree decomposition of a graph is one less than the size of the largest subproblem
+        - The tree width of the graph itself is defined to be the minimum tree width among all its tress decompositions
+        - If a graph has tree width `w` and we are given the corresponding tree decomposition, then the problem can be solved in `O(nd^w+1)` time
+          - Hence, CSPs with constraint graphs of bounded tree width are solvable in polynomial time
+
+- Summary
+
+  - Constraint satisfaction problems (CSPs) represent a state with a set of variable/value pairs and represent the codnitions for a solution by a set of constraints on the variables
+    - Many important real-world problems can be described as CSPs
+  - A number of inference techniques use the constraints to infer which variable/value pairs are consistent and which are not
+    - These include node, arc, path, and `k`-consistency
+  - Backtracking search, a form of DFS, is commonly used for solving CSPs
+    - Inference can be interwoven with search
+    - The minimum-remaining-values and degree heuristics are domain-independent methods for deciding which variable to choose next in a backtracking search
+    - The least-constraining-value heuristic helps in deciding which value to try first for a given variable
+    - Backtracking occurs when no legal assignment can be found for a variable
+    - Conflict-directed backjumping backtracks directly to the source of the problem
+  - Local search using the min-conflicts heuristic has also been applied to constraint satisfaction problems with great success
+  - The complexity of solving a CSP is strongly related to the structure of its constraint graph
+    - Tree-structured problems can be solved in linear time
+    - Cutset conditioning can reduce a general CSP to a tree-structured one and is quite efficient if a small cutset can be found
+    - Tree decomposition techniques transform the CSP into a tree of subproblems and are efficient if the tree width of the constraint graph is small
+
+
+
+## Reading 6:
 
 - 
