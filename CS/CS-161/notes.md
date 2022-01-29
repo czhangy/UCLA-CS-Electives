@@ -1051,7 +1051,71 @@
 
 ## Lecture 8: Constraint Satisfaction
 
-- 
+- Standard Search Formulation (incremental)
+
+  - Let's start with the straightforward, dumb approach, then fix it
+  - States are defined by the values assigned so far
+  - Initial state: the empty assignment, `{}`
+  - Successor function: assign a value to an unassigned variable that doesn't conflict with the current assignment
+    - Fail if no legal assignments
+  - Goal test: the current assignment is complete
+  - Evaluation:
+    - This is the same for CSPs
+    - Every solution appears at depth `n` with `n` variables
+      - Use DFS
+    - Path is irrelevant, so we can also use complete-state formulation
+    - `b = (n - l)d` at depth `l`, hence `n!d^n` leaves
+
+- Backtracking Search
+
+  - Variable assignments are commutative
+
+    - i.e., `[WA = red then NT = green]` is the same as `[NT = green then WA = red]`
+    - Only need to consider assignments to a single variable at each node
+      - `b = d` and there are `d^n` leaves
+
+  - DFS for CSPs with single assignments is called backgracking search
+
+    - The most basic uninformed algorithm for CSPs
+
+  - DFS that chooses values for one variable at a time and backtracks when a variable has no legal values left to assign
+
+  - ```pseudocode
+    function BACKTRACKING_SEARCH(csp) returns solution/failure
+    	return RECURSIVE_BACKTRACKING({}, csp)
+    	
+    function RECURSIVE_BACKTRACKING(assignment, csp) returns solution/failure
+    	if assignment is complete then return assignment
+    	var <- SELECT_UNASSIGNED_VARIABLE(VARIABLES[csp], assignment, csp)
+    	for each value in ORDER_DOMAIN_VALUES(var, assignment, csp) do
+    		if value is consistent with assignment given CONSTRAINTS[csp] then
+    			add {var = value} to assignment
+    			result <- RECURSIVE_BACKTRACKING(assignment, csp)
+    			if result != failure then return result
+    			remove {var = value} from assignment
+      return failure
+    ```
+
+  - Improving Backtracking Efficiency
+
+    - General-purpose methods can give huge gains in speed:
+
+      - Which variable should be assigned next?
+        - Minimum Remaining Values (MRV): choose the variable with the fewest legal values
+        - Degree: choose the variable with the most constraints on remaining variables
+          - Tie-breaker among MRV variables
+
+      - In what order should its values be tried?
+        - Least Constraining Value: choose the least constraining variable, the one that rules out the fewest values in the remaining variables
+          - Leave the maximum flexibility for subsequent variable assignments
+      - Can we detect inevitable failure early?
+        - Forward Checking
+          - How do we detect failure early (if there is no solution)?
+          - If we do `AC-3` before the search, we already know if there is a failure
+            - What if we don't?
+          - Idea: keep track of remaining legal values for unassigned variables
+            - Terminate search when any variable has no legal values
+      - Can we take advantage of problem structure?
 
 
 
