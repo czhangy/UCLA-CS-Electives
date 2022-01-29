@@ -1049,7 +1049,13 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Constraint Satisfaction
+
+- 
+
+
+
+## Lecture 9:
 
 - 
 
