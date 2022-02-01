@@ -695,7 +695,86 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Morphology
+
+- Morphology
+  - Phonetics: how are sounds produced?
+  - Phonology: what are the rules affecting how a word is pronounced
+  - Morphology: what are the rules for forming words
+- Examples:
+  - English plural
+  - -(a)licious
+- What is a Word?
+  - While easy to intuit, it is difficult to formally define the notion of "word"
+  - Hypothesis #1: Orthography (Spelling)
+    - A word is a linguistic unit separated from other words in writing by spaces
+    - Not all languages have standardized written traditions
+    - Not all languages write with spaces between the words
+    - Even in languages with rich written tradition, like English, orthography is porr guide for what a word is
+  - Hypothesis #2: Internal Integrity and Cohesion
+    - A word is a linguistic unit that cannot be "split apart"
+    - This hypothesis makes the right distinction in some places
+      - Ex) blue book vs. clueless
+    - However, this rules out thinks that we would probably want to consider words
+      - Ex) Cali-freaking-fornia
+  - Hypothesis #3: Phonology
+    - A word is a linguistic unit that is prosodically demarcated (i.e., separated by pauses) and serves as the domain for stress assignment
+    - This hypothesis makes the right distinction in some places
+      - Ex) black bird vs. blackbird
+    - However, typical speech doesn't really have pauses in it
+    - Also, sometimes the domain of stress assignment seems like more than one word
+      - Ex) contractions
+- Morphemes
+  - Every definition of "word" overgenerates or undergenerates to some degree
+  - Even though there is not a clear definition of "word", there is a meaningful linguistic unit that we can use to study morphology: morphemes
+  - A morpheme is the smallest unit of indivisible sound and meaning in a given language
+- The Mental Lexicon
+  - The mental lexicon stores idiosyncratic information about morphemes in memory
+  - For each morpheme, a speaker has memorized:
+    - Phonemic representation
+    - Meaning
+    - Part of speech
+    - etc.
+  - Example: "cat"
+    - Phonemic representation: `/kæt/`
+    - Part of speech: noun
+    - Meaning: animal
+- Forming Complex Words
+  - As we have seen, it is possible to combine meaningful parts into complex words
+  - In many cases, these meaningful parts cannot stand on their own
+  - Example: `[əbl]`
+    - Speakers can add `[əbl]` to new words
+    - Consequence: speakers do not just have all the words with `[əbl]` memorized
+      - Rather, there seems to be a rule that adds `[əbl]`
+    - The meaning of words that contain `[əbl]` is very systematic
+      - Meaning of `X-[əbl]`: "can be `X`-ed"
+  - Languages have productive rules for combining meaningful parts to form complex morphological expressions
+    - Terminology
+      - A free morpheme can stand on its own, i.e., as a free "word"
+      - A bound morpheme cannot stand on its own
+      - An affix is a bound morpheme that attaches to a stem
+      - A stem is a unit to which affixes can be attached
+      - A root is a stem that cannot be analyzed any further into constituent morphemes
+- Roots and Stems
+  - All roots are stems, but not all stems are roots
+- Towards the `[əbl]`-rule
+  - `[əbl]` attaches to the end of stems
+    - We will see shortly that such affixes are called suffixes
+    - `[əbl]` can attach to the end of verbs
+      - When it does so, it forms an adjective
+    - But `[əbl]` doesn't attach to adjectives or nouns
+  - Summary: Properties of the `[əbl]`-rule
+    - It only combines with verbs, not nouns or adjectives
+    - It attaches to the right of the verb
+    - The result of attaching `[əbl]` is an adjective
+    - `Verb + /əbl/ = Adjective`
+- Types of Affixes
+  - A prefix attaches to the front of the stem
+  - A suffix attaches to the end of the stem
+
+
+
+## Lecture 9:
 
 - 
 
