@@ -4,14 +4,10 @@
 
 Which of the following four definitions of AI aims to study the rational agent?
 
-
-
-- Acting humanly
-- Acting rationally
-- **Thinking rationally**
-- Thinking humanly
-
-
+- [ ] Acting humanly
+- [x] Acting rationally
+- [ ] Thinking rationally
+- [ ] Thinking humanly
 
 ## Problem 2
 
@@ -33,14 +29,10 @@ What is the result of the expression:
 (F '(a (b c) d e))
 ```
 
-
-
-- 4
-- **5**
-- 1
-- 3
-
-
+- [ ] 4
+- [x] 5
+- [ ] 1
+- [ ] 3
 
 ## Problem 3
 
@@ -50,26 +42,20 @@ What is the result of the following LISP expression?
 (cdr (car (cons '(4 5) '(1 2 3))))
 ```
 
-
-
-- **(5)**
-- 5
-- 1
-- (1 2 3)
-- ERROR
-
-
+- [x] (5)
+- [ ] 5
+- [ ] 1
+- [ ] (1 2 3)
+- [ ] ERROR
 
 ## Problem 4
 
 When formulating a search problem, we need to take what of the following into consideration?
 
-
-
-- Initial state
-- Cost function
-- Transition model
-- State space
-- **All other options**
-- Action space
+- [ ] Initial state
+- [ ] Cost function
+- [ ] Transition model
+- [ ] State space
+- [x] All other options
+- [ ] Action space
 
