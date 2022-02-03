@@ -3386,6 +3386,85 @@
   
 - Stochastic Games
 
+  - Many games mirror unpredictability by including a random element
+    - i.e., throwing of a dice
+    - These games are called stochastic games
+  - Stochastic games' game trees must include chance nodes in addition to `MAX` and `MIN` nodes
+    - Branches leading from chance nodes denote possibilities of the random action
+  - We still want to pick a move that leads to the best position, but we can only calculate the expected value of a position
+    - This is the weighted average over all possible outcomes of the chance nodes
+    - Minimax value must be generalized to an expectiminimax value for games with chance nodes
+  - Evaluation Functions for Games of Chance
+    - The obvious approximation to make with expectiminimax is to cut the search off at some point and apply an evaluation function to each leaf
+      - The presence of chance nodes means that we have to be more careful about what the evaluation values mean
+      - The evaluation function must be a positive linear transformation of the probability of winning from a position
+      - For a game with branching factor `b`, maximum depth `m`, and `n` distinct rolls, expectiminimax will take `O(b^mn^m)` 
+    - Alpha-beta improves minimax by concentrating on likely occurrences
+      - However, in games with random chance, there are no likely sequences of moves, as the random events may alter legal sequences
+      - Forming details plans of action becomes pointless because the world probably will not play along
+    - Monte Carlo simulation can be used to evaluate a position
+      - Have a selected search algorithm play thousands of games against itself, using random chance
+      - The resulting win percentage has been shown to be a good approximation of the value of the position
+
+- Partially Observable Games
+
+  - Kriegspiel: Partially Observable Chess
+
+    - Use the notion of a belief state, the set of all logically possible game states given the complete history of percepts to date
+    - Keeping track of the belief state as the game progresses is exactly the problem of state estimation
+    - For a partially observable game, strategies don't specify a move to make for each possible move the opponent might make, we need a move for every possible percept sequence that might be received
+    - An equilibrium specifies an optimal randomized strategy for each player
+
+  - Card Games
+
+    - Naive concept: consider all possible deals, solve each one as if it were an observable game, then choose the move that has the best outcome averaged over all the deals
+
+      - Assuming each deal `s` occurs with probability `P(s)`, the move we want is:
+
+        - $$
+          \text{argmax}_a\sum_sP(s)\texttt{MINIMAX}(\texttt{RESULT}(s,a))
+          $$
+
+    - The amount of deals is far to high to feasibly solve, so we resort to Monte Carlo approximation
+
+      - Take a random sample of `N` deals, where the probability of deal `s` appearing in the sample is proportional to `P(s)`:
+
+        - $$
+          \text{argmax}_a\frac{1}{N}\sum^N_{i=1}\texttt{MINIMAX}(\texttt{RESULT}(s_i,a))
+          $$
+
+      - Method gives a good approximation, even for fairly small `N`
+
+      - Can also be applied to deterministic games given some reasonable estimate of `P(s)`
+
+    - Averaging over clairvoyance fails because it assumes that the game will become observable to both players immediately after the first move
+
+      - Does not consider the belief state that the agent will be in after acting
+      - Belief state of total ignorance is not desirable
+      - Since it assumes every future state is one of perfect knowledge, the approach never selects actions that gather information or hide information
+
+- Alternative Approaches
+
+  - The standard approach of minimax and alpha-beta searches doesn't provide much room for new insight into general questions of decision making
+  - Introduce the idea of the utility of a node expansion
+    - If there are no node expansions whose utility is higher than their cost, then the algorithm should stop searching and make a move
+    - Works for clear-favorite situations and for symmetrical moves
+    - This reasoning about what moves to do is called metareasoning
+  - Goal-directed reasoning can eliminate combinatorial search
+
+- Summary
+
+  - A game can be defined by the initial state (how the board is set up), the legal actions in each state, the result of each action, a terminal test (which says when the game is over), and a utility function that applies to terminal states
+  - In two-player zero-sum games with perfect information, the minimax algorithm can select optimal moves by a depth-first enumeration of the game tree
+  - The alpha-beta search algorithm computes the same optimal move as minimax, but achieves much greater efficiency by eliminating subtrees that are provably irrelevant
+  - Usually, it is not feasible to consider the whole game tree (even with alpha-beta), so we need to cut the search off at some point and apply a heuristic evaluation function that estimates the utility of a state
+  - Many game programs precompute tables of best moves in the opening and endgame so that they can look up a move rather than search
+  - Games of chance can be handled by an extension to the minimax algorithm that evaluates a chance node by taking the average utility of all its children, weighted by the probability of each child
+  - Optimal play in games of imperfect information requires reasoning about the current and future belief states of each player
+    - A simple approximation can be obtained by averaging the value of an action over each possible configuration of missing information
+  - Programs have bested even champion human players at games such as chess, checkers, and Othello
+    - Humans retain the edge in several games of imperfect information, such as poker, bridge, etc. and in games with very large branching factors and little good heuristic knowledge
+
 
 
 ## Reading 7:
