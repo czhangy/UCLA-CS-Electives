@@ -3149,6 +3149,165 @@
 
 
 
-## Reading 6:
+## Reading 6: Adversarial Search
+
+- Games
+
+  - The unpredictability of multiagent environments can introduce contingencies into the agent's problem solving process
+  - In competitive environments, the agents' goals are in conflict, giving rise to adversarial search problems or games
+  - Mathematical game theory views all multiagent environments as games, provided that the impact the agents have on each other is significant
+    - Regardless of whether the agents are cooperative or competitive
+  - Most common games in AI are deterministic, turn-taking, two-player, zero-sum games of perfect information
+    - Deterministic, fully observable environments in which two agents act alternately and in which the utility values at the end of the game are always equal and opposite
+    - Opposition between the agents' utility functions makes the situation adversarial
+  - Abstract nature of games makes them an appealing subject for study
+    - The state of the game is easy to represent
+    - Agents are usually restricted to a small number of actions whose outcomes are defined by precise rules
+    - Physical games, which have much more complex descriptions, a wider range of actions, and imprecise rules, have not attract much interest in regards to AI
+  - Games require the ability to make some decision even when calculating the optimal decision is infeasible
+    - Penalize efficiency severely
+  - Start with a definition of the optimal move and an algorithm for finding it
+    - Then look at techniques for choosing a good move when time is limited
+    - Pruning allows us to ignore portions of the search tree that make no difference to the final choice
+    - Heuristic evaluation functions allow for the approximation of the true utility of the state without doing a complete search
+  - A game can be formally defined as a search problem with the following elements:
+    - `S_0`: the initial state, which specifies how the game is set up at the start
+    - `PLAYER(s)`: defines which player has the move in a state
+    - `ACTIONS(s)`: returns the set of legal moves in a state
+    - `RESULT(s, a)`: the transition model, which defines the result of a move
+    - `TERMINAL-TEST(s)`: a terminal test, which is true when the game is over and false otherwise
+      - States where the game has ended are called terminal states
+    - `UTILITY(s, p)`: a utility function defines the final numeric value for a game that ends in terminal state `s` for player `p`
+      - A zero-sum game is defined as one where the total payoff to all players is the same for every instance of the game
+  - The initial state, `ACTIONS`, and `RESULT` define the game tree for the game
+    - Nodes are game states, and the edges are moves
+    - A search tree is a tree that is superimposed on the game tree, and examines enough nodes to allow a player to determine what move to make
+
+- Optimal Decisions in Games
+
+  - In adversarial search, `MAX` must find a contingent strategy which specifies its move in the initial state, then its moves in the states resulting from every possible response by `MIN`, and so on
+
+    - An optimal strategy leads to outcomes at least as good as any other strategy when one is playing an infallible opponent
+
+  - Given a game tree, the optimal strategy can be determined from the minimax value of each node, written as `MINIMAX(n)`
+
+    - The minimax value of a node is the utility (for `MAX`) of being in the corresponding state, assuming that both players play optimally from there to the end of the game
+    - The minimax value of a terminal state is just its utility
+    - `MAX` prefers to move to a state of maximum value, while `MIN` prefers to move to a state of minimum value
+
+  - The Minimax Algorithm
+
+    - ```pseudocode
+      function MINIMAX-DECISION(state) returns an action
+      	return arg max(a ∈ ACTIONS(s)) MIN-VALUE(RESULT(state, a))
+      	
+      function MAX-VALUE(state) returns a utility value
+      	if TERMINAL-TEST(state) then return UTILITY(state)
+      	v <- -INF
+      	for each a in ACTIONS(state) dp
+      		v <- MAX(v, MIN-VALUE(RESULT(s, a)))
+      	return v
+      
+      function MIN-VALUE(state) returns a utility value
+      	if TERMINAL-TEST(state) then return UTILITY(state)
+      	v <- INF
+      	for each a in ACTIONS(state) do
+      		v <- MIN(v, MAX-VALUE(RESULT(s, a)))
+      	return v
+      ```
+
+    - Computes the minimax decision from the current state
+
+    - Recursive computation of the minimax values of each successor state, proceeding all the way down the leaves of the tree, and then the minimax values are backed up through the tree as the recursion unwinds
+
+    - Performs a depth-first exploration of the game tree
+
+    - Assume the maximum depth of the tree is `m` and there are `b` legal moves at each point:
+
+      - Time complexity is `O(b^m)`
+      - Space complexity is `O(bm)` for an algorithm that generates all actions at once, or `O(m)` for an algorithm that generates actions one at a time
+
+    - Serves as the basis for the mathematical analysis of games and for more practical algorithms
+
+  - Optimal Decisions in Multiplayer Games
+
+    - How do we extend the minimax idea to games with 2+ players?
+      - Replace the single value for each node with a vector of values
+        - For terminal states this vector gives the utility of the state from each player's viewpoint
+        - Have `UTILITY` return a vector of utilities
+      - The backed-up value of a node `n` is always the utility vector of the successor state with the highest value for the player choosing at `n`
+    - Usually involve alliances, whether formal or informal among the players
+      - Collaboration emerges from purely selfish behavior
+    - Players will automatically cooperate to achieve a mutually desirable goal
+
+- Alpha-Beta Pruning
+
+  - Minimax search has too many game states to search
+
+    - Alpha-beta pruning returns the same move minimax would, but prunes away branches that cannot possibly influence the final decision
+
+  - Can be applied to trees of any depth
+
+  - General principle:
+
+    - Consider a node `n` somewhere in the tree, such that the player has a choice of moving to that node
+    - If the player has a better choice `m` either at the parent node of `n` or at any choice point further up, then `n` will never be reached in actual play
+    - Once we find out enough about `n` by examining some of its descendants to reach this conclusion, we can prune it
+    - `α` is the value of the best (highest-value) choice we have found so far at any choice point along the path for `MAX`
+    - `β` is the value of the best (lowest-value) choice we have found so far at any choice point along the path for `MIN`
+
+  - Alpha-beta search updates the values of `α` and `β` as it goes along and prunes the remaining branches at a node as soon as the value of the current node is known to be worse than the current `α` or `β` value for `MAX` or `MIN`, respectively
+
+  - ```pseudocode
+    function ALPHA-BETA-SEARCH(state) returns an action
+    	v <- MAX-VALUE(state, -INF, +INF)
+    	return the action in ACTIONS(state) with value v
+    	
+    function MAX-VALUE(state, α, β) returns a utility value
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- -INF
+    	for each a in ACTIONS(state) do
+    		v <- MAX(v, MIN-VALUE(RESULT(s, a), α, β))
+    		if v >= β then return v
+    		α <- MAX(α, v)
+    	return v
+    
+    function MIN-VALUE(state, α, β) returns a utility value
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- +INF
+    	for each a in ACTIONS(state) do
+    		v <- MIN(v, MAX-VALUE(RESULT(s, a), α, β))
+    		if v <= α then return v
+    		β <- MIN(β, v)
+    	return v
+    ```
+
+  - Move Ordering
+
+    - Effectiveness of alpha-beta pruning is highly dependent on the order in which the states are examined
+      - Suggests that it might be worthwhile to try to examine first the successors that are likely to be the best
+        - If this can be done, then it turns out that alpha-beta needs to examine only `O(b^m/2)` nodes to pick the best move
+        - The effective branching factor becomes `sqrt(b)`
+      - If successors are examined in random order, the number of nodes examined will be roughly `O(b^3m/4)`
+    - Adding dynamic move-ordering schemes, such as trying first the moves that were found to be best in the past, brings us close to the theoretical limit
+      - Past could be the previous move or previous exploration of the current move
+      - One way to gain information from the current search is iterative deepening search
+        - Search and record the best set of moves, using that recording to inform move ordering on subsequent searches
+      - The best moves are called killer moves and trying them first is the killer move heuristic
+    - Repeated states in the search tree can cause an exponential increase in search cost
+      - Games have many repeated states due to transpositions, different permutations of the move sequence that end up in the same position
+      - It is worthwhile to store the evaluation of the resulting position in a hash table the first time it's encountered so that we don't have to recompute it on subsequent occurrences
+        - Traditionally called a transposition table
+        - Essentially identical to the `explored` list in `GRAPH-SEARCH`
+        - At some point it's not practical to keep all explored nodes in the transposition table, so we must choose which nodes to keep and which to discard
+
+- Imperfect Real-Time Decisions
+
+  - 
+
+
+
+## Reading 7:
 
 - 
+
