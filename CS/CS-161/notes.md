@@ -3303,7 +3303,88 @@
 
 - Imperfect Real-Time Decisions
 
-  - 
+  - Even alpha-beta still has to search all the way to terminal states for at least a portion of the state space, which is usually not practical since moves must be made within a reasonable time
+  
+    - Proposal that programs should cut off the search earlier and apply a heuristic evaluation function to states in the search, turning nonterminal nodes into terminal leaves
+  
+  - Two changes:
+  
+    - Replace the utility function by a heuristic evaluation function `EVAL`
+    - Replace the terminal test by a cutoff test that decides when to apply `EVAL`
+  
+  - Evaluation Function
+  
+    - Returns an estimate of the expected utility of the game from a given position
+    - An inaccurate evaluation function will guide an agent toward positions that turn out to be lost
+    - How do we design good evaluation functions?
+      - The evaluation function should order the terminal states in the same way as the true utility function
+        - Otherwise, an agent using the evaluation function might err even if it can see ahead all the way to the end of the game
+      - The computation must not take too long
+      - The evaluation function should be strongly correlated with the actual chances of winning for nonterminal states
+        - Since the search is cutoff at states, the algorithm will necessarily be uncertain at these states
+        - Uncertainty induced by computational limitations
+    - Most evaluation functions work by calculating various features of the state
+      - These features, taken together, define various categories or equivalence classes of states
+        - The states in each category have the same values for all the features
+      - Any given category will contains various states that lead to various outcomes
+        - The evaluation function cannot know which states are which, but it can return a single value that reflects the proportion of states with each outcome
+        - A reasonable evaluation for states in the category is the expected value
+        - This analysis leads to too many categories/too much experience to estimate all the probabilities of winning
+      - Most evaluation functions compute separate numerical contributions from each feature and then combine them to find the total value
+        - Feature values can then be added up to obtain the evaluation of the position
+          - Requires the strong assumption that the contribution of each feature is independent of the values of the other features
+          - Nonlinear combinations of features are also used
+        - Weights can be determined through experience or machine learning
+  
+  - Cutting Off Search
+  
+    - Modify `ALPHA-BETA-SEARCH` so that it will call the heuristic `EVAL` function when it is appropriate to cut off the search
+  
+      - ```pseudocode
+        if CUTOFF-TEST(state, depth) then return EVAL(state)
+        ```
+  
+    - The most straightforward approach for controlling the amount of search is to set a fixed depth limit so that `CUTOFF-TEST(state, depth)` returns `true` for all `depth` greater than some fixed depth `d`
+  
+      - Must also return `true` for all terminal states
+      - `d` chosen so that a move is selected within the allotted time
+  
+    - Can also apply iterative deepening
+  
+      - When time runs out, the program returns the move selected by the deepest completed search
+      - Also helps with move ordering
+  
+    - Simple approaches can lead to errors due to the approximate nature of the evaluation function => more sophistication needed
+  
+      - Evaluation function should only be applied to positions that are quiescent (unlikely to exhibit wild swings in value in the near future
+      - Expand nonquiescent positions until quiescent positions are reached
+        - Called quiescence search
+  
+    - Horizon effect is more difficult to eliminate
+  
+      - Arises when the program is facing an opponent's move that causes serious damage and is ultimately unavoidable, but can be temporarily avoided by delaying tactics
+      - One strategy to avoid it is the singular extension, a move that is "clearly better" than all other moves in a given position
+  
+  - Forward Pruning
+  
+    - Some moves at a given node are pruned immediately without further consideration
+    - One approach is beam search
+      - On each ply, consider only a beam of the `n` best moves (according to the evaluation function)
+      - No guarantee that the best move won't be pruned away
+    - The `PROBCUT` or probabilistic cut algorithm uses statistics gained from prior experience to lessen the chance that the best move will be pruned
+      - Prunes nodes that are probably outside the `(α, β)` window
+      - Does a shallow search to compute the backed-up value `v` of a node and then uses past experience to estimate how likely it is that a score of `v` at depth `d` in the tree would be outside `(α, β)`
+  
+  - Search vs. Lookup
+  
+    - Many game-playing programs use table lookup rather than search for the opening and ending of games
+      - Computers can rely on the expertise of humans and the previous games they've played to determine the probabilities that a given opening will win
+        - Few choices leads to an abundance of expert commentary and past games on which to draw
+      - Computers have the upper-hand when it comes to the endgame
+        - Can completely solve the endgame by producing a policy (a mapping from every possible state to the best move in that state)
+        - The policy allows us to lookup the move instead of recomputing it
+  
+- Stochastic Games
 
 
 
