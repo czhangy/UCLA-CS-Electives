@@ -1232,6 +1232,108 @@
 
 ## Lecture 10: Game Playing
 
+- Optimal Decisions in Games
+
+  - How to find the optimal decisions in a deterministic, perfect-information game?
+  - Idea: choose the move with highest achievable payoff against the best play of the other player
+  - Important assumption: we assume that both players play optimally from beginning to end of the game
+
+- Minimax
+
+  - We refer to the two players as `MAX` and `MIN`
+
+    - Without loss of generality, we imagine that we are `MAX` playing against `MIN`
+
+  - We refer to the payoff as the minimax value
+
+    - The player `MAX` will always choose the move with the maximum minimax value
+    - The player `MIN` will always choose the move with the minimum minimax value
+
+  - $$
+    \texttt{MINIMAX}(s)=\begin{cases}
+    	\texttt{UTILITY}(s) & \text{if}\texttt{ TERMINAL-TEST}(s)\\
+    	\text{max}_{a\in Actions(s)}\texttt{MINIMAX}(\texttt{RESULT}(s,a)) & \text{if}\texttt{ PLAYER}(s)=\texttt{MAX}\\
+    	\text{min}_{a\in Actions(s)}\texttt{MINIMAX}(\texttt{RESULT}(s,a)) & \text{if}\texttt{ PLAYER}(s)=\texttt{MIN}
+    \end{cases}
+    $$
+
+    - Bottom-up recursion
+
+  - ```pseudocode
+    function MINIMAX-DECISION(state) returns an action
+    	inputs: state, current state in game
+    	
+    	return the a in ACTIONS(state) maximizing MIN-VALUE(RESULT(a, state))
+    
+    function MAX-VALUE(state) returns a utility value
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- -INF
+    	for a, s in SUCCESSORS(state) do v <- MAX(v, MIN-VALUE(s))
+    	return v
+    	
+    function MIN-VALUE(state) returns a utility value
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- INF
+    	for a, s in SUCCESSORS(state) do v <- MIN(v, MAX-VALUE(s))
+    	return v
+    ```
+
+  - Properties:
+
+    - Complete only if the tree is finite
+    - Optimal against an optimal opponent
+    - `O(b^m)` time
+      - `b` is the branching factor, `m` is the maximum depth of the game tree
+
+    - `O(bm)` space complexity
+      - Essentially same as DFS
+
+  - But do we need to explore every path and compute `MINIMAX` for every node?
+
+- Alpha-Beta Pruning
+
+  - Motivation: do we really need to calculate the minimax value for every node?
+
+  - `α`: the best value (to `MAX`) found so far off the current path
+
+    - If `v` is worse than `α`, `MAX` will avoid it => prune that branch
+
+  - `β`: similarly defined for `MIN`
+
+  - ```pseudocode
+    function ALPHA-BETA-DECISION(state) returns an action
+    	return the a in ACTIONS(state) maximizing MIN-VALUE(RESULT(a, state))
+    	
+    function MAX-VALUE(state, α, β) returns a utility value
+    	inputs: state, current state in game
+    	α, the value of the best alternative for MAX along the path to state
+    	β, the value of the best alternative for MIN along the path to state
+    	
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- -INF
+    	for a, s in SUCCESSORS(state) do
+    		v <- MAX(v, MIN-VALUE(s, α, β))
+    		if v >= β then return v
+    		α <- MAX(α, v)
+    	return v
+    
+    function MIN-VALUE(state, α, β) returns a utility value
+    	inputs: state, α, β
+    	
+    	if TERMINAL-TEST(state) then return UTILITY(state)
+    	v <- +INF
+    	for a, s in SUCCESSORS(state) do
+    		v <- MIN(v, MAX-VALUE(s, α, β))
+    		if v <= α then return v
+    		β <- MIN(β, v)
+    	return v
+    ```
+
+
+
+
+## Lecture 11:
+
 - 
 
 
