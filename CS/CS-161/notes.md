@@ -1119,7 +1119,118 @@
 
 
 
-## Lecture 9:
+## Lecture 9: CSPs and Game Playing
+
+- CSPs
+
+  - Problem Structure
+
+    - Independent subproblems are identifiable as multiple connected components of a constraint graph
+
+      - Suppose each subproblem has `c` variables out of `n` total, then the worst-case solution cost is:
+
+        - $$
+          O(\frac{n}{c}\times d^c)
+          $$
+
+        - Linear in `n`
+
+    - Tree-Structured CSPs
+
+      - Theorem: if the constraint graph has no loops, the CSP can be solved in `O(nd^2)` time
+      - Compare to general CSPs, where worst-case time is `O(d^n)`
+      - This property also applies to logical and probabilistic reasoning: an important example of the relation between syntactic restrictions and the complexity of reasoning
+      - Algorithm:
+        - Choose a variable as root, order variables from root to leaves such that every node's parent precedes it in the ordering
+        - For `j` from `n` down to `2`, apply `REMOVEINCONSISTENT(Parent(X_j), X_j)`
+        - For `j` from `1` to `n`, assign `X_j` consistently with `Parent(X_j)`
+
+    - Nearly Tree-Structured CSPs
+
+      - Conditioning: instantiate a variable, prune its neighbors' domains
+
+      - Cutset conditioning: instantiate (in all ways) a set of variables such that the remaining constraint graph is a tree
+
+        - Cutset size `c` results in a runtime of:
+
+          - $$
+            O(d^c\times(n-c)d^2)
+            $$
+
+        - Search the resultant graphs for a solution
+
+        - Produce a cutset such that the remaining nodes form a tree structure
+
+          - Cut out nodes with higher degrees
+
+  - Iterative Algorithms for CSPs
+
+    - Hill-climbing, simulated annealing typically work with "complete" states
+      - i.e., all variables assigned
+    - To apply to CSPs:
+      - Allow states with unsatisfied constraints
+      - operators reassign variable names
+    - Variable selection: randomly select any conflicted value
+    - Value selection by min-conflicts heuristic:
+      - Choose value that violates the fewest constraints
+      - i.e., hill climb with `h(n)` being the total number of violated constraints
+
+  - Summary
+
+    - CSPs are a special kind of problem:
+      - States defined by values of a fixed set of variables
+      - Goal test defined by constraints on variable values
+    - Backtracking is DFS with one variable assigned per node
+    - Variable ordering and value selection heuristics help significantly
+    - Forward checking prevents assignments that guarantee later failure
+    - Constraint propagation (e.g., arc consistency) does additional work to constraint values and detect inconsistencies
+    - The CSP representation allows analysis of problem structure
+      - Tree-structured CSPs can be solved in linear time
+    - Iterative min-conflicts is usually effective in practice
+
+- Game Playing
+
+  - Outline
+
+    - Games
+    - Perfect Play
+      - Minimax decisions
+      - Alpha-beta pruning
+    - Resource limits and approximate evaluation
+    - Games of chance
+    - Games of imperfect information
+
+  - Types of Games
+
+    - |                       | Deterministic                 | Chance                               |
+      | --------------------- | ----------------------------- | ------------------------------------ |
+      | Perfect Information   | Chess, checkers, Go, Othello  | Backgammon, Monopoly                 |
+      | Imperfect Information | Battleship, blind tic-tac-toe | Bridge, poker, Scrabble, nuclear war |
+
+  - Games vs. Search Problems
+
+    - Can we use search strategies to win games?
+      - What would be the solution when applying search strategies to games?
+      - The solution will be a strategy that specifies a move for every possible opponent reply
+    - Challenges
+      - Very large search space
+      - Time limits
+
+  - Game as a Search Problem
+
+    - `S_0`: the initial state, which specifies how the game is set up at the start
+    - `PLAYER(s)`: defines which player has the move in a state
+    - `ACTIONS(s)`: returns the set of legal moves in a state
+    - `RESULT(s, a)`: the transition model, which defines the result of a move
+    - `TERMINAL-TEST(s)`: a terminal test, which is true when the game is over and false otherwise
+      - States where the game has ended are called terminal states
+    - `UTILITY(s, p)`: a utility function that defines the final numeric value for a game that ends in terminal state `s` for a player `p`
+      - Also called an objective function or payoff function
+      - In chess, the outcome is a win, loss, or draw, with values `+1`, `0`, or `1/2`
+
+
+
+## Lecture 10:
 
 - 
 
