@@ -774,7 +774,70 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Morphological Processes
+
+- Ambiguity
+  - If a sequence of sounds, morphemes, or words have more than one meaning, we say that his sequence is ambiguous
+    - Two types of ambiguity:
+      - Lexical ambiguity: two morphemes happen to sound the same
+      - Structural ambiguity: arrangements of elements differs
+  - Morphological ambiguity
+    - Observation: some words can be formed in more than one way, giving rise to different meanings
+    - A kind of structural ambiguity
+    - Ex) "unlockable"
+- Infixation
+  - An infix attaches inside the stem
+- Circumfixes
+  - A circumfix attaches to both the front and end of the stem
+  - Circumfixes are typologically rare
+- Summary: Types of Affixes
+  - Prefix: attaches to the front of the stem
+  - Suffix: attaches to the end of the stem
+  - Infix: attaches inside the stem
+  - CIrcumfix: attached around the stem
+  - Note: affixes are fixed strings of sounds
+- (Full) Reduplication
+  - Indonesian plural rule: double the entire stem to form the plural
+- (Partial) Reduplication
+  - Ilokano plural rule: double the first CVC sequence to form the plural to make a plural
+- Reduplication vs. Affixation
+  - Reduplication is not an affix
+    - Affixes involve the addition of a fixed string of sounds
+    - This is not the case with reduplication, rather the sounds come from the stem itself
+- Compounding
+  - A compound consists of two or more elements that can also occur on their own
+  - Iterated compounding
+    - It is possible to take a compound and combine it with another free morpheme, creating a larger compound
+    - In this way, compounds can get very large
+  - A regularity of compounding
+    - `N + N = N`
+    - `N + V = V`
+    - `A + V = V`
+    - `A + N = N`
+    - `V + N = N`
+    - `A + A = A`
+    - A generalization: the category of the compound is always the same as the category of the last morpheme in the compound
+    - The Right-Hand Head Rule
+      - If `X` is the head of `Y`, then the grammatical category (= part of speech) of `Y` is the same as that of `X`
+      - In an English compound, the head is the right-most morpheme
+- Rethinking English Affixes
+  - Prefixes never change the category
+  - Suffixes can change the category
+- A more general Right-Hand Head Rule
+  - In English, the head of a morphologically complex expression is the right-most morpheme
+  - Consequence: affixes have a category, just like free morphemes
+  - The Right-Hand Head Rule not only applies to compounding but also to affixation
+  - What about prefixes? What is the category of prefixes?
+    - This is because the category of a complex morphological expression is always determined by its right-most element
+
+- Summary
+  - Languages have productive rules to create morphologically complex expressions
+  - Morphological processes: affixation, reduplication, compounding
+  - Right-Hand Head Rule: in English, the head of a morphologically complex expression is the right-most morpheme
+
+
+
+## Lecture 10:
 
 - 
 
