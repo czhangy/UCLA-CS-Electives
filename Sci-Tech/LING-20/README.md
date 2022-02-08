@@ -29,6 +29,6 @@
 
 |  Exam   | Score |
 | :-----: | :---: |
-| Midterm |  ???  |
+| Midterm | 39/40 |
 |  Final  |  ???  |
 
