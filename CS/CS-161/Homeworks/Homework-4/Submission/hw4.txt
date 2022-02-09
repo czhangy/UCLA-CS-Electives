@@ -1,0 +1,20 @@
+According to the RSat SAT solver, the SAT instance obtained from coloring
+graph1.txt with 3 colors is unsatisfiable, however, the SAT instance obtained
+from coloring the same graph with 4 colors is satisfiable. This tells us that
+the graph described by graph1.txt requires at least 4 different colors to solve
+in a graph coloring problem. An example solution based on the output of Rsat is
+as follows:
+
+    N = { 1, 2, 3, 4, 5, 6, 7 }, C = { Red, Green, Blue, Yellow }
+    1 => Yellow
+    2 => Blue
+    3 => Green
+    4 => Blue
+    5 => Red
+    6 => Green
+    7 => Red
+
+Through trial and error, it can be seen that the graph in graph2.txt requires
+at least 8 distinct colors to solve. We know this because an SAT instance
+generated with 7 colors is unsatisfiable, but an SAT instance generated with 8
+colors is satisfiable.
