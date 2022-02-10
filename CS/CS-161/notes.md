@@ -1230,7 +1230,7 @@
 
 
 
-## Lecture 10: Game Playing
+## Lecture 10: Game Playing I
 
 - Optimal Decisions in Games
 
@@ -1302,7 +1302,7 @@
 
   - ```pseudocode
     function ALPHA-BETA-DECISION(state) returns an action
-    	return the a in ACTIONS(state) maximizing MIN-VALUE(RESULT(a, state))
+    	return the a in ACTIONS(state) maximizing MIN-VALUE(RESULT(a, state), -INF, INF)
     	
     function MAX-VALUE(state, α, β) returns a utility value
     	inputs: state, current state in game
@@ -1332,7 +1332,102 @@
 
 
 
-## Lecture 11:
+## Lecture 11: Game Playing II
+
+- Alpha-Beta Pruning
+
+  - Properties
+
+    - Pruning doesn't affect the final result
+    - Good move ordering improves effectiveness of pruning
+      - With "perfect ordering", time complexity = `O(b^m/2)`
+
+  - Improvements Under Resource Limits
+
+    - Standard approach:
+
+      - Based on depth-limited search, stopping in the middle of the game tree
+
+      - Use `CUTOFF-TEST` instead of `TERMINAL-TEST`
+        - e.g., depth limit
+
+      - Use `EVAL` instead of `UTILITY`
+        - i.e., an evaluation function that estimates desirability of position
+
+    - Evaluation Functions
+
+      - For chess, we typically use a linear weighted sum of features
+
+        - $$
+          Eval(s)=w_1f_1(s)+w_2f_2(s)+...+w_nf_n(s)
+          $$
+
+        - An example of a feature:
+
+          - $$
+            f_1(s)=\text{number of white queens}-\text{number of black queens}
+            $$
+
+      - Digression: exact values don't matter
+
+        - Behavior is preserved under any monotonic transformation of the original `EVAL`
+        - Monotonic => the relative ordering of values is preserved
+
+- Deterministic Games in Practice
+
+  - Checkers: Chinook ended 40-year reign of human world champion Marion Tinsley in 1994
+    - Used an endgame database defining perfect play for all positions involving 8 or fewer pieces on the board, a total of 443,748,401,247 positions
+
+  - Chess: Deep Blue defeated human world champion Gary Kasparov in a six-game match in 1997
+    - Deep Blue searches 200 million positions per second, uses very sophisticated evaluation, and undisclosed methods for extending some lines of search up to 40 ply
+
+  - Go: Alpha Go, which is based on deep reinforcement learning and Monte Carlo tree search
+
+- Nondeterministic (Stochastic) Games in General
+
+  - In nondeterministic games, chances are introduced
+    - Ex) dice rolls, card shuffling, coin flips, etc.
+
+  - Introduce chance nodes to model the probabilities of various results
+    - Branches into other nodes, with values weighted by the probability of that path's occurrence
+
+- Algorithm for Nondeterministic Games
+
+  - `EXPECTIMINIMAX` gives perfect play
+
+    - Just like `MINIMAX`, except we must also handle chance nodes
+
+  - ```pseudocode
+    if state is a MAX node then
+    	return the highest EXPECTIMINIMAX-VALUE of SUCCESSORS(state)
+    if state is a MIN node then
+    	return the lowest EXPECTIMINIMAX-VALUE of SUCCESSORS(state)
+    if state is a chance node then
+    	return average of EXPECTIMINIMAX-VALUE of SUCCESSORS(state)
+    ```
+
+  - Digression: exact values do matter
+
+    - Behavior is preserved only by positive linear transformation of `EVAL`, therefore `EVAL` should be proportional to the expected payoff
+
+- Games of Imperfect Information
+
+  - Example:
+    - In card games, opponent's initial cards are unknown
+    - Typically, we can calculate a probability for each possible deal
+      - Consider as a big dice roll at the beginning of the game
+
+    - Compute the minimax value of each action in each deal
+    - Then choose the action with highest expected value over all deals
+    - Special case: if an action is optimal for all deals, it's optimal
+    - The current best bridge program approximates this idea by:
+      - Generating 100 deals consistent with bidding information
+      - Picking the action that wins most tricks on average
+
+
+  
+
+## Lecture 12:
 
 - 
 
