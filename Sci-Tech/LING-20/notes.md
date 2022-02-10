@@ -837,7 +837,86 @@
 
 
 
-## Lecture 10:
+## Lecture 10: Syntax
+
+- The Big Question
+  - What do you know when you know a human language?
+    - A finite set of idiosyncratic, memorized basic elements
+      - Phonemes, morphemes, features, etc.
+    - Rules for combining and manipulating these elements
+      - Phonological rules, syllabification, morphological rules, etc.
+- Overview
+  - Phonetics: how are sounds articulated?
+  - Phonology: how are sounds organized and manipulated?
+  - Morphology: how are words built up from morphemes?
+  - Syntax: how are sentences formed from words?
+- Syntax
+  - Syntax studies the rules of sentence formation
+  - Core Properties:
+    - Creativity
+      - Syntactic rules of language allow for a wide range of creative options
+      - Most sentences are completely new
+      - Speakers can understand and produce sentences that they have never encountered before
+      - Not every string of words in a language is a sentence of that language
+        - Implication: there are rules about these combinations
+    - Category dependence
+      - Syntactic Categories
+        - Words belong to classes, called grammatical categories (or parts of speech)
+        - Syntactic rules only care about these grammatical categories, not individual words
+          - This is category depedence
+      - N(ouns)
+        - Ex) dog, cat, etc.
+        - Rule-of-thumb test: can occur as `X` in "I heard about the `X`"
+        - In addition, we will assume that proper names and pronouns are also nouns
+      - V(erbs)
+        - Ex) walk, talk, etc.
+        - Rule-of-thumb test: can have "can" appear directly before them
+      - A(djectives)
+        - Ex) big, bad, etc.
+        - Rule-of-thmb test: cam appear between "the very" and an `N`
+      - D(eterminers) + P(repositions)
+        - Determiners: the, that, a, etc.
+        - Prepositions: to, from, on, after, etc.
+    - Recursion
+      - Sentences are unbounded (there's no upper limit to a sentence's length)
+      - A sentence can itself contain another sentence
+        - This is called recursion
+      - Because of this property, sentences can be unboundedly long
+        - There is no longest sentence of English
+        - There is an infinite number of English sentences
+      - In general terms:
+        - Recursion (informal definition): something contains a version of itself
+        - Consequence: syntactic rules must be recursive
+          - In other words, it must be possible for syntactic rules to apply to their own output
+  - We will develop phrase-structure rules to capture these properties
+- Phrase-Structure Rules
+  - Our first phrase-structure rule
+    - Observation: you can form a sentence in English by combining a noun and a verb
+    - Rule: `S -> NV`
+  - Noun Phrases
+    - The subject can be more complex than just a single word
+      - We call this unit a noun phrase (`NP`)
+    - New rules:
+      - `S -> NP V`
+      - `NP -> (D) (A) N (P NP)`
+        - Units in `()` are optional
+  - Verb Phrases
+    - A subject `NP` can combine with more than just a word
+      - We call this unit a verb phrase (`VP`)
+    - New rules:
+      - `S -> NP VP`
+      - `VP -> V (NP)`
+  - Prepositional Phrases
+    - In English, prepositions are usually followed by an `NP`
+      - We call the unit that consists of the preposition and the `NP` that follows it a prepositional phrase (`PP`)
+    - Rules for `PP`s
+      - `PP -> P NP`
+      - `NP -> (D) (A) N (PP)`
+      - `VP -> V (NP) (PP)` 
+
+
+
+## Lecture 11:
 
 - 
 
