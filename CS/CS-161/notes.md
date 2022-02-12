@@ -4052,6 +4052,89 @@
 
 - Propositional Logic: A Very Simple Logic
 
+  - Syntax
+
+    - The syntax of propositional logic defines the allowable sentences
+    - The atomic sentences consist of a single proposition symbol
+      - Each symbol stands for a proposition that can be true or false
+      - These symbols start with an uppercase letter and may contain other letters or subscripts
+        - These names are arbitrary, but are often chosen to have some mnemonic value
+
+      - There exist 2 proposition symbols with fixed meanings:
+        - `True` is the always-true proposition
+        - `False` is the always-false proposition
+
+    - Complex sentences are constructed from simpler sentences using parentheses and logical connectives
+      - There are 5 connectives in common use:
+        - `¬`: not
+          - A sentence such as `¬X` is called the negation of `X`
+          - A literal is either an atomic sentence (positive literal) or a negated atomic sentence (negative literal)
+
+        - `∧`: and
+          - A sentence whose main conjunctive is `∧` is called a conjunction
+          - The parts of the conjunction are the conjuncts
+
+        - `∨`: or
+          - A sentence using `∨` is a disjunction
+          - The parts of the disjunction are the disjuncts
+
+        - `⇒`: implies
+          - A sentence using `⇒` is called an implication
+          - The LHS is called the premise or antecedent
+          - The RHS is called the conclusion or consequent
+          - Implications are also known as rules or if-then statements
+
+        - `⇔`: iff
+          - A sentence using `⇔` is a biconditional
+
+      - Precedence: `¬`, `∧`, `∨`, `⇒`, `⇔`
+
+  - Semantics
+
+    - The semantics defines the rules for determining the truth of a sentence with respect to a particular model
+      - In propositional logic, a model simply fixes the truth value (`true` or `false`) for every proposition symbol
+
+    - The semantics for propositional logic must specify how to compute the truth value of any sentence, given a model
+      - Done recursively
+      - Atomic sentences:
+        - `True` is true in every model and `False` is false in every model
+        - The truth value of every other proposition symbol must be specified directly in the model
+      - Complex sentences:
+        - `¬P` is true iff `P` is false in `m`
+        - `P ∧ Q` is true iff both `P` and `Q` are true in `m`
+        - `P ∨ Q` is true iff either `P` or `Q` is true in `m`
+        - `P ⇒ Q` is true unless `P` is true and `Q` is false in `m`
+        - `P ⇔ Q` is true iff `P` and `Q` are both true or both false in `m`
+
+  - A Simple Inference Procedure
+
+    - ```pseudocode
+      function TT-ENTAILS?(KB, α) returns true or false
+      	inputs: KB, the knowledge base, a sentence in propositional logic
+      	        α, the query, a sentence in propositional logic
+      	        
+      	symbols <- a list of the proposition symbols in KB and α
+      	return TT-CHECK-ALL(KB, α, symbols, {})
+      	
+      function TT-CHECK-ALL(KB, α, symbols, model) returns true or false
+      	if EMPTY?(symbols) then
+      		if PL-TRUE?(KB, model) then return PL-TRUE?(α, model)
+      		else return true // When KB is false, always return true
+      	else do
+      		P <- FIRST(symbols)
+      		rest <- REST(symbols)
+      		return (TT-CHECK-ALL(KB, α, rest, model ∪ { P = true })
+      		        and
+      		        TT-CHECK-ALL(KB, α, rest, model ∪ { P = false }))
+      ```
+
+      - Performs a recursive enumeration of a finite space of assignments to symbols
+      - Sound because it implements directly the definition of entailment
+      - Complete because it works for any KB and `α` and always terminates
+        - `2^n` models, resulting in a `O(2^n)` time complexity
+
+    - Propositional entailment is co-NP-complete, so every known inference algorithm for propositional logic has a worst-case complexity that is exponential in the size of the input
+
 - Propositional Theorem Proving
 
 - Effective Propositional Model Checking
