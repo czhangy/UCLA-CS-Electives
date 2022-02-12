@@ -1425,9 +1425,122 @@
       - Picking the action that wins most tricks on average
 
 
-  
 
-## Lecture 12:
+
+## Lecture 12: Game Playing and Logic
+
+- Games of Imperfect Information
+
+  - Suppose that each deal `s` occurs with probability `P(s)`, the move we want is:
+
+    - $$
+      \text{argmax}_a\sum_sP(s)\text{MINIMAX}(\text{RESULT}(s,a))
+      $$
+
+  - In practice, the number of possible deals is rather large
+
+  - We resort to Monte Carlo approximation:
+
+    - We take a random sample of `N` deals instead of adding up all the deals
+
+    - The probability of deal `s` appearing in the sample is proportional to `P(s)`
+
+    - $$
+      \text{argmax}_a\frac{1}{N}\sum^N_{i=1}\text{MINIMAX}(\text{RESULT}(s_i,a))
+      $$
+
+  - Example: Kriegspiel
+
+    - A partially observable variant of chess in which pieces can move but are completely invisible to the opponent
+    - Rules:
+      - White and Black each see a board containing only their own pieces
+      - A referee, who can see all the pieces
+      - White proposes to the referee any move that would be legal if there were no black pieces
+        - If the move is in fact illegal (because of the black pieces), the referee announces "illegal"
+
+    - Can White win the game?
+    - Guaranteed checkmate: for each possible percept sequence, leads to an actual checkmate for every possible board state, regardless of how the opponent moves
+
+  - Proper Analysis
+
+    - Intuition that the value of an action is the average of its values in all actual states is wrong
+    - With partial observability, value of an action depends on the information state or belief state the agent is in
+    - Can generate and search a tree of information states
+    - Leads to rational behaviors such as:
+      - Acting to obtain information
+      - Signaling to one's partner
+      - Acting randomly to minimize information disclosure
+
+- Summary
+
+  - Games are fun and dangerous to work on
+  - They illustrate several important points about AI:
+    - Perfection is unattainable => must approximate
+      - Results in information loss, and possibly a suboptimal solution
+
+    - Good idea to think about what to think about
+    - Uncertainty constraints the assignment of values to stress
+    - Optimal decisions depend on information state, not real state
+
+  - Games are to AI as grand prix racing is to automobile design
+
+- Logical Agents
+
+  - Outline:
+
+    - Knowledge-Based Agents
+    - Wumpus World
+    - Logic in General - Models and Entailment
+    - Propositional (Boolean) Logic
+    - Equivalence, Validity, Satisfiability
+    - Inference Rules and Theorem Proving
+      - Forward Chaining
+      - Resolution
+
+  - Knowledge Bases
+
+    - A set of sentences in a formal language
+    - Declarative approach to building an agent (or other system):
+      - `TELL` it what it needs to know
+      - Then it can `ASK` itself what to do - answers should follow from the KB
+
+    - The inference engine contains domain-independent algorithms
+    - The KB contains domain-specific content
+
+  - A Simple Knowledge-Based Agent
+
+    - ```pseudocode
+      function KB-AGENT(percept) returns an action
+      	static: KB, a knowledge base
+      	        t, a counter, initially 0, indicating time
+          
+          TELL(KB, MAKE-PERCEPT-SENTENCE(percept, t))
+          action <- ASK(KB, MAKE-ACTION-QUERY(t))
+          TELL(KB, MAKE-ACTION-SEQUENCE(action, t))
+          t <- t + 1
+          return action
+      ```
+
+    - The agent must be able to:
+
+      - Represent states, actions, etc.
+      - Incorporate new percepts
+      - Update internal representations of the world
+      - Deduce hidden properties of the world
+      - Deduce appropriate actions
+
+  - Wumpus World
+
+    - Informal Description:
+      - Grid world
+      - Pit causes breeze in adjacent cells
+      - Wumpus causes stench in adjacent cells
+      - Find the gold
+
+
+
+
+## Lecture 13: 
 
 - 
 
@@ -3775,7 +3888,181 @@
 
 
 
-## Reading 7:
+## Reading 7: Logical Agents
+
+- Knowledge-Based Agents
+
+  - The central component of a knowledge-based agent is its knowledge base, or KB
+
+    - This is a set of sentences
+    - Each sentence is expressed in a language called a knowledge representation language and represents some assertion about the world
+    - A sentence is called an axiom when the sentence is taken as given without being derived from other sentences
+    - `TELL` is a way to add new sentences to the knowledge base
+    - `ASK` is a way to query the knowledge base for what is known
+      - Both operations involve inference, the process of deriving new sentences from old ones
+      - Inference must obey the requirement that when one `ASK`s a question of the KB, the answer should follow from what has been `TELL`ed to the KB previously
+        - Inference shouldn't make things up as it goes along
+
+  - ```pseudocode
+    function KB-AGENT(percept) returns an action
+    	persistent: KB, a knowledge base
+    	            t, a counter, initially 0, indicating time
+        
+        TELL(KB, MAKE-PERCEPT-SENTENCE(percept, t))
+        action <- ASK(KB, MAKE-ACTION-QUERY(t))
+        TELL(KB, MAKE-ACTION-SEQUENCE(action, t))
+        t <- t + 1
+        return action
+    ```
+
+    - The KB may initially contain some background knowledge
+    - Each time the agent program is called, it does 3 things:
+      - `TELL`s the KB what it perceives
+      - `ASK`s the KB what action it should perform
+        - In the process of answering this query, extensive reasoning may be done about the current state of the world, outcomes of possible action sequences, etc.
+      - The agent program `TELL`s the KB which action was chosen, and the agent executes the action
+    - The details of the representation language are hidden inside 3 functions that implement the interface between the sensors/actuators on one side and the core representation and reasoning system on the other:
+      - `MAKE-PERCEPT-SEQUENCE` constructs a sentence asserting that the agent perceived the given percept at the given time
+      - `MAKE-ACTION-QUERY` constructs a sentence that asks what action should be done at the current time
+      - `MAKE-ACTION-SENTENCE` constructs a sentence asserting that the chose action was executed
+
+  - The knowledge-based agent is not an arbitrary program for calculating actions
+
+    - It is amenable to a description at the knowledge levels
+    - We need specify only what the agent knows and what its goals are in order to fix its behavior
+    - Independent of how the agent works at the implementation level
+
+  - The declarative approach to system building involves `TELL`ing the agent what it needs to know until it can operate in its environment
+
+  - The procedural approach encodes desired behaviors directly as program code
+
+  - A successful agent often combines both the declarative and procedural approach
+
+    - Declarative knowledge can often be compiled into more efficient procedural code
+
+- The Wumpus World
+
+  - The wumpus world is an environment in which knowledge-based agents can show their worth
+    - Is a cave consisting of rooms connected by passageways
+    - The wumpus lurks somewhere in the cave, and eats anyone who enters its room
+    - The agent has one arrow, with which they can attempt to shoot the wumpus with
+    - Some rooms contain bottomless pits that will trap the agent, but not the wumpus
+    - There is a possibility of finding a heap of gold
+    - PEAS description:
+      - Performance measure: `+1000` for climbing out of the cave with the gold, `-1000` for falling into a pit or being eaten by the wumpus, `-1` for each action taken, `-10` for using up the arrow
+        - The game ends when either the agent dies or when the agent climbs out of the cave
+      - Environment: a 4 x 4 grid of rooms
+        - The agent always starts in the square labeled `[1, 1]`, facing to the right
+        - The locations of the gold and the wumpus are chosen randomly, with a uniform distribution, from the squares other than the start square
+        - Each square other than the start can be a pit, with probability 0.2
+      - Actuators: the agent can move `Forward`, `TurnLeft` by 90°, or `TurnRight` by 90°
+        - The agent dies if they enter a room with a pit or a living wumpus
+        - If the agent tries to move forward into a wall, they don't move
+        - `Grab` can be used to pick up gold if it is in the same room as the agent
+        - `Shoot` can be used to fire an arrow in a straight line in the direction the agent is facing
+          - This arrow continues until it hits the wumpus or a wall
+          - Only the first `Shoot` action has any effect
+        - `Climb` can be used to climb out of the cave from square `[1, 1]`
+      - Sensors: the agent has 5 sensors, each of which gives a single bit of information:
+        - In the square containing the wumpus and in the directly adjacent squares the agent will perceive a `Stench`
+        - In the squares directly adjacent to a pit, the agent will perceive a `Breeze`
+        - In the square where the gold is, the agent will perceive a `Glitter`
+        - When an agent walks into a wall, it will perceive a `Bump`
+        - When the wumpus is killed, it emits a `Scream` that can be perceived anywhere in the cave
+        - The percepts will be given to the agent program in the form of a list of 5 symbols
+  - The wumpus environment is discrete, static, and single-agent
+    - It's sequential because rewards may come only after actions are taken
+    - It's partially observable, as some aspects of the state are not directly perceivable
+      - The agent's location, the wumpus' status, and the availability of an arrow
+  - The main challenge for an agent in the environment is the initial ignorance of the configuration of the environment
+    - This would seem to require logical reasoning
+  - Note that when the agent draws a conclusion from the available information, that conclusion is guaranteed to be correct if the available information was correct
+
+- Logic
+
+  - The sentences that make up KBs are expressed according to the syntax of the representation language
+
+    - This syntax specifies all sentences that are well formed
+
+  - Logic must also define the semantics/meaning of sentences
+
+    - The semantics define the truth of each sentence with respect to each possible world
+    - In standard logics, every sentence must be either true or false in each possible world, it cannot be in between
+
+  - When precision is required, the term "possible world" is replaced with model
+
+    - Possible worlds are thought of as (potentially) real environments that the agent may or may not be in
+    - Models are mathematical abstractions, each of which fixes the truth or falsehood of every relevant sentence
+    - If a sentence `α` is true in model `m`, we sat that `m` satisfies `α`, or that `m` is a model of `α`
+      - The notation `M(α)` is used to represent the set of all models of `α`
+
+  - Logical reasoning involves the relation of logical entailment between sentences
+
+    - This refers to the idea that a sentence follows logically from another sentence
+
+    - If `α` entails `β`, we write that `α |= β`
+
+    - The formal definition of entailment is that `α |= β` iff in every model in which `α` is true, `β` is also true
+
+      - $$
+        \alpha\models\beta\text{ if and only if }M(\alpha)\subseteq M(\beta) 
+        $$
+
+      - Note that this means `α` is a stronger assertion than `β`, meaning `α` rules out more worlds
+
+  - The KB can be thought of as a set of sentences or as a single sentence that asserts all the individual sentences
+
+    - The KB is false in models that contradict what the agent knows
+
+  - Using the definition of entailment to derive conclusions is called carrying out logical inference
+
+    - Analogy:
+
+      - Things of the set of all consequences of KB as a haystack and of `α` as a needle
+      - Entailment is like the needle being in the haystack
+      - Inferences is like finding the needle in the haystack
+
+    - If an inference algorithm `i` can derive `α` from KB, we write:
+
+      - $$
+        KB\vdash_i\alpha
+        $$
+
+      - `α` is derived from KB by `i` or `i` derives `α` from KB
+
+    - An inference algorithm that derives only entailed sentences is called sound or truth-preserving
+
+      - Unsound inference algorithms essentially make things up as they go along
+
+    - For an inference algorithm to be complete, it must be able to derive any sentence that is entailed
+
+  - If KB is true in the real world, then any sentence `α` derived from KB by a sound inference procedure is also true in the real world
+
+    - Inference process operates on syntax, but corresponds to the real-world relationship whereby some aspect of the real world is the case by virtue of other aspects of the real world being the case
+
+  - Grounding is the connection between logical reasoning processes and the real environment in which the agent exists
+
+    - How do we know that KB is true in the real world?
+    - The agent's sensors connect its KB with the real world
+      - The meaning of true and percept sequences are defined by the processes of sensing and sentence construction that produce them
+    - The agent also has knowledge of general rules
+      - Possibly derived from perceptual experience, but not a direct statement of that experience
+      - Produced by a sentence construction process called learning
+        - Not always 100% accurate, but good learning procedures give reason for optimism
+
+- Propositional Logic: A Very Simple Logic
+
+- Propositional Theorem Proving
+
+- Effective Propositional Model Checking
+
+- Agents Based on Propositional Logic
+
+- Summary
+
+
+
+## Reading 8:
 
 - 
 
