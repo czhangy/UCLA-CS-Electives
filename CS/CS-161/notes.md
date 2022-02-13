@@ -4005,7 +4005,7 @@
     - The formal definition of entailment is that `α |= β` iff in every model in which `α` is true, `β` is also true
 
       - $$
-        \alpha\models\beta\text{ if and only if }M(\alpha)\subseteq M(\beta) 
+        \alpha\models\beta\text{ if and only if }M(\alpha)\subseteq M(\beta)
         $$
 
       - Note that this means `α` is a stronger assertion than `β`, meaning `α` rules out more worlds
@@ -4136,6 +4136,235 @@
     - Propositional entailment is co-NP-complete, so every known inference algorithm for propositional logic has a worst-case complexity that is exponential in the size of the input
 
 - Propositional Theorem Proving
+
+  - Thus far, we have determined entailment through the process of model checking
+
+    - Enumerating models and showing that the sentence must hold in all models
+
+  - Entailment can also be done by theorem proving
+
+    - Applying rules of inference directly to the sentences in our KB to construct a proof of the desired sentence without consulting models
+    - If the number of models is large, but the length of the proof is short, this method can be more efficient than model checking
+
+  - Two sentences `α` and `β` are logically equivalent if they are true in the same set of models
+
+    - $$
+      \alpha\equiv\beta
+      $$
+
+    - Equivalences play much the same role in logic as arithmetic identities do in ordinary mathematics
+
+    - Any two sentences `α` and `β` are logically equivalent iff each of them entails the other:
+
+      - $$
+        \alpha\equiv\beta\text{ iff }\alpha\models\beta\text{ and }\beta\models\alpha
+        $$
+
+  - A sentence is valid if it is true in all models
+
+    - Also known as tautologies, which are necessarily true
+    - Every valid sentence is equal to `True`, since `True` is true in all models
+    - Using the concept of validity and the definition of entailment, we can derive the deduction theorem:
+      - For any sentences `α` and `β`, `α ⊨ β` iff the sentence `(α ⇒ β)` is valid
+      - States that every valid implication sentence describes a legitimate inference
+
+  - A sentence is satisfiable if it is true in, or satisfied by, some model
+
+    - Satisfiability can be checked by enumerating the possible models until one is found that satisfies the sentence
+    - The SAT problem is the problem of determining the satisfiability of sentences in propositional logic
+      - First problem proved to be NP-complete
+
+    - Connected with validity
+      - `α` is valid iff `¬α` is unsatisfiable
+      - `α` is satisfiable iff `¬α` is not valid
+      - `α ⊨ β` iff the sentence `(α ∧ ¬β)` is unsatisfiable
+        - Proof by contradiction
+
+  - One property of logical systems is monotonicity, which says that the set of entailed sentences can only increase as information is added to the KB
+
+    - $$
+      \text{if }KB\models\alpha\text{ then }KB\and\beta\models\alpha
+      $$
+
+    - Inference rules can be applied whenever suitable premises are found in the KB
+      - The conclusion of the rule must follow regardless of what else is in the KB
+
+  - Inference and Proofs
+
+    - Inference Rules
+
+      - Modus Ponens
+
+        - $$
+          \frac{\alpha\implies\beta,\quad\alpha}{\beta}
+          $$
+
+        - Whenever any sentences of the form `α ⇒ β` and `α` are given, then the sentence `β` can be inferred
+
+      - And-Elimination
+
+        - $$
+          \frac{\alpha\and\beta}{\alpha}
+          $$
+
+        - From a conjunction, any of the conjuncts can be inferred
+
+    - We define a proof problem as follows:
+
+      - Initial State: the initial KB
+      - Actions: the set of actions consists of all the inference rules applied to all the sentences that match the top half of the inference rule
+      - Result: the result of an action is to add the sentence in the bottom half of the inference rule
+      - Goal: the goal is a state that contains the sentence we are trying to prove
+
+    - In many practical cases, finding a proof can be more efficient because the proof can ignore irrelevant propositions, no matter how many of them there are
+
+  - Proof by Resolution
+
+    - Resolution is an inference rule that yields a complete inference algorithm when couple with any complete search algorithm
+
+    - The unit resolution rule takes a clause and a literal and produces a new clause:
+
+      - $$
+        \frac{l_1\ \or...\or\ l_k,\quad m}{l_1\ \or...\or\ l_{i-1}\or l_{i+1}\ \or...\or\ l_k}
+        $$
+
+      - Each `l` is a literal and `l_i` and `m` are complementary literals
+
+      - A clause is a disjunction of literals
+
+      - Note that a single literal can be viewed as a disjunction of one literal, also known as a unit clause
+
+    - The unit resolution rule can be generalized to the full resolution rule
+
+      - $$
+        \frac{l_1\ \or...\or\ l_k,\quad m_1\ \or...\or\ m_n}{l_1\ \or...\or\ l_{i-1}\or l_{i+1}\ \or...\or\ l_k\or m_1\or...\or\ m_{j-1}\ \or...\or\ m_n }
+        $$
+
+      - `l_i` and `m_j` are complementary literals
+
+      - Says that resolution takes 2 clauses and produces a new clause containing all of the literals of the original 2 clauses except the 2 complementary literals
+
+      - The resulting clause should contain only one copy of each literal
+
+        - The removal of multiple copies of literals is called factoring
+
+      - Forms the basis for a family of complete inference procedures
+
+        - A resolution-based theorem prover can, for any sentences `α` and `β` in propositional logic, decide whether `α |= β`
+
+    - Conjunctive Normal Form
+
+      - Every sentence of propositional logic is logically equivalent to a conjunction of clauses
+        - A sentence expressed as a conjunction of clauses is said to be in conjunctive normal form, or CNF
+
+      - Procedure:
+        - Eliminate `⇔`, replacing `α ⇔ β` with `(α ⇒ β) ∧ (β ⇒ α)`
+        - Eliminate `⇒`, replacing `α ⇒ β` with `¬α ∨ β`
+        - CNF requires `¬` to appear only in literals, so we move `¬` inwards by repeated application
+          of the following equivalences:
+          - `¬(¬α) ≡ α`
+          - `¬(α ∧ β) ≡ (¬α ∨ ¬β)`
+          - `¬(α ∨ β) ≡ (¬α ∧ ¬β)`
+
+        - Now we have a sentence containing nested `∧` and `∨` operators applied to literals. We
+          apply the distributivity law, distributing `∨` over `∧` wherever possible.
+
+    - A Resolution Algorithm
+
+      - ```pseudocode
+        function PL-RESOLUTION(KB, α) returns true or false
+        	inputs: KB, the knowledge base, a sentence in propositional logic
+        	        α, the query, a sentence in propositional logic
+        	        
+            clauses <- the set of clauses in the CNF representation of KB ∧ ¬α
+            new <- {}
+            loop do
+            	for each pair of clauses C_i, C_j in clauses do
+            		resolvents <- PL-RESOLVE(C_i, C_j)
+            		if resolvents contains the empty clause then return true
+            		new <- new ∪ resolvents
+                if new ⊆ clauses then return false
+                clauses <- clauses ∪ new
+        ```
+
+        - Starts by converting `(KB ∧ ¬α)` into CNF
+        - Then applies the resolution rule to the resulting clauses
+          - Each pair that contains complementary literals is resolved to produce a new clause, which is added to the set if it is not already present
+        - Continues until one of two things happen:
+          - There are no new clauses that can be added, in which case KB does not entail `α`
+          - Two clauses resolve to yield the empty clause, in which case KB entails `α`
+            - Represents a contradiction, as it arises only from resolving two complementary unit clauses
+
+    - Completeness of Resolution
+
+      - The resolution closure `RC(S)` of a set of clauses `S` is the set of all clauses derivable by repeated application of the resolution rule to clauses in `S` or their derivatives
+        - Computed by `PL-RESOLUTION` as the final value of `clauses`
+
+      - The ground resolution theorem states that if a set of clauses is unsatisfiable, then the resolution closure of those clauses contains the empty clause
+
+  - Horn Clauses and Definite Clauses
+
+    - In many practical situations, the full power of resolution is not needed
+      - Some real-world KBs satisfy certain restrictions on the form of sentences they contain, enabling them to use a more restricted and efficient inference algorithm
+
+    - One restricted form is the definite clause, which is a disjunction of literals of which exactly one is positive
+      - A more general version is the Horn clause, which is a disjunction of literals of which at most one is positive
+        - All definite clauses are Horn clauses, as are clauses with no positive literals, called goal clauses
+
+      - Horn clauses are closed under resolution
+        - Resolving two Horn clauses results in another Horn clause
+
+    - KBs containing only definite clauses are interesting because:
+      - Every definite clause can be written as an implication whose premise is a conjunction of positive literals and whose conclusion is a single positive literal
+        - In Horn form, the premise is called the body and the conclusion is called the head
+        - A sentence consisting of a single positive literal is called a fact
+
+      - Inference with Horn clauses can be done through the forward-chaining and backward-chaining algorithms
+        - This type of inference is the basis for logic programming
+
+      - Deciding entailment with Horn clauses can be done in time that is linear in the size of the KB
+
+  - Forward and Backward Chaining
+
+    - ```pseudocode
+      function PL-FC-ENTAILS?(KB, q) returns true or false
+      	inputs: KB, the knowledge base, a set of propositional definite clauses
+      	        q, the query, a proposition symbol
+          count <- a table, where count[c] is the number of symbols in c's premise
+          inferred <- a table, where inferred[s] is initially false for all symbols
+          agenda <- a queue of symbols, initially symbols known to be true in KB
+          
+          while agenda is not empty do
+          	p <- POP(agenda)
+          	if p = q then return true
+          	if inferred[p] = false then
+          		inferred[p] <- true
+          		for each clause c in KB where p is in c.PREMISE do
+          			decrement count[c]
+          			if count[c] = 0 then add c.CONCLUSION to agenda
+          return false
+      ```
+
+      - Determines if `q` is entailed by a KB of definite clauses
+      - Begins from positive literals in the KB
+      - Adds conclusion to the set of known facts if all the premises of an implication are known
+        - Continues until the query `q` is added or no further inferences can be made
+      - Runs in linear time
+
+    - Is sound, as every inference is essentially an application of Modus Ponens
+
+    - Complete, as every entailed atomic sequence will be derived once the algorithm reaches a fixed state
+
+    - Example of the general concept of data-driven reasoning
+
+      - Reasoning in which the focus of attention starts with the known data
+
+    - Backward-chaining works backward from the query
+
+      - Finds implications in the KB whose conclusion is `q`
+      - If all the premises of one of these implications can be proved true through repeated backwards chaining, then `q` is true
+      - Form of goal-directed reasoning
+      - Cost is often much less than linear in the size of the KB, as the process only touches relevant facts
 
 - Effective Propositional Model Checking
 
