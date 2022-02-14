@@ -4368,10 +4368,285 @@
 
 - Effective Propositional Model Checking
 
+  - Section deals with 2 algorithms that work to solve the SAT problem
+
+  - A Complete Backtracking Algorithm
+
+    - Often called the Davis-Putnam Algorithm
+
+    - Essentially a recursive, depth-first enumeration of possible models, but with various improvements:
+
+      - Early termination
+
+        - Detects whether the sentence must be true or false, even with a partially completed model
+        - Avoids examination of entire subtrees in the search space
+
+      - Pure symbol heuristic
+
+        - A pure symbol is a symbol that always appears with the same sign in all clauses
+        - If a sentence has a model, then it has a model with the pure symbols assigned so as to make their literals true
+        - In determining the purity of a symbol, the algorithm can ignore clauses that are already known to be true in the model constructed so far
+
+      - Unit clause heuristic
+
+        - A unit clause is defined as a clause with just one literal
+          - In the context of this algorithm, it also refers to clauses in which all literals but one are already assigned `false` by the model
+
+        - This heuristic assigns all unit clauses before branching on the remainder
+        - Unit propagation is when assigning one unit clause leads to another being assignable
+          - Resembles forward chaining
+
+      - ```pseudocode
+        function DPLL-SATISFIABLE?(s) returns true or false
+        	inputs: s, a sentence in propositional logic
+        	
+        	clauses <- the set of clauses in the CNF representation of s
+        	symbols <- a list of the proposition symbols in s
+        	return DPLL(clauses, symbols, {})
+        	
+        function DPLL(clauses, symbols, model) returns true or false
+        	
+        	if every clause in clauses is true in model then return true
+        	if some clause in clauses is false in model then return false
+        	P, value <- FIND-PURE-SYMBOL(symbols, clauses, model)
+        	if P is non-null then return DPLL(clauses, symbols - P, model ∪ {P=value})
+        	P, value <- FIND-UNIT-CLAUSE(clauses, model)
+        	if P is non-null then return DPLL(clauses, symbols - P, model ∪ {P=value})
+        	P <- FIRST(symbols); rest <- REST(symbols)
+        	return DPLL(clauses, rest, model ∪ {P=true}) or
+        	       DPLL(clauses, rest, model ∪ {P=false})
+        ```
+
+      - Various tricks exist to help SAT solvers scale up to large problems
+
+        - Component analysis
+          - As DPLL assigns truth values to variables, the set of clauses may become separated into disjoint subsets called components
+          - A solver can gain significant speed by working on these components individually
+
+        - Variable and value ordering
+          - The current implementation uses an arbitrary value ordering and always tries `true` before `false`
+          - The degree heuristic suggests choosing the variable that appears most frequently over the remaining clauses
+
+        - Intelligent backtracking
+          - Backtrack up to the relevant point of conflict
+          - SAT solvers use some form of conflict clause learning to record conflicts so that they won't be repeated later in the search
+            - Usually a limited-size set of conflicts is kept, while rarely-used ones are dropped
+
+        - Random restarts
+          - When a run appears to not be making progress, we can restart at the top of the search tree, picking different random choices in variable and value selection
+          - Clauses learned in the initial run can be retained to help prune the search space
+          - Reduces the variance on the time to solution
+
+        - Clever indexing
+          - Indexing structures must be updated dynamically as the computation proceeds
+
+  - Local Search Algorithms
+
+    - One of the simplest and most effective algorithms is `WALKSAT`
+
+      - Picks an unsatisfied clause and picks a symbol in the clause to flip
+
+      - Chooses randomly between 2 ways to flip the symbol:
+
+        - A "min-conflicts" step that minimizes the number of unsatisfied clauses in the new state
+        - A "random walk" step that picks the symbol randomly
+
+      - When this algorithm returns a model, the input sentence is satisfiable
+
+        - When the algorithm returns a failure, the sentence may be unsatisfiable, or the algorithm may have just run out of time
+        - Most useful when we expect a solution to exist
+
+      - ```pseudocode
+        function WALKSAT(clauses, p, max_flips) returns a satisfying model or failure
+        	inputs: clauses, a set of clauses in propositional logic
+        	        p, the probability of choosing to do a random walk move, ~0.5
+        	        max_flips, number of flips allowed before giving up
+            
+            model <- a random assignment of true/false to the symbols in clauses
+            for i = 1 to max_flips do
+            	if model satisfies clauses then return model
+            	clause <- a randomly selected clause from clauses that is false in model
+            	with probability p flip the value in model of a randomly selected symbol
+            	else flip the symbol in clause maximizes the number of satisfied clauses
+            return failure
+        ```
+
+      - Cannot always detect unsatisfiability, which is required to decide entailment
+
+  - The Landscape of Random SAT Problems
+
+    - Underconstrained problems are those in which there are few clauses relative to the number of variables, resulting in an easy SAT problem
+    - Overconstrained problems are the opposite, and are likely to have no solutions
+
 - Agents Based on Propositional Logic
+
+  - The Current State of the World
+
+    - A logical agent operates by deducing what to know from a KB of sentences about the world
+      - KB is composed of axioms and percept sentences obtained from the agent's experience in a particular world
+
+    - Note that a percept only asserts something about the current time
+      - This idea extends to any aspect of the world that changes over time
+      - These aspects are called fluent, essentially synonymous with state variable
+      - Must be dictated by a transition model
+      - By convention, the percept for a given time step happens first, followed by the action for that time step, followed by the transition to the next time step
+
+    - Some aspects are time-independent, and are called atemporal variables
+    - To describe how the world changes, we can write effect axioms that specify the outcome of an action at the next time step
+      - The need for the effect axiom to state what remains unchanged as the result of an action is the frame problem
+        - We could solve this issue by adding frame axioms that explicitly assert all the propositions that remain the same
+        - Inefficient
+        - In the real world, there are very many fluents, but each action typically only changes a small number of those fluents
+          - The world exhibits locality
+
+      - Change focus from writing axioms about actions to writing axioms about fluents
+        - Called a successor-state axiom
+
+    - Problem remains: confirm that all the necessary preconditions of an action hold for it to have its intended effect
+      - Qualification problem
+      - No complete solution in logic, system designers have to use good judgement to decide how detailed the model should be
+
+  - A Hybrid Agent
+
+    - The ability to deduce various aspects of the world can be combined with condition-action rules and with problem-solving algorithms to produce a hybrid agent
+
+    - ```pseudocode
+      function HYBRID-WUMPUS-AGENT(percept) returns an action
+      	inputs: percept, a list, [stench, breeze, glitter, bump, scream]
+      	persistent: KB, a knowledge base, initially the atemporal wumpus physics
+      	            t, a counter, initially 0, indicating time
+      	            plan, an action sequence, initially empty
+          
+          TELL(KB, MAKE-PERCEPT-SEQUENCE(percept, t))
+          TELL the KB the temporal physics sentences for time t
+          safe <- {[x, y]: ASK(KB, OK_x,y^t) = true}
+          if ASK(KB, Glitter^t) = true then
+          	plan <- [Grab] + PLAN-ROUTE(current, {[1, 1]}, safe) + [Climb]
+          if plan is empty then
+          	unvisited <- {[x, y]: ASK(KB, L_x,y^T) = false for all T <= t}
+          	plan <- PLAN-ROUTE(current, unvisited ∩ safe, safe)
+          if plan is empty and ASK(KB, HaveArrow^t) = true then
+          	possible_wumpus <- {[x, y]: ASK(KB, ¬W_x,y) = false}
+          	plan <- PLAN-SHOT(current, possible_wumpus, safe)
+          if plan is empty then // no choice but to take a risk
+          	not_unsafe <- {[x, y]: ASK(KB, ¬OK_x,y^t) = false}
+          	plan <- PLAN-ROUTE(current, unvisited ∩ not_unsafe, safe)
+          if plan is empty then
+          	plan <- PLAN-ROUTE(current, {[1, 1]}, safe) + [Climb]
+          action <- POP(plan)
+          TELL(KB, MAKE-ACTION-SENTENCE(action, t))
+          t <- t + 1
+          return action
+      
+      function PLAN-ROUTE(current, goals, allowed) returns an action sequence
+      	inputs: current, the agent's current position
+      			goals, a set of squares; try to plan a route to one of them
+      			allowed, a set of squares that can form part of the route
+      			
+          problem <- ROUTE-PROBLEM(current, goals, allowed)
+          return A*-GRAPH-SEARCH(problem)
+      ```
+
+      - Agent program maintains and updates a KB as well as a current plan
+      - Initial knowledge contains the atemporal axioms
+      - At each time step, the new percept sentence is added along with all the axioms that depend on `t`
+      - The agent then uses logical inference by `ASK`ing questions of the KB to work out safe/unexplored squares
+      - Constructs a plan based on the priority of the agent's goals
+
+  - Logical State Estimation
+
+    - The program above has a major flaw: the computational expense involved in calls to `ASK` goes up over time
+      - Obvious solution is to cache the results of inference so that the inference process at the next time step can build on the results of previous steps instead of building from scratch
+
+    - Past history of percepts and all their ramifications can be replaced by the belief state
+      - The process of updating the belief state as new percepts arrive is called state estimation
+      - Maintaining this belief state as a logical formula would require a size exponential in the number of symbols
+
+    - A very common natural scheme for approximate state estimation is to represent belief states as conjunctions of literals (1-CNF formulas)
+      - Agent tries to prove `X^t` and `¬X^t` for each symbol given the belief state at `t - 1`
+      - The conjunction of provable literals becomes the new belief state and the previous one is discarded
+      - The set of possible states represented by the 1-CNF belief state includes all states that are in fact possible given the full percept history
+        - Acts as a conservative approximation around the exact belief state
+
+  - Making Plans by Propositional Inference
+
+    - Basic idea:
+
+      - Construct a sentence that includes:
+        - `Init^0`: a collection of assertions about the initial state
+        - `Transition^1, ... , Transition^t`: the successor-state axioms for all possible actions at each time up to some maximum time `t`
+        - The assertion that the goal is achieved at time `t`
+
+      - Present the whole sentence to a SAT solver
+        - If the solver finds a satisfying model, then the goal is achievable
+        - If the sentence is unsatisfiable, then the planning problem is impossible
+
+      - Assuming a model is found, extract from the model those variables that represent actions and are assigned `true`
+        - These form a plan to achieve the goals
+
+    - ```pseudocode
+      function SATPLAN(init, transition, goal, T_max) returns a solution or failure
+      	inputs: init, transition, goal, constitute a description of the problem
+      			T_max, an upper limit for plan length
+          
+          for t = 0 to T_max do
+          	cnf <- TRANSLATE-TO-SAT(init, transition, goal, t)
+          	model <- SAT-SOLVER(cnf)
+          	if model is not null then
+          		return EXTRACT-SOLUTION(model)
+          return failure
+      ```
+
+      - This variation tries each possible number of steps `t` up to some value `T_max`
+        - Guaranteed to find the shortest possible solution if one exists
+      - Approach cannot be used in a partially observable environment
+
+    - `SATPLAN` is a good debugging tool for KBs since it tells us where knowledge may be missing
+
+      - We must add precondition axioms to avoid illegal actions
+      - We must carefully distinguish between entailment and satisfiability
+      - We must introduce action exclusion axioms to prevent multiple simultaneous actions
+
+    - In summary, `SATPLAN` finds models for a sentence containing the initial state, the goal, the successor state axioms, the precondition axioms, and the action exclusion axioms
+
+      - Any model satisfying the propositional sentence will be a valid plan for the original problem
 
 - Summary
 
+  - Intelligent agents need knowledge about the world in order to reach good decisions
+  - Knowledge is contained in agents in the form of sentences in a knowledge representation language that are stored in a knowledge base
+  - A knowledge-based agent is composed of a knowledge base and an inference mechanism
+    - It operates by storing sentences about the world in its knowledge base, using the inference mechanism to infer new sentences, and using these sentences to decide what action to take
+
+  - A representation language is defined by its syntax, which specifies the structure of sentences, and its semantics, which defines the truth of each sentence in each possible world or model
+  - The relationship of entailment between sentences is crucial to our understanding of reasoning
+    - A sentence `α` entails another sentence `β` if `β` is true in all worlds where `α` is true
+    - Equivalent definitions include the validity of the sentence `α ⇒ β` and the unsatisfiability of the sentence `α ∧ ¬β`
+
+  - Inference is the process of deriving new sentences from old ones
+    - Sound inference algorithms derive only sentences that are entailed
+    - Complete algorithms derive all sentences that are entailed
+
+  - Propositional logic is a simple language consisting of proposition symbols and logical connectives
+    - It can handle propositions that are known true, known false, or completely unknown
+
+  - The set of possible models, given a fixed propositional vocabulary, is finite, so entailment can be checked by enumerating models
+    - Efficient model-checking inference algorithms for propositional logic include backtracking and local search methods and can often solve large problems quickly
+
+  - Inference rules are patters of sound inference that can be used to find proofs
+    - The resolution rule yields a complete inference algorithm for KBs that are expressed in conjunctive normal form
+    - Forward chaining and backward chaining are very natural reasoning algorithms for KBs in Horn form
+
+  - Local search methods such as `WALKSAT` can be used to find solutions
+    - Such algorithms are sound but not complete
+
+  - Logical state estimation involves maintaining a logical sentence that describes the set of possible states consistent with the observation history
+    - Each update step requires inference using the transition model of the environment, which is built from successor-state axioms that specify how each fluent changes
+
+  - Decisions within a logical agent can be made by SAT solving: finding possible models specifying future actions sequences that reach the goal
+    - This approach works only for fully observable or sensorless environments
+
+  - Propositional logic does not scale to environments of unbounded size because it lacks the expressive power to deal concisely with time, space, and universal patters of relationships among objects
 
 
 ## Reading 8:
