@@ -916,7 +916,85 @@
 
 
 
-## Lecture 11:
+## Lecture 11: Phrase Structure Rules
+
+- Rewrite Rules:
+  - `S -> NP VP`
+  - `NP -> (D) (A) N (PP)`
+  - `NP -> V (NP) (PP)`
+  - `PP -> P NP`
+- Auxiliaries
+  - Sentences can contain more than one verb
+  - These verbs are called auxiliary verbs (`Aux`)
+    - Ex) can, be, have, do, should, will, etc.
+  - New rule: `S -> NP Aux VP`
+- Complementizer Phrases
+  - Subjects and objects do not have to be `NP`s, they can be clauses too
+  - These units are called complementizer phrases (`CP`) because they start with a complementizer
+  - Ex) that, if, whether
+  - Some new rules:
+    - `S -> CP VP`
+    - `VP -> V (NP) (PP) (CP)`
+    - `CP -> C S`
+  - `CP`s can also occur inside `NP`s: `NP -> (D) (A) N (PP) (CP)`
+- Recursion
+  - Reminder: there is no upper limit on how long sentences can be
+  - Consequence: a sentence can itself contain another sentence
+  - Some of our rules:
+    - `S -> NP VP`
+    - `VP -> V (CP)`
+    - `CP -> C S`
+  - This set of rules is recursive because it produces a sentence within a sentence
+  - Key consequence: English has a limited number of words and a limited number of syntactic rules, but thanks to recursion, we can form an infinite number of sentences
+  - More recursion: `PP`
+    - `VP`s can contain more than one `PP`
+    - Question: how do we allow our phrase structure rules to generate an unbounded number of `PP`s within a `VP`?
+    - Answer: recursion
+      - A rule that introduces one `PP` but can apply to its own output
+      - Rule: `VP -> VP PP`
+    - Key characteristic:
+      - Each application of the `VP` rule introduces one `PP`
+      - But because the `VP` rule can apply to its own output, it can apply over and over again
+      - This allows for an unbounded number of `PP`s in a sentence
+  - Rules that apply to their own output are recursive
+  - Types of Recursion
+    - If a single rule can apply to its own output, the recursion is direct
+      - `VP -> VP PP`
+    - If a sequence of rules can apply to its own subject, the recursion is indirect
+      - `S -> CP VP`
+      - `CP -> C S`
+- Adverbs
+  - Adverbs look similar to adjectives, but often end in a `-ly`
+    - They modify `VP`s
+  - Ex) often, probably, beautifully, etc.
+  - Rules:
+    - `VP -> VP Adv`
+    - `VP -> Adv VP`
+- More on `NP`s
+  - Thus far we have a fairly simple picture of `NP`s: they consist of an `N` and possibly a determiner, an adjective, and a `PP`
+  - Based on recursion, we will now see that this picture is a bit too simplistic
+- More on Recursion: Adjectives
+  - There can be infinitely many adjectives inside an `NP`
+  - Generalizations:
+    - Adjectives have to come between the noun and the determiner
+    - There can be many adjectives but only a single determiner
+  - We want adjectives to come into the structure below the determiner but before the noun
+  - Idea: phrases we considered `NP`s before aren't really `NP`s, but determiner phrases, or `DP`
+  - Rules:
+    - `DP -> (D) NP`
+    - `NP -> A NP`
+    - `NP -> N`
+- More Recursion in `NP`s
+  - As it turns out, adjectives are not the only element that can occur multiple times within an `NP`, `PP`s can as well
+  - Rules:
+    - `DP -> (D) NP`
+    - `NP -> NP PP`
+    - `NP -> N`
+    - `PP -> P DP`
+
+
+
+## Lecture 12:
 
 - 
 
