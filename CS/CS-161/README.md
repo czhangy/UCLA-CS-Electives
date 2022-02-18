@@ -37,8 +37,8 @@
 
 ## Exams
 
-|  Exam   | Score |
-| :-----: | :---: |
-| Midterm |  ???  |
-|  Final  |  ???  |
+|  Exam   |  Score  |
+| :-----: | :-----: |
+| Midterm | 100/100 |
+|  Final  |   ???   |
 
