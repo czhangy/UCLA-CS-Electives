@@ -1540,7 +1540,91 @@
 
 
 
-## Lecture 13: 
+## Lecture 13: Propositional Logic
+
+- Logic in General
+
+  - Logics are formal languages for representing information such that conclusions can be drawn
+  - Syntax defines the sentences in the language
+  - Semantics define the "meaning" of sentences
+    - i.e., define truth of a sentence in a world
+
+- Entailment
+
+  - Entailment means that one thing follows from another
+
+  - $$
+    KB\models\alpha
+    $$
+
+  - Knowledge base `KB` entails sentence `α` iff `α` is true in all worlds where `KB` is true
+
+  - Entailment is a relationship between sentences (i.e., syntax) that is based on semantics
+
+- Models
+
+  - Logicians typically think in terms of models, which are formally structured worlds with respect to which truth can be evaluated
+  - We say `m` is a model of a sentence `α` if `α` is true in `m`
+  - `M(α)` is the set of all models of `α`
+  - Given sentences `α` and `β`, we say `α` entails `β` (`α ⊨ β`), iff `M(α) ⊆ M(β)`
+  - `KB ⊨ α` iff `M(KB) ⊆ M(α)`
+  - Model checking is the process of enumerating all possible models to check that `α` is true in all models in which `KB` is true
+
+- Inference
+
+  - $$
+    KB\vdash_i\alpha
+    $$
+
+  - Sentence `α` can be derived from `KB` by some inference algorithm `i`
+
+    - For instance, model checking is an inference algorithm
+
+  - `i` is sound if whenever `KB` infers `α` using `i`, it is also true that `KB ⊨ α`
+
+  - `i` is complete if whenever `KB ⊨ α`, it is also true that `KB` infers `α` using `i`
+
+  - Preview:
+
+    - We will define a logic (first-order logic) which is expressive enough to say almost anything of interest, and for which there exists a sound and complete inference procedure
+    - That is, the procedure will answer any question whose answer follows from what is known by the `KB`
+
+
+- Propositional Logic: Syntax
+
+  - Propositional logic is the simplest logic, aka boolean logic
+  - The proposition symbols `P1`, `P2`, etc. are atomic sentences
+  - We can generate complex sentences based on atomic sentences using logical connectives
+    - If `S` is a sentence, `¬S` is a sentence (negation)
+    - If `S1` and `S2` are sentences, `S1 ∧ S2` is a sentence (conjunction)
+    - If `S1` and `S2` are sentences, `S1 ∨ S2` is a sentence (disjunction)
+    - If `S1` and `S2` are sentences, `S1 ⇒ S2` is a sentence (implication)
+    - If `S1` and `S2` are sentences, `S1 ⇔ S2` is a sentence (biconditional)
+
+- Propositional Logic: Semantics
+
+  - Each model specifies true/false for each proposition symbol
+
+  - Rules for evaluating truth with respect to a model `m`:
+
+    - `¬S` is true iff `S` is false
+    - `S1 ∧ S2` is true iff `S1` is true and `S2` is true
+    - `S1 ∨ S2` is true iff `S1` is true of `S2` is true
+    - `S1 ⇒ S2` is true unless `S1` is true and `S2` is false
+    - `S1 ⇔ S2` is true iff `S1 ⇒ S2` is true and `S2 ⇒ S1` is true
+
+  - Truth Table for Connectives
+
+    - | `P`  | `Q`  | `¬P` | `P ∧ Q` | `P ∨ Q` | `P ⇒ Q` | `P ⇔ Q` |
+      | :--: | :--: | :--: | :-----: | :-----: | :-----: | :-----: |
+      |  F   |  F   |  T   |    F    |    F    |    T    |    T    |
+      |  F   |  T   |  T   |    F    |    T    |    T    |    F    |
+      |  T   |  F   |  F   |    F    |    T    |    F    |    F    |
+      |  T   |  T   |  F   |    T    |    T    |    T    |    T    |
+
+
+
+## Lecture 14:
 
 - 
 
