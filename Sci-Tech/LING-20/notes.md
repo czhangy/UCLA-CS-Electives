@@ -916,7 +916,7 @@
 
 
 
-## Lecture 11: Phrase Structure Rules
+## Lecture 11: Phrase Structure Rules I
 
 - Rewrite Rules:
   - `S -> NP VP`
@@ -994,7 +994,67 @@
 
 
 
-## Lecture 12:
+## Lecture 12: Phrase Structure Rules II
+
+- More on `DP`s
+  - Changing phrases from `DP` to `NP` means that it's a `DP` that's the subject of a sentence and not an `NP`:
+    - `S -> DP VP`
+    - `S -> DP Aux VP`
+  - Pronouns are determiners, not nouns
+    - `DP -> D`
+- A Final Rule: Coordination
+  - Coordination can combine any elements that are of the same type
+  - Rule: `α -> α and α` where `α` can be any category, but it has to be the same in all 3 places
+- Overview: Our Phrase Structure Rules
+  - `S -> DP (Aux) VP`
+  - `S -> CP (Aux) VP`
+  - `DP -> (D) NP`
+  - `DP -> D`
+  - `NP -> A NP`
+  - `NP -> NP PP`
+  - `NP -> NP CP`
+  - `NP -> N`
+  - `PP -> P DP`
+  - `CP -> C S`
+  - `VP -> V (DP) (CP)`
+  - `VP -> VP PP`
+  - `VP -> VP Adv`
+  - `VP -> Adv VP`
+  - `α -> α and α`
+- Rewrite Rules
+  - Phrase structure rules are also called rewrite rules
+  - The idea: to say an `S`, you can use either a `DP VP` sequence, or a `CP VP` sequence, etc.
+
+- A New Construction
+  - Problem: there are sentences that our phrase-structure rules cannot handle
+    - Ex) "I know whose shoulder the parrot is sitting on."
+  - Surprising properties:
+    - The `P` "on" is not followed by a `DP`
+    - "whose shoulder" occurs in a position that our phrase-structure rules cannot put it into
+    - In the meaning of the sentence "whose shoulder" and "on" are linked: the parrot is sitting on someone's shoulder
+- The Limits of Phrase-Structure Rules
+  - The extra `DP` can appear only if there's a `DP` missing somewhere else
+  - The problem: phrase-structure rules are unable to handle this
+    - We can add rules that allow can an extra `DP` and rules that allow for missing `DP`s
+    - But, this extra `DP` is okay iff a `DP` is missing someplace else
+    - There is no way to connect the two with phrase-structure rules
+  - Solution:
+    - Key idea: sometimes phrases can be spoken in a position different from where phrase-structure rules put them
+    - In other words: "whose shoulder" starts out after "on" but then moves to a different position, where it is pronounced
+- Movement
+  - Movement rule (will be slightly revised): move an element that contains a question word to `C`, replacing "that"
+  - Because most question words start with "wh" in English, this rule is often called wh-movement
+- `PP` Movement
+  - `DP`s are not the only elements that can move, `PP`s can as well
+- Movement and Constituents
+  - Not just any string of words can be moved
+  - Question: why can we move "whose shoulder" and "on whose shoulder", but not "on whose"?
+
+
+
+## Lecture 13: Syntactic Movement
 
 - 
+
+
 
