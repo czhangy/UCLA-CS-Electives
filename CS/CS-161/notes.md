@@ -4809,10 +4809,10 @@
       - Symbols begin with uppercase letters by convention
       - Naming of the symbols is decided by the user
       - Predicate and function symbols come with an arity that fixes the number of arguments
-  
+
     - Each model also includes an interpretation that specifies exactly which objects, relations, and functions are referred to by the constant, predicate, and function symbols
       - Under an interpretation, objects can have no name or multiple names
-  
+
     - Entailment, validity, etc. are defined in terms of all possible models
       - Models vary in the how many objects they contain and in the way the constant symbols map to objects
       - Checking entailment by the enumeration of all possible models is not feasible for first-order logic, as the number of possible models is unbounded
@@ -4918,8 +4918,43 @@
 
       - Decide on a vocabulary of predicates, functions, and constants
         - Translate the important domain-level concepts into logic-level names
+        - Involves many questions of knowledge-engineering style, which can have a significant impact on the project's success
+        - Once the design choices have been made, the result is a vocabulary that is known as the ontology of the domain
+          - Determines what kinds of things exist, but does not determine their specific properties and interrelationships
+
+      - Encode general knowledge about the domain
+        - Write down the axioms for all the vocabulary terms
+        - Pins down the meaning of the terms, enabling the expert to check the content
+        - Reveals misconceptions or gaps in the vocabulary that must be fixed
+
+      - Encode a description of the specific problem instance
+        - Involves writing simple atomic sentences about instances of concepts that are already part of the ontology
+        - For a logical agent, problem instances are supplied by the sensors
+        - A disembodied KB is supplied with additional sentences in the same way that traditional programs are supplied with input data
+
+      - Pose queries to the inference procedure and get answers
+        - Let the inference procedure operate on the axioms and problem-specific facts to derive the facts we're interested in knowing
+        - Avoids the need for writing an application-specific solution algorithm
+
+      - Debug the KB
+        - The answers will be correct for the KB as written, but may not be the answers the user was expecting
+        - Missing axioms or axioms that are too weak can be easily identified by noticing places where the chain of reasoning stops unexpectedly
+        - Incorrect axioms can be identified because they are false statements about the world
 
 - Summary
+  - Knowledge representation languages should be declarative, compositional, expressive, context independent, and unambiguous
+  - Logics differ in their ontological commitments and epistemological commitments
+    - While propositional logic commits only to the existence of facts, first-order logic commits to the existence of objects and relations and thereby gains expressive power
+
+  - The syntax of first-order logic builds on that of propositional logic
+    - It adds terms to represent objects, and has universal and existential quantifiers to construct assertions about all or some of the possible values of the quantified variables
+
+  - A possible world, or model, for first-order logic includes a set of objects and an interpretation that maps constant symbols to objects, predicate symbols to relations among objects, and function symbols to functions on objects
+  - An atomic sentence is true just when the relation named by the predicate holds between the objects named by the terms
+    - Extended interpretations, which map quantifier variables to objects in the model, define the truth of quantified sentences
+
+  - Developing a KB in first-order logic requires a careful process of analyzing the domain, choosing the vocabulary, and encoding the axioms required to support the desired inferences
+
 
 ​	
 
