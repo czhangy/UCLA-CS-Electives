@@ -4733,7 +4733,197 @@
   - Propositional logic does not scale to environments of unbounded size because it lacks the expressive power to deal concisely with time, space, and universal patters of relationships among objects
 
 
-## Reading 8:
+
+## Reading 8: First-Order Logic
+
+- Representation Revisited
+  - Programming languages lack a general mechanism for deriving facts from other facts
+    - Each update to a data structure is done by a domain-specific procedure whose details are derived by the programmer from their own knowledge of the domain
+    - Contrasts with the declarative nature of propositional logic, in which knowledge and inference are separate and inference is entirely domain independent
+  - Data structures in programming languages also lack the expressiveness required to handle partial information
+  - Propositional logic is a declarative language
+    - Its semantics is based on a truth relation between sentences and possible worlds
+    - Has sufficient expressive power to deal with partial information using disjunction and negation
+    - Has the property of compositionality
+      - The meaning of a sentence is a function of the meaning of its parts
+      - Non-compositionality makes life a lot more difficult for the reasoning system
+    - Lacks the expressive power to concisely describe an environment
+      - However, the semantics and syntax of English make this possible
+  - The Language of Thought
+    - Natural languages are very expressive
+      - There is a long tradition in linguistics and the philosophy of language to refer to natural language as a declarative knowledge representation language
+    - Natural language serves as a medium for communication rather than pure representation
+      - The meaning of a sentence depends both on the sentence itself and the context in which the sentence was spoken
+    - Natural languages suffer from ambiguity
+    - The Sapir-Whorf hypothesis claims that our understanding of the world is strongly influenced by the language we speak
+      - Leads to the suggestion that people process words to form some sort of nonverbal representation
+      - Words can serve as anchor points that affect how we perceive the world
+    - From the viewpoint of formal logic, representing the same knowledge in two different wats makes absolutely no difference
+      - The same facts will be derivable from either representation
+      - In practice, one representation might require fewer steps to derive a conclusion
+      - For non-deductive tasks such as learning from experience, outcomes are necessarily dependent on the form of the representations used
+        - The influence of language on thought is unavoidable for any agent that does learning
+  - Combining the Best of Formal and Natural Languages
+    - We can adopt the declarative, compositional semantics that are context-independent and unambiguous of propositional logic and build a more expressive logic on that foundation by borrowing from natural language while avoiding its drawbacks
+    - Natural language elements:
+      - Nouns and noun phrases that refer to objects
+      - Verbs and verb phrases that refer to relations among objects
+        - Some of these relations are functions: relations in which there is only one value for a given input
+    - Almost any assertion can be thought of as referring to objects and proportions or relations
+    - The language of first-order logic is built around objects and relations
+      - Can express facts about some or all of the objects in the universe, allowing one to represent general laws or rules
+    - The primary difference between propositional and first-order logic lies in the ontological commitment made by each language
+      - What it assumes about the nature of reality
+      - This commitment is expressed mathematically through the nature of the formal models with respect to which the truth of sentences is defined
+        - Propositional logic assumes that there are facts that either hold or do not hold in the world
+        - First-order logic assumes that the world consists of objects with certain relations among them that do or do not hold
+      - Special-purpose logics make further ontological commitments
+        - Temporal logic assumes that facts hold at particular times and that those times are ordered
+        - Higher-order logic views the relations and functions referred to by first-order logic as objects in themselves
+          - Allows one to make assertions about all relations
+          - Strictly more expressive than first-order logic
+      - Logic can also be characterized by its epistemological commitments
+        - The possible states of knowledge that it allows with respect to each fact
+        - In propositional and first-order logic, a sentence represents a fact and the agent either believes the sentence to be true, false, or unknown => 3 possible states
+        - In systems using probability theory, they can have any degree of belief ranging from `0` to `1`
+- Syntax and Semantics of First-Order Logic
+  - Models for First-Order Logic
+    - Models of a logical language are the formal structures that constitute the possible worlds under consideration
+      - Each model links the vocabulary of the logical sentences to elements of the possible world, so that the truth of any sentence can be determined
+      - Models for propositional logic link proposition symbols to predefined truth values
+
+    - Models for first-order logic are more interesting
+      - The domain of a model is the set of objects or domain elements it contains
+        - The domain is required to be nonempty, every possible world must contain at least one object
+        - Mathematically speaking, it doesn't matter what these objects are, it just matters how many there are in each particular model
+
+      - A relation is the set of tuples or objects that are related
+        - Relations may be binary or unary
+
+      - Models require total functions, which means there must be a value for every input tuple
+  - Syntax and Interpretations
+    - The basic syntactic elements of first-order logic are the symbols that stand for objects, relations, and functions
+      - Constant symbols stand for objects
+      - Predicate symbols stand for relations
+      - Function symbols stand for functions
+      - Symbols begin with uppercase letters by convention
+      - Naming of the symbols is decided by the user
+      - Predicate and function symbols come with an arity that fixes the number of arguments
+  
+    - Each model also includes an interpretation that specifies exactly which objects, relations, and functions are referred to by the constant, predicate, and function symbols
+      - Under an interpretation, objects can have no name or multiple names
+  
+    - Entailment, validity, etc. are defined in terms of all possible models
+      - Models vary in the how many objects they contain and in the way the constant symbols map to objects
+      - Checking entailment by the enumeration of all possible models is not feasible for first-order logic, as the number of possible models is unbounded
+  - Terms
+    - A term is a logical expression that refers to an object
+    - It is not always convenient to have a distinct symbol to name every object => this is what function symbols are for
+      - A complex term is formed by a function symbol followed by a parenthesized list of terms as arguments to the function symbol
+      - Remember that a complex term is just a complicated kind of name
+      - We can reason about these complex terms without ever providing a definition of the function symbol
+  - Atomic Sentences
+    - We can put terms that refer to objects and predicate symbols that refer to relations together to make atomic sentences that state facts
+    - An atom is formed from a predicate symbol optionally followed by a parenthesized list of terms
+      - These can have complex terms as arguments
+    - An atom is true in a given model if the relation referred to by the predicate symbol holds among the objects referred to by the arguments
+  - Complex Sentences
+    - We can use logical connectives to construct more complex sentences
+      - Uses the same syntax and semantics as propositional calculus
+  - Quantifiers
+    - Since our logic allows objects, it is natural to want to express properties of entire collections of objects instead of enumerating the objects by name => quantifiers let us do this
+    - (Universal quantification (`∀`)
+      - `∀` is usually pronounced "for all"
+        - Ex) `∀x King(x) ⇒ Person(x)` means "for all `x`, if `x` is a king, then `x` is a person"
+        - The symbol `x` is called a variable, which, by convention, are all lowercase letters
+          - A variable is a term by itself, and can serve as the argument of a function
+          - A term with no variables is called a ground term
+      - The sentence `∀x P`, where `P` is any logical expression, says that `P` is true for every object `x`
+        - More precisely, `∀x P` is true in a given model if `P` is true in all possible extended interpretations constructed from the interpretation given in the model, where each extended interpretation specifies a domain element to which `x` refers
+      - By asserting the universally quantified sentence, which is equivalent to asserting a whole list of individual implications, we end up asserting the conclusion of the rule just for those objects for whom the premise is true, while saying nothing about the individuals for whom the premise is false
+        - Thus, the truth-table definition of `⇒` is perfect for writing general rules with universal quantifiers
+      - A common mistake is to use conjunction instead of implication
+    - Existential quantification (`∃`)
+      - Existential quantifiers allow us to make a statement about some object in the universe without naming it
+      - `∃x` is pronounced "there exists an `x` such that"
+        - Ex) `∃x Crown(x) ∧ OnHead(x, John)` means "King John has a crown on his head"
+      - Intuitively, `∃x P` says that `P` is true for at least one object `x`
+        - More precisely, `∃x P` is true in a given model if `P` is true in at least one extended interpretation that assigns `x` to a domain element
+      - `∧` is the natural connective to use with `∃`
+    - Nested Quantifiers
+      - Simplest case is where quantifiers are of the same type
+        - Ex) `∀x ∀y Brother (x, y) ⇒ Sibling(x, y)` means "brothers are siblings"
+          - Can be written as `∀x, y Brother (x, y) ⇒ Sibling(x, y)`
+      - Some cases have mixtures of quantifiers
+        - Ex) `∀x ∃y Loves(x, y)` means "everybody loves somebody"
+        - Ex) `∃y ∀x Loves(x, y)` means "there is someone who is loved by everyone"
+        - Order of quantification is very important
+    - Connections between `∀` and `∃`
+      - `∀x ¬P` is equivalent to `¬∃x P`
+      - `∀x P` is equivalent to `¬∃x ¬P`
+    - Equality
+      - We can use the equality symbol to signify that two terms refer to the same object
+        - Ex) `Father(John) = Henry` means "the object referred to by `Father(John)` and `Henry` are the same"
+      - Can be used to state facts about a given function
+      - Can also be used with negation to insist that two terms are not the same object
+    - An alternative semantics?
+      - Some sentences are difficult to translate from natural language into first-order semantics
+      - One popular proposal to solve this is used in database systems
+        - Insist that every constant symbol refer to a distinct object, the unique-names assumption
+        - Assume that atomic sentences not known to be true are in fact false, the closed-world assumption
+        - Invoke domain closure, meaning that each model contains no more domain elements than those named by the constant symbols
+        - These are database semantics
+        - Requires definite knowledge of what the world contains
+      - There is no one correct semantics for logic
+        - The usefulness of any proposed semantics depends on how concise and intuitive it makes the expression of the kinds of knowledge we want to write down
+- Using First-Order Logic
+  - Sentences are added to a KB using `TELL`, exactly as in propositional logic
+    - These sentences are called assertions
+
+  - We can ask questions of the KB using `ASK`
+    - These questions are called queries or goals
+    - Any query that is logically entailed by the KB should be answered affirmatively
+    - If we want to know what value of `x` makes a sentence true, we use `ASKVARS`, which yields a stream of answers
+      - These answers are called substitutions or binding lists
+      - Usually reserved for KBs consisting solely of Horn clauses, as in these KBs, every way of making the query true will bind the variables to specific values
+
+  - Axioms provide the basic factual information from which useful conclusions can be derived
+    - They are commonly associated with purely mathematical domains
+    - Can be definitions, plain facts, or may provide more general information about certain predicates
+
+  - Definitions define functions and predicates in terms of other predicates
+    - Definitions eventually reach a basic set of predicates in terms of which the others are ultimately defined
+      - This basic set is not clearly identifiable in all domains
+
+  - Theorems are entailed by the axioms
+    - From a purely logical point of view, a KB doesn't need to contain theorems, as they don't increase the set of conclusions that follow from the KB
+    - From a practical point of view, theorems are essential to reducing the computational cost of deriving new sentences
+      - Without them, a reasoning system has to start from first principles every time
+
+- Knowledge Engineering in First-Order Logic
+  - Knowledge engineering is the general process of knowledge base construction
+  - The Knowledge-Engineering Process
+    - Knowledge engineering projects vary widely in content, scope, and difficulty, but all include the following steps:
+      - Identify the task
+        - Delineate the range of questions that the KB will support and the kinds of facts that will be available for each specific problem instance
+        - Determine what knowledge must be represented in order to connect problem instances to answers
+        - Analogous to the PEAS process for designing agents
+
+      - Assemble the relevant knowledge
+        - Engage in the process of knowledge acquisition
+        - Idea is to understand the scope of the KB, as determined by the task, and to understand how the domain actually works
+          - Knowledge is not represented formally at this stage
+
+        - For real domains, the issue of relevance can be difficult
+
+      - Decide on a vocabulary of predicates, functions, and constants
+        - Translate the important domain-level concepts into logic-level names
+
+- Summary
+
+​	
+
+## Reading 9: Inference in First-Order Logic
 
 - 
 
