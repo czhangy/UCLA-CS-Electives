@@ -1540,7 +1540,7 @@
 
 
 
-## Lecture 13: Propositional Logic
+## Lecture 13: Entailment, Syntax, and Semantics
 
 - Logic in General
 
@@ -1624,7 +1624,136 @@
 
 
 
-## Lecture 14:
+## Lecture 14: Validity, Satisfiability, and Resolution
+
+- Inference by Enumeration
+
+  - Depth-first enumeration of all models is sound and complete
+
+  - ```pseudocode
+    function TT-ENTAILS?(KB, α) returns true or false
+    	inputs: KB, the knowledeg base, a sentence in propositional logic
+    	        α, the query, a sentence in propositional logic
+        
+        symbols <- a list of the proposition symbols in KB and α
+        return TT-CHECK-ALL(KB, α, symbols, {})
+        
+    function TT-CHECK-ALL(KB, α, symbols, model) returns true or false
+    	if EMPTY?(symbols) then
+    		if PL-TRUE?(KB, model) then return PL-TRUE?(α, model)
+    		else return true // when KB is false, always return true
+        else do
+        	P <- FIRST(symbols)
+        	rest <- REST(symbols)
+        	return (TT-CHECK-ALL(KB, α, rest, model ∪ { P = true })
+        			and
+        			TT-CHECK-ALL(KB, α, rest, model ∪ { P = false }))
+    ```
+
+  - `O(2^n)` for `n` symbols; problem is co-NP-complete
+
+- Logical Equivalence
+
+  - Two sentences are logically equivalent iff they are true in the same models
+
+  - $$
+    \alpha\equiv\beta\text{ iff }\alpha\models\beta\text{ and }\beta\models\alpha
+    $$
+
+- Validity and Satisfiability
+
+  - A sentence is valid if it is true in all models
+
+    - e.g. `True`, `A ∨ ¬A`, `A ⇒ A`, `(A ∧ (A ⇒ B)) ⇒ B`, etc.
+
+    - Validity is connected to inference via the Deduction Theorem:
+
+      - $$
+        \alpha\models\beta\text{ iff }(\alpha\Rightarrow\beta)\text{ is valid}
+        $$
+
+  - A sentence is satisfiable if it is true in some model
+
+    - e.g. `A ∨ B`, `C`, etc.
+
+  - A sentence is unsatisfiable if it is true in no models
+
+    - e.g. `A ∧ ¬A`, etc.
+
+    - Satisfiability is connected to inference via the following:
+
+      - $$
+        \alpha\models\beta\text{ iff }(\alpha\land\neg\beta)\text{ is unsatisfiable}
+        $$
+
+      - i.e., prove `β` by contradiction
+
+- Proof Methods
+
+  - Proof methods divide into (roughly) two kinds:
+    - Application of inference rules (detailed)
+      - Legitimate (sound) generation of new sentences from old
+      - Proof = a sequence of inference rule applications
+        - Can use inference rules as operators in a standard search algorithm
+
+      - Typically require translation of sentences into a normal form
+
+    - Model checking (brief)
+      - Truth table enumeration (always exponential in `n`)
+      - Improved backtracking, e.g., Davis-Putnam-Logemann-Loveland heuristic search in model space (sound but incomplete)
+        - e.g., min-conflicts-like hill-climbing algorithms
+
+      - We can use `α/β` to imply that `α` can infer `β`
+
+- Resolution
+
+  - Conjunctive Normal Form (CNF - universal)
+
+    - Conjunction of disjunctions of literals (clauses)
+
+  - Resolution inference rule (for CNF):
+
+    - $$
+      \frac{l_1\lor\ ...\ \lor\ l_k,\quad m_1\lor\ ...\ \lor\ m_n}{l_1\lor\ ...\ \lor\ l_{i-1}\lor l_{i+1}\ \lor\ ...\ \lor\ l_k\lor m_1\ \lor\ ...\ \lor m_{j-1}\lor m_{j+1}\ \lor\ ...\ \lor m_n}
+      $$
+
+      - Where `l_i` and `m_j` are complementary literals
+
+  - Resolution is sound and complete for propositional logic
+
+- Conversion to CNF
+
+  - Eliminate `⇔`, replacing `α ⇔ β` with `(α ⇒ β) ∧ (β ⇒ α)`
+  - Eliminate `⇒`, replacing `α ⇒ β` with `¬α ∨ β`
+  - Move `¬` inwards using de Morgan's rules
+  - Apply distributivity law (`∨` over `∧`) and flatten
+
+- Resolution Algorithm
+
+  - Proof by contradiction, i.e., show `KB ∧ ¬α` unsatisfiable
+
+  - ```pseudocode
+    function PL-RESOLUTION(KB, α) returns true or false
+    	inputs: KB, the knowledge base, a sentence in propositional logic
+    			α, the query, a sentence in propositional logic
+    			
+        clauses <- the set of clauses in the CNF representation of KB ∧ ¬α
+        new <- {}
+        loop do
+        	for each C_i, C_j in clauses do
+        		resolvents <- PL-RESOLVE(C_i, C_j)
+        		if resolvents contains the empty clause then return true
+        		new <- new ∪ resolvents
+            if new ⊆ clauses then return false
+            clauses <- clauses ∪ new
+    ```
+
+  - Proves `KB ⊨ α`
+
+
+
+
+## Lecture 15
 
 - 
 
