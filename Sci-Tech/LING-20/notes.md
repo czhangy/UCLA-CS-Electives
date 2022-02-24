@@ -1052,9 +1052,60 @@
 
 
 
-## Lecture 13: Syntactic Movement
+## Lecture 13: Syntactic Movement and Islands
+
+- Syntactic Movement
+  - Movement and Constituents
+    - A complete subtree is a constituent
+      - In short, a node plus anything under it is a constituent
+    - Restriction: only constituents can be moved
+  - Summary
+    - `DP`s and `PP`s start out where the phrase-structure rules put them
+    - However, they can then move to another position
+    - Result: the `DP`/`PP` shows up somewhere else, leaving behind a gap
+- Islands
+  - Overview:
+    - Movement is very powerful and can be unboundedly long
+    - In some cases, though, movement is impossible
+    - That is, certain structures simply do not allow movement out of them
+    - Such structures are called islands
+  - Constraints on Movement
+    - Movement is not completely free
+    - Constraint #1: Number of Movements
+      - Movement rule: a constituent containing a question word moves to a `C`, replacing "that" or "if"
+      - Consequence: if there is only one `C`, then only one element should be able to move
+      - In general, for this class, there will only be one movement per sentence
+    - There are also other constraints on movement, which are more mysterious
+    - In some cases, it is not possible to move an element to a `C`, even if that `C` is empty
+    - Constraint #2: Coordinate Structure Constraint
+      - First stab: elements that are connected by "and" cannot be moved
+      - No element may be moved over a coordinate structure
+        - Nothing can be moved from a position inside this structure to a position outside it
+      - Coordinate structures are an insurmountable barrier to movement
+    - Constraint #3: Complex `NP` Constraint
+      - Movement cannot move an element out of a `CP` that is directly under an `NP` (a so-called complex `NP`)
+      - Nothing can be moved from a position inside a complex-`NP` to a position outside of it
+    - Constraint #4: Subject Constraint
+      - Movement cannot move an element out of a subject
+      - Nothing can be moved from inside a subject to a position outside of it
+  - Parts of a syntactic structure that movement cannot leave are called islands
+  - Reasoning About Ungrammatical Sentences
+    - Question: why is a given sentence ungrammatical?
+    - Schematic answer: to generate this sentence, an element would need to move from `A` to `B`, however, this movement is impossible because of constraint `X`
+      - Therefore, the sentence is ungrammatical
+  - Consequences
+    - There are certain things you simply cannot say unless you use a different construction altogether
+  - Summary
+    - Constituents can move over very large distances
+    - But there are certain structures that completely block movement over them
+    - These structures are called islands:
+      - Coordinate Structure Constraint
+      - Complex `NP` Constraint
+      - Subject Constraint
+
+
+
+## Lecture 14:
 
 - 
-
-
 
