@@ -1753,7 +1753,96 @@
 
 
 
-## Lecture 15
+## Lecture 15: Forward Chaining and First-Order Logic
+
+- Forward Chaining
+
+  - The knowledge base must be a conjunction of Horn clauses
+
+    - Horn clauses: disjunction of literals of which at most one is positive
+    - Horn clauses:
+      - Literal
+      - (Conjunction of symbols) ⇒ Literal
+      - e.g., `C ∧ (B ⇒ A) ∧ (C ∧ D ⇒ B)`
+
+  - Modus Ponens (for Horn Form): complete for Horn KBs
+
+    - $$
+      \frac{\alpha_1,...,\alpha_n,\quad\alpha_1\ \land\ ...\ \land\alpha_n\Rightarrow\beta}{\beta}
+      $$
+
+  - Can be used with forward chaining, which is very natural and runs in linear time
+
+  - Idea: fire any rule whose premises are satisfied in the KB, add its conclusion to the KB, until the query is found
+
+  - Algorithm:
+
+    - ```pseudocode
+      function PL-FC-ENTAILS?(KB, q) returns true or false
+      	inputs: KB, the knowledge base, a set of propositional definite clauses
+      			q, the query, a proposition symbol
+          count <- a table, where count[c] is the number of symbols in c's premise
+          inferred <- a table, where inferred[s] is initially false for all symbols
+          agenda <- a queue of symbols, initially symbols known to be true in KB
+          
+          while agenda is not empty do
+          	p <- POP(agenda)
+          	if p = q then return true
+          	if inferred[p] = false then
+          		inferred[p] <- true
+          		for each clause c in KB where p is in c.PREMISE do
+          			decrement count[c]
+          			if count[c] = 0 then add c.CONCLUSION to agenda
+          return false
+      ```
+
+- Propositional Logic Summary
+
+  - Logical agents apply inference to a knowledge base to derive new information and make decisions
+  - Basic concepts of logic:
+    - Syntax: formal structure of sentences
+    - Semantics: truth of sentences with respect to models
+    - Entailment: necessary truth of one sentence given another
+    - Inference: deriving sentences from other sentences
+    - Soundness: derivation produce only entailed sentences
+    - Completeness: derivations can produce all entailed sentences
+
+  - Propositional logic lacks expressive power
+
+- First-Order Logic
+
+  - Outline
+    - Why first-order logic (FOL)?
+    - Syntax and semantics of FOL
+    - Kinship example
+    - Wumpus world in FOL
+
+  - Pros and Cons of Propositional Logic
+    - Pros:
+      - Propositional logic is declarative: pieces of syntax correspond to facts
+      - Propositional logic allows partial/disjunctive/negated information (unlike most data structures and databases)
+      - Propositional logic is compositional
+      - Meaning in propositional logic is context-independent (unlike natural language, where meaning depends on context)
+
+    - Cons:
+      - Propositional logic has very limited expressive power
+
+  - Whereas propositional logic assumes the world contains facts, FOL (like natural language) assumes the world contains objects, relations and functions
+  - Syntax: Basic Elements
+    - Constants
+    - Predicates
+      - Return true or false
+
+    - Functions
+    - Variables
+    - Connectives
+    - Equality
+    - Quantifiers
+
+
+ 
+
+## Lecture 16:
 
 - 
 
