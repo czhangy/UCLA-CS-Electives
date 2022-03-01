@@ -1840,7 +1840,7 @@
     - Quantifiers
 
 
- 
+
 
 ## Lecture 16:
 
@@ -5178,5 +5178,10 @@
 
 ## Reading 9: Inference in First-Order Logic
 
-- 
+- Propositional vs. First-Order Inference
+  - First-order inference can be done by converting the KB to propositional logic and using propositional inference
+  - Inference Rules for Quantifiers
+    - The rule of Universal Instantiation (UI) says that we can infer any sentence obtained by substituting a ground term (a term without variables) for the variable in a universal quantifier
+    - The rule of Existential Instantiation says that we can infer any sentence obtained by replacing the variable with a new constant symbol that doesn't appear anywhere else in the KB
+
 
