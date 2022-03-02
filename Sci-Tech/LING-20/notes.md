@@ -1105,7 +1105,94 @@
 
 
 
-## Lecture 14:
+## Lecture 14: Typology and Meaning
+
+- Word-Order Typology
+  - `VO` vs. `OV`
+    - Some languages put the object before the verb
+    - Ex) Japanese
+    - English: `VP -> V DP`
+    - Japanese: `VP -> DP V`
+    - Correlation 1:
+      - If a language is `VO`, then it puts its prepositions before the noun phrase it combines with
+        - English: `PP -> P DP`
+      - If it is `OV`, then it puts its postpositions after the noun phrase it combines with
+        - Japanese: `PP -> DP P`
+    - Correlation 2:
+      - If a language is `VO`, then its complementizers precede the sentence they combine with
+        - English: `CP -> C S`
+      - If a language is `OV`, then the complementizer follows the sentence it combines with
+        - Japanese: `CP -> S C`
+    - Correlation 3:
+      - If a language is `VO`, then `PP`s follow the `VP` they modify
+        - English: `VP -> VP PP`
+      - If the language is `OV`, then `PP`s precede their `VP`
+        - Japanese: `VP -> PP VP`
+    - Correlation 4:
+      - If a language is `VO`, then `PP`s that modify `NP`s follow the `N`
+        - English: `NP -> NP PP`
+      - If a language is `OV`, then `PP`s that modify `NP`s precede the `N`
+        - Japanese: `NP -> PP NP`
+  - Heads
+    - The head of a phrase is the terminal element from which that phrase gets its grammatical-category label
+    - Hypothesis: Head Parameter
+      - Phrase structure rules conform to the following "templates":
+        - `XP -> HEAD YP`
+        - `XP -> YP HEAD`
+      - Languages with `XP -> HEAD YP` are head-initial
+      - Languages with `XP -> YP HEAD` are head-final
+  - Taking Stock
+    - If we limit oursevles to the order between subject (`S`), verb (`V`) and object (`O`), we get four options:
+      - `SVO` (48%)
+        - `S -> DP VP`
+        - `VP -> V DP`
+      - `SOV` (41%)
+        - `S -> DP VP`
+        - `VP -> DP V`
+      - `VOS` (2%)
+        - `S -> VP DP`
+        - `VP -> V DP`
+      - `OVS` (0.9%)
+        - `S -> VP DP`
+        - `VP -> DP V`
+    - The remaining two orders (`VSO` and `OSV`) cannot be produced by just manipulating the order of elements in our phrase-structure rules
+    - These orders are typically thought of as being produced by movement from a different underlying order
+  - "Free Word Order"
+    - In English, the relative order between elements is often (largely) fixed
+    - In other languages, like Japanese, word order is more flexible
+    - Word Order and Movement
+      - The flexible word order of Japanese is the result of movement
+      - Unlike what we saw for English, movement can target elements other than question words in Japanese
+      - The phrase-structure rules of Japanese produce `SOV` sentences
+        - Movement can then place the object in a different position
+  - Summary
+    - Languages differ in their basic clausal word order, but there are systematic regularities
+    - Head-initial languages: `XP -> X YP`
+    - Head-final languages: `XP -> YP X`
+    - Certain basic orders (`VSO` and `OSV`) and so-called "free" orders are derived via movement rules
+- Meaning
+  - Overview
+    - Phonetics: how are sounds articulated?
+    - Phonology: how are sounds organized and manipulated?
+    - Morphology: how are words built up from morphemes?
+    - Syntax: how are sentences formed from words?
+    - Semantics and Pragmatics: how do we compute the meanings of linguistic expressions?
+  - Grammar and Possibilities
+    - Grammar enables us to go beyond the actual and talk about the merely possible
+    - Grammar interacts with many knowledge resources to stake out ranges of possibilities
+  - Eliminating Possibilities
+    - Grammar determines broad interpretations
+    - Narrow interpretations come from interactions with non-linguistic knowledge resources: presumptions about cooperative interaction, presumptions about the normal course of events, etc.
+    - Narrow interpretations can always be challenged
+    - Broad interpretations can always be pushed for
+  - Information Content
+    - Asserted content: the content that is explicitly added to the discourse by the utterance of a sentence
+    - Presupposed content: the background information taken for granted by the utterance of a sentence
+    - Implicated content: those things that are not explicitly asserted or presupposed by the utterance of a sentence, but which the speaker intends the addressee to conclude
+
+
+
+## Lecture 15:
 
 - 
 
