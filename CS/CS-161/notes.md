@@ -5179,9 +5179,135 @@
 ## Reading 9: Inference in First-Order Logic
 
 - Propositional vs. First-Order Inference
+
   - First-order inference can be done by converting the KB to propositional logic and using propositional inference
+
   - Inference Rules for Quantifiers
+
     - The rule of Universal Instantiation (UI) says that we can infer any sentence obtained by substituting a ground term (a term without variables) for the variable in a universal quantifier
+
+      - $$
+        \frac{\forall v\quad\alpha}{\texttt{SUBST}(\{v/g\},\alpha)}
+        $$
+
+      - Can be applied many times to produce many different consequences
+
     - The rule of Existential Instantiation says that we can infer any sentence obtained by replacing the variable with a new constant symbol that doesn't appear anywhere else in the KB
 
+      - $$
+        \frac{\exists v\quad\alpha}{\texttt{SUBST}(\{v/k\},\alpha)}
+        $$
+
+      - This new name is called a Skolem constant
+
+      - EI is a special case of a more general process called skolemization
+
+      - Can be applied once, and then the existentially quantified sentence can be discarded
+
+        - New KB is inferentially equivalent in the sense that it is satisfiable exactly when the original KB is satisfiable
+
+  - Reduction to Propositional Inference
+
+    - Just as an existentially quantified sentence can be replaced by one instantiation, a universally quantified sentence can be replaced by the set of all possible instantiations
+      - Once complete, the KB is essentially propositional if we view the ground atomic sentences as proposition symbols
+
+    - This technique of propositionalization can be made completely general
+      - Every first-order KB and query can be propositionalized in such a way that entailment is preserved
+
+    - Issue with function symbols
+      - If the KB includes a function symbol, then infinitely many nested terms can be constructed
+      - If a sentence is entailed by the original, first-order KB, then there exists a proof involving just a finite subset of the propositionalized KB
+        - Any such subset has a maximum depth of nesting among its ground terms
+        - Find the subset by first generating all the instantiations with constant symbols, then all terms of depth 1, depth 2, etc. until we are able to construct a propositional proof of the entailed sentence
+
+    - This approach is complete - any entailed sentence can be proved
+      - Proof procedure continues until this is proved
+      - If the sentence is not entailed, we cannot know, the procedure will just infinitely generate nested terms
+      - The question of entailment for first-order logic is semidecidable, algorithms exist that say yes to every entailed sentence, but no algorithm exists that also says no to every nonentailed sentence
+
+- Unification and Lifting
+
+  - A First-Order Inference Rule
+
+    - The inference process can be captured as a single inference rule that we call Generalized Modus Ponens
+
+      - For atomic sentences `p_i`, `p_i'`, and `q`, where there is a substitution `θ` such that `SUBST(θ, p_i') = SUBST(θ, p_i)` for all `i`:
+
+        - $$
+          \frac{p_1',p_2',...,p_n',\quad(p_1\land p_2\land\ ...\ \land p_n\Rightarrow q)}{\texttt{SUBST}(\theta,q)}
+          $$
+
+      - Lifted version of Modus Ponens
+
+        - Raises Modus Ponens from ground (variable-free) propositional logic to first-order logic
+        - Key advantage is that lifted inference rules make only substitutions that are required to allow particular inferences to proceed
+
+  - Unification
+
+    - Lifted inference rules require finding substitutions that make different logical expressions look identical
+
+      - Process is called unification
+
+    - The `UNIFY` algorithm takes two sentences and returns a unifier for them if one exists:
+
+      - $$
+        \texttt{UNIFY}(p,q)=\theta\text{ where }\texttt{SUBST}(\theta,p)=\texttt{SUBST}(\theta,q)
+        $$
+
+      - Requires standardizing apart one of the sentences being unified
+
+        - Renaming variables to avoid name clashes
+
+      - For every pair of expressions, there is a single most general unifier that is unique up to renaming and substitution of variables
+
+        - A unifier is more general if it places fewer restrictions on the values of the variables
+
+    - ```pseudocode
+      function UNIFY(x, y, θ) returns a substitution to make x and y identical
+      	inputs: x, a variable, constant, list, or compound expression
+      			y, a variable, constant, list, or compound expression
+      			θ, the substitution built up so far (optional, defaults to empty)
+      			
+          if θ = failure then return failure
+          else if x = y then return θ
+          else if VARIABLE?(x) then return UNIFY-VAR(x, y, θ)
+          else if VARIABLE?(y) then return UNIFY-VAR(y, x, θ)
+          else if COMPOUND?(x) and COMPOUND?(y) then
+          	return UNIFY(x.ARGS, y.ARGS, UNIFY(x.OP, y.OP, θ))
+          else if LIST?(x) and LIST?(y) then
+          	return UNIFY(x.REST, y.REST, UNIFY(x.FIRST, y.FIRST, θ))
+          else return failure
+          
+      function UNIFY-VAR(var, x, θ) returns a substitution
+      	if { var/val } ∈ θ then return UNIFY(val, x, θ)
+      	else if { x/val } ∈ θ then return UNIFY(var, val, θ)
+      	else if OCCUR-CHECK?(var, x) then return failure
+      	else return add { var/x } to θ
+      ```
+
+      - Recursively explore the two expressions simultaneously, building up a unifier along the way and failing if two corresponding points in the structure don't match
+      - When matching a variable against a complex term, one must check whether the variable itself occurs inside the term
+        - If it does, match fails because no consistent unifier can be constructed
+        - Called the occur check
+        - Makes the algorithm quadratic in the size of the expressions being unified
+
+  - Storage and Retrieval
+
+    - `STORE(s)` stores a sentence `s` into the KB
+    - `FETCH(q)` returns all unifiers such that the query `q` unifies with some sentence in the KB
+    - Simplest implementation of `STORE` and `FETCH` involves keeping all the facts in one long list and unifying each query against every element of the list
+
+- Forward Chaining
+
+- Backward Chaining
+
+- Resolution
+
+- Summary
+
+
+
+## Reading 10: Planning and Acting in the Real World
+
+- 
 
