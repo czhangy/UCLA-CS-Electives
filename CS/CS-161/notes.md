@@ -1700,7 +1700,7 @@
 
     - Model checking (brief)
       - Truth table enumeration (always exponential in `n`)
-      - Improved backtracking, e.g., Davis-Putnam-Logemann-Loveland heuristic search in model space (sound but incomplete)
+      - Improved backtracking, e.g., Davis-Putnam-Lagemann-Loveland heuristic search in model space (sound but incomplete)
         - e.g., min-conflicts-like hill-climbing algorithms
 
       - We can use `α/β` to imply that `α` can infer `β`
@@ -1842,7 +1842,221 @@
 
 
 
-## Lecture 16:
+## Lecture 16: First-Order Logic: Representation and Inference
+
+- First-Order Logic: Representation
+
+  - First-Order Logic Sentences
+
+    - Atomic Sentences
+
+      - Term: a logical expression that refers to an object
+        - Constant
+        - Variable
+        - Function
+          - Makes atomic sentences very expressive due to recursive nature
+
+      - Atomic sentence: `predicate(term_1, ... , term_n)`
+
+        - Examples:
+          - `Brother(KingJohn, RichardTheLionheart)`
+          - `>(Length(LeftLeg(Richard)), Length(LeftLeg(KingJohn)))`
+
+      - An atomic sentence is true in a given model if the relation referred to by the predicate symbol holds among the objects referred to by the arguments
+
+    - Complex Sentences
+      - Complex sentences are made from atomic sentences using connectives
+      - Examples:
+        - `Sibling(KingJohn, Richard) ⇒ Sibling(Richard, KingJohn)`
+        - `>(1, 2) ∨ ≥(2, 1)`
+        - `>(1, 2) ∧ ¬>(1, 2)`
+
+  - Truth in First-Order Logic
+    - Sentences are true with respect to a model and an interpretation
+    - Model contains ≥1 objects (domain elements) and relations among them
+    - Interpretation specifies referents for:
+      - Constant symbols => objects
+      - Predicate symbols => relations
+      - Function symbols => functional relations
+
+    - An atomic sentence `predicate(term_1, ... , term_n)` is true iff the objects referred to by `term_1, ... , term_n` are in the relation referred to by `predicate`
+
+  - Models for First-Order Logic
+    - Entailment in propositional logic can be computed by enumerating models
+    - We can enumerate the first-order logic models for a given KB vocabulary:
+
+      - For each number of domain elements `n` from `1` to `INF`
+
+        - For each `k`-ary predicate `P_k` in the vocabulary
+
+          - For each possible `k`-ary relation on `n` objects
+
+            - For each constant symbol `C` in the vocabulary
+
+              - For each choice of referent for `C` from `n` objects
+                - etc.
+
+    - Computing entailment by enumerating first-order logic models is not easy!
+      - In first-order logic, we use universal quantification and existential quantification to entail
+
+  - Quantifiers
+
+    - Universal Quantification
+      - `∀ <variables> <sentence>`
+      - Ex) everyone at UCLA is smart: `∀x At(x, UCLA) ⇒ Smart(x)`
+      - `∀x P` is true in a model `m` iff `P` is true with `x` being each possible object in the model
+
+        - Roughly speaking, equivalent to the conjunction of instantiations of `P`
+          - `(At(KingJohn, UCLA) ⇒ Smart(KingJohn)) ∧ (At(Richard, UCLA) ⇒ Smart(Richard)) ∧ ...`
+
+      - A Common Mistake to Avoid
+        - Typically, `⇒` is the main connective with `∀`
+        - Common mistake: using `∧` as the main connective with `∀`:
+          - Ex) `∀x At(x, UCLA) ∧ Smart(x)` means "everyone is at UCLA and everyone is smart"
+
+    - Existential Quantification
+      - `∃ <variables> <sentence>`
+      - Ex) someone at USC is smart: `∃x At(x, USC) ∧ Smart(x)`
+      - `∃x P` is true in a model `m` iff `P` is true with `x` being some possible object in the model
+
+        - Roughly speaking, equivalent to the disjunction of instantiations of `P`
+          - `(At(KingJohn, USC) ∧ Smart(KingJohn)) ∨ (At(Richard, USC) ∧ Smart(Richard)) ∨ ...`
+
+      - Another Common Mistake to Avoid
+        - Typically, `∧` is the main connective with `∃`
+        - Common mistake: using `⇒` as the main connective with `∃`:
+          - Ex) `∃x At(x, USC) ⇒ Smart(x)` means "someone at USC is smart or there exists anyone who is not at USC"
+
+    - Properties of Quantifiers
+      - `∀x ∀y` is the same as `∀y ∀x`
+      - `∃x ∃y` is the same as `∃y ∃x`
+      - `∃x ∀y` is not the same as `∀y ∃x`
+
+        - Example:
+          - `∃x ∀y Loves(x, y)` means "there is a person who loves everyone in the world"
+          - `∀y ∃x Loves(x, y)` means "everyone in the world is loved by at least one person"
+
+      - Quantifier duality
+
+        - i.e., De Morgan rules: each can be expressed using the other
+          - `∀x Likes(x, IceCream)` is the same as `¬∃x ¬Likes(x, IceCream)`
+          - `∃x Likes(x, Broccoli)` is the same as `¬∀x ¬Likes(x, Broccoli)`
+
+  - Example: Kinship
+    - Brothers are siblings: `∀x, y Brother(x, y) ⇒ Sibling(x, y)`
+    - "Sibling" is symmetric: `∀x, y Sibling(x, y) ⇔ Sibling(y, x)`
+    - A first cousin is a child of a parent's sibling: `∀x, y FirstCousin(x, y) ⇔ ∃p, ps Parent(p, x) ∧ Sibling(ps, p) ∧ Parent(ps, y)`
+
+  - Example: Wumpus World
+    - Perception of agent at time `t`: `Percept([Breeze, Glitter, Smell], t)`
+    - Percept data implies certain facts about the current state:
+      - `∀t, s, g Percept([Breeze, g, s], t) ⇒ Breeze(t)`
+      - `∀s, b, t Percept([b, Glitter, s], t) ⇒ Glitter(t)`
+
+    - Whether an agent is at square `s` at time `t`: `At(agent, s, t)`
+    - Agent is at `s` and perceives a breeze, then `s` is breezy: `∀s, t At(agent, s, t) ∧ Breeze(t) ⇒ Breeze(s)`
+
+  - Summary
+
+    - First-order logic:
+      - Objects and relations are semantic primitives
+      - Syntax: constants, functions, predicates, equality, quantifiers
+
+    - Increased expressive power: sufficient to define Wumpus world
+
+- First-Order Logic: Inference
+
+  - Outline
+
+    - Reducing first-order inference to propositional inference
+    - Unification
+    - Generalized Modus Ponens
+    - Resolution
+
+  - Universal Instantiation (UI)
+
+    - Whenever a KB contains a universally quantified sentence, we may add to the KB any instantiation of that sentence, where the logic variable `v` is replace by a concrete ground term `g`:
+
+      - For any variable `v` and ground term `g`, we denote substitution `θ` as `θ = { v/g }` and `SUBST(θ, α)` as the result of applying the substitution `θ` to the sentence `α`
+
+      - Every instantiation of a universally quantified sentence is entailed by it:
+
+        - $$
+          \frac{\forall v\quad\alpha}{\texttt{SUBST}(\{v/g\},\alpha)}
+          $$
+
+    - e.g., `∀x King(x) ∧ Greedy(x) ⇒ Evil(x)` yields:
+
+      - `King(John)  Greedy(John) ⇒ Evil(John)`
+      - `King(Richard) ∧ Greedy(Richard) ⇒ Evil(Richard)`
+      - `King(Father(John)) ∧ Greedy(Father(John)) ⇒ Evil(Father(John))`
+
+  - Existential Instantiation (EI)
+
+    - Whenever a KB contains an existentially quantified sentence `∃v α`, we may add a single instantiation of that sentence to the KB, where the logic variable `v` is replaced by a Skolem constant symbol `k` which must not appear elsewhere in the knowledge base:
+
+      - $$
+        \frac{\exists v\quad\alpha}{\texttt{SUBST}(\{v/k\},\alpha)}
+        $$
+
+    - Example 1: `∃x Crown(x) ∧ OnHead(x, John)` yields:
+
+      - `Crown(C_1) ∧ OnHead(C_1, John)`
+      - Provided `C_1` is a new constant symbol, called a Skolem constant
+
+    - Example 2: from `∃x d(x^y) / dy = x^y` we obtain:
+
+      - `d(e^y) / dy = e^y`
+      - Provided `e` is a new constant symbol
+
+  - Reduction to Propositional Inference
+
+    - Instantiating all quantified sentences allows us to ground the KB, that is, to make the KB propositional
+
+    - Example:
+
+      - Suppose the KB contains just the following:
+        - `∀x King(x) ∧ Greedy(x) ⇒ Evil(x)`
+        - `King(John)`
+        - `Greedy(John)`
+        - `Brother(Richard, John)`
+
+      - Instantiating the universal sentence in all possible ways, we have:
+        - `King(John) ∧ Greedy(John) ⇒ Evil(John)`
+        - `King(Richard) ∧ Greedy(Richard) ⇒ Evil(Richard)`
+        - `King(John)`
+        - `Greedy(John)`
+        - `Brother(Richard, John)`
+
+      - The new KB is propositionalized: propositional symbols are:
+        - `King(John)`
+        - `Greedy(John)`
+        - `Evil(John)`
+        - `King(Richard)`
+        - etc.
+
+    - Every first-order logic KB can be propositionalized so as to preserve entailment
+
+      - Then, first-order logic inference can be done by: propositionalize KB and query, apply resolution, return result
+      - Problem: with function symbols, there are infinitely many ground terms
+        - Ex) `Father(Father(Father(John)))`
+
+    - Theorem: Herbrand (1930), if a sentence `α` is entailed by a first-order logic KB, it is entailed by a finite subset of the propositional KB
+
+      - ```pseudocode
+        for n = 0 to INF do
+        	create a propositional KB by instantiating with depth-n terms
+        	see if α is entailed by this KB
+        ```
+
+      - Works if `α` is entailed, loops forever if `α` is not entailed
+
+    - Theorem: Turing (1936), Church (1936), entailment in first-order logic is semidecidable - that is, algorithms exist that say yes to every entailed sentence, but no algorithm exists that also says no to every nonentailed sentence
+
+
+
+
+## Lecture 17:
 
 - 
 
