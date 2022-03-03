@@ -1192,7 +1192,52 @@
 
 
 
-## Lecture 15:
+## Lecture 15: Implicatures
+
+- The Gricean Theory of Implicatures
+  - The Cooperative Principle
+    - The key assumption underlying Grice's theory is that in rational conversation, people are cooperative
+    - Make your contribution such as is required, at the stage at which it occurs, by the accepted purpose or direction of the talk exchange in which you are engaged
+  - Gricean Maxims
+    - On its own, the Cooperative Principle is vacuous, it just says "be cooperative"
+    - The point of Grice's theory lies in the way in which he spells out what it means to be cooperative:
+      - Maxim of Relation (Relevance)
+        - Be relevant
+        - People don't just make random statements
+        - There's generally some topic of conversation, and people's statements are relevant to that topic
+      - Maxim of Quality
+        - Do not say what you believe to be false
+        - Do not say that which you lack adequate evidence for
+        - People don't assert something if either they know that it's false, or they have no idea whether or not it's true
+      - Maxim of Quantity
+        - Make your contribution to the conversation as informative as required
+        - Do not make your contribution more informative than is required
+        - People will provide as much information as they can without violating the other maxims
+      - Maxim of Manner
+        - Avoid obscurity of expression
+        - Avoid ambiguity
+        - Be brief and orderly
+        - People do not use overly circuitous language to express simple ideas
+        - People put a sequence of utterances in some logical order
+    - Maxims Beyond Conversation
+      - Grice contended that the Cooperative Principle applies to all forms of exchange
+  - Gricean Reasoning for Deriving Implicatures
+    - A conversational implicature is an inference which arises from and is validated by:
+      - The fact that the speaker uttered a sentence `S` with asserted content `P`
+      - The assumption that the speaker is observing the conversational maxims
+      - Possibly, certain background facts drawn from general world knowledge
+  - Diagnostic: Cancellability/Defeasibility
+    - Test: "`S` and not `I`" is consistent
+      - `S` is the sentence
+      - `I` is the inference
+  - Diagnostic: Reinforceability
+    - Test: "`S` and `I`" is not redundant
+      - `S` is the sentence
+      - `I` is the inference
+
+
+
+## Lecture 16:
 
 - 
 
