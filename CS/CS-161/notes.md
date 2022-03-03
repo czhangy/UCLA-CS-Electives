@@ -5656,7 +5656,140 @@
 
 - Resolution
 
+  - Conjunctive Normal Form for First-Order Logic
+
+    - First-order resolution requires that sentences be in conjunctive normal form
+      - A conjunction of clauses, where each clause is a disjunction of literals
+      - Literals can contain variables, which are assumed to be universally quantified
+
+    - Every sentence of first-order logic can be converted into an inferentially equivalent CNF sentnece
+      - The CNF sentence will be unsatisfiable when the original sentence is unsatisfiable
+
+    - Conversion process:
+      - Eliminate implications
+      - Move `¬` inwards
+        - `¬∀x p` becomes `∃x ¬p`
+        - `¬∃x p` becomes `∀x ¬p`
+
+      - Standardize variables
+        - For sentences which use the same variable name twice, change the name of one of the variables
+
+      - Skolemize
+        - Skolemization is the process of removing existential quantifiers by elimination
+        - General rule is that the arguments of the Skolem function are all the universally quantified variables in whose scope the existential quantifier appears
+
+      - Drop universal quantifiers
+      - Distribute `∨` over `∧`
+
+  - The Resolution Inference Rule
+
+    - While propositional literals are complementary if one is the negation of the other, first-order literals are complementary if one unifies with the negation of the other
+
+    - $$
+      \frac{l_1\lor\ ...\ \lor l_k,\quad m_1\lor\ ...\ \lor m_n}{\texttt{SUBST}(\theta,l_1\lor\ ...\ \lor l_{i-1}\lor l_{i+1}\lor\ ...\ \lor l_k\lor m_1\lor\ ...\ \lor m_{j-1}\lor m_{j+1}\lor\ ...\ \lor m_n)}
+      $$
+
+      - `UNIFY(l_i, ¬m_j) = θ`
+
+    - Resolution is complete
+
+  - Equality
+
+    - None of the approaches discusses thus far can handle the notion of equality
+
+    - One solution is to axiomize equality
+
+      - To write down sentences about the equality relation in the KB
+      - Need to say equality is reflexive, symmetric, and transitive
+      - This method leads to the generation of a lot of conclusions, most of them not helpful to a proof
+
+    - An alternative is to add inference rules rather than axioms
+
+      - The simplest rule, demodulation, takes a unit clause `x = y` and some clause `α` that contains the term `x`, and yields a new clause formed by substituting `y` for `x` within `α`
+
+        - Works if the term within `α` unifies with `x`; it need not be exactly equal to `x`
+
+        - Note that this process is direction; given `x = y`, the `x` always gets replaced with `y`
+
+        - For any terms `x`, `y`, and `z`, where `z` appears somewhere in literal `m` and where `UNIFY(x, z) = θ`:
+
+          - $$
+            \frac{x=y,\quad m_1\lor\ ...\ \lor m_n}{\texttt{SUB}(\texttt{SUBST}(\theta,x),\texttt{SUBST}(\theta,y),m_1\lor\ ...\ \lor m_n)}
+            $$
+
+            - `SUBST` is the usual substitution of a binding list and `SUB(x, y, m)` means to replace `x` with `y` everywhere that `x` occurs within `m`
+
+      - Demodulation can be extended to handle non-unit clauses in which an equality literal occurs in a process called paramodulation
+
+        - For any terms `x`, `y`, and `z`, where `z` appears somewhere in literal `m_i`, and where `UNIFY(x, z) = θ`:
+
+          - $$
+            \frac{l_1\lor\ ...\ \lor l_k\lor x=y,\quad m_1\lor\ ...\ \lor m_n}{\texttt{SUB}(\texttt{SUBST}(\theta,x),\texttt{SUBST}(\theta,y),\texttt{SUBST}(\theta,l_1\lor\ ...\ \lor l_k\lor m_1\lor\ ...\ \lor m_n))}
+            $$
+
+        - Yields a complete inference procedure for first-order logic with equality
+
+    - A third approach handles equality reasoning entirely within an extended unification algorithm
+
+      - Terms are unifiable if they are provably equal under some substitution, where "provably" allows for equality reasoning
+      - Equational unification of this kind can be done with efficient algorithms designed for the particular axioms used rather than through explicit inference with those axioms
+
+  - Resolution Strategies
+
+    - While repeated applications of the resolution inference rule will eventually find a proof if one exists, we want to examine strategies that help find proofs efficiently
+    - Unit preference
+      - Prefer to do resolutions where one of the sentences is a single literal (also known as a unit clause)
+      - Since we're trying to produce an empty clause, it might be a good idea to prefer inferences that produce shorter clauses
+      - Unit resolution is a restricted form of resolution in which every resolution step must involve a unit clause
+        - Incomplete in general, but complete for Horn clauses
+
+    - Set of support
+      - May be more effective to try and eliminate some potential resolutions altogether
+      - Insist that every resolution step involve at least one element of a special set of clauses, called the set of support
+        - The resolvent is then added to the set of support
+
+      - If the set of support is small relative to the whole KB, then the search space will be reduced dramatically
+      - Bad choice for the set of support will make the algorithm incomplete
+
+    - Input resolution
+      - Every resolution combines one of the input sentences (from the KB or query) with some other sentence
+      - In Horn KBs, Modus Ponens is a kind of input resolution strategy since it combines an implication from the original KB with some other sentences
+      - Complete for KBs in Horn form, but incomplete in the general case
+      - Linear resolution is a slight generalization that allows `P` and `Q` to be resolved together either if `P` is in the original KB or if `P` is an ancestor of `Q` in the proof tree
+        - Complete
+
+    - Subsumption
+      - Eliminates all sentences that are subsumed by (more specific than) an existing sentence in the KB
+      - Helps keep the KB small and thus helps keep the search space small
+
 - Summary
+
+  - A first approach uses inference rules (universal instantiation and existential instantiation) to propositionalize the inference problem
+    - Typically, this approach is slow, unless the domain is small
+
+  - The use of unification to identify appropriate substitutions for variables eliminates the instantiation step in first-order proofs, making the process more efficient in many cases
+  - A lifted version of Modus Ponens uses unification to provide a natural and powerful inference rule, generalized Modus Ponens
+    - The forward-chaining and backward-chaining algorithms apply this rule to sets of definite clauses
+
+  - Generalized Modus Ponens is complete for definite clauses, although the entailment problem is semidecidable
+    - For Datalog KBs consisting of function-free definite clauses, entailment is decidable
+
+  - Forward chaining is used in deductive databases, where it can be combined with relational database operations
+    - It is also used in production systems, which perform efficient updates with very large rule sets
+    - Forward chaining is complete for Datalog and runs in polynomial time
+
+  - Backward chaining is used in logic programming systems, which employ sophisticated compiler technology to provide very fast inference
+    - Backward chaining suffers from redundant inferences and infinite loops; these can be alleviated with memoization
+
+  - Prolog, unlike first-order logic, uses a closed world with the unique names assumption and negation as failure
+    - These make Prolog a more practical programming language, but bring it further from pure logic
+
+  - The generalized resolution inference rule provides a complete proof system for first-order logic, using KBs in conjunctive normal form
+  - Several strategies exist for reducing the search space of a resolution system without compromising completeness
+    - One of the most important issues is dealing with equality; we showed how demodulation and paramodulation can be used
+
+  - Efficient resolution-based theorem provers have been used to prove interesting mathematical theorems and to verify and synthesize software and hardware
+
 
 
 
