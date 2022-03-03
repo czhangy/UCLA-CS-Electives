@@ -5513,7 +5513,146 @@
 
 - Forward Chaining
 
+  - Idea: start with the atomic sentences in the KB and apply Modus Ponens in the forward direction, adding new atomic sentences, until no further inferences can be made
+
+  - First-Order Definite Clauses
+
+    - Closely resemble propositional definite clauses
+    - Disjunctions of literals of which exactly one is positive
+      - Either atomic or an implication whose antecedent is a conjunction of positive literals and whose consequent is a single positive literal
+
+    - Examples:
+      - `King(x) ∧ Greedy(x) ⇒ Evil(x)`
+      - `King(John)`
+      - `Greedy(y)`
+
+    - Can include variables, in which case those variables are assumed to be universally quantified
+    - Not every KB can be converted into a set of definite clauses because of the single-positive-literal restriction, but many can
+
+  - A Simple Forward-Chaining Algorithm
+
+    - ```pseudocode
+      function FOL-FC-ASK(KB, α) returns a substitution or false
+      	inputs: KB, the knowledge base, a set of first-order definite clauses
+      			α, the query, an atomic sentence
+          local variables: new, the new sentences inferred on each iteration
+          
+          repeat until new is empty
+          	new <- {}
+          	for each rule in KB do
+          		(p_1 ∧ ... ∧ p_n ⇒ q) <- STANDARDIZE-VARIABLES(rule)
+          		for each θ such that SUBST(θ, p_1 ∧ ... ∧ p_n) =
+          				SUBST(θ, p_1’ ∧ ... ∧ p_n’) for some p_1’, ... , p_n’ in KB
+                      q’ <- SUBST(θ, q)
+                      if q’ does not unify with some sentence already in KB or new then
+                      	add q’ to new
+                      	φ <- UNIFY(q’, α)
+                      	if φ is not fail then return φ
+              add new to KB
+          return false
+      ```
+
+      - Starts from the known facts
+      - Triggers all the rules whose premises are satisfied, adding their conclusions to the known facts
+      - Repeats until the query is answered or no new facts are added
+      - Note that a fact is not "new" if it is just a renaming of an known fact
+        - One sentence is a renaming of another if they are identical except for the names of the variables
+      - Once finished, no new inferences are possible because every sentence that could be concluded by forward chaining is already contained explicitly in the KB
+        - Called a fixed point of the inference process
+        - First-order fixed points can include universally quantified atomic sentences
+      - Sound because every inference is just an application of Generalized Modus Ponens, which is sound
+      - Complete for definite clause KBs
+        - For general definite clauses with function symbols, `FOL-FC-ASK` can generate infinitely many new facts
+        - Semidecidable
+
+  - Efficient Forward Chaining
+
+    - Prior algorithm is inefficient for the following reasons:
+      - Inner loop involves finding all possible unifiers such that the premise of a rule unifies with a suitable set of facts in the KB
+        - Called pattern matching and can be very expensive
+
+      - Rechecks every rule on every iteration to see whether its premises are satisfied, even if very few additions are made to the KB on each iteration
+      - Might generate many facts that are irrelevant to the goal
+
+    - Matching rules against known facts
+      - The conjunct ordering problem is to find an ordering to solve the conjuncts of the rule premise so that the total cost is minimized
+        - Optimal ordering is NP-hard, but good heuristics are available
+          - Ex) Minimum-remaining-values heuristic
+
+      - Connection with constraint satisfaction is close
+        - We can express every finite domain CSP as a single definite clause together with some associated ground facts
+        - Allows us to conclude that matching a definite clause against a set of facts is NP-hard
+
+      - Next steps:
+        - Common in the database world to assume that both the sizes of rules and the arities of predicates are bounded by a constant and to worry only about data complexity
+          - The complexity of inference as a function of the number of ground facts in the KB
+          - Easy to show that the data complexity of forward chaining is polynomial
+
+        - Consider subclasses of rules for which matching is efficient
+        - Eliminate redundant rule-matching attempts in the forward-chaining algorithm
+
+    - Incremental forward chaining
+      - Every fact inferred on iteration `t` must be derived from at least one new fact inferred on iteration `t - 1`
+        - Allows for the avoiding of redundant rule matching
+
+      - Observation leads to an incremental forward-chaining algorithm where, at iteration `t`, we check a rule only if its premise includes a conjunct `p_i` that unifies with a fact `p_i'` newly inferred at iteration `t - 1`
+        - Then fixes `p_i` to match with `p_i'`, but allows the other conjuncts of the rule to match with facts from any previous iteration
+        - Generates exactly the same facts at each iteration, but is much more efficient
+
+      - With suitable indexing, it is easy to identify all the rules that can be triggered by any given fact
+        - Inferences cascade through the set of rules until the fixed point is reach, then begin the process again for the next new fact
+
+      - A great deal of redundant work is done in repeatedly constructing partial matches that have some unsatisfied premises
+        - Would be better to retain and gradually complete the partial matches as new facts arrive
+        - Addressed by the rete algorithm
+          - Preprocesses the set of rules in the KB to construct a dataflow network in which each node is a literal from a rule premise
+          - Variable bindings flow through the network and are filtered out when they fail to match a literal
+          - At any given point, the state of a rete network captures all the partial matches of the rules, avoiding a great deal of recomputation
+
+    - Irrelevant facts
+      - Problem arises from the fact that forward chaining makes all allowable inferences based on the known facts, even if they are irrelevant to the goal at hand
+      - One solution is to use backward chaining
+      - Another solution is to restrict forward chaining to a selected subset of rules
+      - A third approach emerged from the field of deductive databases
+        - Rewrite the rule set, using information from the goal, so that only relevant variable bindings are considered during forward chaining
+
 - Backward Chaining
+
+  - Algorithms work backward from the goal, chaining through rules to find known facts that support the proof
+
+  - A Backward-Chaining Algorithm
+
+    - ```pseudocode
+      function FOL-BC-ASK(KB, query) returns a generator of substitutions
+      	return FOL-BC-OR(KB, query, {})
+      	
+      generator FOL-BC-OR(KB, goal, θ) yields a substitution
+      	for each rule (lhs ⇒ rhs) in FETCH-RULES-FOR-GOAL(KB, goal) do
+      		(lhs, rhs) <- STANDARDIZE-VARIABLES((lhs, rhs))
+      		for each θ’ in FOL-BC-AND(KB, lhs, UNIFY(rhs, goal, θ)) do
+      			yield θ’
+      			
+      generator FOL-BC-AND(KB, goals, θ) yields a substitution
+      	if θ = failure then return
+      	else if LENGTH(goals) = 0 then yield θ
+      	else do
+      		first, rest <- FIRST(goals), REST(goals)
+      		for each θ’ in FOL-BC-OR(KB, SUBST(θ, first), θ) do
+      			for each θ’’ in FOL-BC-AND(KB, rest, θ’) do
+      				yield θ’’
+      ```
+
+      - A generator is a function that returns multiple times, each time giving one possible result
+      - `FOL-BC-OR` fetches all clauses that might unify with the goal, standardizes the variables in the clause to be brand-new variables, and then, if the `rhs` of the clause unifies with the goal, proves all the conjuncts in the `lhs` using `FOL-BC-AND`
+      - `FOL-BC-AND` works by proving each of the conjuncts in turn, keeping track of the accumulated substitution as it goes
+
+    - Backward chaining is a kind of and/or search
+
+      - The or part because the goal query can be proved by any rule in the KB
+      - The and part because all the conjuncts in the `lhs` of a clause must be proved
+      - Clearly a DFS algorithm
+        - Space requirements are linear in the size of the proof
+        - Suffers from problems of repeated states and incompleteness
 
 - Resolution
 
