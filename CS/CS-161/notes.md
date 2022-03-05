@@ -1987,7 +1987,7 @@
 
     - e.g., `∀x King(x) ∧ Greedy(x) ⇒ Evil(x)` yields:
 
-      - `King(John)  Greedy(John) ⇒ Evil(John)`
+      - `King(John) ∧ Greedy(John) ⇒ Evil(John)`
       - `King(Richard) ∧ Greedy(Richard) ⇒ Evil(Richard)`
       - `King(Father(John)) ∧ Greedy(Father(John)) ⇒ Evil(Father(John))`
 
@@ -2056,7 +2056,192 @@
 
 
 
-## Lecture 17:
+## Lecture 17: First-Order Logic: Inference
+
+- Problems with Propositionalization
+
+  - Propositionalization seems to generate lots of irrelevant sentences
+  - With `p` `k`-ary predicates and `n` constants, there are `pn^k` instantiations
+  - With function symbols, it gets much worse 
+
+- Unification
+
+  - Instead of instantiating quantified sentences in all possible ways, we can compute specific substitutions "that make sense"
+
+    - These are substitutions that unify abstract sentences so that rules can be applied
+
+  - Unification: finding substitutions that make different logical expressions look identical
+
+    - `UNIFY(α, β) = θ if SUBST(θ, α) = SUBST(θ, β)`
+
+  - Suppose we want to know: whom does John know?
+
+    - Answers to this query can be found by finding all sentences in the KB that unify with `Knows(John, x)`
+
+    - | `α`              | `β`                 | `θ`                       |
+      | ---------------- | ------------------- | ------------------------- |
+      | `Knows(John, x)` | `Knows(John, Jane)` | `{ x/Jane }`              |
+      | `Knows(John, x)` | `Knows(y, OJ)`      | `{ x/OJ, y/John }`        |
+      | `Knows(John, x)` | `Knows(y, Mom(y))`  | `{ y/John, x/Mom(John) }` |
+      | `Knows(John, x)` | `Knows(x, OJ)`      | Fail                      |
+      | `Knows(John, x)` | `Knows(x_17, OJ)`   | `{ x/OJ, x_17/John }`     |
+
+  - Standardizing Apart
+
+    - The fourth unification above fails only because the two sentences happen to use the same variable name `x`
+    - The problem can be avoided by standardizing apart one of the two sentences being unified, which means renaming its variables to avoid name clashes
+    - Standardizing apart eliminates overlap of variables
+      - e.g., `Knows(x, OJ)` to `Knows(x_17, OJ)`
+
+  - Most General Unifier
+
+    - `UNIFY(α, β)` returns a substitution that makes `α`, `β` look the same
+    - Maybe more than one unifier
+      - e.g. `UNIFY(Knows(John, x), Knows(y, z))` could return `{ y/John, x/z }` or `{ y/John, x/John, z/John }`
+      - The first one is more general
+
+    - For every unifiable pair of sentences, there is a single most general unifier (MGU) that is unique up to renaming and substitution of variables
+      - For `UNIFY(Knows(John, x), Knows(y, z))`, the MGU is `{ y/John, x/z }` 
+
+- Generalized Modus Ponens
+
+  - For atomic sentences `p_i`, `p_i'`, q, where there is a substitution `θ` such that `∀i, SUBST(θ, p_i') = SUBST(θ, p_i)`, then:
+
+    - $$
+      \frac{p_1',p_2',...,p_n',\quad(p_1\land p_2\land\ ...\ \land p_n\Rightarrow q)}{\texttt{SUBST}(\theta,q)}
+      $$
+
+  - Definite Clauses
+
+    - GMP is used with a KB of definite clauses
+    - Definite clauses:
+      - Atomic sentences
+      - Implication whose premises is a conjunction of positive literals and whose conclusions is a single positive literal
+      - All variables assumed universally quantified
+      - Examples:
+        - `King(John)`
+        - `King(x) ∧ Greedy(x) ⇒ Evil(x)`
+
+    - Comparison: Horn clauses in propositional logic
+      - Proposition symbol
+      - (conjunction of symbols) ⇒ symbol
+      - Examples:
+        - `C`
+        - `A ∧ B ⇒ C`
+
+  - Soundness of GMP
+
+    - GMP is a sound inference rule (only derives entailed sentences)
+
+- Conversion to CNF
+
+  - Every sentence of first-order logic can be into an inferentially equivalent CNF sentence (it is satisfiable exactly when the original sentence is satisfiable)
+
+  - Example: "Everyone who loves all animals is loved by someone"
+
+    - $$
+      \forall x\ [\forall y\ Animal(y)\Rightarrow Loves(x,y)]\Rightarrow[\exists y\ Loves(y,x)]
+      $$
+
+    - Eliminate biconditionals and implications:
+
+      - $$
+        \forall x\ [\neg\forall y\ \neg Animal(y)\lor Loves(x,y)]\lor[\exists y\ Loves(y,x)]
+        $$
+
+    - Move `¬` inwards:
+
+      - $$
+        \neg\forall x\ P\equiv\exists x\ \neg P\\
+        \neg\exists x\ P\equiv\forall x\ \neg P
+        $$
+
+      - $$
+        \forall x\ [\exists y\ \neg(\neg Animal(y)\lor Loves(x,y))]\lor[\exists y\ Loves(y, x)]\\
+        \forall x\ [\exists y\ \neg\neg Animal(y)\land\neg Loves(x,y)]\lor[\exists y\ Loves(y, x)]\\
+        \forall x\ [\exists y\ Animal(y)\land\neg Loves(x,y)]\lor[\exists y\ Loves(y, x)]\\
+        $$
+
+    - Standardize apart variables: each quantifier should use a different variable:
+
+      - $$
+        \forall x\ [\exists y\ Animal(y)\land\neg Loves(x,y)]\lor[\exists z\ Loves(z,x)]
+        $$
+
+    - Skolemize: a more general form of existential instantiation
+
+      - Each existential variable is replaced by a Skolem function of the enclosing universally quantified variables
+
+      - $$
+        \forall x\ [Animal(F(x))\land\neg Loves(x,F(x))]\lor Loves(G(x),x)
+        $$
+
+    - Drop universal quantifiers:
+
+      - $$
+        [Animal(F(x))\land\neg Loves(x,F(x))]\lor Loves(G(x),x)
+        $$
+
+    - Distribute `∧` over `∨`:
+
+      - $$
+        [Animal(F(x))\lor Loves(G(x),x)]\land[\neg Loves(x,F(x))\lor Loves(G(x),x)]
+        $$
+
+- Resolution
+
+  - Brief Summary
+
+    - Full first-order version:
+
+      - $$
+        \frac{l_1\lor\ ...\ \lor l_k,\quad m_1\lor\ ...\ \lor m_n}{\texttt{SUBST}(\theta,(...\ \lor l_{i-1}\lor l_{i+1}\ \lor\ ...\ \lor m_{j-1}\lor m_{j+1}\lor\ ...))}
+        $$
+
+        - Where `UNIFY(l_i, ¬m_j) = θ`
+
+    - Note `UNIFY(α, β) = θ` if `SUBST(θ, α) = SUBST(θ, β)`
+
+    - Example: `[Animal(F(x)) ∨ Loves(G(x), x)]` and `[¬Loves(u, v) ∨ ¬Kills(u, v)]`
+
+      - We could eliminate `Loves(G(x), x)` and `¬Loves(u, v)` with unifier `θ = { u/G(x), v(x) }` to produce the resolvent clause `Animal(F(x)) ∨ ¬Kills(G(x), x)`
+
+  - Example KB
+
+    - Assume:
+
+      - The law says that it is a crime for an American to sell weapons to hostile nations
+      - The country Nono, an enemy of America, has some missiles, and all of its missiles were sold to it by Colonel West, who is American
+
+    - Prove that Colonel West is a criminal
+
+    - KB:
+
+      - $$
+        American(x)\land Weapon(y)\land Sells(x,y,z)\land Hostile(z)\Rightarrow Criminal(x)\\
+        Owns(Nono,M_1)\land Missile(M_1)\\
+        \forall x\ Missile(x)\land Owns(Nono,x)\Rightarrow Sells(West,x,Nono)\\
+        Missile(x)\Rightarrow Weapon(x)\\
+        Enemy(x,America)\Rightarrow Hostile(x)\\
+        American(West)\\
+        Enemy(Nono,America)
+        $$
+
+    - Translate KB into CNF:
+
+      - $$
+        \neg American(x)\lor\neg Weapon(y)\lor\neg Sells(x,y,z)\lor\neg Hostile\lor Criminal(x)\\
+        \neg Missile(x)\lor\neg Owns(Nono,x)\lor Sells(West,x,Nono)\\
+        \neg Enemy(x,America)\lor Hostile(x)\\
+        \neg Missile(x)\lor Weapon(x)
+        $$
+
+    - We need to show `KB ∧ ¬Criminal(West)` is unsatisfiable
+
+
+
+
+## Lecture 18:
 
 - 
 
