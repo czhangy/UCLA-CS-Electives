@@ -1192,7 +1192,7 @@
 
 
 
-## Lecture 15: Implicatures
+## Lecture 15: Implicatures I
 
 - The Gricean Theory of Implicatures
   - The Cooperative Principle
@@ -1237,7 +1237,37 @@
 
 
 
-## Lecture 16:
+## Lecture 16: Implicatures II
+
+- Implicatures
+  - The Puzzle of 'Or'
+    - Sentences of the form "`S_1` and `S_2`" are true iff `S_1` and `S_2` are both independently true
+    - What about "`S_1` or `S_2`"?
+      - Sometimes if both are true, we think it's true, but other times, we think it's false
+    - Let's explore the idea that "`S_1` or `S_2`" has the implicature that "`S_1` and `S_2`" is false
+  - Summary
+    - Grammar determines broad interpretations, which can be narrow based on non-linguistic knowledge resources
+    - Information content: asserted, presupposed, implicated
+    - Grice's theory derives implicatures from the assumption that people are cooperative, which is formulated in terms of Maxims: Relation, Quality, Quantity, and Manner
+    - Implicatures can be cancelled and reinforced
+    - Case study: "`S_1` or `S_2`" has the implicature that "`S_1` and `S_2`" is false
+- The Puzzle of 'Some'
+  - Is a sentence "... some of the `NP`s..." true or false, when the parallel sentence "... all of the `NP`s..." is true?
+  - Example where it seems to be true:
+    - "If the Russians hacked some of the elections, we need to investigate"
+  - Example where it seems to be false
+    - "You may have some of the cookies"
+  - Explore the idea that "... some of the `NP`s" has the implicature that "... all of the `NP`s" is false
+  - Informativity
+    - Sentence `S_1` is "more informative" than `S_2` if `S_1` entails `S_2`, but `S_2` doesn't entail `S_1`
+      - If `S_1` entails `S_2`, that means that whenever `S_1` is true, `S_2` is also true
+        - Thus, if you know `S_1`, you also have enough information to conclude `S_2`
+      - If `S_2` doesn't entail `S_1`, that means that knowing `S_2` doesn't give you enough information to conclude `S_1`
+      - Thus, if `S_1` entails `S_2`, but not vice versa, that means that there is "more information" in `S_1` than in `S_2`, which means that `S_1` is "more informative"
+
+
+
+## Lecture 17:
 
 - 
 
