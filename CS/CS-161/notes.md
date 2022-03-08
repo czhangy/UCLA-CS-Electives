@@ -5980,5 +5980,226 @@
 
 ## Reading 10: Planning and Acting in the Real World
 
+- Time, Schedules, and Resources
+
+  - The classical planning representation talks about what to do, and in what order
+
+    - It cannot talk about time
+
+  - Need new methods to handle scheduling and resource constraints
+
+    - Approach is to "plan first, schedule later"
+    - Divide problem into a planning phase in which actions are selected, followed by a scheduling phase in which temporal information is added to the plan to ensure it meets resource/deadline constraints
+
+  - Representing Temporal and Resource Constraints
+
+    - A typical job-shop scheduling problem consists of a set of jobs, each of which consists of a collection of actions with ordering constraints among them
+      - Each action has a duration and a set of resource constraints required by the action
+      - Each constraint specifies a type of resource, the number of that resource required, and whether that resource is reusable or consumable
+      - Resources can be produced by actions with negative consumption
+
+    - A solution to a job-shop scheduling problem must specify the start times for each action and satisfy all the temporal ordering constraints and resource constraints
+      - Solutions can be evaluated by a cost function, which can be quite complicated
+      - For simplicity, we assume that the cost function is just the total duration of the plan, called the makespan
+
+    - Resources are represented as numerical quantities rather than as named entities, in a technique called aggregation
+      - Central idea is to group individual objects into quantities when the objects are all indistinguishable with respect to the purpose at hand
+      - Essential for reducing complexity
+
+  - Solving Scheduling Problems
+
+    - Begin by considering just the temporal scheduling problem, ignoring resource constraints
+
+      - To minimize makespan, we must find the earliest start times for all the actions consistent with the ordering constraints supplied with the problem
+
+        - View these ordering constraints as a directed graph relating the actions
+
+      - Apply the critical path method to the graph to determine the possible start and end times of each action
+
+        - A path through a graph representing a partial-order plan is a linearly ordered sequence of actions
+
+        - The critical path is the path whose total duration is longest
+
+          - Determines the duration of the entire plan
+          - Delaying the start of any action on the critical path slows down the whole plan
+
+        - Actions that are off the critical path have the window of time in which they can be executed
+
+          - Specified in terms of earliest start time and latest start time
+            - `LS - ES` is known as the slack of an action
+            - Together, the `ES` and `LS` times for all the actions constitute a schedule for the problem
+
+        - ```pseudocode
+          ES(Start) = 0
+          ES(B) = max_A≺B ES(A) + Duration(A)
+          LS(Finish) = ES(Finish)
+          LS(A) = min_B≻A LS(B) − Duration(A)
+          ```
+
+          - `A ≺ B` means that `A` comes before `B`
+          - Start by assigning `ES(Start)` to be `0`
+          - As soon as we get an action `B` such that all the actions that come immediately before `B` have `ES` values assigned, we set `ES(B)` to be the maximum of the earliest finish times
+            - The earliest finish time of an action is defined by its earliest start time plus its duration
+            - `LS` values are computed in a similar manner, working backwards from the `Finish` action
+          - Complexity is `O(Nb)`
+            - `N` is the number of actions
+            - `b` is the maximum branching factor into or out of an action
+
+        - Easy to solve because they are defined as a conjunction of linear inequalities on the start and end times
+
+          - Resource constraints introduce disjunctions, which makes the problem NP-hard
+
+    - Complexity of scheduling with resource constraints is often seen in practice and theory
+
+      - A simple heuristic is the minimum slack algorithm
+        - On each iteration, schedule for the earliest possible start whichever unscheduled action has all its predecessors scheduled and has the least slack
+        - Then update the `ES` and `LS` times for each affected action and repeat
+        - Resembled the MRV heuristic in CSPs
+
+    - We have assumed that the set of actions and ordering constraints is fixed
+
+      - Under these assumptions, every scheduling problem can be solved by a nonoverlapping sequence that avoids all resource conflicts, provided that each action is feasible by itself
+      - May be better to reconsider the actions and constraints, in case that leads to a much easier scheduling problem
+        - Makes sense to integrate planning and scheduling by taking into account durations and overlaps during the construction of a partial-order plan
+
+- Hierarchical Planning
+
+  - Hierarchical decomposition is an idea that manages complexity
+
+  - High-Level Actions
+
+    - The basic formalism we adopt to understand hierarchical decomposition comes from the area of hierarchical task networks
+    - We assume full observability and determinism and the availability of a set of actions, now called primitive actions
+      - The key additional concept is the high-level action
+    - Each HLA has one or more possible refinements into a sequence of actions, each of which may be an HLA or a primitive action
+    - High-level actions and their refinements embody knowledge about how to do things
+    - An HLA refinement that contains only primitive actions is called an implementation of the HLA
+      - An implementation of a high-level plan (a sequence of HLAs) is the concatenation of implementations of each HLA in the sequence
+      - A high-level plan achieves the goal from a given state if at least one of its implementations achieves the goal from that state
+    - Simplest case is an HLA that has exactly one implementation
+      - In this case, we can compute the preconditions and effects of the HLA from those of the implementation and then treat the HLA exactly as if it were a primitive action itself
+    - When HLAs have multiple possible implementations, there are two options:
+      - One is to search among the implementations for one that works
+      - The other is to reason directly about the HLAs
+        - Enables the derivation of provably correct abstract plans, without the need to consider their implementations
+
+  - Searching for Primitive Solutions
+
+    - HTN planning is often formulated with a single "top level" action called `Act`, where the aim is to find an implementation of `Act` that achieves the goal
+
+    - ```pseudocode
+      function HIERARCHICAL_SEARCH(problem, hierarchy) returns a solution, or failure
+      	frontier <- a FIFO queue with [Act] as the only element
+      	loop do
+      		if EMPTY?(frontier) then return failure
+      		plan <- POP(frontier) // chooses the shallowest plan in frontier
+      		hla <- the first HLA in plan, or null if none
+      		prefix, suffix <- the action subsequences before and after hla in plan
+      		outcome <- RESULT(problem.INITIAL-STATE, prefix)
+      		if hla is null then // so plan is primitive and outcome is its result
+      			if outcome satisfies problem.GOAL then return plan
+              else for each sequence in REFINEMENTS(hla, outcome, hierarchy) do
+              	frontier <- INSERT(APPEND(prefix, sequence, suffix), frontier)
+      ```
+
+      - Repeatedly choose an HLA in the current plan and replace it with one of its refinements, until the plan achieves the goal
+
+    - Explores the space of sequences that conform to the knowledge contained in the HLA library about how things are to be done
+
+      - A great deal of knowledge can be encoded in the action sequences specified in each refinement, as well as in the preconditions for the refinements
+
+    - The key to HTN planning is the construction of a plan library containing known methods for implementing complex, high-level actions
+
+      - One method to constructing the library is to learn the methods from problem-solving experience
+        - The agent can become more and more competent over time as new methods are built on top of old methods
+        - One important aspect of this learning process is the ability to generalize the methods that are constructed, eliminating detail that is specific to the problem instance and just keeping the key elements of the plan
+
+  - Searching for Abstract Solutions
+
+    - The algorithm in the previous section forces us to refine HLAs all the way down to primitive action sequences, which seems like overkill
+
+      - The solution seems to be to write precondition-effect descriptions of the HLAs and then use those descriptions to prove that the high-level plan achieves the goal
+      - For this method to work, it must be the case that every high-level plan that claims to achieve the goal does in fact achieve the goal
+        - Property is called the downward refinement property for HLA descriptions
+        - If every description is true, then this requirement is satisfied
+        - Problem arises when an HLA has multiple implementations
+
+    - One way to describe HLAs with multiple implementations is to include only the positive effects that are achieved by every implementation and the negative effects of any implementation
+
+      - Assumes that an adversary would be the one choosing the implementation => demonic nondeterminism
+
+    - Angelic nondeterminism is when the agent itself makes the choices
+
+      - The basic concept required for understanding angelic semantics is the reachable set of an HLA
+
+        - Given a state `s`, the reachable set for an HLA `h`, written as `REACH(s, h)` is the set of states reachable by any of the HLA's implementations
+
+      - Key idea is that the agent can choose which element of the reachable set it ends up in when it executes the HLA
+
+        - An HLA with more refinements is more powerful than an HLA with fewer refinements
+
+      - A high-level plan achieves the goal if its reachable set intersects with the set of goal states
+
+        - If the reachable set doesn't intersect the goal, then the plan definitely works
+
+      - In many cases, we can only approximate the effects of variables on the effects of an HLA
+
+        - An HLA may have infinitely many implementations and may produce arbitrarily wiggly reachable sets
+        - Use two kinds of approximations:
+          - An optimistic description of an HLA may overstate the reachable set
+          - A pessimistic description of an HLA may understate the reachable set
+
+      - ```pseudocode
+        function ANGELIC-SEARCH(problem, hierarchy, initialPlan) returns solution or fail
+        	frontier <- a FIFO queue with initialPlan as the only element
+        	loop do
+        		if EMPTY?(frontier) then return fail
+        		plan <- POP(frontier) // chooses the shallowest node in frontier
+        		if REACH+(problem.INITIAL-STATE, plan) intersects problem.GOAL then
+        			if plan is primitive then return plan
+        			guaranteed <- REACH-(problem.INITIAL-STATE, plan) ∩ problem.GOAL
+        			if guaranteed != {} and MAKING-PROGRESS(plan, initialPlan) then
+        				finalState <- any element of guaranteed
+        				return DECOMP(hierarchy, problem.INITIAL-STATE, plan, finalState)
+        			hla <- some HLA in plan
+        			prefix,suffix <- the action subsequences before and after hla in plan
+        			for each sequence in REFINEMENTS(hla, outcome, hierarchy) do
+        				frontier <- INSERT(APPEND(prefix, sequence, suffix), frontier)
+        				
+        function DECOMP(hierarchy, s_o, plan, s_f) returns a solution
+        	solution <- an empty plan
+        	while plan is not empty do
+        		action <- REMOVE-LAST(plan)
+        		s_i <- a state in REACH-(s_o, plan) such that s_f ∈ REACH-(s_i, action)
+        		problem <- a problem with INITIAL-STATE = s_i and GOAL = s_f
+        		solution <- APPEND(ANGELIC-SEARCH(problem, hierarchy, action), solution)
+        		s_f <- s_i
+            return solution
+        ```
+
+        - Can detect plans that will and won't work by checking the intersections of the optimistic and pessimistic reachable sets with the goal
+        - When a workable abstract plan is found, the algorithm decomposes the original problem into subproblems, one for each step of the plan
+          - The initial state and goal of each subproblem are obtained by regressing a guaranteed-reachable goal state through the action schemas for each step of the plan
+        - The ability to commit to or reject high-level plans can give `ANGELIC-SEARCH` a significant computation advantage over `HIERARCHICAL-SEARCH`
+
+      - Can be extended to find least-cost solutions by generalizing the notion of reachable set
+
+        - Instead of a state being reachable or not, it has a cost for the most efficient way to get there
+          - `INF` for unreachable states
+
+        - Allows angelic search to find provably optimal abstract plans without considering their implementations
+        - Same approach can be used to obtain effective hierarchical lookahead algorithms for online search
+
+  - Planning and Acting in Nondeterministic Domains
+
+  - Multiagent Planning
+
+  - Summary
+
+
+
+
+## Reading 11: Quantifying Uncertainty
+
 - 
 
