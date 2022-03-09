@@ -2241,7 +2241,7 @@
 
 
 
-## Lecture 18: Uncertainty
+## Lecture 18: Uncertainty and Probability
 
 - Outline
 
@@ -6694,5 +6694,223 @@
 
 ## Reading 11: Quantifying Uncertainty
 
-- 
+- Acting under Uncertainty
+
+  - Agents may need to handle uncertainty, whether due to partial observability, nondeterminism, or a combination of the two
+
+  - Previously, we've handled this through the use of belief states, but these have significant drawbacks:
+
+    - When interpreting partial sensor information, a logical agent must consider every logically possible explanation for the observations, no matter how unlikely
+      - Leads to impossibly large and complex belief-state representations
+
+    - A correct contingent plan that handles every eventuality can grow arbitrarily large and must consider arbitrarily unlikely contingencies
+    - Sometimes there is no plan that is guaranteed to achieve the goal - yet the agent must act
+      - It must have some way to compare the merits of plans that are not guaranteed
+
+  - The qualification problem describes when a plan's success cannot be inferred due to an inability to deduce a number of conditions
+
+  - The right thing to do - the rational decision - depends on both the relative importance of various goals and the likelihood that, and degree to which, they will be achieved
+
+  - Summarizing Uncertainty
+
+    - Trying to use logic to cope with large-scale domains fails for three main reasons:
+      - Laziness: it is too much work to list the complete set of antecedents or consequents needed to ensure an exceptionless rule and too hard to use such rules
+      - Theoretical ignorance: there is no complete theory for the domain
+      - Practical ignorance: even if we know all the rules, we might be uncertain about a particular situation because not all the necessary tests have been or can be run
+
+    - The agent's knowledge can at best provide only a degree of belief in the relevant sentences
+      - Our main tool for dealing with these degrees of belief is probability theory
+        - Same ontological commitments as logic: the world is composed of facts that do or do not hold in any particular case
+        - Different epistemological commitments: a probabilistic agent may have a numerical degree of belief between `0` and `1`
+
+    - Probability provides a way of summarizing the uncertainty that comes from our laziness and ignorance, thereby solving the qualification problem
+      - Probability statements are made with respect to a knowledge state, not with respect to the real world
+
+  - Uncertainty and Rational Decisions
+
+    - To make choices, an agent must first have preferences between the different possible outcomes of the various plans
+
+      - An outcome is a completely specified state
+      - We use utility theory to represent and reason with preferences
+        - Utility means the quality of being useful
+        - Says that every state has a degree of usefulness, or utility, to an agent and that the agent will prefer states with higher utility
+
+    - Preferences, as expressed by utilities, are combined with probabilities in the general theory of rational decisions called decision theory
+
+      - Decision theory = probability theory + utility theory
+      - Fundamental idea is that an agent is rational if and only if it chooses the action that yields the highest expected utility, averaged over all the possible outcomes of the action
+        - Called the principle of maximum expected utility
+
+    - ```pseudocode
+      function DT-AGENT(percept) returns an action
+      	persistent: belief_state, probabilistic beliefs about the current state of the 					world
+      				action, the agent's action
+          
+          update belief_state based on action and percept
+          calculate outcome probabilties for actions, given action descriptions and
+          	current belief state
+          select action with highest expected utility given probabilities of outcomes
+          	and utility information
+          return action
+      ```
+
+- Basic Probability Notation
+
+  - What Probabilities are About
+
+    - Probabilistic assertions are about possible worlds
+
+      - Talk about how probable the various worlds are
+      - The set of all possible worlds is called the sample space, referred to by `Ω`
+        - Particular possible worlds, or elements of the space, are referred to by `ω`
+
+      - Possible worlds are mutually exclusive and exhaustive
+        - Two possible worlds cannot both be the case
+        - One must be the case
+
+    - A fully specified probability model associates a numerical probability `P(ω)` with each possible world
+
+      - The basic axioms of probability theory say that every possible world has a probability between `0` and `1` and that the total probability of the set of possible worlds is `1`:
+
+        - $$
+          0\le P(\omega)\le 1\text{ for every }\omega\text{ and }\sum_{\omega\in\Omega}P(\omega)=1
+          $$
+
+    - Probabilistic assertions and queries are not usually about particular possible worlds, but about sets of them
+
+      - These sets are called events
+
+      - Sets are always described by propositions in a formal language
+
+        - For each proposition, the corresponding set contains just those possible worlds in which the proposition holds
+
+        - The probability associated with a proposition is defined to be the sum of the probabilities of the worlds in which it holds:
+
+          - $$
+            \text{For any proposition }\phi,P(\phi)=\sum_{\omega\in\Omega}P(\omega)
+            $$
+
+    - Probabilities that refer to degrees of belief in propositions in the absence of other information are called unconditional or prior probabilities
+
+    - Most of the time, we have some information, usually called evidence, that has already been revealed
+
+      - In this case, we are interested in the conditional or posterior probability
+      - Ex) `P(doubles | Die_1 = 5)`
+        - Where `|` is pronounced "given"
+
+      - When making decisions, the agent needs to condition on all the evidence it has observed
+      - Important to note that conditioning means whenever something is true and we have no further information
+
+    - Conditional probabilities are defined in terms of unconditional probabilities as follows:
+
+      - For any propositions `a` and `b`, we have:
+
+        - $$
+          P(a|b)=\frac{P(a\land b)}{P(b)}
+          $$
+
+        - Holds whenever `P(b) > 0`
+
+      - Can be written in a different form called the product rule:
+
+        - $$
+          P(a\land b)=P(a|b)P(b)
+          $$
+
+        - For `a` and `b` to be true, we need `b` to be true, and we also need `a` to be true given `b`
+
+  - The Language of Propositions in Probability Assertions
+
+    - Propositions describing sets of possible worlds are written in a notation that combines elements of propositional logic and constraint satisfaction notation
+    - If is a factored representation, in which a possible worlds is represented by a set of variable/value pairs
+    - Variables in probability theory are called random variables and their names begin with an uppercase letter
+      - Every random variable has a domain - the set of possible values it can take on
+        - Domains can be sets of arbitrary tokens
+        - When no ambiguity is possible, it is common to use a value by itself to stand for the proposition that a particular variable has that value
+
+      - A Boolean random variable has the domain `{ true, false }`
+      - By convention, propositions of the form `A = true` are abbreviated as `a`, while `A = false` is abbreviated as `¬a`
+
+    - A bold `P` indicates that the result is a vector of numbers, and where we assume a predefined ordering on the domain
+      - Defines a probability distribution for the random variable
+      - Also used for conditional distributions
+        - `P(X | Y)` gives the values of `P(X = x_i | Y = y_i)` for each possible `i, j` pair
+
+    - For continuous variables, it is not possible to write out the entire distribution as a vector, because there are infinitely many values
+      - Instead, we define the probability that a random variable takes on some value `x` as a parameterized function of `x`
+      - We call this a probability density function
+
+    - We also need notation for distributions on multiple variables
+      - `P(X, Y)`
+      - Generates an m x n table of probabilities called the joint probability distribution of `X` and `Y`
+      - Can also mix variables with and without values
+
+    - A possible world is defined to be an assignment of values to all of the random variables under consideration
+      - A probability model is completely determined by the joint distribution for all the random variables
+        - Called the full joint probability distribution
+        - Suffices for calculating the probability of any proposition
+
+  - Probability Axioms and their Reasonableness
+
+    - $$
+      P(\neg a)=1-P(a)
+      $$
+
+    - $$
+      P(a\lor b)=P(a)+P(b)-P(a\land b)
+      $$
+
+    - If Agent 1 expresses a set of degrees of belief that violate the axioms of probability theory then there is a combination of bets by Agent 2 that guarantees that Agent 1 will lost money every time
+
+- Inference Using Full Joint Distributions
+
+  - Probabilistic inference is the computation of posterior probabilities for query propositions given observed evidence
+
+    - Use the full joint distribution as the knowledge base from which answers to all questions may be derived
+    - The probabilities in the join distribution sum to `1`, as required by the axioms of probability
+
+  - One particularly common task is to extract the distribution over some subset of variables or a single variable
+
+    - The process of marginalization or summing out involves calculating the marginal probability of a random variable
+
+    - The general marginalization rule for any sets of variables `Y` and `Z` is as follows:
+
+      - $$
+        \textbf{P}(\textbf{Y})=\sum_{\textbf{z}\in\textbf{Z}}\textbf{P}(\textbf{Y},\textbf{z})
+        $$
+
+      - A variant of this rule involves conditional probabilities instead of joint probabilities, using the product rule:
+
+        - $$
+          \textbf{P}(\textbf{Y})=\sum_\textbf{z}\textbf{P}(\textbf{Y}|\textbf{z})P(\textbf{z})
+          $$
+
+        - Called conditioning
+
+  - In most cases, we are interested in computing conditional probabilities for some variables, given evidence about others
+
+    - Utilizes a normalization constant for each distribution, which ensures that it sums up to `1`
+      - Represented by `α`
+
+  - A general inference procedure is as follows:
+
+    - Begin with the case in which the query involves a single variable, `X`
+
+    - Let `E` be the list of evidence variables, let `e` be the list of observed values for them, and let `Y` be the remaining unobserved variables
+
+    - The query is `P(X | e)` and can be evaluated as:
+
+      - $$
+        \textbf{P}(X|\textbf{e})=\alpha\textbf{P}(X,\textbf{e})=\alpha\sum_\textbf{y}\textbf{P}(X,\textbf{e},\textbf{y})
+        $$
+
+      - Together, the variables `X`, `E`, and `Y` constitute the complete set of variables for the domain, so `P(X, e, y)` is simply a subset of probabilities from the full joint distribution
+
+    - Does not scale well
+
+      - For a domain described by `n` Boolean variables, it requires an input table of size `O(2^n)` and takes `O(2^n)` time to process the table
+
+- Independence
+
+  
 
