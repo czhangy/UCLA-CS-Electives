@@ -2241,7 +2241,304 @@
 
 
 
-## Lecture 18:
+## Lecture 18: Uncertainty
+
+- Outline
+
+  - Uncertainty
+  - Probability
+  - Syntax and Semantics
+  - Inference
+  - Independence and Bayes' Rule
+
+- Uncertainty
+
+  - Let action `A_t` be leaving for the airport `t` minutes before a flight
+  - Will `A_t` get me there on time?
+  - Here's a purely logical approach:
+    - "`A_25` will get met there on time" may be wrong
+    - "`A_25` will get me there on time if there's no accident on the bridge and it doesn't rain and my tires remain intact, etc." => there exists uncertainty
+
+  - How do we handle uncertainty?
+  - Methods for Handling Uncertainty
+    - Making assumptions:
+      - Assume my car doesn't have a flat tire
+      - Assume `A_25` works unless contradicted by evidence
+
+    - Issues: what assumptions are reasonable? How to handle contradictions?
+    - Probability can help us
+      - Given the available evidence, `A_25` will get me there on time with probability 0.04
+
+    - What is probability?
+
+  - Making Decisions Under Uncertainty
+    - Suppose I believe the following:
+      - `P(A_25 gets me there on time | ...) = 0.04`
+      - `P(A_90 gets me there on time | ...) = 0.70`
+      - `P(A_120 gets me there on time | ...) = 0.95`
+      - `P(A_1440 gets me there on time | ...) = 0.9999`
+
+    - Which action do I choose?
+      - Depends on my preferences for missing flight vs. airport cuisine, etc.
+      - Utility theory says that every state has a degree of usefulness, or utility, to an agent and that the agent will prefer states with higher utility
+      - Decision theory = utility theory + probability theory
+
+- Probability
+
+  - Probabilistic assertions summarize effects of:
+
+    - Laziness: failure to enumerate exceptions, qualifications, etc.
+    - Ignorance: lack of relevant facts, initial conditions, etc.
+
+  - Subjective or Bayesian probability:
+
+    - Probabilities relate propositions to one's own state of knowledge
+      - e.g., `P(A_25 | no reported accidents) = 0.06`
+
+    - Probabilities of propositions change with new evidence:
+      - e.g., `P(A_25 | no reported accidents, 5am) = 0.15`
+
+  - Probability Basics
+
+    - Begin with a set `Ω` - the sample space
+
+      - e.g., 6 possible rolls of a dice
+      - `ω ϵ Ω` is a sample point/possible world/atomic event
+
+    - A probability space or probability model is a sample space with an assignment `P(ω)` for every `ω ϵ Ω` such that:
+
+      - $$
+        0\le P(\omega)\le1\\
+        \sum_\omega P(\omega)=1
+        $$
+
+      - e.g., `P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6`
+
+    - An event `A` is any subset of `Ω`:
+
+      - $$
+        P(A)=\sum_{\{\omega\in A\}}P(\omega)
+        $$
+
+      - e.g., `P(die roll < 4) = P(1) + P(2) + P(3) = 1/6 + 1/6 + 1/6 = 1/2`
+
+  - Random Variables
+
+    - A random variable is a function from sample points to some range, e.g., the reals or Booleans
+
+      - e.g., `Odd(1) = true`
+
+    - `P` produces a probability distribution for any real value `X`:
+
+      - $$
+        P(X=x_i)=\sum_{\{\omega:X(\omega)=x_i\}}P(\omega)
+        $$
+
+      - e.g., `P(Odd = true) = P(1) + P(3) + P(5) = 1/6 + 1/6 + 1/6 = 1/2`
+
+  - Propositions
+
+    - We call events in probability as propositions in AI
+
+      - Events: given Boolean random variables `A` and `B`:
+        - Event `a` = set of sample points where `A(ω) = true`
+        - Event `¬a` = set of sample points where `A(ω) = false`
+        - Event `a ∧ b` = set of sample points where `A(ω) = true` and `B(ω) = true`
+
+    - With Boolean variables, sample point = propositional logic model
+
+      - e.g., `A = true`, `B = false`, or `a ∧ b`
+
+    - Proposition = disjunction of events in which it is true
+
+      - Example:
+
+        - $$
+          (a\lor b)\equiv(\neg a\land b)\lor(a\land\neg b)\lor(a\land b)\Rightarrow\\
+          P(a\lor b)=P(\neg a\land b)+P(a\land\neg b)+P(a\land b)
+          $$
+
+  - Prior Probability
+
+    - Prior or unconditional probabilities of propositions correspond to belief prior to arrival of any (new) evidence
+
+      - e.g., `P(Cavity = true) = 0.1` and `P(Weather = sunny) = 0.72`
+
+    - Probability distribution gives values for all possible assignments:
+
+      - e.g., `P(Weather) = <0.72, 0.1, 0.08, 0.1>` (normalized, i.e., sums to `1`)
+        - Tips: we use `P` (italic) to denote probability for a specific event, `P` (bold) to denote the distribution over all events - a vector
+
+    - Joint probability distribution for a set of real values gives the probability of every atomic event on those real values (i.e., every sample point)
+
+      - `P(Weather, Cavity)` = a 4 x 2 matrix of values:
+
+        - |   `Weather =`    | `sunny` | `rain` | `cloudy` | `snow` |
+          | :--------------: | :-----: | :----: | :------: | :----: |
+          | `Cavity = true`  |  0.144  |  0.02  |  0.016   |  0.02  |
+          | `Cavity = false` |  0.576  |  0.08  |  0.064   |  0.08  |
+
+      - Every question about a domain can be answered by the joint distribution because every event is a sum of sample points
+
+  - Conditional Probability
+
+    - Conditional or posterior probabilities
+
+      - e.g., `P(cavity | toothache) = 0.8`
+        - If `toothache` and we have no further information, then 80% chance of `cavity`
+        - Not "if `toothache` then 80% chance of `cavity`"
+          - If we know more, e.g., `cavity` is also given, then we have `P(cavity | toothache, cavity) = 1`
+
+    - New evidence may be irrelevant, allowing simplification
+
+      - e.g., `P(cavity | toothache, LakersWin) = P(cavity | toothache) = 0.8`
+
+    - Definition of conditional probability:
+
+      - $$
+        P(a|b)=\frac{P(a\land b)}{P(b)}\text{ if }P(b)\ne0
+        $$
+
+    - Product rule gives an alternative formulation:
+
+      - $$
+        P(a\land b)=P(a|b)P(b)=P(b|a)P(a)
+        $$
+
+    - A general version holds for whole distributions
+
+      - e.g., `P(Weather, Cavity) = P(Weather | Cavity)P(Cavity)`
+        - View as a 4 x 2 set of equations, not matrix multiplication
+
+    - Chain rule is derived by successive application of product rule:
+
+      - $$
+        P(X_1,...,X_n)=P(X_1,...,X_{n-1})P(X_n|X_1,...,X_{n-1})=\\
+        P(X_1,...,X_{n-2})P(X_{n-1}|X_1,...,X_{n-2})P(X_n|X_1,...,X_{n-1})=\\
+        \prod^n_{i=1}P(X_i|X_1,...,X_{i-1})
+        $$
+
+- Syntax for Propositions
+
+  - Propositional or Boolean random variables
+    - e.g., `Cavity` (do I have a cavity?)
+    - `Cavity = true` is a proposition, also written `cavity`
+
+  - Discrete random variables (finite or infinite)
+    - e.g., `Weather` is one of `<sunny, rain, cloudy, snow>`
+    - `Weather = rain` is a proposition
+    - Values must be exhaustive and mutually exclusive
+
+  - Continuous random variables (bounded or unbounded)
+    - e.g., `Temp = 21.6`; also allow e.g., `Temp < 22.0`
+
+  - Arbitrary Boolean combinations of basic propositions
+
+- Inference by Enumeration
+
+  - A naive way of doing probablistic inference is inference by enumeration
+
+  - Start with the joint distribution
+
+  - For any proposition `φ`, sum the atomic events where it is true:
+
+    - $$
+      P(\phi)=\sum_{\omega:\omega\models\phi}P(\omega)
+      $$
+
+  - Normalization
+
+    - Denominator can be viewed as a normalization constant `α`
+    - General idea: compute distribution on query variable by fixing evidence variables and summing over hidden variables
+
+  - Let `X` be all the variables
+
+    - Typically, we want the posterior joint distribution fo the query variables `Y` given specific values `e` for the evidence variables `E`
+
+  - Let the hidden variables be `H = X - Y - E`
+
+    - Then the required summation of joint entries is done by summing out the hidden variables:
+
+      - $$
+        P(Y|E=e)=\alpha P(Y,E=e)=\alpha\sum_hP(Y,E=e,H=h)
+        $$
+
+  - The terms in the summation are joint entries because `Y`, `E`, and `H` together exhaust the set of random variables
+
+  - Obvious problems:
+
+    - Worst-case time complexity `O(d^m)` where `d` is the largest domain size
+    - Space complexity `O(d^m)` to store the joint distribution
+    - How to find the numbers for `O(d^m)` entries?
+
+- Independence
+
+  - Those problems can be solved by exploring independencies between variables
+    - `A` and `B` are independent iff `P(A | B) = P(A)` or `P(B | A) = P(B)` or `P(A, B) = P(A)P(B)`
+
+  - Example:
+    - `P(Toothache, Catch, Cavity, Weather) = P(Toothache, Catch, Cavity)P(Weather)`
+    - 32 entries reduced to 12; for `n` independent biased coins: `2^n` => `n`
+
+  - Absolute independence is powerful, but rare
+    - e.g., dentistry is a large field with hundreds of variables, none of which are independent
+
+  - Conditional Independence
+    - `P(Toothache, Cavity, Catch)` has `2^3 - 1 = 7` independent entries
+    - If I have a cavity, the probability that the probe catches in it doesn't depend on whether I have a toothache:
+      - `P(catch | toothache, cavity) = P(catch | cavity)`
+
+    - The same independence holds if I haven't got a cavity:
+      - `P(catch | toothache, ¬cavity) = P(catch | ¬cavity)`
+
+    - `Catch` is conditionally independent of `Toothache` given `Cavity`:
+      - `P(Catch | Toothache, Cavity) = P(Catch | Cavity)`
+
+    - Equivalent statements:
+      - `P(Toothache | Catch, Cavity) = P(Toothache | Cavity)`
+      - `P(Toothache, Catch | Cavity) = P(Toothache | Cavity)P(Catch | Cavity)`
+
+    - Write out full joint distribution using chain rule:
+      - `P(Toothache, Catch, Cavity) = P(Toothache | Catch, Cavity)P(Catch, Cavity) = P(Toothache | Catch, Cavity)P(Catch | Cavity)P(Cavity) = P(Toothache | Cavity)P(Catch | Cavity)P(Cavity)`
+      - i.e., `2 + 2 + 1 = 5` independent numbers
+
+    - In most cases, the use of conditional independence reduces the size of the representation of the joint distribution from exponential in `n` to linear in `n`
+    - Conditional independence is our most basic and robust form of knowledge about uncertain movements
+
+- Bayes' Rule
+
+  - Bayes' Rule can be using in probability inference when we have `P(b | a)` but not `P(a | b)`
+
+  - Product rule `P(a ∧ b) = P(a | b)P(b) = P(b | a)P(a)` => Bayes' Rule:
+
+    - $$
+      P(a|b)=\frac{P(b|a)P(a)}{P(b)}
+      $$
+
+    - Or, in distribution form:
+
+      - $$
+        P(Y|X)=\frac{P(X|Y)P(Y)}{P(X)}-\alpha P(X|Y)P(Y)
+        $$
+
+  - Useful for assessing diagnostic probability from causal probability:
+
+    - $$
+      P(Cause|Effect)=\frac{P(Effect|Cause)P(Cause)}{P(Effect)}
+      $$
+
+  - This is an example of a naive Bayes model:
+
+    - $$
+      P(Cause,Effect_1,...,Effect_n)=P(Cause)\prod_iP(Effect_i|Cause)
+      $$
+
+    - Total number of parameters is linear in `n`
+
+
+
+
+## Lecture 19:
 
 - 
 
