@@ -6192,9 +6192,205 @@
 
   - Planning and Acting in Nondeterministic Domains
 
+    - To solve a partially observable problem, the agent will have to reason about the percepts it will obtain when it is executing the plan
+
+      - The percept will be supplied by the agent's sensors when it is actually acting, but when it is planning it will need a model of its sensors
+
+    - Sensorless Planning
+
+      - Main idea is the conversion of a sensorless planning problem to a belief-state planning problem
+
+        - Underlying physical transition model is represented by a collection of action schemas
+        - The belief state can be represented by a logical formula instead of an explicitly enumerated set of states
+        - Assume that the underlying planning problem is deterministic
+
+      - In classical planning, where the closed-world assumption is made, we assume that any fluent not mentioned in the state is false
+
+        - In sensorless planning, we have to switch to an open-world assumption in which states contain both positive and negative fluents
+          - If a fluent doesn't appear, its value is unknown
+        - The belief state corresponds directly to the set of possible worlds that satisfy the formula
+
+      - Note that in a given belief state `b`, the agent can consider any action whose preconditions are satisfied by `b`
+
+        - The general formula for updating the belief state `b` given an applicable actions `a` in a deterministic world is as follows:
+
+          - $$
+            b'=\texttt{RESULT}(b,a)=\{s':s'=\texttt{RESULT}_P(s,a)\text{ and }s\in b\}
+            $$
+
+          - `RESULT_P` defines the physical transition model
+
+        - Assume that the initial belief state is always a conjunction of literals (a 1-CNF formula)
+
+          - To construct a new belief state `b'`, we must consider what happens to each literal `l` in each physical state `s` in `b` when action `a` is applied
+
+          - For literals whose truth value is already known in `b`, the truth value in `b'` is computed from the current value and the add list and delete list of the action
+
+          - For literals whose truth value is unknown in `b`, there are three cases:
+
+            - If the action adds `l`, then `l` will be true in `b'` regardless of initial state
+
+            - If the action deletes `l`, then `l` will be false in `b'` regardless of its initial state
+
+            - If the action doesn't affect `l`, then `l` will retain its initial value (which is unknown) and will not appear in `b'`
+
+            - The calculation of `b'` is almost identical to the observable case:
+
+              - $$
+                b'=\texttt{RESULT}(b,a)=(b-\texttt{DEL}(a))\cup\texttt{ADD}(a)
+                $$
+
+      - The family of belief states defined as conjunctions of literals is closed under updates defined by PDDL action schemas
+
+        - If the belief state starts as a conjunction of literals, then any update will yield a conjunction of literals
+        - In a world with `n` fluents any belief state can be represented by a conjunction of size `O(n)`
+          - We can compactly represent all the subsets of the possible `2^n` states we will ever need
+
+      - Issue with this approach is that it only works for action schemas that have the same effects for all states in which their preconditions are satisfied
+
+        - Once the effect can depend on the state, dependencies are introduced between fluents and the 1-CNF property is lost
+        - For such actions, out action schemas need the addition of a conditional effect
+          - `when condition: effect`
+            - `condition` is a logical formula to be compared against the current state
+            - `effect` is a formula describing the resulting state
+        - Can introduce arbitrary dependencies among the fluents in a belief state, leading to belief states of exponential size in the worst case
+        - Important to understand the difference between preconditions and conditional effects
+          - All conditional effects whose conditions are satisfied have their effects applied to generate the resulting state
+            - If none are satisfied, then the resulting state is unchanged
+          - If a precondition is unsatisfied, then the action is inapplicable and the resulting state is undefined
+
+      - Seems inevitable that nontrivial problems will involve wiggly belief states
+
+        - One possible solution is to use a conservative approximation to the exact belief state
+          - Approach is sound in that it never generates an incorrect plan
+          - Incomplete because it may be unable to find solutions
+        - A possibly better solution is to look for action sequences that keep the belief state as simple as possible
+          - Keep performing little actions to eliminate uncertainty and keep our belief state manageable (in 1-CNF preferably)
+        - Another approach is to not bother computing the wiggly belief state at all
+          - Suffers from the drawback of determining whether the goal is satisfied or if an action is applicable
+
+      - Final piece of the sensorless planning puzzle is to introduce a heuristic function to guide the search
+
+        - An estimate of the cost of achieving the goal from the given belief state
+
+        - Solving any subset of a belief state is necessarily easier than solving the belief state:
+
+          - $$
+            \text{if }b_1\subseteq b_2\text{ then }h^*(b_1)\le h^*(b_2)
+            $$
+
+    - Contingent Planning
+
+      - The generation of plans with conditional branching base on percepts
+
+        - Appropriate for environments with partial observability, nondeterminism, or both
+
+      - Variables in such a plan should be considered existentially quantified
+
+      - When executing such a plan, a contingent-planning agent can maintain its belief state as a logical formula and evaluate each branch condition by determining if the belief state entails the condition formula or its negation
+
+        - Calculating the new belief state after an action and subsequent percept is done in two stages:
+
+          - First stage calculates the belief state after the action:
+
+            - $$
+              \hat{b}=(b-\texttt{DEL}(a))\cup\texttt{ADD}(a)
+              $$
+
+          - Second stage adds percept axioms to the belief state for received percept literals
+
+            - If a percept `p` has exactly one percept axiom, `Percept(p, PRECOND: c)`, where `c` is a conjunction of literals, then those literals can be thrown into the belief state along with `p`
+            - If `p` has more than one percept axiom whose preconditions might hold according to the predicted belief state `b_hat`, then we have to add in the disjunction of the preconditions
+              - Takes the belief state outside 1-CNF
+
+      - Given a mechanism for computing exact or approximate belief states, we can generate contingent plans with an extension of the `AND-OR` forward search over belief states
+
+        - Actions with nondeterministic effects can be accommodated with minor changes to the belief-state update calculation and no change to the search algorithm
+
+    - Online Replanning
+
+      - Replanning presupposes some form of execution monitoring to determine the need for a new plan
+      - One such need arises when a contingent planning agent gets tired of planning for every little contingency => some branches of a partially constructed contingent plan can simply say `Replan`
+      - The decision as to how much of the problem to solve in advance and how much to leave to replanning is one that involves tradeoffs among possible events with different costs and probabilities of occurring
+      - May also be needed if the agent's model of the world is incorrect
+        - The model for an action may have a missing precondition, missing effect, or missing state variable
+        - May also lack provision for exogenous events, possibly ones that change the agent's goal
+        - Agent's behavior is likely to be extremely fragile if it relies on absolute correctness of the world
+      - The online agent has three levels of choice in how to carefully monitor the environment
+        - Action monitoring: before executing an action, the agent verifies that all the preconditions still hold
+          - May lead to unintelligent behavior
+          - Easy to enable
+        - Plan monitoring: before executing an action, the agent verifies that the plan will still succeed
+          - Cuts off execution of a doomed plan as soon as possible, rather than continuing until the failure actually occurs
+          - Allows for serendipity (accidental success)
+          - More complex to enable
+        - Goal monitoring: before executing an action, the agent checks to see if there is a better set of goals it could be trying to achieve
+      - Trouble occurs when an action is actually not nondeterministic, but actually relies on some precondition that the agent doesn't know about
+        - One solution is to choose randomly from the set of possible repair plans
+        - A better solution is to learn a better model
+          - Every prediction failure is an opportunity for learning
+          - An agent should be able to modify its model of the world to accord with its percepts
+          - Allows the replanner to come up with a repair that gets at the root problem
+
   - Multiagent Planning
 
+    - In a multiagent planning problem, each agent tries to achieve its own goals with the help or hinderance of others
+    - Wide spectrum of problems
+      - An agent with multiple effectors that can operate concurrently needs to do multieffector planning to manage each effector while handling their negative and positive interactions
+      - When effectors are physically decoupled into detached units, multieffector planning becomes multibody planning
+        - Still a standard single-agent problem if the relevant sensor information collected by each body can be pooled
+      - When communication constraints make pooling of information impossible, we have a decentralized planning problem
+        - The subplan constructed for each body may need to include explicit communicative actions with other bodies
+      - When a single entity is doing the planning, there is really only one goal, which all the bodies necessarily share
+        - When the bodies are distinct agents that do their own planning, they may still share the same goal
+        - In a multiagent case, each agent decides what to do, resulting in a need for corrdination
+      - Clearest case of of multiagent problem is when the agents have different goals
+      - Some systems are a mixture of centralized and multiagent planning
+        - Goals can be brought into alignment by incentives
+    - Planning with Multiple Simultaneous Actions
+      - Treat multieffector, multibody, and multiagent settings in the same way, labelling them as multiactor settings
+        - The generic term of "actor" covers effectors, bodies, and agents
+      - Work out how to define transition models, correct plans, and efficient planning algorithms for the multiactor setting
+        - A correct plan is one that, if executed by the actors, achieves the goal
+        - Assume perfect synchronization: each action takes the same amount of time and actions at each point in the joint plan are simultaneous
+      - In the multiactor setting's transition model, a single action `a` is replaced by a joint action, which combines the actions of all actors
+        - Results in a joint planning problem with a branching factor of `b^n`
+        - Principal focus is to decouple the actors so that the problem comes closer to growing linearly
+          - Actors that are completely independent can be treated as separate problems
+          - Loosely couple actors can achieve close to exponential improvement?
+      - Standard approach to loosely coupled problems is to pretend the problems are completely decoupled and then fix the interactions after
+        - Difficulty is that preconditions constrain the state in which an action can be executed successfully, but do not constrain other actions that might mess it up
+        - Augment actions schemas with a new feature: a concurrent action list stating which actions must/must not be executed concurrently
+    - Planning with Multiple Agents: Cooperation and Coordination
+      - How can agents coordinate together to ensure they execute the plan?
+      - One option is to adopt a convention before engaging in joint activity
+        - A convention is any constraint on the selection of joint plans
+        - When conventions are widespread, they are called social laws
+      - In the absences of convention, agents can use communication to achieve common knowledge of a feasible joint plan
+        - Possible to engage in communication by simply executing part of the plan, called plan recognition
+          - Only works when a single action or short sequence of actions is enough to determine a joint plan unambiguously
+        - Can work with competitive agents as well as with cooperative ones
+      - The most difficult multiagent problems involve both cooperation with members of one's own team and competition against members of opposing teams, all without centralized control
+
   - Summary
+
+    - Many actions consume resources, such as money, gas, or raw materials
+      - It is convenient to treat these resources as numeric measures in a pool rather than try to reason about them individually
+      - Actions can generate and consume resources, and it is usually cheap and effective to check partial plans for satisfaction of resource constraints before attempting further refinements
+    - Time is one of the most important resources
+      - It can be handled by specialized scheduling algorithms, or scheduling can be integrated with planning
+    - Hierarchical task network (HTN) planning allows the agent to take advice from the domain designer in the form of high-level actions (HLAs) that can be implemented in various ways by lower-level action sequences
+      - The effects of HLAs can be defined with angelic semantics, allowing provably correct high-level plans to be derived without consideration of lower-level implementations
+      - HTN methods can create the very large plans required by many real-world applications
+    - Standard planning algorithms assume complete and correct information and deterministic, fully observable environments
+      - Many domains violate this assumption
+    - Contingent plans allow the agent to sense the world during execution to decide what branch of the plan to follow
+      - In some cases, sensorless or conformant planning can be used to construct a plan that works without the need for perception
+      - Both conformant and contingent plans can be constructed by search in the space of belief states
+        - Efficient representation or computation of belief states is a key problem
+    - An online planning agent uses execution monitoring and splices in repairs as needed to recover from unexpected situations, which can be due to nondeterministic actions, exogenous events, or incorrect models of the environment
+    - Multiagent planning is necessary when there are other agents in the environment with which to cooperate or compete
+      - Join plans can be constructed, but must be augmented with some form of coordination if two agents are to agree on which joint plan to execute
 
 
 
