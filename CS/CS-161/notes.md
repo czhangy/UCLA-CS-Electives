@@ -6912,5 +6912,119 @@
 
 - Independence
 
-  
+  - Independence is the property whereby a variable is independent of other variables
+
+  - Independence between variables `X` and `Y` can be written as follows:
+
+    - $$
+      \textbf{P}(X|Y)=\textbf{P}(X)\\
+      \textbf{P}(Y|X)=\textbf{P}(Y)\\
+      \textbf{P}(X,Y)=\textbf{P}(X)\textbf{P}(Y)
+      $$
+
+  - Independence assertions are usually based on knowledge of the domain
+
+    - Can dramatically reduce the amount of information necessary to specify the full joint distribution
+    - If the complete set of variables can be divided into independent subsets, then the full joint distribution can be factored into separate joint distributions on those subsets
+    - Help to reduce the size of the domain representation and the complexity of the inference problem
+
+  - Clean separation of entire sets of variables by independence is quite rare
+
+    - Whenever any connection exists between two variables, independence will fail to hold
+
+  - Even independent subsets of variables may be quite large
+
+- Bayes' Rule and Its Use
+
+  - $$
+    P(b|a)=\frac{P(a|b)P(b)}{P(a)}\\
+    \textbf{P}(Y|X)=\frac{\textbf{P}(X|Y)\textbf{P}(Y)}{\textbf{P}(X)}\\
+    \textbf{P}(Y|X,\textbf{e})=\frac{\textbf{P}(X|Y,\textbf{e})\textbf{P}(Y, \textbf{e})}{\textbf{P}(X|\textbf{e})}
+    $$
+
+  - Applying Bayes' Rule: The Simple Case
+
+    - Allows us to compute the term `P(b | a)` in terms of `P(a | b)`, `P(b)`, and `P(a)`
+
+      - Useful in practice because there are many cases where we do have good probability estimates for these three numbers and need to compute the fourth
+
+    - $$
+      P(cause|effect)=\frac{P(effect|cause)P(cause)}{P(effect)}
+      $$
+
+      - `P(effect | cause)` quantifies the relationship in the causal direction
+      - `P(cause | effect)` describes the diagnostic direction
+
+    - The general form of Bayes' rule with normalization is as follows:
+
+      - $$
+        \textbf{P}(Y|X)=\alpha\textbf{P}(X|Y)\textbf{P}(Y)
+        $$
+
+        - `α` is the normalization constant needed t make the entries in `P(Y | X)` sum to `1`
+
+    - Allows for the use of direct causal or model-based knowledge that provides the crucial robustness needed to make probabilistic systems in the real world
+
+  - Using Bayes' Rule: Combining Evidence
+
+    - The general definition of conditional independence of two variables `X` and `Y`, given a third variable `Z`, is:
+
+      - $$
+        \textbf{P}(X,Y|Z)=\textbf{P}(X|Z)\textbf{P}(Y|Z)
+        $$
+
+      - These equivalent forms can also be used:
+
+        - $$
+          \textbf{P}(X|Y,Z)=\textbf{P}(X|Z)\\
+          \textbf{P}(Y|X,Z)=\textbf{P}(Y|Z)
+          $$
+
+      - Conditional independence assertions also allow a decomposition of the full joint distribution into much smaller pieces
+
+      - Allow probabilistic systems to scale up
+
+        - Moreover, they are much more commonly available than absolute independence assertions
+        - Decomposition of large probabilistic domains into weakly connected subsets through conditional independence is one of the most important developments in the recent history of AI
+
+    - A common case is that a single cause directly influences a number of effects, all of which are conditionally independent, given the cause
+
+      - The full joint distribution can be written as:
+
+        - $$
+          \textbf{P}(Cause,Effect_1,...,Effect_n)=\textbf{P}(Cause)\prod_i\textbf{P}(Effect_i|Cause)
+          $$
+
+      - Called a naïve Bayes model
+
+        - Often used in cases where the effect variables are not actually conditionally independent given the cause variable
+
+- Summary
+
+  - Uncertainty arises because of both laziness and ignorance
+    - It is inescapable in complex, nondeterministic, or partially observable environments
+
+  - Probabilities express the agent's inability to reach a definite decision regarding the truth of a sentence
+    - Probabilities summarize the agent's beliefs relative to the evidence
+
+  - Decision theory combines the agent's beliefs and desires, defining the best action as the one that maximizes expected utility
+  - Basic probability statements include prior probabilities and conditional probabilities over simple and complex propositions
+  - The axioms of probability constrain the possible assignments of probabilities to propositions
+    - An agent that violates the axioms must behave irrationally in some cases
+
+  - The full joint probability distribution specifies the probability of each complete assignment of values to random variables
+    - It is usually too large to create or use in its explicit form, but when it is available, it can be used to answer queries simply by adding up entries for the possible worlds corresponding to the query propositions
+
+  - Absolute independence between subsets of random variables allows the full joint distribution to be factored into smaller joint distributions, greatly reducing its complexity
+    - Absolute independence seldom occurs in practice
+
+  - Bayes' rule allows unknown probabilities to be computed from known conditional probabilities, usually in the causal direction
+    - Applying Bayes' rule with many pieces of evidence runs into the same scaling problems as does the full joint distribution
+
+  - Conditional independence brought about by direct causal relationships in the domain might allow the full joint distribution to be factored into smaller, conditional distributions
+    - The naïve Bayes model assumes the conditional independence of all effect variables, given a single cause variable, and grows linearly with the number of effects
+
+  - A wumpus-world agent can calculate probabilities for unobserved aspects of the world, thereby improving on the decisions of a purely logical agent
+    - Conditional independence makes these calculations tractable
+
 
