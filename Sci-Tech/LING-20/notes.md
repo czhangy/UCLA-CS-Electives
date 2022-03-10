@@ -187,7 +187,7 @@
       - Whether or not the vocal folds are vibrating while the sound is being made
       - Voiced: vocal folds vibrate while the sound is being made
       - Voiceless: vocal folds don't vibrate while the sound is being made
-      - English has many pairs of consanants that only differ in voicing:
+      - English has many pairs of consonants that only differ in voicing:
         - `[s]` vs. `[z]` (<u>s</u>ip vs. <u>z</u>ip)
         - `[f]` vs. `[v]` (<u>f</u>at vs. <u>v</u>at)
         - `[θ]` vs. `[ð]` (<u>th</u>igh vs. <u>th</u>y)
@@ -681,8 +681,8 @@
         - Raising: doesn't apply
       - Only Order 2 produces the right result
     - The relationship between the 2 rules
-      - No raising rakes place because the flap is voiced and hence there is no need to raise
-      - Flapping destroys the context in which raising rakes place
+      - No raising takes place because the flap is voiced and hence there is no need to raise
+      - Flapping destroys the context in which raising takes place
         - Flapping bleeds raising
     - Rule `A` bleeds Rule `B` when `A` creates a context in which `B` can no longer apply
   - Summary
@@ -794,7 +794,7 @@
   - Prefix: attaches to the front of the stem
   - Suffix: attaches to the end of the stem
   - Infix: attaches inside the stem
-  - CIrcumfix: attached around the stem
+  - Circumfix: attached around the stem
   - Note: affixes are fixed strings of sounds
 - (Full) Reduplication
   - Indonesian plural rule: double the entire stem to form the plural
@@ -863,7 +863,7 @@
       - Syntactic Categories
         - Words belong to classes, called grammatical categories (or parts of speech)
         - Syntactic rules only care about these grammatical categories, not individual words
-          - This is category depedence
+          - This is category dependence
       - N(ouns)
         - Ex) dog, cat, etc.
         - Rule-of-thumb test: can occur as `X` in "I heard about the `X`"
@@ -873,7 +873,7 @@
         - Rule-of-thumb test: can have "can" appear directly before them
       - A(djectives)
         - Ex) big, bad, etc.
-        - Rule-of-thmb test: cam appear between "the very" and an `N`
+        - Rule-of-thumb test: cam appear between "the very" and an `N`
       - D(eterminers) + P(repositions)
         - Determiners: the, that, a, etc.
         - Prepositions: to, from, on, after, etc.
@@ -1105,7 +1105,7 @@
 
 
 
-## Lecture 14: Typology and Meaning
+## Lecture 14: Typology and Semantics
 
 - Word-Order Typology
   - `VO` vs. `OV`
@@ -1142,7 +1142,7 @@
       - Languages with `XP -> HEAD YP` are head-initial
       - Languages with `XP -> YP HEAD` are head-final
   - Taking Stock
-    - If we limit oursevles to the order between subject (`S`), verb (`V`) and object (`O`), we get four options:
+    - If we limit ourselves to the order between subject (`S`), verb (`V`) and object (`O`), we get four options:
       - `SVO` (48%)
         - `S -> DP VP`
         - `VP -> V DP`
@@ -1192,7 +1192,7 @@
 
 
 
-## Lecture 15: Implicatures I
+## Lecture 15: Implicatures and Gricean Maxims
 
 - The Gricean Theory of Implicatures
   - The Cooperative Principle
@@ -1237,7 +1237,7 @@
 
 
 
-## Lecture 16: Implicatures II
+## Lecture 16: Implicature Case Studies
 
 - Implicatures
   - The Puzzle of 'Or'
@@ -1249,7 +1249,7 @@
     - Grammar determines broad interpretations, which can be narrow based on non-linguistic knowledge resources
     - Information content: asserted, presupposed, implicated
     - Grice's theory derives implicatures from the assumption that people are cooperative, which is formulated in terms of Maxims: Relation, Quality, Quantity, and Manner
-    - Implicatures can be cancelled and reinforced
+    - Implicatures can be canceled and reinforced
     - Case study: "`S_1` or `S_2`" has the implicature that "`S_1` and `S_2`" is false
 - The Puzzle of 'Some'
   - Is a sentence "... some of the `NP`s..." true or false, when the parallel sentence "... all of the `NP`s..." is true?
@@ -1264,10 +1264,4 @@
         - Thus, if you know `S_1`, you also have enough information to conclude `S_2`
       - If `S_2` doesn't entail `S_1`, that means that knowing `S_2` doesn't give you enough information to conclude `S_1`
       - Thus, if `S_1` entails `S_2`, but not vice versa, that means that there is "more information" in `S_1` than in `S_2`, which means that `S_1` is "more informative"
-
-
-
-## Lecture 17:
-
-- 
 
