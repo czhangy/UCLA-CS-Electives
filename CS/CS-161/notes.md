@@ -267,7 +267,7 @@
           (t "Exactly 20"))
         
         (cond ((> *age* 20) "Older than 20")
-          ((< *age* 20) "Youger than 20")) ; returns NIL when *age* = 20
+          ((< *age* 20) "Younger than 20")) ; returns NIL when *age* = 20
         ```
 
       - First condition that returns `T` is used
@@ -874,7 +874,7 @@
 - Local Beam Search
 
   - Idea: keep `k` states instead of 1
-    - At each step, all the successors of all `k` states jare generated
+    - At each step, all the successors of all `k` states are generated
     - If any one is a goal, the algorithm halts
     - Otherwise, it selects the best `k` successors from the complete list and repeats
   - Not the same as `k` searches running in parallel!
@@ -1074,7 +1074,7 @@
     - Only need to consider assignments to a single variable at each node
       - `b = d` and there are `d^n` leaves
 
-  - DFS for CSPs with single assignments is called backgracking search
+  - DFS for CSPs with single assignments is called backtracking search
 
     - The most basic uninformed algorithm for CSPs
 
@@ -1632,7 +1632,7 @@
 
   - ```pseudocode
     function TT-ENTAILS?(KB, α) returns true or false
-    	inputs: KB, the knowledeg base, a sentence in propositional logic
+    	inputs: KB, the knowledge base, a sentence in propositional logic
     	        α, the query, a sentence in propositional logic
         
         symbols <- a list of the proposition symbols in KB and α
@@ -2051,7 +2051,7 @@
 
       - Works if `α` is entailed, loops forever if `α` is not entailed
 
-    - Theorem: Turing (1936), Church (1936), entailment in first-order logic is semidecidable - that is, algorithms exist that say yes to every entailed sentence, but no algorithm exists that also says no to every nonentailed sentence
+    - Theorem: Turing (1936), Church (1936), entailment in first-order logic is semidecidable - that is, algorithms exist that say yes to every entailed sentence, but no algorithm exists that also says no to every non-entailed sentence
 
 
 
@@ -2436,7 +2436,7 @@
 
 - Inference by Enumeration
 
-  - A naive way of doing probablistic inference is inference by enumeration
+  - A naive way of doing probabilistic inference is inference by enumeration
 
   - Start with the joint distribution
 
@@ -2453,7 +2453,7 @@
 
   - Let `X` be all the variables
 
-    - Typically, we want the posterior joint distribution fo the query variables `Y` given specific values `e` for the evidence variables `E`
+    - Typically, we want the posterior joint distribution of the query variables `Y` given specific values `e` for the evidence variables `E`
 
   - Let the hidden variables be `H = X - Y - E`
 
@@ -2538,9 +2538,144 @@
 
 
 
-## Lecture 19:
+## Lecture 19: Bayesian Networks
 
-- 
+- Outline
+
+  - Syntax
+  - Semantics
+  - Parameterized distributions
+
+- Bayesian Networks
+
+  - A simple, graphical notation for conditional independence assertions, and hence for compact specification of full joint distributions
+
+  - Syntax:
+
+    - A set of nodes, one per variable
+
+    - A directed, acyclic graph (link ~ "directly influences")
+
+    - A conditional distribution for each node given its parents:
+
+      - $$
+        \textbf{P}(X_i|Parents(X_i))
+        $$
+
+  - In the simplest case, conditional distribution is represented by a conditional probability table (CPT) giving the distribution over `X_i` for each combination of parent values
+
+  - Topology of network encodes conditional independence assertions
+
+  - Example:
+
+    - I'm at work and my neighbor John calls to say my alarm is ringing, but my neighbor Mary doesn't call
+    - Sometimes, it's set off my minor earthquakes
+      - Can be thought of as a knowledge base in natural language
+
+    - Is there a burglar?
+      - Can be thought of as a query in natural language
+
+    - Variables: `Burglar`, `Earthquake`, `Alarm`, `JohnCalls`, `MaryCalls`
+    - Network topology reflects "causal" knowledge:
+      - A burglar can set the alarm off
+      - An earthquake can set the alarm off
+      - The alarm can cause Mary to call
+      - The alarm can cause John to call
+
+    - Can be done with propositional logic, but wouldn't be able to represent uncertainty
+
+- Compactness
+
+  - A CPT for Boolean `X_i` with `k` Boolean parents has `2^k` rows for the combinations of parent values
+  - Each row requires one number `p` for `X_i = true` (the number for `X_i = false` is just `1 - p`)
+  - If each variable has no more than `k` parents, the complete network requires `O(n2^k)` numbers
+    - i.e., grows linearly with `n`, vs. `O(2^n)` for the full joint distribution
+
+  - For burglary net, `1 + 1 + 4 + 2 + 2 = 10` numbers (vs. `2^5 - 1 = 31`)
+
+- Global Semantics
+
+  - Global semantics defines the full joint distribution as the product of the local conditional distributions:
+
+    - $$
+      P(x_1,...,x_n)=\prod^n_{i=1}P(x_i|Parents(X_i))
+      $$
+
+    - e.g., `P(j ∧ m ∧ a ∧ ¬b ∧ ¬e)`
+
+      - $$
+        P(j|a)P(m|a)P(a|\neg b,\neg e)P(\neg b)P(\neg e)
+        $$
+
+- Local Semantics
+
+  - Local semantics (aka non-descendant property, local Markov property): each node is conditionally independent of its non-descendants given its parents
+
+- Markov Blanket
+
+  - Each node is conditionally independent of all others given its Markov blanket
+    - Parents + children + children's parents
+
+- Constructing Bayesian Networks
+
+  - Need a method such that a series of locally testable assertions of conditional independence guarantees the required global semantics
+
+    - ```pseudocode
+      choose an ordering of variables X_1, ... , X_n
+      for i = 1 to n
+      	add X_i to the network
+      	select parents from X_1, ... , X_i-1 such that
+      	P(X_i | Parents(X_i)) = P(X_i | X_1, ... , X_i-1)
+      ```
+
+    - This choice of parents guarantees the global semantics:
+
+      - $$
+        \textbf{P}(X_1,...,X_n)=\prod^n_{i=1}\textbf{P}(X_i|X_1,...,X_{i-1})\\
+        \textbf{P}(X_1,...,X_n)=\prod^n_{i=1}\textbf{P}(X_i|{Parents(X_i)})\\
+        $$
+
+  - The complexity of the network depends on the ordering of variables
+
+- Compact Conditional Distributions
+
+  - CPT grows exponentially with number of parents
+
+    - Solution: canonical distributions that are defined compactly
+
+  - Deterministic nodes are the simplest case of canonical distribution:
+
+    - `X = f(Parents(X))` for some function `f`, a deterministic node has its value specified exactly by the values of this parents, with no uncertainty
+    - e.g., Boolean functions: `NorthAmerican ⇔ Canadian ∨ US ∨ Mexican`
+
+  - Noisy-OR distributions model multiple noninteracting causes
+
+    - Definitions: we have nodes `x_1, ... , x_n`, each of them is assigned to be true or false
+
+  - Assumptions: for any node `x_i`:
+
+    - Parents of `x_i` include all causes to `x_i` (if we miss some, we can add leak node that covers "miscellaneous causes")
+
+    - Independent failure probability `q_i` for each parent alone:
+
+      - $$
+        P(x_i|Parents(X_i))=1-\prod_{j:X_j=true,X_j\in Parents(X_i)}q_j
+        $$
+
+  - Example: we have four nodes `Fever`, `Cold`, `Flu`, `Malaria`, where the parents of `Fever` are `Cold`, `Flu`, `Malaria`; we also have:
+
+    - $$
+      q_{cold}=P(\neg fever|cold,\neg flu,\neg malaria)=0.6\\
+      q_{flu}=P(\neg fever|\neg cold,flu,\neg malaria)=0.2\\
+      q_{malaria}=P(\neg fever|\neg cold,\neg flu,malaria)=0.1
+      $$
+
+- Summary
+
+  - Bayesian networks provide a natural representation for (causally induced) conditional independence
+  - Topology + CPTs = compact representation of joint distribution
+  - Canonical distributions (e.g., noisy-OR) = compact representation of CPTs
+
 
 
 
@@ -2837,7 +2972,7 @@
   - Rationality
     - 4 main factors:
       - The performance measure that defines the criterion for success
-      - The agent's prior knowledge of the enviromment
+      - The agent's prior knowledge of the environment
       - The actions that the agent can perform
       - The agent's percept sequence to date
 
@@ -3622,7 +3757,7 @@
 
     - A general strategy, often used in combination with DFS, that finds the best depth limit
 
-      - Gradually increases the limit until a goal is found, which occurs when the depth limit reachs `d`, the depth of the shallowest goal node
+      - Gradually increases the limit until a goal is found, which occurs when the depth limit reaches `d`, the depth of the shallowest goal node
 
     - Combines the benefits of DFS and BFS
 
@@ -3647,7 +3782,7 @@
   - Bidirectional Search
 
     - Run 2 simultaneous searches, one forward from the initial state and one backward from the goal
-      - Hope the searches meet in themiddle
+      - Hope the searches meet in the middle
     - Replaces the goal test with a check to see whether the frontiers of the two searches interact
       - The first solution found may not be optimal, even if the searches are both breadth-first
       - Check done when each node is generated/selected with a hash table
@@ -3820,7 +3955,7 @@
         function RBFS(problem, node, f_limit) returns a solution, or failure and a new f-cost limit
         	if problem.GOAL_TEST(node.STATE) then return SOLUTION(node)
         	successors <- []
-        	for each eaction in problem.ACTIONS(node.STATE) do
+        	for each action in problem.ACTIONS(node.STATE) do
         		add CHILD_NODE(problem, node, action) into successors
         	if successors is empty then return failure, INF
         	for each s in successors do /* update f with value from previous search */
@@ -3837,7 +3972,7 @@
         - Rewinds back to the alternate path if the current node exceeds this limit
         - RBFS replaces the `f`-value of each node along the path with a backed-up value
           - The best `f`-value of its children
-          - Remembers the best `f`-value leaf of the forgotten subtree, allowing it to decide if its worth re-expanding the subtree later
+          - Remembers the best `f`-value leaf of the forgotten subtree, allowing it to decide if it's worth re-expanding the subtree later
 
       - Somewhat more efficient than IDA*, but still suffers from excessive node regeneration
 
@@ -4012,7 +4147,7 @@
 
     - Sometimes called greedy local search because it grabs a good neighbor state without thinking ahead about where to go next
 
-      - Often makes rapid progress towards a solution because its usually easy to improve a bad state
+      - Often makes rapid progress towards a solution because it's usually easy to improve a bad state
 
     - Often gets stuck due to the following reasons:
 
@@ -4154,7 +4289,7 @@
             H_{ij}=\partial^2f/\partial x_i\partial x_j
             $$
 
-  - Methods still suffer from local maxima, ridges, and plataeus
+  - Methods still suffer from local maxima, ridges, and plateaus
 
     - Random restarts and simulated annealing can be used and are often helpful
 
@@ -4347,7 +4482,7 @@
     - When assigning values to variables, the same partial assignment is reached, regardless of order
     - Build a search tree by considering a single variable at each node in the search tree
 
-  - Backtracking search refers to a DFS 5that chooses values for one variable at a time and backtracks when a variable has no legal values left to assign
+  - Backtracking search refers to a DFS that chooses values for one variable at a time and backtracks when a variable has no legal values left to assign
 
   - ```pseudocode
     function BACKTRACKING_SEARCH(csp) returns a solution, or failure
@@ -4517,7 +4652,7 @@
   - Knowing that we have an efficient algorithm for trees, the next goal is to find a way to convert more general constraint graphs to trees
 
     - Removing Nodes
-      - Involves assigning values to some variables so that the remaining variables form a tree
+      - Involves assigning values to some variables so that the remaining variables from a tree
       - General Algorithm:
         - Choose a subset `S` of the CSP's variables such that the constraint graph becomes a tree after removal of `S`
           - `S` is called a cycle cutset
@@ -4550,7 +4685,7 @@
 
 - Summary
 
-  - Constraint satisfaction problems (CSPs) represent a state with a set of variable/value pairs and represent the codnitions for a solution by a set of constraints on the variables
+  - Constraint satisfaction problems (CSPs) represent a state with a set of variable/value pairs and represent the conditions for a solution by a set of constraints on the variables
     - Many important real-world problems can be described as CSPs
   - A number of inference techniques use the constraints to infer which variable/value pairs are consistent and which are not
     - These include node, arc, path, and `k`-consistency
@@ -4836,7 +4971,7 @@
 
   - Card Games
 
-    - Naive concept: consider all possible deals, solve each one as if it were an observable game, then choose the move that has the best outcome averaged over all the deals
+    - Naïve concept: consider all possible deals, solve each one as if it were an observable game, then choose the move that has the best outcome averaged over all the deals
 
       - Assuming each deal `s` occurs with probability `P(s)`, the move we want is:
 
@@ -4844,7 +4979,7 @@
           \text{argmax}_a\sum_sP(s)\texttt{MINIMAX}(\texttt{RESULT}(s,a))
           $$
 
-    - The amount of deals is far to high to feasibly solve, so we resort to Monte Carlo approximation
+    - The amount of deals is far too high to feasibly solve, so we resort to Monte Carlo approximation
 
       - Take a random sample of `N` deals, where the probability of deal `s` appearing in the sample is proportional to `P(s)`:
 
@@ -5502,7 +5637,7 @@
 
     - Problem remains: confirm that all the necessary preconditions of an action hold for it to have its intended effect
       - Qualification problem
-      - No complete solution in logic, system designers have to use good judgement to decide how detailed the model should be
+      - No complete solution in logic, system designers have to use good judgment to decide how detailed the model should be
 
   - A Hybrid Agent
 
@@ -5631,7 +5766,7 @@
   - The set of possible models, given a fixed propositional vocabulary, is finite, so entailment can be checked by enumerating models
     - Efficient model-checking inference algorithms for propositional logic include backtracking and local search methods and can often solve large problems quickly
 
-  - Inference rules are patters of sound inference that can be used to find proofs
+  - Inference rules are patterns of sound inference that can be used to find proofs
     - The resolution rule yields a complete inference algorithm for KBs that are expressed in conjunctive normal form
     - Forward chaining and backward chaining are very natural reasoning algorithms for KBs in Horn form
 
@@ -5644,7 +5779,7 @@
   - Decisions within a logical agent can be made by SAT solving: finding possible models specifying future actions sequences that reach the goal
     - This approach works only for fully observable or sensorless environments
 
-  - Propositional logic does not scale to environments of unbounded size because it lacks the expressive power to deal concisely with time, space, and universal patters of relationships among objects
+  - Propositional logic does not scale to environments of unbounded size because it lacks the expressive power to deal concisely with time, space, and universal patterns of relationships among objects
 
 
 
@@ -5672,7 +5807,7 @@
     - The Sapir-Whorf hypothesis claims that our understanding of the world is strongly influenced by the language we speak
       - Leads to the suggestion that people process words to form some sort of nonverbal representation
       - Words can serve as anchor points that affect how we perceive the world
-    - From the viewpoint of formal logic, representing the same knowledge in two different wats makes absolutely no difference
+    - From the viewpoint of formal logic, representing the same knowledge in two different ways makes absolutely no difference
       - The same facts will be derivable from either representation
       - In practice, one representation might require fewer steps to derive a conclusion
       - For non-deductive tasks such as learning from experience, outcomes are necessarily dependent on the form of the representations used
@@ -6144,7 +6279,7 @@
       - A conjunction of clauses, where each clause is a disjunction of literals
       - Literals can contain variables, which are assumed to be universally quantified
 
-    - Every sentence of first-order logic can be converted into an inferentially equivalent CNF sentnece
+    - Every sentence of first-order logic can be converted into an inferentially equivalent CNF sentence
       - The CNF sentence will be unsatisfiable when the original sentence is unsatisfiable
 
     - Conversion process:
@@ -6177,7 +6312,7 @@
 
   - Equality
 
-    - None of the approaches discusses thus far can handle the notion of equality
+    - None of the approaches discussed thus far can handle the notion of equality
 
     - One solution is to axiomize equality
 
@@ -6631,7 +6766,7 @@
 
   - Multiagent Planning
 
-    - In a multiagent planning problem, each agent tries to achieve its own goals with the help or hinderance of others
+    - In a multiagent planning problem, each agent tries to achieve its own goals with the help or hindrance of others
     - Wide spectrum of problems
       - An agent with multiple effectors that can operate concurrently needs to do multieffector planning to manage each effector while handling their negative and positive interactions
       - When effectors are physically decoupled into detached units, multieffector planning becomes multibody planning
@@ -6640,12 +6775,12 @@
         - The subplan constructed for each body may need to include explicit communicative actions with other bodies
       - When a single entity is doing the planning, there is really only one goal, which all the bodies necessarily share
         - When the bodies are distinct agents that do their own planning, they may still share the same goal
-        - In a multiagent case, each agent decides what to do, resulting in a need for corrdination
+        - In a multiagent case, each agent decides what to do, resulting in a need for coordination
       - Clearest case of of multiagent problem is when the agents have different goals
       - Some systems are a mixture of centralized and multiagent planning
         - Goals can be brought into alignment by incentives
     - Planning with Multiple Simultaneous Actions
-      - Treat multieffector, multibody, and multiagent settings in the same way, labelling them as multiactor settings
+      - Treat multieffector, multibody, and multiagent settings in the same way, labeling them as multiactor settings
         - The generic term of "actor" covers effectors, bodies, and agents
       - Work out how to define transition models, correct plans, and efficient planning algorithms for the multiactor setting
         - A correct plan is one that, if executed by the actors, achieves the goal
@@ -6747,7 +6882,7 @@
       				action, the agent's action
           
           update belief_state based on action and percept
-          calculate outcome probabilties for actions, given action descriptions and
+          calculate outcome probabilities for actions, given action descriptions and
           	current belief state
           select action with highest expected utility given probabilities of outcomes
           	and utility information
@@ -6961,7 +7096,7 @@
         \textbf{P}(Y|X)=\alpha\textbf{P}(X|Y)\textbf{P}(Y)
         $$
 
-        - `α` is the normalization constant needed t make the entries in `P(Y | X)` sum to `1`
+        - `α` is the normalization constant needed to make the entries in `P(Y | X)` sum to `1`
 
     - Allows for the use of direct causal or model-based knowledge that provides the crucial robustness needed to make probabilistic systems in the real world
 
@@ -7026,5 +7161,4 @@
 
   - A wumpus-world agent can calculate probabilities for unobserved aspects of the world, thereby improving on the decisions of a purely logical agent
     - Conditional independence makes these calculations tractable
-
 
