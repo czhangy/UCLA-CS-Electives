@@ -2,7 +2,7 @@
 
 | Course                                        |    Term    |   Professor    | Grade |
 | :-------------------------------------------- | :--------: | :------------: | :---: |
-| LING 20 - Introduction to Linguistic Analysis | Winter '22 | Moore-Cantwell |  IP   |
+| LING 20 - Introduction to Linguistic Analysis | Winter '22 | Moore-Cantwell |  A+   |
 | ???                                           |    ???     |      ???       |  ???  |
 | ???                                           |    ???     |      ???       |  ???  |
 
