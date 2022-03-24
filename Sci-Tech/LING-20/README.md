@@ -2,7 +2,7 @@
 
 # Moore-Cantwell - Winter '22
 
-## Overall: IP | Raw Percentage: IP
+## Overall: IP | Raw Percentage: 97.3%
 
 ## Grading
 
@@ -30,5 +30,5 @@
 |  Exam   | Score |
 | :-----: | :---: |
 | Midterm | 39/40 |
-|  Final  |  ???  |
+|  Final  | 65/72 |
 
