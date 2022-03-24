@@ -2,7 +2,7 @@
 
 # Moore-Cantwell - Winter '22
 
-## Overall: IP | Raw Percentage: 97.3%
+## Overall: A+ | Raw Percentage: 97.3%
 
 ## Grading
 
