@@ -2,7 +2,7 @@
 
 # Gu - Winter '22
 
-## Overall: IP | Raw Percentage: 99.3%
+## Overall: A+ | Raw Percentage: 99.3%
 
 ## Grading:
 
