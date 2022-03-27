@@ -15,7 +15,7 @@
 | Course | Term | Grade |
 |:---:|:---:|:---:|
 | ENGR 111 | Spring '21 | A- |
-| ??? | ??? | ??? |
+| MGMT 170 | Spring '22 | IP |
 | ??? | ??? | ??? |
 
 ## Sci-Tech - Linguistics
@@ -23,10 +23,10 @@
 | Course | Term | Grade |
 |:---:|:---:|:---:|
 | LING 20 | Winter '22 | A+ |
-| ??? | ??? | ??? |
-| ??? | ??? | ??? |
+| LING 105 | Spring '22 | IP |
+| Ling 120B | Spring '22 | IP |
 
-## Misc.
+## Miscellaneous
 
 |  Course  |    Term    | Grade |
 | :------: | :--------: | :---: |
