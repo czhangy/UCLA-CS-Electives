@@ -2,6 +2,125 @@
 
 [TOC]
 
-## Lecture 1:
+## Lecture 1: Intro and Parts of Speech
+
+- What is Syntax?
+  - Two notions of syntax:
+    - As a system of grammar: the part of language that allows speakers to create and undersatand phrases and sentences
+    - As a linguistic discipline: the subfield of linguistics that studies the rules and properties of phrases and sentences of human languages
+  - What do we mean by rule?
+    - We do not mean prescriptive rules (rules that prescribe how people should speak)
+    - We are interested in how people really taken (descriptive rules)
+  - The syntax of what?
+    - The syntax of human language:
+      - All and only humans have language
+        - There are no primitive or simple languages
+        - Even stigmatized languages and varieties of languages are complex, rule-governed systems
+      - Superficially very different languages share deep similarities
+      - Many logically possible grammatical structures do not exist in any language
+      - Children acquire language similarly across different languages
+      - Languages shares properties with innate instinctual behaviors
+        - The innateness hypothesis: the ability to use language is part of the human biological makeup
+  - What does a theory of syntax have to explain?
+    - Creativity: speakers of a language can create and understand new sentences
+    - Order sensitivity: the order of words affects:
+      - Whether a sentence is possible in a language
+      - What a sentence means
+    - Ambiguity: a string of words can have multiple meanings
+    - Recursion: sentence structures embed inside one another, allowing infinitely many sentence structures
+    - Restrictions: not every arrangement of words is a sentence
+  - Grammaticality
+    - A sentence that is part of a language is called grammatical, a sentence that is not is called ungrammatical
+    - Our data = grammaticality judgements
+    - Meaningless != ungrammatical
+    - Ungrammatical != hard to understand
+  - Summary
+    - Goals of syntax: discover the rules and processes that:
+      - Allow the production and comprehension of infinitely many sentences
+      - Capture the relationship between syntactic structure and meaning
+      - Capture syntactic ambiguity
+      - Characterize ungrammaticality, explain why some expressions with plausible meanings and structures are unacceptable
+    - How will we do this?
+      - Revisit the issues and phenomena already that we saw in Ling 20, but deeper
+      - Flesh out concepts that we only touched briefly before
+      - Look at new phenomena
+      - Look at a variety of languages
+    - Consequence: our understanding of syntactic structure will change as we move along
+- Parts of Speech
+  - The Traditional/Semantic Approach
+    - How do we classify words?
+    - The semantic approach: parts of speech are classified by their meanings
+      - Noun: person, place, or thing
+      - Verb: action, occurrence, or state of being
+    - Some words can change its part of speech depending on where it appears
+    - How do we know that a particular word belongs to a particular category?
+      - We look at their distributions
+  - Distributional Criteria
+    - Distributional definition: parts of speech are classified by their distribution
+      - Morphological distribution: affixes appear only on certain kinds of words
+      - Syntactic distribution: position relative to other words
+    - Words that have the same or strongly overlapping distributions have the same part of speech
+    - Words whose distribution does not overlap have different parts of speech
+    - Since distribution is language specific, the criteria for identifying parts of speech and the part of speech categories themselves can be language specific
+  - Morphemes
+    - Morpheme: meaningful atom = the smallest meaning-bearing unit in language
+      - They can be free or bound
+      - The can be an affix or a root
+      - The can belong to an open or to a closed class
+      - There are inflectional and derivational affixes
+        - Derivational:
+          - Plays a lexical (meaningful) role
+          - Can change part of speech/category
+          - Never required by grammatical rules
+          - Typically indicate semantic relations within the word
+          - Typically occur before inflectional morphology
+        - Inflectional:
+          - Plays only a grammatical role
+          - Never changes base's category
+          - Usually required by grammatical rules
+          - Typically indicate relations between different words in a sentence
+          - Occur at the end
+    - A word can be atomic (if it contains only one morpheme) or complex (if it contains more than one)
+  - Nouns
+    - Derivational suffixes: -ment, -ness, -ity
+    - Inflectional suffixes: -s, -es, -a
+    - Syntactic distribution: nouns can appear:
+      - As the only word between determiners and verbs
+      - As the only word after determiners, adjectives, verbs, prepositions
+      - Negated by no
+  - Verbs
+    - Derivational suffixes: -ify, -ize
+    - Inflectional suffices: -ing, -en, -s
+    - Syntactic distribution: verbs can appear:
+      - As the first word in a (non-negative) command
+      - As negated by not/n't
+      - Modified by adverbs, but not adjectives
+  - Adjectives
+    - Derivational suffixes: -able, -ing, -al
+    - Inflectional suffixes: comparative -er, superlative -est
+    - Syntactic distribution: adjectives can appear:
+      - As the only word between determiners and nouns
+      - After comparative more and superlative most
+      - Modified by degree adverbs like very
+  - Compositionality
+    - Morphemes combine in a regular way
+    - Claim: only one ordering of the five morphemes in de-nation-al-iz-ation produces an English word
+    - According to what we said so far, the speaker must know:
+      - How each morpheme is pronounced
+      - What kind of morpheme it is (free, prefix, affix, etc.)
+      - If an affix, what it combines with (what it c-selects)
+      - If an affix, that the c-selected element must be adjacent to the affix
+        - Only thing not encoded in the lexical entry, it is not specific to any one lexical entry
+      - If an affix, what kind of things result after c-selection
+  - Lexical Entries - First Version
+    - Lexical entry of a morpheme (= the implicit knowledge that a speaker has about it):
+      - -er: c-selects `V` to form `N`
+    - C-selection stands for category selection
+    - The collection of lexical entries is called the lexicon
+
+
+
+## Lecture 2:
 
 - 
+
