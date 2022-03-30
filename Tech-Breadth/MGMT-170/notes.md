@@ -48,7 +48,32 @@
 
 
 
-## Lecture 2:
+## Lecture 2: Notes and Mortgages
+
+- Promissory Note: documents a loan between a borrower and a lender
+  - Must include the parties, loan amount, interest rate, and maturity date
+  - Usually includes clauses relating to amortization, assumability or "due on sale", recourse or non-recourse, prepayment or lockout, assignment, default and acceleration
+    - Assumability vs. "Due on Sale": who continues to pay off the loan when the property is eventually sold
+    - Recourse vs. Non-recourse: if the lender can sue for any deficit in the event of a foreclosure
+    - Prepayment vs. Lockout: whether or not there are restrictions on the borrower's repayment of the loan
+    - Acceleration: moving in of the maturity date
+- Default: the failure to perform any of the terms or conditions of the loan or mortgage
+  - The most common mortgage default is the failure to pay interest and principal when due
+  - Default can lead to acceleration of the load and foreclosure of the property
+- Foreclosure: with a deed of trust, can be judicial (in court) or non-judicial (out of court) and involves a lends ultimately taking title to real property or forcing a sale of the property to satisfy the unpaid mortgage balance
+  - All junior mortgages are extinguished when a senior mortgage lender forecloses on a property, but the debt secured by those junior mortgages is generally unaffected by the foreclosure
+- Bankruptcy: liquidation and reorganization of a business
+- Mortgage: a two-part security interest in real property to secure the repayment of a real estate loan that is given by a borrower/mortgagor to a lender/mortgagee
+- Deed of Trust: a three-party security interest in real property that is given by a borrower/trustor to an independent trustee to secure the repayment of a real estate loan for the benefit of a lender/beneficiary
+  - Used in California and most other states where it's available, because it is preferred over a two-party mortgage
+- Senior vs. Junior Mortgage: determined by state statutes that determine the priority of recording, unless the prior recorded mortgage contains a subordination clause
+- Construction Loan: a loan for the construction of a building or improvements
+  - Loan draws are made against a maximum loan amount, are secured by a mortgage or deed of trust against the real property, usually with recourse to the developer
+- Purchase Money Loan: a loan made for a borrower to purchase real estate
+- Short Sale: when a lender allows the sale of a property for less than the outstanding loan balance
+
+
+
+## Lecture 3:
 
 - 
-
