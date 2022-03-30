@@ -122,5 +122,81 @@
 
 ## Lecture 2:
 
+- Compositionality
+  - Locality of Selection Hypothesis: selection is local in the sense that an item can only select properties of its sister(s)
+  - Tree Vocabulary:
+    - Branch: a line connecting two parts of a tree
+    - Node: each point that is labeled with a word or category, located at the end of a branch
+    - Label: the name given to a node
+    - Leaf (or terminal node): the nodes along the bottom of the tree
+    - Mother: node `A` is a mother of `B` iff `A` is higher up in the tree than `B` and they are separated by a single branch (no intervening nodes)
+    - Sister: two nodes are sisters if they share the same mother
+  - Compounds and the RHHR
+    - The English Right-Hand Head Rule: the rightmost element of a compound is the head of the word
+    - What do we mean by head?
+      - The head is the part of a linguistic structure that determines the distributions, the main meaning and the syntactic category of the whole structure
+  - Affixes and the RHHR
+    - What about affixes? Does the RHHR apply to them as well?
+    - Yes, and as a result, suffixes and prefixes have a different status
+      - Suffixes can change the category of a word
+      - Prefixes cannot change the category of the stem they attach to
+    - We can therefore extend the RHHR to all words:
+      - The rightmost element of a word is the head of the word
+    - Also we can assume that both free and bound morphemes belong to categories
+      - Given the RHHR, we can then simplify our lexical entries
+- Constituency
+  - Constituency and Constituency Tests
+    - One of the fundamental discoveries about the syntax of natural languages is that languages are chunky: words are organized into chunks or blocks of units that "rules" can manipulate as blocks
+      - Languages don't just consist of strings of words, they have syntactic structure
+    - Constituent: a group of words that function together as a unit
+      - String that speakers can manipulate as a single chunk
+    - How do we identify the parts of sentences that form units?
+      - We use constituency tests
+    - To correctly use a constituency test, we must follow rules
+      - Constituency tests manipulate a string, and then we check whether the result is:
+        - Grammatical
+        - Consistent in meaning
+      - Passing the test means the string is a constituent
+      - Not passing the test means nothing
+  - Stand Alone Test
+    - If a group of words can stand alone, for example, as an answer to a question, they form a constituent
+    - How it works:
+      - Start with a string that you are interested in
+      - Create a question that can be answered with the kind of string
+      - If you can find a question that can be answered with this string, it is probably a constituent
+  - Substitution
+    - How it works:
+      - Given a well-formed string `S` that we are trying to analyze:
+        - Select a substring `SUB`
+        - Replace `SUB` in kind by (what looks like) a monomorphic word (a word with no internal structure)
+        - If the result `R` is well formed, we conclude that `SUB` is a constituent
+        - If the result is ill formed, we conclude nothing
+    - Logic of the test:
+      - The smallest possible constituent consists of a single word
+      - Any string of words that can be replaced by a single word while maintaining the same meaning is a constituent
+    - Remember:
+      - Original string and replacement should be minimal pairs
+      - `S` and `R` have to be very close synonym
+    - What can we infer from a successful substitution?
+      - The initial phrase is a constituent
+      - The initial phrase and its substitution share a distributional property (i.e., they belong to the same category)
+      - In the tree structure, `SUB` is a subtree of `S`
+    - What kinds of constituents can a pronoun replace?
+      - It replaces `DP`s, it can't replace bare nominal phrases, `NP`s
+    - What kinds of constituents can then/there replace?
+      - `PP`s
+    - What kinds of constituents can do so replace?
+      - `VP`s
+  - Summary
+    - When carefully used, replacement can tell us about the constituency of sentence
+    - A successful replacement shows that the replace string is a syntactic unit, i.e., constituent
+    - In terms of trees:
+      - A constituent is a node in the tree
+      - Constituency tests reveal the major shape of the tree
+
+
+
+## Lecture 3:
+
 - 
 
