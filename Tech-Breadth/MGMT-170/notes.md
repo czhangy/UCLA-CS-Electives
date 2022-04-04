@@ -113,5 +113,34 @@
   - Real Interest Rate: the nominal or contract interest rate minus expected inflation
   - Risk Adjusted Return: expected investment return relative to the perceived risk
   - Amortization: the process of repaying the principal balance of a loan over time
+    - An interest-only loan has a constant principal balance
+    - An amortized loan tacks extra for the repayment of the principal balance over time
   - Balloon Payment: the principal balance of the loan due on the maturity date
+    - Fully-amortized loans will have a balloon payment of 0
   - Pay Rate vs. Accrual Rate: is the actual monthly mortgage payment that is made by a borrower at least equal to the accrued interest amount than due on the loan?
+    - Pay rate < accrual rate: negative amortization
+  - Constant Payment Mortgage: when each monthly payment is the same, the loan will be fully amortizing, partially amortizing, interest only, or negative amortizing
+    - Designed for the total payment (interest + principal) to be constant
+    - Fully amortizing, constant payment mortgage is designed for a FV of 0
+    - Interest only, constant payment mortgage would be designed for a FV of the negative of the initial principal amount
+      - Allows for the affording of a bigger loan
+    - Negative amortizing: principal balance grows
+  - Constant Amortization Mortgage: when each payment includes a fixed amount of principal repayment, with the monthly payment and interest amounts declining
+    - Designed for the principal payment to be constant
+    - Very rare because of the high payments early in the loan
+    - Less total interest payment over the lifespan of the loan
+  - Reverse Annuity Mortgage: the lender sends fixed monthly checks to the borrower who must pay the accumulated principal and accrued interest on the maturity date
+  - Loan Fees and Costs: origination fees (for loan underwriting and processing), appraisal and credit report
+    - Loan fees and points increase the lender's yield
+  - Annual Percentage Rate (APR): provides disclosure regarding the effects of loan fees, points, and costs on residential loans (assumes the loan is held to maturity)
+  - Truth-in-Lending Act: Federal Reserve Regulation Z requires lenders to include in APR calculations all loan fees, points, and costs, but not any prepayment penalties
+  - Prepayment Penalties: increase the effective yield to the lender, are subject to negotiation and are not reflected in the APR of a loan
+    - If a prepayment penalty is paid, the effective yield to the lender will be higher if the loan is repaid earlier
+  - Effective Annual Interest Rate: calculation that considers all loan fees, points, and costs and any prepayment penalties actually paid, and is therefore affected by the amount of time the loan is held until repayment
+
+
+
+## Lecture 4: 
+
+- 
+
