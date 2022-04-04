@@ -74,6 +74,44 @@
 
 
 
-## Lecture 3: 
+## Lecture 3: Time Value of Money and Fixed Interest Rate Mortgage Loans
 
-- 
+- Time Value of Money
+
+  - Compound Interest: `(1 + i)^n` where `i` is the periodic interest rate and `n` is the number of periods that are compounded
+
+  - Compounding: approach to taking a present value to a future value
+
+    - $$
+      FV=PV\times(1+i)^n
+      $$
+
+  - Discounting: approach to taking a future value back to present value
+
+    - $$
+      PV=\frac{FV}{(1+i)^n}
+      $$
+
+  - Annuities (PMT): investments with constant future periodic payments
+
+  - Interest Rate (`i`), Effective Yield, Internal Rate of Return (IRR): various measures of the return on capital or the cost of capital
+
+  - Net Present Value (NPV): the present value of all projected future cash flows discounted at a specified discount rate, less the cost of the investment
+
+  - Internal Rate of Return (IRR): the calculated discount rate at which the present value of all projected future cash flows is equal to the cost of the investment
+
+  - Risk: is essential to evaluate in order to determine whether the expected investment return is sufficient in light of the perceived risk
+
+    - Measured relative to the return of the investment
+
+- Fixed Interest Rate Mortgage Loans
+
+  - Capital Markets: financial and security markets, including the mortgage market
+  - Loan Availability: economic growth prospects (global, national, and local), expected inflation, and other risks all affect the supply and cost of mortgage funds
+  - Lenders as Intermediaries: most real estate lenders sell the loans they originate into the secondary mortgage market rather than holding the loads to maturity
+  - Loan Pricing: the interest rate, any fees, points, and costs charged by the lender, and the loan terms (including any prepayment penalties)
+  - Real Interest Rate: the nominal or contract interest rate minus expected inflation
+  - Risk Adjusted Return: expected investment return relative to the perceived risk
+  - Amortization: the process of repaying the principal balance of a loan over time
+  - Balloon Payment: the principal balance of the loan due on the maturity date
+  - Pay Rate vs. Accrual Rate: is the actual monthly mortgage payment that is made by a borrower at least equal to the accrued interest amount than due on the loan?
