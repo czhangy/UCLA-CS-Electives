@@ -62,6 +62,7 @@
   - Default can lead to acceleration of the load and foreclosure of the property
 - Foreclosure: with a deed of trust, can be judicial (in court) or non-judicial (out of court) and involves a lends ultimately taking title to real property or forcing a sale of the property to satisfy the unpaid mortgage balance
   - All junior mortgages are extinguished when a senior mortgage lender forecloses on a property, but the debt secured by those junior mortgages is generally unaffected by the foreclosure
+  - The lender is only entitled to take the amount of principal + accrued interest from the sale
 - Bankruptcy: liquidation and reorganization of a business
 - Mortgage: a two-part security interest in real property to secure the repayment of a real estate loan that is given by a borrower/mortgagor to a lender/mortgagee
 - Deed of Trust: a three-party security interest in real property that is given by a borrower/trustor to an independent trustee to secure the repayment of a real estate loan for the benefit of a lender/beneficiary
@@ -74,7 +75,7 @@
 
 
 
-## Lecture 3: Time Value of Money and Fixed Interest Rate Mortgage Loans
+## Lecture 3: Time Value of Money and Fixed Rate Mortgages
 
 - Time Value of Money
 
@@ -104,7 +105,7 @@
 
     - Measured relative to the return of the investment
 
-- Fixed Interest Rate Mortgage Loans
+- Fixed Rate Mortgages
 
   - Capital Markets: financial and security markets, including the mortgage market
   - Loan Availability: economic growth prospects (global, national, and local), expected inflation, and other risks all affect the supply and cost of mortgage funds
@@ -121,14 +122,26 @@
     - Pay rate < accrual rate: negative amortization
   - Constant Payment Mortgage: when each monthly payment is the same, the loan will be fully amortizing, partially amortizing, interest only, or negative amortizing
     - Designed for the total payment (interest + principal) to be constant
+      - Results in the payment consisting of mostly interest at the beginning and mostly principal towards the end
+      - Quadratic in balances
     - Fully amortizing, constant payment mortgage is designed for a FV of 0
+    - Partially amortizing loans amortize down to a given payment at the loan's maturity date
     - Interest only, constant payment mortgage would be designed for a FV of the negative of the initial principal amount
       - Allows for the affording of a bigger loan
     - Negative amortizing: principal balance grows
   - Constant Amortization Mortgage: when each payment includes a fixed amount of principal repayment, with the monthly payment and interest amounts declining
     - Designed for the principal payment to be constant
+      - Total payment varies as interest declines over time
+      - Linear in balances
     - Very rare because of the high payments early in the loan
     - Less total interest payment over the lifespan of the loan
+  - Effective Annual Interest Rate: calculation that considers all loan fees, points, and costs and any prepayment penalties actually paid, and is therefore affected by the amount of time the loan is held until repayment
+
+
+
+## Lecture 4: Fixed and Adjustable Rate Mortgages
+
+- Fixed Rate Mortgages
   - Reverse Annuity Mortgage: the lender sends fixed monthly checks to the borrower who must pay the accumulated principal and accrued interest on the maturity date
   - Loan Fees and Costs: origination fees (for loan underwriting and processing), appraisal and credit report
     - Loan fees and points increase the lender's yield
@@ -136,13 +149,34 @@
   - Truth-in-Lending Act: Federal Reserve Regulation Z requires lenders to include in APR calculations all loan fees, points, and costs, but not any prepayment penalties
   - Prepayment Penalties: increase the effective yield to the lender, are subject to negotiation and are not reflected in the APR of a loan
     - If a prepayment penalty is paid, the effective yield to the lender will be higher if the loan is repaid earlier
-  - Effective Annual Interest Rate: calculation that considers all loan fees, points, and costs and any prepayment penalties actually paid, and is therefore affected by the amount of time the loan is held until repayment
-
-
-
-## Lecture 4: 
-
-- 
+- Adjustable/Floating/Variable Rate Mortgages
+  - Interest Rate Changes: indexed to other market interest rates (plus a margin)
+  - Index: LIBOR (London Inter Bank Offered Rate), US Treasuries, COFI (11th district Cost of Funds Index), Prime
+    - The index can be 6 months, 1 year, or another rate series
+    - LIBOR being phased out
+  - Margin: lender's profit margin or spread (fixed for the loan term) over the index
+  - Composite Rate: the index + margin is the composite interest rate on the loan
+  - Reset Dates: when the interest rate changes (usually every 6 months or 1 year)
+    - Dependent on the loan agreement
+  - Caps and Floors: caps are the maximum and floors are the minimum allowed periodic and/or lifetime adjustments of the interest rate or loan payment amount
+    - Floors are ineffective if borrowers can refinance with no prepayment penalty => the lender can be replaced when interest rates fall
+  - Payment Shock: when the interest rate fully adjusts to the current composite rate, the new loan payment amount is often substantially higher than the teaser rate
+  - Teaser Rate: initial interest rate on the loan, often far below the composite rate
+  - Interest Only or Amortizing: as with fixed rate loans, ARMs are usually fully amortizing, but can also be written as interest only or partially amortizing
+  - Loan Fees and Costs: as with fixed rate loans, origination fees, points, and costs may be charged to the borrower to increase the effective yield to the lender
+  - Loan Terms: are generally the same terms with fixed rate loans, other than the interest rate changes, and include assumable or "due on sale", recourse or non-recourse, prepayment or lockout, assignment, default, and acceleration
+  - Negative Amortization: if the loan payment required is less than the amount of accrued interest then due on the loan because of a payment cap, there will be negative amortization
+    - Interest rate caps do not cause negative amortization
+  - Interest Rate Risk: because ARM interest rates adjust periodically, interest rate risk is higher for the norrower and lower for the lender
+    - The shorter the time interval between reset dates, the higher the risk for the borrower and lower for the lender
+    - Lender's much happier with adjustable rate loans
+  - Default Risk: because the interest rate adjusts periodically, the potential for future rate increases elevates the risk of a default by the borrower leading to foreclosure
+    - Higher for adjustable rate loans for both the borrower and the lender's perspective
+  - Hybrid ARMs: 3/1, 5/1, 7/1, or 10/1 are fixed rate loans for the first 3, 5, 7, or 10 years, then become adjustable rate loans with annual interest rate reset dates
+    - The "1" refers to an adjustment of the adjustment period of 1 year
+      - Shortening to 6 months
+  - Conversion Option: the right of the borrower to convert the loan from an ARM to a fixed rate loan at a specified future date, usually with a fee paid to the lender
+    - Acts at the current interest rate
 
 
 
