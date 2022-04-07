@@ -2,7 +2,7 @@
 
 [TOC]
 
-## Lecture 1: Intro and Parts of Speech
+## Lecture 1: Parts of Speech
 
 - What is Syntax?
   - Two notions of syntax:
@@ -196,7 +196,156 @@
 
 
 
-## Lecture 3: 
+## Lecture 3: Coordination, Movement, and Structural Relations
+
+- Coordination
+  - Coordination Test
+    - Take two acceptable sentences of the form `[A B D]` and `[A C D]`, where `A`, `B`, `C`, and `D` represent (possibly null) substrings
+    - If the string `[A B and C D]` is acceptable with the same meaning as `[A B D and A C D]`, this is evidence that `B` and `C` are both constituents, and constituents of the same type
+  - Coordination Rule
+    - `α -> α and α`
+- Movement Tests
+  - Topicalization/Fronting
+    - Allows one to move a `DP`, `PP`, or `VP` constituent to the front of a sentence
+      - The moved constituent is called the (contrastive) topic
+    - Thus, topicalization can only affect constituents (but not all of them)
+      - Negative results of this tests mean nothing
+  - Clefting
+    - The affected constituent is called the focus
+    - `A B C -> It's B that A C`
+    - If the result is acceptable, we have evidence that the string of words in focus form a constituent
+    - While `VP`s can be topicalized, they cannot be clefted
+  - Pseudoclefts
+    - Very similar to clefting in what it does to the information structure of the sentence
+    - `A B C -> What A C is B`
+    - Pseudoclefts using a wh- word other than "what" are judged marginal by most speakers
+    - In most cases `PP`s simply cannot be pseudoclefted
+    - In addition, something we probably want to call a `VP` pseudocleft is possible (`A B C -> What A do C is B`)
+- Structural Relations
+  - Branch: a line connecting two parts of a tree
+  - Node: each point that is labeled with a word or a category is called a node
+    - It is the end of a branch
+  - Label: the name given to the node
+  - Dominance: a node `α` dominates a node `β` iff there exists a chain of two or more nodes `α`, `γi`, ..., `γj`, `β` such that each node is the mother of the next one
+    - Roughly, `α` is an ancestor of `β`
+  - Root: the node that dominates all other nodes in a tree, and is itself dominated by none
+  - Leaf (or terminal node): the nodes along the bottom of the tree
+    - They dominate nothing
+  - Non-terminal node: a node that dominates something
+    - A node that is a mother
+  - Immediate dominance: a node `α` immediately dominates a node `β` iff `α` dominates `β` and there is no node `γ != α` such that `γ` dominates `β`
+    - `α` is `β`'s mother
+  - Mother: `A` is the mother of `B` if `A` immediately dominates `B`
+  - Daughter: `B` is the daughter of `A` if `B` is immediately dominated by `A`
+  - Sisters: two nodes that share the same mother
+  - Sister precedence: node `A` sister-precedes node `B` iff both are immediately dominated by the same node, and `A` appears to the left of `B`
+  - Precedence: node `A` precedes node `B` iff neither `A` dominates `B` nor `B` dominates `A` and `A ` (or some node dominating `A`) sister precedes `B` (or some node dominating `B`)
+  - C-command: node `A` c-commands node `B` if every node dominating `A` also dominates `B` and `A` does not itself dominate `B`
+    - Left-right doesn't matter, sisterhood does
+    - Every node c-commands its sister and everything below its sister
+  - Asymmetric c-command: `A` asymmetrically c-commands `B` if `A` c-commands `B` by `B` does not c-command `A`
+  - Exhaustive dominance: a node `α` exhaustively dominates a set of terminal nodes `N` iff `α` dominates every node in `N` (so that there is no member of the set `N` that is not dominated by `α`) and `α` does not dominate any terminal node not in `N`
+    - Exhaustive dominance is useful to talk about the leaves of a tree (which are the lexical terms)
+    - Leaves form a constituent precisely when there is a node in the tree to exhaustively dominate those leaves
+    - Immediate domination is not a necessary condition for exhaustive dominance
+
+
+
+## Lecture 4: Ambiguity and X-Bar Theory
+
+- Syntactic Ambiguity
+  - Ambiguity
+    - A sentence can have more than one meaning => ambiguity
+    - Ambiguity comes in 2 flavors:
+      - Lexical ambiguity uses words with more than one meaning
+      - Structural ambiguity ambiguous due to the structure or constituency of the sentence
+    - The relationship between structure and meaning is systematic
+  - The Principle of Modification
+    - Determines the meanings of the different structures
+    - An adjunct contributes its meaning to the category it combines with syntactically
+      - We can use constituency tests to manipulate the structure and show that:
+        - The ambiguities are structural
+        - The meanings are as presided by the Principle of Modification
+- Where We Are
+  - We know that sentences exist
+  - Based on constituency tests, we've been able to identify:
+    - Verb phrases (`VP`s): do so replacement test, topicalization, pseudoclefting, coordination, etc.
+    - Determiner phrases (`DP`s): replacement using a pronoun, topicalization, clefting, pseudoclefting, coordination, etc.
+    - Noun phrases (`NP`s): substitution by one, coordination, etc.
+    - Prepositional phrases (`PP`s): replacement test (there, then, etc.), topicalization, clefting, coordination, etc.
+  - We also came across other parts of speech (adjectives, adverbs) and modal verbs (should, will, must, can, etc.)
+- X-Bar Theory
+  - Behind the range of diverse constructions that English and other languages allow, we find surprising uniformity and regularity
+    - The idea that the rule system that underlies our phrases is very simple
+    - Every phrase looks the same
+  - X-Bar theory is a theory that tries to eliminate phrase structure idiosyncrasies: every phrase looks the same
+    - Every phrase is the projection of some lexical category: `N`, `V`, `A`, `Adv`, etc.
+    - The system of projected constituency is common to all categories
+  - We need to distinguish between 4 types of elements:
+    - Heads
+    - Complements
+    - Specifiers
+    - Adjuncts
+  - We'll start by justifying the distinction between complements and adjuncts
+  - Head
+    - Every phrase contains exactly one head of some category (`N`, `V`, `Adj`, `Adv`, `D`, etc.)
+    - Every head is contained within a phrase of the same category
+    - The head is present in all cases
+      - Whether a complement or a specifier is needed is a case-by-case thing
+    - The head of a constituent projects its label (lexical category) to that constituent
+    - The head of a constituent tells us the distribution of that constituent
+    - The head selects its sister constituent
+  - Complements
+    - Complements are selected by the head as their sisters
+    - They are merged into the structure as a result of the complement rule
+      - `X' -> X (Complement)`
+      - For head-final languages: `X' -> (Complement) X`
+  - Adjuncts
+    - Adjuncts are modifiers which modify the phrase
+    - They are sisters to phrases (`XP`s, not `X'` or `X`)
+    - They tend to be optional
+    - In English, they can both precede and follow their sister
+    - Adjunct Rule:
+      - `XP -> Adjunct XP`
+      - `XP -> XP Adjunct`
+  - Specifiers
+    - Specifiers are merged into the structure as the sister of `X'`
+    - Specifier Rule:
+      - `XP -> (Specifier) X'`
+  - How to Write an X-Bar Compliant Tree
+    - For every head you want to have 3 layers: `XP -> X' -> X`
+    - If there is no specifier, you can omit the X-bar level: `XP -> X`
+    - Both the specifier and the complement are phrases
+    - Complements are sisters of the head that selects them, don't attach complements to higher projections of the head
+- Sentences
+  - Tense Phrases (`TP`s)
+    - We've been using `S` for sentences, which doesn't seem to follow the X-bar schema
+    - We are going to adopt a new system where Tense is the head of sentences
+    - The `X'` schema will apply to `TP`s as well"
+      - The head: `T`
+      - Complement: `VP`
+      - Specifier: the subject (`DP` or `CP`)
+      - `TP -> YP T'`
+      - `T' -> T VP`
+    - Realization of `T`
+      - `T` can be free
+        - The non-finite `T` head "to"
+        - Modals
+      - `T` can be bound
+        - `[+pres]`
+        - `[-pres]` or -ed
+    - Bound morphemes in tree structures
+      - The bound morpheme is in `T`
+        - `[+pres]` or `[-pres]` (-ed, -s are also fine)
+      - The `VP` is headed by the bare verbal form
+    - Lexical entries specify the basic properties of the syntactic atoms (heads), including the category and all the selectional properties
+      - Only unpredictable properties that the speaker has to acquire should be included
+    - Selection => the type of phrase that the head requires in its specifier (or subject) position
+    - C-selection => complement selection, tells us what kind of sister a particular head is selecting for
+
+
+
+## Lecture 5:
 
 - 
 
