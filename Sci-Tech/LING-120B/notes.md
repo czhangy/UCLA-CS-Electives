@@ -120,7 +120,7 @@
 
 
 
-## Lecture 2:
+## Lecture 2: Constituency
 
 - Compositionality
   - Locality of Selection Hypothesis: selection is local in the sense that an item can only select properties of its sister(s)
@@ -196,7 +196,7 @@
 
 
 
-## Lecture 3:
+## Lecture 3: 
 
 - 
 
