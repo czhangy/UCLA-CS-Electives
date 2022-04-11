@@ -180,9 +180,10 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Adjustable Rate Mortgages
 
-- 
+- Longer maturity dates result in increased risk for the lender
+- Lol nothing else
 
 
 
