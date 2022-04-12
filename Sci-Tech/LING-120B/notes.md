@@ -345,9 +345,63 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Sentences
 
-- 
+- Sentences
+  - Complementizer Phrases (`CP`s)
+    - Sentences can be embedded inside others
+      - Recursion is one of the core properties of human language
+    - We have a new test we can use: "so" or "this" or "that" replacement
+    - Here is the proposal:
+      - The complementizer is the head of the constituent
+        - It selects for a `TP` complement
+      - The X' schema applies to `CP`s as well
+      - `CP`:
+        - The head: `C`
+        - Complement: `TP`
+        - Specifier: wh-phrases in wh-questions
+    - Realization of `C`
+      - The `C` head can be unpronounced in some languages
+        - In English, only "that" has this property
+    - `C` subcategorize for properties of `TP`
+      - "if", "that" select finite `TP`s
+      - "for" select non-finite `TP`s
+      - "whether" seems to allow both `-tense` and `+tense` `TP`s
+  - Verb Phrases (`VP`s)
+    - We detect `VP`s using: "do so" replacement test, topicalization, pseudoclefting, coordination, etc.
+    - `VP`:
+      - The head: `V`
+      - Complement(s): `DP`s, `CP`s, `PP`s, (`TP`s)
+      - Specifier: none (for now)
+    - Verb Types
+      - Intransitive verbs
+        - Ex) `VP -> V' -> V -> leave`
+      - Transitive verbs
+        - Ex) `VP -> V' -> V DP -> love Pat`
+      - Ditransitive verbs
+        - Ex) `VP -> V' -> V DP PP -> give a present to Peter`
+    - Complements are selected by `V`
+      - They fill a required slot in the lexical entry of the head
+      - They are in a sisterhood relation to `V`
+      - They tend to be obligatory
+    - Adjuncts are modifiers which modify the phrase
+      - They are sisters to phrases
+      - They tend to be optional
+    - `V` Complement Adjunct Order
+      - The 3 rules we have so far:
+        - Complement rule
+        - Specifier rule
+        - Adjunct rule
+      - When the adjunct is on the right side, it must follow the complement
+        - Head => Complement => Adjunct
+    - Summary: `VP` Structure
+      - The head of the `VP` is the verb
+      - Transitive and ditransitive verbs select for complement(s): they are sisters of `V` (we merge them applying the complement rule)
+      - No specifier in the `VP` (not yet)
+      - Adjuncts attach to the maximal projection (the `VP`)
+      - "do so" replaces `VP` (complement must be included)
+        - If a phrase need not be included as part of the sequence being replaced by "do so", then it is an adjunct
+        - If it must be included, then it is a complement
 
 
 
