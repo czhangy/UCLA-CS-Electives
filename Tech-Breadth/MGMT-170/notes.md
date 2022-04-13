@@ -187,7 +187,39 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Additional Mortgage Concepts and Leases
+
+- Mortgages
+  - Loan-to-Value Ratio (LTV): mortgage debt divided by property value (or price)
+  - Market Value of a Loan: the present value of all expected future loan payments (i.e., all expected future payments of principal and interest)
+  - Incremental Borrowing Cost: the marginal cost of the additional amount borrowed, taking into consideration the interest rate and other loan fees, points, and costs
+  - Home Equity Line of Credit: a home equity line of credit (HELOC) can be secured by a first, second, or more junior mortgage and is typically a revolving line of credit
+- Leases
+  - Commercial Properties: office, retail, apartment, industrial, hotel, mixed-use, etc.
+  - Supply and Demand Analysis: important for the valuation of properties and the projection of future rent and occupancy levels
+    - Global, national, regional, and local factors affect the value of properties and rent levels for commercial space
+  - Location: the most important factor in real estate because it's location specific
+  - Occupancy/Vacancy: `occupancy = 100& - vacancy`
+    - Driven by many factors, including supply and demand, location, quality (age, design, construction, etc.)
+  - Lease Terms: the parties (landlord/tenant or lessor/lessee), premises, term, base rent, CPI increases or percentage rent, security deposit and/or guarantors, allowable uses, insurance, repairs and maintenance, damage or destruction, property taxes and other expenses, assignment and subletting, defaults and remedies, subordination, attornment and non-disturbance, signage, right of first refusal or expansion option on adjacent space, notices, governing law
+    - Premises define the exact real estate under consideration
+    - Start with base rent, landlord wants this to increase over time
+    - Security deposits prevent the tenant from abandoning the contract terms
+    - Allowable uses define what is allowed on the premises
+  - Rental Income: flat base rent, step-up rent, CPI or indexed rent with caps or floors, percentage rent with overage rent above a sales amount breakpoint
+  - Concessions: free rent, reduced rent, tenant improvement allowance (TI)
+  - Property Expenses: gross leases (tenant pays no expenses), modified gross leases (e.g., electricity), triple net leases (tenant pays all operating expenses including property taxes, insurance, repairs and maintenance, and utilities)
+  - Expense Stop: property expenses per rentable square for up to the expense stop will be paid by the landlord with expenses over that amount paid by the tenant
+  - Rentable vs. Usable Square Feet: rentable square footage is usable square footage plus the tenant's pro rata share of building common areas (including the public areas, shared hallways, shared restrooms, public stairwells, elevator lobbies)
+  - Load Factor: rentable area divided buy usable area (a lower ratio is more efficient)
+  - Parking: specific parking spaces can be assigned to a tenant or per thousand square feet of rented space
+    - Parking charges can be added to the rent or included
+  - Office Leases: anchor tenants, signage, parking, expansion option, purchase option or right of first refusal, overloading, gross/net/expense stops
+  - Retail Leases: anchor tenants, signage, parking, co-tenancy clause, exclusivity, radius clause, termination or kick-out rights, operating times, and CAM charges
+
+
+
+## Lecture 7:
 
 - 
 
