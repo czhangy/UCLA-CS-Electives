@@ -345,7 +345,7 @@
 
 
 
-## Lecture 5: Sentences
+## Lecture 5: Complementizer Phrases and Verb Phrases
 
 - Sentences
   - Complementizer Phrases (`CP`s)
@@ -405,9 +405,106 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Determiner Phrases and Noun Phrases
 
-- 
+- Sentences
+
+  - Determiner Phrases (`DP`s)
+
+    - We detect `DP`s using: replacement using a pronoun, topicalization, clefting, pseudoclefting, coordination, etc.
+
+    - `DP`s:
+
+      - The head: `D`
+      - Complement(s): `NP`s
+      - Specifier: `DP`s
+      - `DP -> (DP) D' -> D NP`
+
+    - `D` can be empty
+
+      - Bare plurals
+        - Ex) Dogs bite
+      - Proper nouns in English
+        - Ex) Mary
+      - Is an empty `D` needed in the structure of proper names?
+        - In other languages proper names do require overt determiners
+
+    - Proper names and phrases headed by determiners have the same syntactic distribution
+
+      - They can be replaced by pronouns
+      - Proper names and phrases headed by determiners can be coordinated
+
+    - The specifier position of `DP` can be filled: the Saxon genitive case
+
+      - Ex) Mary's brother
+        - Has the distribution of a `DP` (replacement, coordination, etc.)
+        - "Mary" is also a `DP`, therefore it is a phrase
+        - The only other position available for a phrase in the `DP` is the specifier position
+          - Options: "'s" is the determiner, or "Mary's" is the specifier
+          - We prefer "'s" as the determiner because genitive phrases are in complementary distribution with other determiners
+      - Results in the following structure:
+        - The `DP`-possessor is in specifier position
+        - "'s" is the determiner (this accounts for the complementary distribution with determiners)
+        - The `NP`-possessee is in complement position
+
+    - Summary: `DP` structure
+
+      - The head of the `DP` is a determiner, which can be null
+
+      - The complement is a `NP`
+
+      - `DP`s can have subjects (the phrase occurring in specifier position), as in the case of the Saxon genitive construction
+
+      - We did not see any examples of `DP` adjuncts (and we won't see any)
+
+      - Lexical entries:
+
+        - | the  | `D`  | free  |              | c-selects `NP` | "the book"    |
+          | ---- | ---- | ----- | ------------ | -------------- | ------------- |
+          | this | `D`  | free  |              | c-selects `NP` | "this book"   |
+          | 's   | `D`  | bound | selects `DP` | c-selects `NP` | "John's book" |
+
+    - Summary: specifiers
+
+      - Specifier (or subject) of `T` or `TP` (the subjects of the sentence)
+        - Can be a `DP` or a `CP`
+      - Specifier (or subject) of `D` or `DP` (the possessor)
+
+  - Possessive Pronouns
+
+    - The structure of possessive pronouns is very similar to the genitive construction we discussed above
+
+  - Noun Phrases
+
+    - Nouns can also take complements (especially if they are the nominalized version of some verbs)
+
+      - The complement of `N` is `N`'s sister, whereas the adjunct attaches to the maximal projection (`NP`)
+
+    - "One" can only replace `NP`s, not `N`s or `N'`s
+
+    - We expect to find the same strict order we find in `VP`s
+
+      - Head => Complement => Adjunct
+
+    - Summary: `NP` structure
+
+      - The head of the `NP` is a noun
+
+      - Some nouns can take `PP` or `CP` complements
+
+      - No specifiers so far
+
+      - `NP` adjuncts are very common: they can be `PP` or `AP`
+
+        - `PP` adjuncts are normally on the right
+        - `AP` adjuncts are normally on the left
+
+      - Lexical entries:
+
+        - | cat     | `N`  | free |                         | "cat"           |
+          | ------- | ---- | ---- | ----------------------- | --------------- |
+          | student | `N`  | free | c-selects "of" (`PP`)   | "student of CS" |
+          | claim   | `N`  | free | c-selects "that" (`CP`) | "claim that..." |
 
 
 
