@@ -224,6 +224,7 @@
 - Market Value: the price at which a willing buyer and a willing seller, each without undue pressure, would buy and sell a particular property, as of a particular date
 - Appraised Value: an estimate or opinion of property value, for a particular purpose as of a particular date, by a particular appraiser
   - The three primary appraisal methods are: sales comparison, capitalization of income, and replacement cost
+    - Replacement cost: how much it would cost to build the property today
   - Each of the three appraisal methods should, in theory, produce a similar valuation
   - Hypothetical
 - Sales Comparison (or Comparable Sales): compares recent sales of highly comparable properties that are similar in location, size, age, construction quality, and other factors
