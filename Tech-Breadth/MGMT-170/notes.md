@@ -219,9 +219,18 @@
 
 
 
-## Lecture 7:
+## Lecture 7: Valuation of Income Properties and Appraisal
 
-- 
+- Market Value: the price at which a willing buyer and a willing seller, each without undue pressure, would buy and sell a particular property, as of a particular date
+- Appraised Value: an estimate or opinion of property value, for a particular purpose as of a particular date, by a particular appraiser
+  - The three primary appraisal methods are: sales comparison, capitalization of income, and replacement cost
+  - Each of the three appraisal methods should, in theory, produce a similar valuation
+  - Hypothetical
+- Sales Comparison (or Comparable Sales): compares recent sales of highly comparable properties that are similar in location, size, age, construction quality, and other factors
+  - This is generally the only method used for residential properties, and one of the three methods used to appraise commercial properties
+- Capitalization of Income: gross rent multiplier, capitalization of net operating income, and discounted present value (DCF) of projected future annual NOI
+- Gross Rent Multiplier: `Annual Rental Income x Gross Rent Multiplier = Price/Value`
+  - The gross rent multiplier must be derived from the GRMs on sales of
 
 
 
