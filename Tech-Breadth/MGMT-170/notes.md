@@ -249,6 +249,39 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Investment Analysis and Taxation of Income Properties
+
+- **Investment Benefits**: cash flow (after taxes), price appreciation, diversification
+  - Price Appreciation: looking for prices to grow over time
+    - Dependent on the specific investment
+- **Real Estate Cycle**: the real estate industry is cyclical, with periods of growth and periods of decline in rents, occupancy, and property values
+  - Cycle length is dynamic
+  - The industry is very large and highly competitive, with many owners and limited concentration of ownership
+- **Investment Strategies**: risk/return focus (core, value-added, or opportunistic), property type (e.g., office, retail, apartments, hotels), and/or geographical focus
+- **Market Analysis**: supply/demand analysis or property type and local market, and local absorption projections to forecast future occupancy rates and rent levels
+- **Leverage**: the use of debt to acquire or own property
+- **Loan to Value Ration (LTV)**: mortgage balance divided by property value (or price)
+- **Debt Service Coverage Ratio (DSCR)**: annual NOI divided by mortgage payments
+  - A higher DSCR shows a greater ability for the borrower to make mortgage payments
+  - **Net Operating Income (NOI)**: rent and other property income minus operating expenses
+    - NOI is often capitalized to determine the market value of a property
+- **Before Tax Cash Flow**: NOI minus debt service and capital expenditures
+- **After Tax Cash Flow**: before tax cash flow minus taxes
+  - The government is your partner in every investment through its power to tax the annual income and capital gains from sale
+  - Federal, state, local, and all other taxes must be considered
+- **Taxable Income**: net operating income minus interest and tax depreciation
+  - **Tax Depreciation**: the amount of the purchase price allocated to the improvements, exclusive of the land, is the depreciable cost bases of the property
+    - The depreciable cost basis can be amortized as tax depreciation over 27.5 years for residential income properties and 39 years for non-residential income properties
+- **Mortgage Interest Deduction**: the interest portion of the monthly P&I payments is tax deductible for primary and secondary homes on loans totaling up to $750,000
+- **Unleveraged Returns vs. Leveraged Returns**: the internal rate of return (IRR), return on equity (ROE), and equity multiple from an investment before and after the effect of mortgage financing
+  - The leveraged returns should generally be higher than the unleveraged returns to account for the additional risk from the use of leverage
+
+- Most investment property loans are balloon payment loans
+  - Homes are less risk, so lenders are more willing to use fully-amortizing loans for them
+
+
+
+## Lecture 9:
 
 - 
+
