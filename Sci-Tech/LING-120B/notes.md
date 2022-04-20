@@ -347,170 +347,256 @@
 
 ## Lecture 5: Complementizer Phrases and Verb Phrases
 
-- Sentences
-  - Complementizer Phrases (`CP`s)
-    - Sentences can be embedded inside others
-      - Recursion is one of the core properties of human language
-    - We have a new test we can use: "so" or "this" or "that" replacement
-    - Here is the proposal:
-      - The complementizer is the head of the constituent
-        - It selects for a `TP` complement
-      - The X' schema applies to `CP`s as well
-      - `CP`:
-        - The head: `C`
-        - Complement: `TP`
-        - Specifier: wh-phrases in wh-questions
-    - Realization of `C`
-      - The `C` head can be unpronounced in some languages
-        - In English, only "that" has this property
-    - `C` subcategorize for properties of `TP`
-      - "if", "that" select finite `TP`s
-      - "for" select non-finite `TP`s
-      - "whether" seems to allow both `-tense` and `+tense` `TP`s
-  - Verb Phrases (`VP`s)
-    - We detect `VP`s using: "do so" replacement test, topicalization, pseudoclefting, coordination, etc.
-    - `VP`:
-      - The head: `V`
-      - Complement(s): `DP`s, `CP`s, `PP`s, (`TP`s)
-      - Specifier: none (for now)
-    - Verb Types
-      - Intransitive verbs
-        - Ex) `VP -> V' -> V -> leave`
-      - Transitive verbs
-        - Ex) `VP -> V' -> V DP -> love Pat`
-      - Ditransitive verbs
-        - Ex) `VP -> V' -> V DP PP -> give a present to Peter`
-    - Complements are selected by `V`
-      - They fill a required slot in the lexical entry of the head
-      - They are in a sisterhood relation to `V`
-      - They tend to be obligatory
-    - Adjuncts are modifiers which modify the phrase
-      - They are sisters to phrases
-      - They tend to be optional
-    - `V` Complement Adjunct Order
-      - The 3 rules we have so far:
-        - Complement rule
-        - Specifier rule
-        - Adjunct rule
-      - When the adjunct is on the right side, it must follow the complement
-        - Head => Complement => Adjunct
-    - Summary: `VP` Structure
-      - The head of the `VP` is the verb
-      - Transitive and ditransitive verbs select for complement(s): they are sisters of `V` (we merge them applying the complement rule)
-      - No specifier in the `VP` (not yet)
-      - Adjuncts attach to the maximal projection (the `VP`)
-      - "do so" replaces `VP` (complement must be included)
-        - If a phrase need not be included as part of the sequence being replaced by "do so", then it is an adjunct
-        - If it must be included, then it is a complement
+- Complementizer Phrases (`CP`s)
+  - Sentences can be embedded inside others
+    - Recursion is one of the core properties of human language
+  - We have a new test we can use: "so" or "this" or "that" replacement
+  - Here is the proposal:
+    - The complementizer is the head of the constituent
+      - It selects for a `TP` complement
+    - The X' schema applies to `CP`s as well
+    - `CP`:
+      - The head: `C`
+      - Complement: `TP`
+      - Specifier: wh-phrases in wh-questions
+  - Realization of `C`
+    - The `C` head can be unpronounced in some languages
+      - In English, only "that" has this property
+  - `C` subcategorize for properties of `TP`
+    - "if", "that" select finite `TP`s
+    - "for" select non-finite `TP`s
+    - "whether" seems to allow both `-tense` and `+tense` `TP`s
+- Verb Phrases (`VP`s)
+  - We detect `VP`s using: "do so" replacement test, topicalization, pseudoclefting, coordination, etc.
+  - `VP`:
+    - The head: `V`
+    - Complement(s): `DP`s, `CP`s, `PP`s, (`TP`s)
+    - Specifier: none (for now)
+  - Verb Types
+    - Intransitive verbs
+      - Ex) `VP -> V' -> V -> leave`
+    - Transitive verbs
+      - Ex) `VP -> V' -> V DP -> love Pat`
+    - Ditransitive verbs
+      - Ex) `VP -> V' -> V DP PP -> give a present to Peter`
+  - Complements are selected by `V`
+    - They fill a required slot in the lexical entry of the head
+    - They are in a sisterhood relation to `V`
+    - They tend to be obligatory
+  - Adjuncts are modifiers which modify the phrase
+    - They are sisters to phrases
+    - They tend to be optional
+  - `V` Complement Adjunct Order
+    - The 3 rules we have so far:
+      - Complement rule
+      - Specifier rule
+      - Adjunct rule
+    - When the adjunct is on the right side, it must follow the complement
+      - Head => Complement => Adjunct
+  - Summary: `VP` Structure
+    - The head of the `VP` is the verb
+    - Transitive and ditransitive verbs select for complement(s): they are sisters of `V` (we merge them applying the complement rule)
+    - No specifier in the `VP` (not yet)
+    - Adjuncts attach to the maximal projection (the `VP`)
+    - "do so" replaces `VP` (complement must be included)
+      - If a phrase need not be included as part of the sequence being replaced by "do so", then it is an adjunct
+      - If it must be included, then it is a complement
 
 
 
 ## Lecture 6: Determiner Phrases and Noun Phrases
 
-- Sentences
+- Determiner Phrases (`DP`s)
 
-  - Determiner Phrases (`DP`s)
+  - We detect `DP`s using: replacement using a pronoun, topicalization, clefting, pseudoclefting, coordination, etc.
 
-    - We detect `DP`s using: replacement using a pronoun, topicalization, clefting, pseudoclefting, coordination, etc.
+  - `DP`s:
 
-    - `DP`s:
+    - The head: `D`
+    - Complement(s): `NP`s
+    - Specifier: `DP`s
+    - `DP -> (DP) D' -> D NP`
 
-      - The head: `D`
-      - Complement(s): `NP`s
-      - Specifier: `DP`s
-      - `DP -> (DP) D' -> D NP`
+  - `D` can be empty
 
-    - `D` can be empty
+    - Bare plurals
+      - Ex) Dogs bite
+    - Proper nouns in English
+      - Ex) Mary
+    - Is an empty `D` needed in the structure of proper names?
+      - In other languages proper names do require overt determiners
 
-      - Bare plurals
-        - Ex) Dogs bite
-      - Proper nouns in English
-        - Ex) Mary
-      - Is an empty `D` needed in the structure of proper names?
-        - In other languages proper names do require overt determiners
+  - Proper names and phrases headed by determiners have the same syntactic distribution
 
-    - Proper names and phrases headed by determiners have the same syntactic distribution
+    - They can be replaced by pronouns
+    - Proper names and phrases headed by determiners can be coordinated
 
-      - They can be replaced by pronouns
-      - Proper names and phrases headed by determiners can be coordinated
+  - The specifier position of `DP` can be filled: the Saxon genitive case
 
-    - The specifier position of `DP` can be filled: the Saxon genitive case
+    - Ex) Mary's brother
+      - Has the distribution of a `DP` (replacement, coordination, etc.)
+      - "Mary" is also a `DP`, therefore it is a phrase
+      - The only other position available for a phrase in the `DP` is the specifier position
+        - Options: "'s" is the determiner, or "Mary's" is the specifier
+        - We prefer "'s" as the determiner because genitive phrases are in complementary distribution with other determiners
+    - Results in the following structure:
+      - The `DP`-possessor is in specifier position
+      - "'s" is the determiner (this accounts for the complementary distribution with determiners)
+      - The `NP`-possessee is in complement position
 
-      - Ex) Mary's brother
-        - Has the distribution of a `DP` (replacement, coordination, etc.)
-        - "Mary" is also a `DP`, therefore it is a phrase
-        - The only other position available for a phrase in the `DP` is the specifier position
-          - Options: "'s" is the determiner, or "Mary's" is the specifier
-          - We prefer "'s" as the determiner because genitive phrases are in complementary distribution with other determiners
-      - Results in the following structure:
-        - The `DP`-possessor is in specifier position
-        - "'s" is the determiner (this accounts for the complementary distribution with determiners)
-        - The `NP`-possessee is in complement position
+  - Summary: `DP` structure
 
-    - Summary: `DP` structure
+    - The head of the `DP` is a determiner, which can be null
 
-      - The head of the `DP` is a determiner, which can be null
+    - The complement is a `NP`
 
-      - The complement is a `NP`
+    - `DP`s can have subjects (the phrase occurring in specifier position), as in the case of the Saxon genitive construction
 
-      - `DP`s can have subjects (the phrase occurring in specifier position), as in the case of the Saxon genitive construction
+    - We did not see any examples of `DP` adjuncts (and we won't see any)
 
-      - We did not see any examples of `DP` adjuncts (and we won't see any)
+    - Lexical entries:
 
-      - Lexical entries:
+      - | the  | `D`  | free  |              | c-selects `NP` | "the book"    |
+        | ---- | ---- | ----- | ------------ | -------------- | ------------- |
+        | this | `D`  | free  |              | c-selects `NP` | "this book"   |
+        | 's   | `D`  | bound | selects `DP` | c-selects `NP` | "John's book" |
 
-        - | the  | `D`  | free  |              | c-selects `NP` | "the book"    |
-          | ---- | ---- | ----- | ------------ | -------------- | ------------- |
-          | this | `D`  | free  |              | c-selects `NP` | "this book"   |
-          | 's   | `D`  | bound | selects `DP` | c-selects `NP` | "John's book" |
+  - Summary: specifiers
 
-    - Summary: specifiers
+    - Specifier (or subject) of `T` or `TP` (the subjects of the sentence)
+      - Can be a `DP` or a `CP`
+    - Specifier (or subject) of `D` or `DP` (the possessor)
 
-      - Specifier (or subject) of `T` or `TP` (the subjects of the sentence)
-        - Can be a `DP` or a `CP`
-      - Specifier (or subject) of `D` or `DP` (the possessor)
+- Possessive Pronouns
 
-  - Possessive Pronouns
+  - The structure of possessive pronouns is very similar to the genitive construction we discussed above
 
-    - The structure of possessive pronouns is very similar to the genitive construction we discussed above
+- Noun Phrases (`NP`s)
 
-  - Noun Phrases
+  - Nouns can also take complements (especially if they are the nominalized version of some verbs)
 
-    - Nouns can also take complements (especially if they are the nominalized version of some verbs)
+    - The complement of `N` is `N`'s sister, whereas the adjunct attaches to the maximal projection (`NP`)
 
-      - The complement of `N` is `N`'s sister, whereas the adjunct attaches to the maximal projection (`NP`)
+  - "One" can only replace `NP`s, not `N`s or `N'`s
 
-    - "One" can only replace `NP`s, not `N`s or `N'`s
+  - We expect to find the same strict order we find in `VP`s
 
-    - We expect to find the same strict order we find in `VP`s
+    - Head => Complement => Adjunct
 
-      - Head => Complement => Adjunct
+  - Summary: `NP` structure
 
-    - Summary: `NP` structure
+    - The head of the `NP` is a noun
 
-      - The head of the `NP` is a noun
+    - Some nouns can take `PP` or `CP` complements
 
-      - Some nouns can take `PP` or `CP` complements
+    - No specifiers so far
 
-      - No specifiers so far
+    - `NP` adjuncts are very common: they can be `PP` or `AP`
 
-      - `NP` adjuncts are very common: they can be `PP` or `AP`
+      - `PP` adjuncts are normally on the right
+      - `AP` adjuncts are normally on the left
 
-        - `PP` adjuncts are normally on the right
-        - `AP` adjuncts are normally on the left
+    - Lexical entries:
 
-      - Lexical entries:
-
-        - | cat     | `N`  | free |                         | "cat"           |
-          | ------- | ---- | ---- | ----------------------- | --------------- |
-          | student | `N`  | free | c-selects "of" (`PP`)   | "student of CS" |
-          | claim   | `N`  | free | c-selects "that" (`CP`) | "claim that..." |
+      - | cat     | `N`  | free |                         | "cat"           |
+        | ------- | ---- | ---- | ----------------------- | --------------- |
+        | student | `N`  | free | c-selects "of" (`PP`)   | "student of CS" |
+        | claim   | `N`  | free | c-selects "that" (`CP`) | "claim that..." |
 
 
 
-## Lecture 7:
+## Lecture 7: Adjective Phrases, Adverbial Phrases, Prepositional Phrases, and Cross-Linguistic Variation
 
-- 
+- Adjective Phrases (`AP`s)
+
+  - `AP`:
+
+    - The head: `A`
+    - Complement(s): `PP`s and `CP`s
+    - Specifier: none (for now)
+
+  - Adjectives allow adjuncts
+
+    - They normally express a degree and appear on the left in English
+
+  - Summary: `AP` structure
+
+    - The head of the `AP` is an adjective
+    - (Some) adjectives can take `PP` or `CP` complements
+      - Proud [of `DP`]
+      - Proud [that `TP`]
+      - Fond [of `DP`]
+    - Specifiers coming soon
+    - `AP` adjuncts are normally expression of degree
+      - Ex) "very", "extremely"
+
+  - Lexical entries:
+
+    - | red   | `A`  | free  |                        | "red"           |
+      | ----- | ---- | ----- | ---------------------- | --------------- |
+      | proud | `A`  | free` | c-selects `PP` or `CP` | "proud of John" |
+
+- Adverbial Phrases (`AdvP`s)
+
+  - `AdvP`:
+
+    - The head: `Adv`
+    - No complements
+    - No specifiers
+
+  - `AdvP`s can be modified by another `AdvP` (the ones that express a degree)
+
+  - Summary: `AdvP` structure
+
+    - The head of the `AdvP` is an adverb
+    - No complements
+    - No specifiers
+    - `AdvP` adjuncts are normally expression of degree
+      - Ex) "very", "extremely"
+
+  - Lexical entries
+
+    - | quickly | `Adv` | free | "quickly" |
+      | ------- | ----- | ---- | --------- |
+      | slowly  | `Adv` | free | "slowly"  |
+
+- Prepositional Phrases (`PP`s)
+
+  - `PP`:
+
+    - The head: `P`
+    - Complement(s): `PP`s and `DP`s
+    - Specifier: none (for now)
+
+  - Prepositions can sometimes have adjuncts
+
+    - Ex) "right against the grain", "exactly under the tree"
+
+  - Summary: `PP` structure
+
+    - The head of the `PP` is a preposition
+    - (Some) prepositional phrases can take `PP` or `DP` complements
+    - Specifiers coming soon
+    - `PP` adjuncts are normally adverbial phrases
+      - Ex) "right", "exactly"
+
+  - Lexical entries
+
+    - | up   | `P`  | free | (c-selects `DP`)       | "up" or "up the rope"                |
+      | ---- | ---- | ---- | ---------------------- | ------------------------------------ |
+      | of   | `P`  | free | c-selects `DP`         | "of linguistics"                     |
+      | from | `P`  | free | c-selects `DP` or `PP` | "from Italy" or "from under the rug" |
+
+- Cross-Linguistic Variation
+
+  - X-bar theory says something about how subjects and complements are hierarchically organized in a given category, but does not entirely predict linear order
+    - Heads combine with complements first and then with subjects
+    - Adjuncts combine with the projection that is formed
+  - It doesn't say anything about the order of sisters
+    - How the relations are linearized is determined by parameters in each individual language
+      - In English we have Specifier =>< Head => Complement
+      - In other languages we could have a different linear order
+    - Some orders are excluded by X-bar theory
 
 
 
