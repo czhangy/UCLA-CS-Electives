@@ -600,7 +600,21 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Lexical Entries and Subjects
+
+- Lexical Entries
+  - Syntactic structures are determined in part by the properties of the syntactic atoms
+  - Lexical entries are a list of the relevant properties of the syntactic atoms (the heads):
+    - All the selectional properties are included
+    - Only unpredictable properties should be included
+- Subjects
+  - So far we only encountered two phrases with specifiers `TP`s and `DP`s
+  - `VP`s, `AP`s, and `PP`s can also have subjects: let's talk about small clauses
+  - We know that a full sentence can be embedded under another one
+
+
+
+## Lecture 9:
 
 - 
 
