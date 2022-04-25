@@ -281,7 +281,52 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Financial Leverage and Risk Analysis
+
+- Financial Leverage
+  - **Financial Leverage**: allows an investor to use less equity to acquire an investment, potentially achieve a higher leveraged return on equity, and benefit from the tax deductibility of mortgage interest
+    - Investors who desire a higher leveraged return on equity might borrow at a higher LTV ratio, but as the LTV increases, risk increases
+  - **Positive and Negative Leverage**: positive leverage is when the return on equity is higher with debt than without, and negative leverage is when the return on equity is lower with debt than without
+    - With positive leverage, the higher the LTV ratio, the higher will be the leveraged return on equity
+    - With negative leverage, the higher the LTV ratio, the lower will be the leveraged return on equity
+  - **Loan Underwriting**: The loan to value ratio (LTV) and debt service coverage ratio (DSCR) are two of the key elements of a loan underwriting
+    - Although the maximum LTV ratio and minimum DSCR levels vary with mortgage market conditions, lenders are always more secure with a lower LTZV ratio and a higher DSCR
+      - Smaller loan, higher coverage
+  - **Prepayment Penalties, Yield Maintenance, Loan Lockouts**: mortgage loan terms that make it costly or impossible for a borrower to payoff or refinance a loan before the contract maturity date
+  - **Interest-Only Loan**: borrower pays only interest on the loan, with no principal amortization, and a balloon payment due at maturity
+    - Also called a "bullet loan"
+  - **Negative Amortizing Loan**: when the payment rate on a loan is less than the accrual rate (i.e., interest amount then due), there will be negative amortization and the loan balance will increase
+    - Might be used when interest rates are very high
+    - Can occur due to missed payments, resulting in interest being added to the loan balance
+  - **Participating Loan**: the lender receives additional interest, based on a formula, typically related to gross income, NOI, or cash flow, that is called a participation or "equity kicker" but the lender doesn't have any ownership interest in the property
+  - **Convertible Mortgage**: when the lender has the right to convert part or all of the loan principal to an ownership interest in the property at a specified time
+    - Lender wants the option, not the obligation
+  - **Mezzanine Loan**: a loan that is often secured by the owner's equity in a property, rather than by a mortgage on the property itself
+    - Usually requires an inter-creditor agreement between the mezzanine lender and the first mortgage lender
+    - Can be a traditional second mortgage
+    - Lender can become the owner, dealing with the first mortgage lender
+  - **Preferred Equity**: an investment in the ownership interest of a property, that is not a mortgage, with a preferred return that takes priority over other equity investors
+    - Bringing in of investors for stability
+    - Investors have priority before other investors
+  - **Sale-Leaseback**: an alternate means of monetizing a property where the seller retains use of the property for the duration of the lease term
+    - With a repurchase option in the lease, the seller may reacquire ownership of the property in the future
+- Risk Analysis
+  - **Risk**: the higher the variability of expected returns, the greater the risk of an investment
+    - The lower the variability of expected returns, the lower the risk
+  - **Risk Averse**: investors are generally risk averse, which means they require a higher expected return (probability weighted mean return) as compensation for incurring more risk (i.e., higher variability/volatility/uncertainty of expected returns)
+  - **Risk vs. Return**: this is the key investment consideration
+    - When comparing potential investments, their internal rate of return (IRR) or projected net present value (NPV) must be viewed in light of the risks associated with each potential investment
+  - **Investment Risks**: economic risk (global, national, and local), business risk, financial risk, interest rate risk, liquidity risk, inflation risk, management risk, environmental risk, legislative risk, pandemic risk, etc.,
+  - **Due Diligence**: the process of identifying the various risks and potential returns of an investment by evaluating all the relevant and available information to assess and determine whether the potential returns are sufficient for you in light of those risks
+    - Due diligence on a property would include a review and analysis of a market study, the rent toll, major leases, physical inspection, design and engineering, title and survey zoning and code compliance, taxes, insurance, litigation, etc.
+  - **Sensitivity Analysis**: modifying key assumptions about future investment performance (e.g., rent levels, CPI, vacancy rates, exit cap rate, sale timing), often done two at a time, to see their impact on the IRR and equity multiple
+    - The assumptions can be changed to model various scenarios in light of the potential risks
+    - The sensitivity analysis will show how sensitive the expected return (e.g., IRR, NPV, or equity multiple) is to changes in your assumptions
+  - **Partitioning the IRR**: determining the portion of the investment return that comes from the annual cash flow and the portion that comes from the sale/residual value
+
+
+
+## Lecture 10:
 
 - 
 
