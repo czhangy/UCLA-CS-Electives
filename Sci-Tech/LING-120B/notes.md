@@ -614,7 +614,45 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Subjects and Binding Theory
+
+- Subjects
+  - Cases where the embedded clause is smaller
+    - Ex) Fred saw John drunk
+    - Some of them have a "that"-`TP` counterpart
+      - Ex) Peter heard Mary leave => Peter heard that Mary left
+      - These sentences and their counterparts seem to have different semantic requirements
+    - These constituents lack the `T`-layer
+- Binding Theory
+  - Binding theory is a theory of what controls possible coreference between different types of `DP`s in particular syntactic configurations
+    - Reference: the relation between a `DP` and the ting in the world that the meaning of that `DP` picks out
+    - Two `DP`s co-refer if they refer to the same entity
+  - Indexation: notational tool for keeping track of what `DP`s refer to
+    - Indices: `i`, `j`, `k`, etc.
+      - Two `DP`s with the same index refer to the same thing
+        - Two `DP`s that have the same index are said to be co-indexed
+        - Two `DP`s that are co-indexed are said to co-refer (i.e., refer to the same entity in the world)
+      - Two `DP`s with different indices refer to different things
+  - Based on their syntactic behavior, we need to distinguish among three kinds of `DP`s
+    - Anaphors: itself, herself, yourselves
+    - Pronouns: you, me, us, him
+    - R-expressions: John, the professor, etc.
+  - Quick note on notation:
+    - Syntacticians will sometimes abbreviate two sentences that are otherwise identifical, but have different indices
+    - The two possible indices are separated by a slash and the index that would make the sentence ungrammatical is marked with an asterisk
+  - Principle A: Anaphors
+    - Seems that unlike pronouns and R-expressions, anaphors need a co-referential `DP` in the same sentence (we'll call this `DP` the antecedent or binder)
+    - Principle A
+      - An anaphor must be bound in its binding domain
+        - Binds: `A` binds `B` and only if `A` c-commands `B` and `A` and `B` are co-indexed
+          - C-command: the relationship between a node, its sister, and the stuff dominated by its sister
+        - Binding domain: the smallest `XP` containing the anaphor that has a subject
+          - According to this definition the anaphor can be the subject of the `XP`
+    - Binding Principle A also applies to reciprocals like "each other"
+
+
+
+## Lecture 10:
 
 - 
 
