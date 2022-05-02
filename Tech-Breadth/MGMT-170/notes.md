@@ -266,19 +266,18 @@
   - **Capitalization of NOI**: `Cap Rate = NOI / Price`, so `NOI / Cap Rate = Price` and `Cap Rate x Price = NOI`
     - `Cap Rate`: capitalization rate; derived from recent sales of comparable properties and is affected by market conditions
       - Usually a small percent
-
+      - Cap rates follow interest rates
+        - Falling interest rates will tend to lower cap rates, while rising interest rates will increase cap rates
+      - Cap rates are inversely correlated with price
+        - Asset values are inversely correlated with interest rates => as interest rates rise, the amount of debt you can take on decreases => prices fall
+      
+      - An increase in demand relative to supply in the local market will lower cap rates, while an increase in supply relative to demand will raise cap rates
+        - Increase in demand => higher price => lower cap rates and vice versa
+      
     - `NOI`: net operating income
       - Differs from rental income by accounting for expenses (`NOI = Revenue - Expenses`)
     - 1-year stabilized analysis
-    - Cap rates follow interest rates
-      - Falling interest rates will tend to lower cap rates, while rising interest rates will increase cap rates
-
-    - Cap rates are inversely correlated with price
-      - Asset values are inversely correlated with interest rates => as interest rates rise, the amount of debt you can take on decreases => prices fall
-
-    - An increase in demand relative to supply in the local market will lower cap rates, while an increase in supply relative to demand will raise cap rates
-      - Increase in demand => higher price => lower cap rates and vice versa
-
+    
   - **Discounted Present Value (DCF)**: a 10-year cash flow model is typically created
     - Typically doesn't happen, except for pretty sizable properties; more expensive
     - The discount rate used (or required internal rate of return) is based on the buyer's subjective assessment of the risk of achieving the projected future NOI and projected future sale price relative to current alternative investments and capital market benchmarks
