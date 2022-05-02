@@ -4,47 +4,62 @@
 
 ## Lecture 1: Basic Legal Concepts
 
-- What is Real Estate?
-  - Real estate is land and all things that are "permanently" attached to the land
+- **Real Estate**: land and all things that are "permanently" attached to the land
   - "Permanent" => in reality, anything can be torn down
-- Real vs. Personal Property
-  - Real property consists of ownership rights associated with real estate
-  - Personal property consists of movable things and intangibles
-    - Fixtures are personal property until they are attached to a building, then they become a part of the real property
-- Statute of Frauds
-  - Requires that almost every agreement relating to real property be in writing in order to be enforceable in a court of law (from England 1677)
-- Property Rights and Estates in Real Estate
-  - Ownership, possessory, and use rights
+
+- **Real Property**: ownership rights associated with real estate
+
+  - Land and all things permanently attached to it
+
+- **Personal Property**: movable things and intangibles
+
+  - Fixtures are personal property until they are attached to a building, then they become a part of the real property
+
+- **Statute of Frauds**: requires that almost every agreement relating to real property be in writing in order to be enforceable in a court of law (from England 1677)
+
+- **Property Rights and Estates in Real Estate**: ownership, possessory, and use rights
+
   - The most complete form of ownership is a fee simple absolute (or "fee simple" or "fee")
     - Subsurface + air rights
   - A life estate lasts only for the life of the named person
     - Afterwards, the estate is either transferred to a third party or returned to the original owner
   - A future estate can be a remainder interest or a reversion interest
-  - Easement
-    - A non-ownership, non-possessory right to use or access land own or leased by someone else
-      - They are very limited in nature
-    - i.e., utilities
-  - Leasehold Estate/Lease
-    - Real property can be leased by the landlord/lessor to the tenant/lessee for a particular purpose for a particular period of time
-    - Leases over one year must be in writing to be enforceable under the statute of frauds
-- Ownership
-  - A title determines ownership of the real property and is evidence by a deed
-  - A deed is a document that grants or transfers title to real property from a grantor to a grantee
-    - The strongest is a general warranty deed, while the weakest is a quitclaim deed
-    - Certain deed restrictions are not enforceable under non-discrimination laws
-  - Title insurance is a method of assuring title to real property used in California and all other states
-    - Two kinds: owner's policy and lender's policy
-- Security Interests
-  - A borrower signs a mortgage (or deed of trust) as the mortgagor (or trustor) in favor of a lender who is the mortgagee (or beneficiary) pledging real estate owned by the borrower to secure the repayment of a loan
+
+- **Easement**: a non-ownership, non-possessory right to use or access land own or leased by someone else
+
+  - Very limited in nature
+
+  - Ex) utilities
+
+- **Leasehold Estate/Lease**: real property can be leased by the landlord/lessor to the tenant/lessee for a particular purpose for a particular period of time
+
+  - Leases over one year must be in writing to be enforceable under the statute of frauds
+  - Gives the tenant the right to possess and use
+
+- **Title**: determines ownership of the real property and is evidenced by a deed
+
+- **Deed**: a document that grants or transfers title to real property from a grantor to a grantee
+
+  - The strongest is a general warranty deed, while the weakest is a quitclaim deed
+  - Certain deed restrictions are not enforceable under non-discrimination laws
+
+- **Title Insurance**: a method of assuring title to real property used in California and all other states
+
+  - Two kinds: owner's policy and lender's policy
+  - Lender's policy: insures that any insured title claim against the property will be covered up to the loan amount
+
+- **Security Interests**: a borrower signs a mortgage (or deed of trust) as the mortgagor (or trustor) in favor of a lender who is the mortgagee (or beneficiary) pledging real estate owned by the borrower to secure the repayment of a loan
+
   - In essence, helps the lender get repaid
-- Recording Act
-  - All states have statutory rules to resolve the priority of claims relating to real property and to give the public constructive notice of recorded items
-  - Abstract of Title
-    - Historical summary of the publicly recorded documents that affect title to real property
-  - Mechanic's Lien
-    - May be recorded by unpaid contractors, workers, and materials providers to secure payment for their work on real estate and, in California, may be recorded up to 90 days after the work is completed or the materials are supplied
-    - Essentially a placeholder for paying off at a later date
-    - Must be in relation to real property
+
+- **Recording Act**: all states have statutory rules to resolve the priority of claims relating to real property and to give the public constructive notice of recorded items
+
+- **Abstract of Title**: historical summary of the publicly recorded documents that affect title to real property
+
+- **Mechanic's Lien**: may be recorded by unpaid contractors, workers, and materials providers to secure payment for their work on real estate and, in California, may be recorded up to 90 days after the work is completed or the materials are supplied
+
+  - Essentially a placeholder for paying off at a later date
+  - Must be in relation to real property
 
 
 
@@ -223,65 +238,145 @@
 
 - **Market Value**: the price at which a willing buyer and a willing seller, each without undue pressure, would buy and sell a particular property, as of a particular date
   - The sale must actually happen
+
 - **Appraised Value**: an estimate or opinion of property value, for a particular purpose as of a particular date, by a particular appraiser
   - The three primary appraisal methods are: sales comparison, capitalization of income, and replacement cost
   - Each of the three appraisal methods should, in theory, produce a similar valuation
   - Hypothetical
+  - Understanding that human nature wants to buy at a reasonable value => you don't want to overpay
   - **Sales Comparison (or Comparable Sales)**: compares recent sales of highly comparable properties that are similar in location, size, age, construction quality, and other factors
-    - This is generally the only method used for residential properties, and one of the three methods used to appraise commercial properties
-  - **Capitalization of Income**: gross rent multiplier, capitalization of net operating income, and discounted present value (DCF) of projected future annual NOI
-    - **Gross Rent Multiplier**: `Annual Rental Income x Gross Rent Multiplier = Price/Value`
-      - The gross rent multiplier must be derived from the GRMs on sales of comparable properties
-      - This simple method is often used for valuing apartments
-    - **Capitalization of NOI**: `Cap Rate = NOI / Price`, so `NOI / Cap Rate = Price` and `Cap Rate x Price = NOI`
-      - NOI: net operating income
-        - Differs from rental income by accounting for expenses (`NOI = Revenue - Expenses`)
-      - The capitalization rate (aka cap rate) is derived from recent sales of comparable properties and is affected by market conditions
+    - This is generally the only method used for residential properties
+    - One of the three methods used to appraise commercial properties
+    - Accounts for small differences between each property
+
+- **Capitalization of Income**: gross rent multiplier, capitalization of net operating income, and discounted present value (DCF) of projected future annual NOI
+
+  - Commercial properties are bought for the income they generate
+  - **Gross Rent Multiplier**: `Annual Rental Income x Gross Rent Multiplier = Price/Value`
+    - `Annual Rental Income`: doesn't include expenses, just the revenue
+    - `Gross Rent Multiplier (GRM)`: derived from the GRMs on sales of comparable properties in the area
+      - Can be derived with data on annual rental income and sale price
+      - Determined by the appraiser
+      - Usually a whole number
+      - Higher GRM => higher price => hotter real estate market
+
+    - 1-year stabilized analysis
+    - This simple method is often used for valuing apartments
+
+  - **Capitalization of NOI**: `Cap Rate = NOI / Price`, so `NOI / Cap Rate = Price` and `Cap Rate x Price = NOI`
+    - `Cap Rate`: capitalization rate; derived from recent sales of comparable properties and is affected by market conditions
+      - Usually a small percent
+
+    - `NOI`: net operating income
+      - Differs from rental income by accounting for expenses (`NOI = Revenue - Expenses`)
+    - 1-year stabilized analysis
+    - Cap rates follow interest rates
       - Falling interest rates will tend to lower cap rates, while rising interest rates will increase cap rates
-      - An increase in demand relative to supply in the local market will lower cap rates, while an increase in supply relative to demand will raise cap rates
-    - **Discounted Present Value (DCF)**: a 10-year cash flow model is typically created
-      - The discount rate used (or required internal rate of return) is based on the buyer's assessment of the risk of achieving the projected future NOI and projected future sale price relative to current alternative investments and capital market benchmarks
+
+    - Cap rates are inversely correlated with price
+      - Asset values are inversely correlated with interest rates => as interest rates rise, the amount of debt you can take on decreases => prices fall
+
+    - An increase in demand relative to supply in the local market will lower cap rates, while an increase in supply relative to demand will raise cap rates
+      - Increase in demand => higher price => lower cap rates and vice versa
+
+  - **Discounted Present Value (DCF)**: a 10-year cash flow model is typically created
+    - Typically doesn't happen, except for pretty sizable properties; more expensive
+    - The discount rate used (or required internal rate of return) is based on the buyer's subjective assessment of the risk of achieving the projected future NOI and projected future sale price relative to current alternative investments and capital market benchmarks
+    - Appearance of precision, very complex
+      - Far more imprecise in some ways due to increased scale of predictions
+
+
   - **Replacement Cost**: the sum of `Land Value + Depreciated Replacement Cost of the Improvements`
     - What would it cost to build the property today?
     - May be different than capitalization of income, due to the value of things like leases that aren't explicitly tied to the property
       - Worry if the replacement cost is significantly lower than the capitalization of income estimate
-    - Depreciation of the building can come from physical depreciation, functional obsolescence, and external obsolescence
-    - The land value is derived from a comparable sales analysis of similar land parcels
     - The replacement cost approach is more reliable when the improvements are relatively new
+      - Older buildings require large depreciation numbers, which are backed by relatively little data
     - **Land Value**: a "highest and best use" analysis to determine the value of a particular land site, whether the land is vacant or improved
+      - Derived from a comparable sales analysis of similar land parcels
+        - Model on parking lots, which are essentially worth their land value, as they don't generate income
       - A particular land parcel might actually be worth more if the existing improvements are demolished and removed
+        - If this is the case, the demolition cost is included
+    - Depreciation of the building can come from physical depreciation, functional obsolescence, and external obsolescence
+      - Physical depreciation: paint chipping off, carpets thin, etc.
+      - Functional obsolescence: bathrooms too small, features don't meet standards of the current marketplace
+      - External obsolescence: new sewage treatment plant was installed upwind of your building
 
 
 
 ## Lecture 8: Investment Analysis and Taxation of Income Properties
 
 - **Investment Benefits**: cash flow (after taxes), price appreciation, diversification
+  - The cash flow is taxable => look at cash flow after taxing
+    - Have a significant partner in all investments => the government
+
   - Price Appreciation: looking for prices to grow over time
-    - Dependent on the specific investment
+    - Dependent on the specific investment, investments don't always appreciate in value
+  - Diversification: multiple investments with the hope of offsetting poor investments
+
 - **Real Estate Cycle**: the real estate industry is cyclical, with periods of growth and periods of decline in rents, occupancy, and property values
   - Cycle length is dynamic
   - The industry is very large and highly competitive, with many owners and limited concentration of ownership
 - **Investment Strategies**: risk/return focus (core, value-added, or opportunistic), property type (e.g., office, retail, apartments, hotels), and/or geographical focus
+  - Risk/Return
+    - Core: low risk/low return
+    - Value-Added: medium risk/medium return
+    - Opportunistic: high risk/high return
+      - Ex) Development deals
+
+    - On average over time, higher returns should be expected with higher risk, but this isn't always true
+    - Market rising => higher risk more likely to outperform, vice versa
+
+  - Property/Geographic focus relies on an expertise in a specific area of investment
+    - Specialist > generalist
+
+  - Can work in some combination of all 3 => harder due to lack of expertise
+
 - **Market Analysis**: supply/demand analysis or property type and local market, and local absorption projections to forecast future occupancy rates and rent levels
+  - Absorption: the forecast of tenant leasing activity in the given market
+
 - **Leverage**: the use of debt to acquire or own property
-- **Loan to Value Ration (LTV)**: mortgage balance divided by property value (or price)
-- **Debt Service Coverage Ratio (DSCR)**: annual NOI divided by mortgage payments
+  - Real estate assets are large, so they are almost always financed by debt
+
+- **Loan to Value Ratio (LTV)**: `Mortgage Balance / Property Value/Price`
+  - `Mortgage Balance`: the principal balance of the loan at the time of calculation
+  - The rest of the value is made up for by the equity investment/down payment
+
+- **Debt Service Coverage Ratio (DSCR)**: `Annual NOI / Annual Mortgage Payment`
   - A higher DSCR shows a greater ability for the borrower to make mortgage payments
-  - **Net Operating Income (NOI)**: rent and other property income minus operating expenses
-    - NOI is often capitalized to determine the market value of a property
-- **Before Tax Cash Flow**: NOI minus debt service and capital expenditures
-- **After Tax Cash Flow**: before tax cash flow minus taxes
+    - Lenders want a cushion above 1.0 for the DSCR to account for potential failure
+- **Net Operating Income (NOI)**: `Property Income - Operating Expenses`
+  - `Property Income`: rental income and other income directly from the property
+  - NOI is often capitalized to determine the market value of a property
+  - Before debt and taxes
+
+- **Before Tax Cash Flow**: `NOI - (Debt Service + Capital Expenditures)`
+  - `Debt Service`: interest and principal
+  - `Capital Expenditures`: repairs, improvements, etc.
+
+- **After Tax Cash Flow**: `Before Tax Cash Flow - Taxes`
   - The government is your partner in every investment through its power to tax the annual income and capital gains from sale
   - Federal, state, local, and all other taxes must be considered
-- **Taxable Income**: net operating income minus interest and tax depreciation
+- **Taxable Income**: `NOI - (Interest + Tax Depreciation)`
+  - `Interest`: only the interest portion of the periodic loan payments
+    - The principal payments aren't deductible under tax law
+
   - **Tax Depreciation**: the amount of the purchase price allocated to the improvements, exclusive of the land, is the depreciable cost bases of the property
+    - Appraisal of partitioning is based on rational metrics
     - The depreciable cost basis can be amortized as tax depreciation over 27.5 years for residential income properties and 39 years for non-residential income properties
+      - Residential income properties (apartments) have a more favorable amortization
+
+    - You want more tax depreciation, as it acts as an offset to the taxable income
+
 - **Mortgage Interest Deduction**: the interest portion of the monthly P&I payments is tax deductible for primary and secondary homes on loans totaling up to $750,000
+  - Applies to your personal income tax return
+
 - **Unleveraged Returns vs. Leveraged Returns**: the internal rate of return (IRR), return on equity (ROE), and equity multiple from an investment before and after the effect of mortgage financing
+  - Equity: the amount paid without loans
   - The leveraged returns should generally be higher than the unleveraged returns to account for the additional risk from the use of leverage
 
 - Most investment property loans are balloon payment loans
-  - Homes are less risk, so lenders are more willing to use fully-amortizing loans for them
+  - Homes are less risky, so lenders are more willing to use fully-amortizing loans for them
 
 
 
@@ -291,38 +386,49 @@
   - **Financial Leverage**: allows an investor to use less equity to acquire an investment, potentially achieve a higher leveraged return on equity, and benefit from the tax deductibility of mortgage interest
     - Investors who desire a higher leveraged return on equity might borrow at a higher LTV ratio, but as the LTV increases, risk increases
   - **Positive and Negative Leverage**: positive leverage is when the return on equity is higher with debt than without, and negative leverage is when the return on equity is lower with debt than without
-    - With positive leverage, the higher the LTV ratio, the higher will be the leveraged return on equity
-    - With negative leverage, the higher the LTV ratio, the lower will be the leveraged return on equity
+    - With positive leverage, the higher the LTV ratio, the higher the leveraged return on equity
+      - Higher LTVs result in more risk for the lender, so they'll likely bump interest rates up to offset the risk, offsetting the increase in ROE
+    - With negative leverage, the higher the LTV ratio, the lower the leveraged return on equity
   - **Loan Underwriting**: The loan to value ratio (LTV) and debt service coverage ratio (DSCR) are two of the key elements of a loan underwriting
-    - Although the maximum LTV ratio and minimum DSCR levels vary with mortgage market conditions, lenders are always more secure with a lower LTZV ratio and a higher DSCR
+    - Although the maximum LTV ratio and minimum DSCR levels vary with mortgage market conditions, lenders are always more secure with a lower LTV ratio and a higher DSCR
       - Smaller loan, higher coverage
   - **Prepayment Penalties, Yield Maintenance, Loan Lockouts**: mortgage loan terms that make it costly or impossible for a borrower to payoff or refinance a loan before the contract maturity date
-  - **Interest-Only Loan**: borrower pays only interest on the loan, with no principal amortization, and a balloon payment due at maturity
+    - Prepayment Penalties: you can pay off your loan early at an extra cost
+      - Want to be close to 0
+    - Yield Maintenance: pay off loan early while also paying off unpaid yields at a US Treasury rate
+    - Loan Lockout: you cannot negotiate to pay your loan off early
+  - **Interest-Only Loan (IO Loan)**: borrower pays only interest on the loan, with no principal amortization, and a balloon payment due at maturity
     - Also called a "bullet loan"
-  - **Negative Amortizing Loan**: when the payment rate on a loan is less than the accrual rate (i.e., interest amount then due), there will be negative amortization and the loan balance will increase
+  - **Negative Amortizing Loan**: when the payment rate on a loan is less than the accrual rate (i.e., interest amount then due), there will be negative amortization and the loan balance will increase based on the remaining interest rate
     - Might be used when interest rates are very high
     - Can occur due to missed payments, resulting in interest being added to the loan balance
   - **Participating Loan**: the lender receives additional interest, based on a formula, typically related to gross income, NOI, or cash flow, that is called a participation or "equity kicker" but the lender doesn't have any ownership interest in the property
+    - Partnership-type risk based on a formula
+    - Not true equity, the lender doesn't take ownership liabilities
   - **Convertible Mortgage**: when the lender has the right to convert part or all of the loan principal to an ownership interest in the property at a specified time
     - Lender wants the option, not the obligation
   - **Mezzanine Loan**: a loan that is often secured by the owner's equity in a property, rather than by a mortgage on the property itself
     - Usually requires an inter-creditor agreement between the mezzanine lender and the first mortgage lender
+      - First mortgage lender has to consent to the possibility of dealing with the mezzanine lender
     - Can be a traditional second mortgage
-    - Lender can become the owner, dealing with the first mortgage lender
+    - Lender can become the owner if the loan is failed to be paid back, dealing with the first mortgage lender
+      - Doesn't trigger a foreclosure, like a traditional second mortgage would
   - **Preferred Equity**: an investment in the ownership interest of a property, that is not a mortgage, with a preferred return that takes priority over other equity investors
+    - Has nothing securing the investment
     - Bringing in of investors for stability
-    - Investors have priority before other investors
+    - Preferred investors have priority before other investors
   - **Sale-Leaseback**: an alternate means of monetizing a property where the seller retains use of the property for the duration of the lease term
     - With a repurchase option in the lease, the seller may reacquire ownership of the property in the future
 - Risk Analysis
   - **Risk**: the higher the variability of expected returns, the greater the risk of an investment
-    - The lower the variability of expected returns, the lower the risk
+    - The lower the variability of expected returns, the lower the risk 
   - **Risk Averse**: investors are generally risk averse, which means they require a higher expected return (probability weighted mean return) as compensation for incurring more risk (i.e., higher variability/volatility/uncertainty of expected returns)
   - **Risk vs. Return**: this is the key investment consideration
     - When comparing potential investments, their internal rate of return (IRR) or projected net present value (NPV) must be viewed in light of the risks associated with each potential investment
-  - **Investment Risks**: economic risk (global, national, and local), business risk, financial risk, interest rate risk, liquidity risk, inflation risk, management risk, environmental risk, legislative risk, pandemic risk, etc.,
+  - **Investment Risks**: economic risk (global, national, and local), business risk, financial risk, interest rate risk, liquidity risk, inflation risk, management risk, environmental risk, legislative risk, pandemic risk, etc.
   - **Due Diligence**: the process of identifying the various risks and potential returns of an investment by evaluating all the relevant and available information to assess and determine whether the potential returns are sufficient for you in light of those risks
-    - Due diligence on a property would include a review and analysis of a market study, the rent toll, major leases, physical inspection, design and engineering, title and survey zoning and code compliance, taxes, insurance, litigation, etc.
+    - Subjective assessment, imperfect process
+    - Due diligence on a property should always include a review and analysis of a market study, the rent roll, major leases, physical inspection, design and engineering, title and survey, zoning and code compliance, taxes, insurance, litigation, etc.
   - **Sensitivity Analysis**: modifying key assumptions about future investment performance (e.g., rent levels, CPI, vacancy rates, exit cap rate, sale timing), often done two at a time, to see their impact on the IRR and equity multiple
     - The assumptions can be changed to model various scenarios in light of the potential risks
     - The sensitivity analysis will show how sensitive the expected return (e.g., IRR, NPV, or equity multiple) is to changes in your assumptions
