@@ -222,6 +222,7 @@
 ## Lecture 7: Valuation of Income Properties and Appraisal
 
 - **Market Value**: the price at which a willing buyer and a willing seller, each without undue pressure, would buy and sell a particular property, as of a particular date
+  - The sale must actually happen
 - **Appraised Value**: an estimate or opinion of property value, for a particular purpose as of a particular date, by a particular appraiser
   - The three primary appraisal methods are: sales comparison, capitalization of income, and replacement cost
   - Each of the three appraisal methods should, in theory, produce a similar valuation
@@ -241,6 +242,9 @@
     - **Discounted Present Value (DCF)**: a 10-year cash flow model is typically created
       - The discount rate used (or required internal rate of return) is based on the buyer's assessment of the risk of achieving the projected future NOI and projected future sale price relative to current alternative investments and capital market benchmarks
   - **Replacement Cost**: the sum of `Land Value + Depreciated Replacement Cost of the Improvements`
+    - What would it cost to build the property today?
+    - May be different than capitalization of income, due to the value of things like leases that aren't explicitly tied to the property
+      - Worry if the replacement cost is significantly lower than the capitalization of income estimate
     - Depreciation of the building can come from physical depreciation, functional obsolescence, and external obsolescence
     - The land value is derived from a comparable sales analysis of similar land parcels
     - The replacement cost approach is more reliable when the improvements are relatively new
