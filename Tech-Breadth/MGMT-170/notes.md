@@ -438,24 +438,28 @@
 ## Lecture 10: Disposition/Renovation of Income Properties
 
 - **Exit Strategies**: to realize the increased equity value created from an appreciated property, an owner may sell, exchange or refinance the property
+  - Mostly for investors who own commercial properties
 - **Hold/Sell Analysis**: analyze the marginal rate of return from holding the property for an additional period of time as compared to selling the property currently
+  - Usually done for an incremental period of time (often a year)
+  - Sell if you believe you're topped out right now
+  - If you sell, how do you sell?
 - **Property Sale**: sell for cash and pay off all outstanding debt and pay all federal, state, and local taxes on any capital gain (see IRS Form 1040 and Schedule D)
-- **Installment Sale**: sell on an installment sale basis receiving the sale price over time and paying a proportional amount of the capital gain tax with each Installment received
+- **Installment Sale**: sell on an installment sale basis receiving the sale price over time and paying a proportional amount of the capital gain tax with each installment received
   - The amount of installment sale income to be reported each year upon which tax must be paid is a function of the ratio between the “gross profit” on the sale (i.e. `Sale Price - Adjusted Tax Basis`) divided by the “contract price” as defined in IRS Form 6252
   - An installment sale is a form of seller financing
-
-- **Section 1031 Exchange**:  Trade the property for “like kind” property in a U.S. Internal Revenue Code Section 1031 exchange transaction to defer the taxes on any capital gain but with the exchange property receiving a substituted tax basis
+    - No one in the market is willing to pay the purchase price => seller finances the purchase by spreading payments out
+  - Not something sellers want to do because they typically want the cash today
+- **Section 1031 Exchange**: trade the property for “like kind” property in a U.S. Internal Revenue Code Section 1031 exchange transaction to defer the taxes on any capital gain but with the exchange property receiving a substituted tax basis
   - Section 1031 requires that the exchange property be identified within 45 days of the prior sale closing date, and the exchange property must be acquired within 180 days of the prior sale closing date
+    - Up to 3 deals can be identified, since not all deals are closed
   - “Unlike” property acquired in a Section 1031 transaction is called “boot” and is subject to capital gain taxes on the sale
-    - “Boot” includes cash, personal property, and any “unlike” real property received in the 
-      transaction (see IRS Form 8824)
-
-- **Refinancing**:  Replacing an existing loan with a new loan
+    - “Boot” includes cash, personal property, and any “unlike” real property received in the transaction (see IRS Form 8824)
+  - Awkward because an exchange is usually done when the market is expected to fall, but in that case, the new property's value would also fall
+- **Refinancing**: replacing an existing loan with a new loan
   - If you refinance with a larger loan you will not pay any tax on the additional loan proceeds received in 
     connection with the refinancing
   - If interest rates have fallen, it might be possible to refinance with a larger loan while reducing the annual borrowing cost, but points, appraisal fees, and other loan costs must be considered
-
-- **Renovation**:  As an alternative to a sale, a 1031 exchange, or a refinancing, the property may be held and renovated to increase rents, increase occupancy, and/or reduce operating costs, all of which should increase the NOI and thereby increase the property value
+- **Renovation**: as an alternative to a sale, a 1031 exchange, or a refinancing, the property may be held and renovated to increase rents, increase occupancy, and/or reduce operating costs, all of which should increase the NOI and thereby increase the property value
   - But in addition to the estimated renovation costs, the time, effort and opportunity costs related to the renovation must also be carefully considered. 
 
 
