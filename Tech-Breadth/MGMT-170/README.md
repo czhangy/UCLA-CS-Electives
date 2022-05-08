@@ -16,6 +16,6 @@
 
 |  Exam   | Score |
 | :-----: | :---: |
-| Midterm |  ???  |
+| Midterm | 45/50 |
 |  Final  |  ???  |
 
