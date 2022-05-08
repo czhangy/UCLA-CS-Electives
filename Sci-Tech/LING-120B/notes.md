@@ -652,7 +652,60 @@
 
 
 
-## Lecture 10:
+## Lecture 10: Binding Theory
+
+- Principle B: Pronouns
+  - Pronouns seem to have the opposite requirements
+  - Principle B
+    - A pronoun must be free in its binding domain
+    - Binds: `A` binds `B` if and only if `A` c-commands `B` and `A` and `B` are co-indexed
+      - C-command: the relationship between a node, its sister, and the stuff dominated by its sister
+    - Binding domain: the smallest `XP` containing the pronoun that has a subject
+      - According to this definition the pronoun can be the subject of the `XP`
+- The Binding Domain of Anaphors and Pronouns
+  - If the definition of BD is the same, we should expect pronouns and anaphors to be in complementary distribution
+  - In most cases, this prediction is borne out, but in other cases, it isn't
+    - In order to account for this, we need to allow the anaphor to have a larger BD
+    - Principle A
+      - An anaphor must be bound in its binding domain
+        - Binds: `A` binds `B` and only if `A` c-commands `B` and `A` and `B` are co-indexed
+          - C-command: the relationship between a node, its sister, and the stuff dominated by its sister
+        - Binding domain: the smallest `XP` that has a subject that c-commands the anaphor
+          - According to this definition the anaphor cannot be the subject of the `XP`
+  - Binding domain of anaphors:
+    - The smallest `XP` that has a subject that c-commands the anaphor
+  - Binding domain of pronouns:
+    - The smallest `XP` containing the pronoun that has a subject
+-  Principle C: R-Expressions
+  - R(eferential)-expressions = non-pronomnial expressions
+    - Proper names
+    - Descriptions
+  - Principle C: R-expressions cannot be bound
+- Locality of Selection
+  - At this point, we have a system where structure is mostly dictated by the selectional properties of individual lexical terms
+    - Lexical entries can be used to represent this information => information in those lexical entries tells us how to build structure
+      - It tells us whether, and which, complements/specifiers are required
+  - Locality of selection means that these requirements are local
+  - Preliminary:
+    - If an atom selects an element, it acts as a head
+      - This head must have the selected element as its complement or its subject
+    - Selection is local in the sense that there is a maximal distance between a selector and what is selects
+    - In other words, complements and subjects are realized within the maximal projection headed by the lexical term
+  - `VP`-Internal Subject Hypothesis
+    - There is a blatant violation of this principle in what we've been doing so far
+      - Ex) "I saw John hug Peter" vs. "John will hug Peter"
+    - "John" is indeed selected for locally by "hug", but other factors force it to be realized in the specifier of `TP`
+    - Proposal:
+      - Subjects enter the derivation in the `VP`
+      - They end up in `Spec, TP` as a result of movement
+      - Called the `VP`-internal subject hypothesis
+      - It applies to the selected subject of all predicates
+      - If subjects are `VP` internal, why do they move?
+        - The Extended Projection Principle (EPP): the specifier of `TP` always has to be filled
+
+
+
+## Lecture 11:
 
 - 
 
