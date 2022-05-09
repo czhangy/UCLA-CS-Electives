@@ -465,7 +465,42 @@
 
 
 
-## Lecture 11:
+## Lecture 11: Financing Corporate Real Estate
+
+- **Lease vs. Own Analysis**: decision factors include: space needed (relative to the size of the property), time needed (short term or long term), risk from property ownership, control and management of the property, maintenance and special purpose buildings, tax considerations from depreciation, impact on the financial statements (balance sheet and income statement), access to and cost of capital
+  - Decision whether to buy the property or just lease it
+  - Space needed => vary on size of company
+  - Time needed => depends on company outlook
+  - Control => how much do you want to change the building to match the company image?
+  - Tax => offset income from tax depreciation shelter, but now have to deal with GAAP depreciation
+  - Cost => oftentimes too expensive to buy real estate as opposed to working towards the company's primary objective (product, team, etc.)
+- **Residual Value**: a property's projected future residual value (aka "exit value") may not be an important part of a company's purchase decision
+  - Instead of acquiring a property that it needs to run its business, a company could negotiate a lease with an "equity kicker" or a purchase option that might provide future value
+    - Equity kicker/participation interest: by becoming a tenant in a time of stress in the market, the tenant may get a "return on investment" by acquiring a portion of the building's future appreciation
+  - May not have much value since the building is a physical asset that helps the company continue operating
+- **Corporate Real Estate Financing**: the acquisition of property for company use can be financed with either mortgage debt or unsecured corporate borrowing
+  - Mortgage debt will generally be preferred if it is cheaper than the company's unsecured borrowing cost
+    - Mortgage in CA => deed of trust
+  - For corporate borrowing, the corporation is evaluated based on its corporate signature, with no security instrument
+    - For high credit companies, can be a higher percentage of the purchase price than a real estate loan with very low interest rates
+- **"Capital" Lease**: formerly, if a lease term exceeded 75% of an asset's remaining economic life, or if the present value of future lease payments was the majority of the property's FMV at lease commencement (90%+), or if property ownership was likely to be transferred to the lessee upon lease expiration (e.g., a purchase option substantially below FMV), then the lease was treated as a "capital lease" and reported as if that part of the asset was owned by the lessee
+- **"Finance" vs. "Operating" Lease**: under the recent ASC 842 of the FASB, the present value of all lease payments for leases over one year must be capitalized and reported on the balance sheet as a right-of-use asset and a lease liability, and annual lease payments will be reported as an expense on the company's income statement
+  - If the lease term is one year or less, lease payments will only be reported on the company's income statement and not on the balance sheet
+- **Sale-Leaseback**: a company might sell a property it owns and simultaneously lease it back on a long=term basis to obtain cash while retaining use of the property
+  - The company might negotiate a repurchase option into the lease to give it the possibility to reacquire that property in the future
+  - Selling a property and leasing it back in a sale-leaseback transaction, with the lease written so that it will be reported as an operating lease, is a form of off balance sheet financing for the company
+- **"Hidden" Corporate Real Estate Value**: companies are required to report property values at the lower of depreciated cost or market value
+  - This can lead a publicly traded company to become an acquisition target when the market value of its properties substantially exceeds the reported depreciated book value
+
+
+
+## Lecture 12: Financing Project Development
+
+- 
+
+
+
+## Lecture 13: Financing Land Development Projects
 
 - 
 
