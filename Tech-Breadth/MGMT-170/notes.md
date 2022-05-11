@@ -496,7 +496,29 @@
 
 ## Lecture 12: Financing Project Development
 
-- 
+- **Project Development**: acquiring a land site; financing and construction of a building (office, apartments, shopping center, warehouse, hotel, self storage, etc.); leasing and managing the property; then selling, exchanging, or refinancing
+- **Mixed-Use Development**: a combination of real estate uses in a single project
+- **Development Decision Factors**: global, national, and local economic forecast; supply and demand for space (i.e., tenant demand); competition from other current and planned developments; capital markets (i.e., financing cost and availability)
+- **Project Feasibility**: a feasibility study should be done to forecast tenant demand, rent levels, construction costs, project timing, exit strategies and future sales price, and evaluate the risks
+  - Location is always a key factor in the analysis
+
+- **Construction Financing**: convers the hard costs and soft costs of construction
+  - Construction loans are disbursed in draws after costs are incurred, are typically recourse to the developer, are usually short term (maturing after construction is expected to be completed), and floating rate with construction interest capitalized into the outstanding loan balance
+  - Construction lenders want a permanent lender ("take-out" lender) in place to pay off and replace the construction loan when construction is completed and various leasing targets have been achieved
+  - A stand-by lender is a permanent lender who doesn't intend to actually fund their loan
+
+- **Project Development Issues**: building: footprint, envelope, façade, stacking plan; traffic mitigation plan; property taxes; permitting: zoning codes, building codes
+- **Permitting**: the process of obtaining local government approvals (e.g., city planning, city council) to permit the proposed development
+  - The project must comply with local zoning codes and building codes (or obtain a variance) for a building permit to be issued
+  - The permitting process involves negotiation with city planners and their staff
+
+- **Zoning Codes**: allowable uses; maximum floor area ratio (FAR); height restrictions; minimum lot size; minimum parking ratios; building setbacks, etc.
+  - Zoning codes specify what may be permitted to be built as of right (e.g., R1, R2, R3, R4, R-5, C-1, C-2, C-3, M-1, M-2, M-3, A-1, A-2, etc.) and may include incentive zoning, inclusionary zoning, and/or cumulative zoning
+
+- **Building Codes**: specify the materials and approved methods for construction
+  - City staff must approve the architectural and engineering designs and specifications for the project, including the site plan, elevations, and project renderings
+  - Code compliance is enforced by city inspectors during construction before a certificate of occupancy ("C of O") will be issued by the local authority after project completion in compliance with all building codes and zoning codes
+
 
 
 
