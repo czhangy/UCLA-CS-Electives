@@ -705,7 +705,69 @@
 
 
 
-## Lecture 11:
+## Lecture 11: Head Movement
+
+- `VP`-Internal Subject Hypothesis
+
+  - What evidence do we have? Floating quantifiers
+    - Seems to only apply to universal quantifiers
+    - Examples:
+      - "The students all left"
+      - "My brothers have both studied Greek for years"
+
+- Head Movement
+
+  - Problem in our tree structures: present and past tense morphemes are separated from the `V`
+
+    - Our tree structures correctly represent the relations between head and phrases but they do not capture the way in which the heads are actually pronounced
+
+    - What movement operations could explain this issue?
+
+      - The `V` moves up to `T`
+      - `T` moves down to `V`
+      - Both operations turn out to exist, but for different subclasses of verbs, the former for auxiliary verbs (like "have" and "be"), the second for all other English verbs
+
+    - The evidence for this account comes from the distribution of adverbs and negation
+
+      - Adverbs and negation are adjuncts to `VP`
+
+      - We use them as a diagnostic for where the verb is
+
+        - Is the verb before or after negation
+
+      - |                  | Modal `V` | Aux `V` | Lexical `V` |
+        | ---------------- | --------- | ------- | ----------- |
+        | Before Negation? | Y         | Y       | N           |
+        | After Negation?  | N         | Y       | Y           |
+
+  - `V`-to-`T` Movement
+
+    - Modals are generated in `T`
+    - Auxiliaries are verbs (heads of `VP`s)
+      - They can move to `T` when the position is not otherwise occupied
+    - How do we know they are different?
+      - There is only one modal verb per `TP`, whereas we can have more than one auxiliary verb
+        - Ex) "John has been reading for hours"
+      - As we saw, we have no evidence for modal verbs ever being in a position lower than `T`
+    - Lexical verbs do not move to `T` in English
+      - In other languages, lexical verbs do move to `T` (i.e., French)
+        - English: Subject >> Adverb/Negation >> Lexical Verb >> Direct Object
+        - French: Subject >> Lexical Verb >> Adverb/Negation >> Direct Object
+
+  - Tense Lowering
+
+    - Lexical verbs do not move to `T` in English
+    - `T` moves onto the verb
+
+  - "Do"-Support
+
+    - Tense lowering doesn't apply in some cases
+      - A dummy verb "do" can be inserted to support the stranded affix
+    - When there is no other option for supporting inflectional affixes, insert the dummy verb "do" into `T`
+
+
+
+## Lecture 12:
 
 - 
 
