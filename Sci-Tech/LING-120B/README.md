@@ -29,6 +29,6 @@
 
 |  Exam   | Score |
 | :-----: | :---: |
-| Midterm |  ???  |
+| Midterm | 81/82 |
 |  Final  |  ???  |
 
