@@ -705,7 +705,7 @@
 
 
 
-## Lecture 11: Head Movement
+## Lecture 11: Verb Raising, Tense Lowering, and "Do"-Support
 
 - `VP`-Internal Subject Hypothesis
 
@@ -740,7 +740,9 @@
         | Before Negation? | Y         | Y       | N           |
         | After Negation?  | N         | Y       | Y           |
 
-  - `V`-to-`T` Movement
+      - Triggered by bound morphology
+
+  - `V`-to-`T` Movement/Verb Raising
 
     - Modals are generated in `T`
     - Auxiliaries are verbs (heads of `VP`s)
@@ -758,16 +760,60 @@
 
     - Lexical verbs do not move to `T` in English
     - `T` moves onto the verb
+    - "Do"-Support
+      -  Negation
+      - Tense lowering doesn't apply in some cases
+        - A dummy verb "do" can be inserted to support the stranded affix
+      - When there is no other option for supporting inflectional affixes, insert the dummy verb "do" into `T`
+      - Ex) "John studied the report" vs. "John did not study the report"
 
-  - "Do"-Support
-
-    - Tense lowering doesn't apply in some cases
-      - A dummy verb "do" can be inserted to support the stranded affix
-    - When there is no other option for supporting inflectional affixes, insert the dummy verb "do" into `T`
 
 
+## Lecture 12: T-to-C Movement
 
-## Lecture 12:
+- Head Movement
+  - We saw different ways in which inflectional morphology on `T` can be supported
+    - The `V` moves to `T`
+      - In English, only auxiliary verbs can undergo this movement
+      - In some other languages (French), lexical verbs can too
+    - `T` lowers down to `V`
+      - e.g., lexical verbs in English
+    - "do" is inserted
+      - e.g., negated sentences in English
+  - Next, we are going to look at another type of head-to-head movement
+  - `T`-to-`C` movement
+    - An operation that moves the material in `T` to `C`
+    - Unpronounced complementizers trigger the movement
+      - In English, `C [+Q]`
+    - So we get subject auxiliary inversion
+      - Ex) "John should study the report" vs. "Should John study the report?"
+    - All auxiliaries do this
+      - More precisely, only the auxiliary in `T` can precede the subject (head movement targets the closest auxiliary)
+    - Proposal: the question complementizer `C [+Q]` is an affix which needs to be pronounced
+      - It triggers the movement of `T` to `C`
+    - Head movement is local (intervening heads cannot be skipped)
+      - `V` to `C` doesn't exist: in order to move what is in `V` to `C`, you need a two step movement
+        - `V` to `T`
+        - `T` to `C`
+        - Ex) "Has John already eaten?"
+    - What about cases in which what is in `T` is not a free morpheme (a sentence with no auxiliary or modal verb)?
+      - In these cases, `T` doesn't lower to `V`
+      - In these cases, we move `T` to `C` and then we insert the dummy verb "do"
+      - The same rule ("do" support) applied in the case of negation
+        - It is a last resort rule: it applies in cases where there is nothing else to do
+  - Summary
+    - Head movement is a way of providing bound morphemes with a pronunciation
+    - Languages differ on which heads undergo and which heads trigger head movement (French vs. English)
+    - How to proceed (for English):
+      - Is `V`-to-`T` possible/justified?
+      - If that's not an option or the output is still unpronounceable: is `T`-to-`C` possible/justified?
+      - If that's not an option or the output is still unpronounceable: is tense lowering (from `T` to `V`) possible?
+      - If that's not an option or the output is still unpronounceable: "do" support
+      - If you still have a morpheme that needs to be pronounced, go back to the first step
+
+
+
+## Lecture 13:
 
 - 
 
