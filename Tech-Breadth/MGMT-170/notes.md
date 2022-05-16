@@ -521,7 +521,27 @@
 
 
 
-## Lecture 13: Financing Land Development Projects
+## Lecture 13: Financing Land Development
+
+- **Land Development**: a highly fragmented, competitive, and local business
+- **Land Acquisition**: option agreements are often used to give time to the land developer to pursue the entitlement process
+  - Periodic option payments can be made over an extended time frame (monthly, quarterly, annually), and if the developer ultimately exercises the option, the option price for the land will be paid at the closing of the land acquisition
+
+- **Zoning and Land Use**: city or county land use plans specify the allowed uses for each land parcel (e.g., residential, commercial, industrial, agricultural, special purpose, etc.) with subcategories for allowed density of use (e.g., R-1, R-2, R-3, R-4, R-5, C-1, C-2, C-3, M-1, M-2, M-3, A-1, A-2, etc.)
+  - The local land use plan is usually updated every 5-10 years, and the local zoning code can be revised, in whole or in part, whenever necessary
+
+- **Entitlement Process**: the process by which the land developer applies to the local authorities to convert unentitled land to land that is entitled to be subdivided and developed for a particular purpose and size (office, apartments, shopping center, warehouse, hotel, etc.)
+  - Developing a project that is inconsistent with the local zoning code and land use plan requires a variance from the local planning authorities
+
+- **Land Financing**: difficult to obtain, low LTVs, generally recourse to the borrower and with tight conditions from the lender to assure repayment
+- **Release Schedule**: the time frame within which the lender expects the individual land parcels in a land development project to be sold according to release prices agreed to in the land loan documents so that the loan will be repaid
+- **Release Prices**: the pre-agreed minimum prices at which the developer can sell individual land parcels and obtain the lender's release from its blanket mortgage lien for the land parcels sold
+- **Onsite Improvements**: land grading, internal paving, private streets, lighting, landscaping, etc.
+- **Offsite Improvements**: public roads, street lighting, traffic lights, sewer line extensions, parks and schools, etc.
+
+
+
+## Lecture 14:
 
 - 
 
