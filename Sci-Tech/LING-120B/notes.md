@@ -813,7 +813,98 @@
 
 
 
-## Lecture 13:
+## Lecture 13: VSO and Wh-Movement
+
+- VSO: The Case of Irish
+
+  - 9% of the world's languages are VSO
+
+    - Irish is one of them
+
+  - X-bar theory cannot generate a sentence of this type
+
+  - This is how we're going to derive the Irish order
+
+    - We are going to assume that VSO languages are underlyingly SVO (at D-structure)
+    - The verb moves to `T`
+    - The subject stays in the `VP`
+
+  - Lexical verbs do not move to `T` when there is an auxiliary verb
+
+    - In this case, the underlying SVO order is visible
+
+  - | Language | H-final or H-initial? | Spec-final or Spec-initial? | Do lexical verbs move to `T`? | Does the subject move to `TP`? |
+    | -------- | --------------------- | --------------------------- | ----------------------------- | ------------------------------ |
+    | English  | H-initial             | Spec-initial                | No                            | Yes                            |
+    | French   | H-initial             | Spec-initial                | Yes                           | Yes                            |
+    | Irish    | H-initial             | Spec-initial                | Yes                           | No                             |
+
+- Wh-Movement
+
+  - Phrasal Movement
+
+    - Moving a phrase to an empty specifier position
+    - It's a feature driven movement
+      - Subject raising: finite `T` has an EPP feature which is satisfied when the syntax provides a subject for `T`
+      - Wh-movement is another type of phrasal movement
+        - `C` also has a sort of EPP feature
+          - It requires a `[+wh]` phrase in its specifier
+          - We will call this feature `[+wh]`
+
+  - What kind of phrases does wh-movement move in English?
+
+    - Phrases that contain wh-words
+      - "who", "what", "where", "which", "whose", "when", "why", "how", etc.
+    - They can be arguments or adjuncts
+
+  - How do we know that there is movement?
+
+    - Empirical facts: relation between base position and wh-word
+    - Wh-words sometimes stays in their base position
+      - Ex) "Where did Peter buy what..."
+
+  - Wh-movement is not a universal property: in many languages, wh-words do not have to move to the beginning of the sentence and appear in their base position
+
+  - Where do wh-phrases move to in wh-questions?
+
+    - We know that they raise past `C` since they are found to the left of a `T` that has raised to `C`
+    - A natural conclusion is to assume that they raise to the specifier of `CP`
+      - Why can't they be `CP` adjuncts?
+        - It seems that only one wh-phrase can move to that position (at least in English)
+        - Analogy with other feature driven movements: agreement (or feature checking) between the head and its subject (or specifier)
+          - The feature that triggers wh-movement is `[+wh]`
+
+  - Two features, four possibilities:
+
+    - | `[-Q, -wh]` | "John thinks that the moon is made of cheese." |
+      | ----------- | ---------------------------------------------- |
+      | `[+Q, -wh]` | "Did John read the report?"                    |
+      | `[+Q, +wh]` | "What did John read?"                          |
+      | `[-Q, +wh]` | "I wonder what John read."                     |
+
+  - Cross-linguistic Evidence
+
+    - In some languages, there are special forms of complementizers that represent these features
+      - Irish is such a language, in Irish you get:
+        - The "go" complementizer in declarative sentences
+        - The "an" complementizer in yes/no questions
+        - The "a^L" complementizer in wh-questions
+
+  - Bottom-Up, Step-by-Step Derivation for "What has John been studying?"
+
+    - The `VP` headed by the lexical verb
+    - Higher `VP`s headed by auxiliary verbs (no external arguments)
+    - The `TP`
+    - Now, we can merge the `[+Q, +wh]` complementizer and get our deep structure tree
+    - The auxiliary can move to `T` (`V` to `T`)
+    - The finite `T` has an EPP feature that needs to be satisfied
+      - We move the closest nominative `DP` to `Spec, TP`
+    - Complementizers with the `[+Q]` feature attract what is in `T`
+    - The feature `[+wh]` triggers wh-movement
+
+
+
+## Lecture 14:
 
 - 
 
