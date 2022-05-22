@@ -904,7 +904,87 @@
 
 
 
-## Lecture 14:
+## Lecture 14: Wh-Movement, Pronouns, and Raising Verbs
+
+- Wh-Questions and Ambiguities
+  - Ex) "When did the boy say he hurt himself?"
+    - "When did the boy say it?"
+    - "When did the boy hurt himself?"
+
+  - Dependent on the origin of the wh-word
+
+- The Internal Structure of Pronouns
+  - Pronouns cannot be combined with determiners and behave differently than other nouns
+  - They can sometimes combine with noun phrases
+  - We conclude that pronouns are determiners, which sometimes can take `NP` complements
+- Raising Verbs
+  - The Locality Constraint on Argument Structures
+    - Arguments are generated within the phrase headed by the predicate that selects them
+
+  - If the principle of locality of selection is correct, then the following proposes a problem:
+    - "John seems to have left"
+      - The agent of "leaving" is John, but it appears very far away from its predicate
+      - Also, there seems to be no subject in the embedded clause
+      - What is/are the argument(s) of "seem"?
+
+    - Well, we notice that "seem" can also take a `CP` argument
+
+      - "It seems [that John will leave]"
+        - What is the relation between the two sentences?
+        - Why is there the expletive "it" in the second sentence?
+
+      - Diagram the second sentence:
+        - The `VP` headed by the lexical verb "leave"
+        - The `TP`
+        - The `CP`
+        - The `CP` is selected by "seem"
+        - Predicates like "seem" do not take any external arguments
+          - They don't take subjects
+        - The rest of the deep structure tree
+        - `T` to `V` and subject to `Spec, TP`
+        - Since the sentence needs a subject (to satisfy EPP) and no `DP` is available, an expletive is inserted
+      - Go back to the first sentence; we said that the verb "seem" doesn't select "John" => how do we know that?
+        - Semantic requirements:
+          - The selectional relation is between the `V` "elapse" and the `DP` "time"
+            - "Time seems to elapse slowly in the tropics."
+            - `#`"Mary seems to elapse slowly in the tropics."
+            - `#`"Time seems to swim slowly in the tropics."
+            - "Sharks seem to swim slowly in the tropics."
+          - "Seem" allows weather "it" (the subject of atmospheric words such as "rain", "snow", etc.)
+            - "It rains/snows."
+            - "It seems to be raining."
+            - `*`"It hopes to be raining."
+        - Idiomatic meanings are available with "seem"
+          - The construction "the cat is out of the bag" gets its idiomatic meaning (the secret is widely known) when the expression is generated as a whole
+            - When it is not generated as a whole, it can only get a literal interpretation
+          - "The cat *seems* to be out of the bag" vs. "The cat *wants* to be out of the bag"
+      - Diagram the first sentence:
+        - The `VP` headed by the lexical verb
+        - The `V` headed by the auxiliary verb
+        - The non-finite `TP` headed by the free morpheme "to"
+        - The non-finite `TP` is selected by "seem"
+          - There is no evidence for a `CP`-layer and complementizers cannot appear between "seem" and the `TP`: `*`"John seems that to have left"
+        - No external argument: no specifier
+        - The deep structure tree
+        - The surface structure tree
+
+  - To sum up, "seem" can take `CP` or `TP` complements
+    - When it takes a tensed `CP` complement, raising cannot take place
+      - Ex) `*`"John seems that left"
+      - And an expletive "it" is inserted to satisfy the EPP
+        - Ex) "It seems that John left"
+
+    - When it takes a `[-finite]` `TP` complement, the subject is taken from the complement of "seem"
+      - The movement of "John" to `[Spec, TP]` is called raising to Subject
+        - Verbs like "seem", whose superficial subject comes from their complements are called raising verbs
+
+  - Other examples of raising verbs are: "appear" and "happen"
+  - Examples of raising adjectives are: "likely" and "liable"
+
+
+
+
+## Lecture 15:
 
 - 
 
