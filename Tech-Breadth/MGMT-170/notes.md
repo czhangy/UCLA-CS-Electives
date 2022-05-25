@@ -583,6 +583,10 @@
 
 - **REIT Structure**: the REIT structure was created by the US Congress in 1960 to allow small investors to participate in the property markets without paying a corporate tax
   - REITs provide liquidity, dividends, diversification, and professional management
+    - Liquidity: ability to sell stock quickly, as opposed to the illiquid nature of real estate
+    - Dividends: REITs have high dividends due to the required dividend distribution to shareholders
+    - Diversification: Pool of assets as opposed to a single, large asset
+    - Professional management: 
   - If all REIT rules are met, a REIT will not pay tax at the entity level, REIT dividends will be taxed to the REIT's shareholders, but REIT losses will not be passed through to the shareholders
 - **Types of REITs**: most REITs are equity REITs that primarily own properties, and the rest are mortgage REITs that primarily own mortgage debt and MBS
   - Most equity REITs focus on a single property type (office, retail, apartments, industrial, hotels, self-storage, etc.)
@@ -591,6 +595,8 @@
 - **Distribution Requirements**: at least 90% of a REIT's taxable income must be distributed as dividends to the REIT's shareholders, otherwise the REIT will pay corporate tax
   - Not truly a pass-through entity, but effectively is to shareholders
   - No entity-level tax under these conditions
+  - The 10% withheld would also be taxed, so most REITs distribute 100% of their taxable income to shareholders
+  - Taxable income => after depreciation
 - **Asset Requirements**: at least 75% of a REIT's assets must be related to real estate, government securities, or cash, and not more than 20% of a REIT's assets can be in taxable REIT subsidiaries (TRSs were authorized by the 1999 REIT Modernization Act)
 - **Income Requirements**: at least 9%% of a REIT's gross income must be from real estate rents, profits from asset sales, mortgage interest income, and REIT dividends received
 - **Net Asset Value (NAV)**: net asset value is an accounting measure of a REIT's net worth, which may or may not accurately reflect its current market value if the REIT's assets have increased or decreased in value relative to their depreciated cost
