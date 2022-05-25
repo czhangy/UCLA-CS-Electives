@@ -586,19 +586,28 @@
     - Liquidity: ability to sell stock quickly, as opposed to the illiquid nature of real estate
     - Dividends: REITs have high dividends due to the required dividend distribution to shareholders
     - Diversification: Pool of assets as opposed to a single, large asset
-    - Professional management: 
+    - Professional management: management team likely to have decades of experience
   - If all REIT rules are met, a REIT will not pay tax at the entity level, REIT dividends will be taxed to the REIT's shareholders, but REIT losses will not be passed through to the shareholders
 - **Types of REITs**: most REITs are equity REITs that primarily own properties, and the rest are mortgage REITs that primarily own mortgage debt and MBS
   - Most equity REITs focus on a single property type (office, retail, apartments, industrial, hotels, self-storage, etc.)
+    - Equity REIT => owns property
+    - Focus results in more skills/expertise => translates to more success
   - Mortgage REITs focus on either residential mortgages or commercial mortgages
+    - Mortgage REIT => owns loans
 - **REIT Qualifications**: REITs must be managed by a board of directors; must have at least 100 shareholders; not more than 50% of a REIT's shares can be held by five or fewer shareholders ("5/50" rule); shares must be fully transferrable; can be public or private
+  - More than 100 shareholders is desirable to prevent circumstances from dropping the number, resulting in the REIT being subjected to taxes
+  - Most REITs prevent a single shareholder from owning 9.9%+ of the stock, preventing the REIT from violating the "5/50" rule
+    - Forces wide distribution with little concentration
+  - Public REITs have grown very large
 - **Distribution Requirements**: at least 90% of a REIT's taxable income must be distributed as dividends to the REIT's shareholders, otherwise the REIT will pay corporate tax
   - Not truly a pass-through entity, but effectively is to shareholders
+    - Cannot pass through its losses
   - No entity-level tax under these conditions
   - The 10% withheld would also be taxed, so most REITs distribute 100% of their taxable income to shareholders
   - Taxable income => after depreciation
 - **Asset Requirements**: at least 75% of a REIT's assets must be related to real estate, government securities, or cash, and not more than 20% of a REIT's assets can be in taxable REIT subsidiaries (TRSs were authorized by the 1999 REIT Modernization Act)
-- **Income Requirements**: at least 9%% of a REIT's gross income must be from real estate rents, profits from asset sales, mortgage interest income, and REIT dividends received
+  - Securities and cash => REITs want to move these to assets to get better return
+- **Income Requirements**: at least 95% of a REIT's gross income must be from real estate rents, profits from asset sales, mortgage interest income, and REIT dividends received
 - **Net Asset Value (NAV)**: net asset value is an accounting measure of a REIT's net worth, which may or may not accurately reflect its current market value if the REIT's assets have increased or decreased in value relative to their depreciated cost
   - If a REIT's stock price reflects its NAV more than its true market value, the REIT may be a takeover candidate
 - **Funds from Operations (FFO)**: REIT income is measured as "funds from operations", which is earnings per share (EPS) adjusted by adding back depreciation and excluding any profits or losses from asset sales, and is a measure of its dividend paying ability
