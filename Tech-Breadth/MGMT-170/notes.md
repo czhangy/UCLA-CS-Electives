@@ -579,7 +579,38 @@
 
 
 
-## Lecture 15:
+## Lecture 15: Real Estate Investment Trusts (REITs)
+
+- **REIT Structure**: the REIT structure was created by the US Congress in 1960 to allow small investors to participate in the property markets without paying a corporate tax
+  - REITs provide liquidity, dividends, diversification, and professional management
+  - If all REIT rules are met, a REIT will not pay tax at the entity level, REIT dividends will be taxed to the REIT's shareholders, but REIT losses will not be passed through to the shareholders
+
+- **Types of REITs**: most REITs are equity REITs that primarily own properties, and the rest are mortgage REITs that primarily own mortgage debt and MBS
+  - Most equity REITs focus on a single property type (office, retail, apartments, industrial, hotels, self-storage, etc.)
+  - Mortgage REITs focus on either residential mortgages or commercial mortgages
+
+- **REIT Qualifications**: REITs must be managed by a board of directors; must have at least 100 shareholders; not more than 50% of a REIT's shares can be held by five or fewer shareholders ("5/50" rule); shares must be fully transferrable; can be public or private
+- **Distribution Requirements**: at least 90% of a REIT's taxable income must be distributed as dividends to the REIT's shareholders, otherwise the REIT will pay corporate tax
+- **Asset Requirements**: at least 75% of a REIT's assets must be related to real estate, government securities, or cash, and not more than 20% of a REIT's assets can be in taxable REIT subsidiaries (TRSs were authorized by the 1999 REIT Modernization Act)
+- **Income Requirements**: at least 9%% of a REIT's gross income must be from real estate rents, profits from asset sales, mortgage interest income, and REIT dividends received
+- **Net Asset Value (NAV)**: net asset value is an accounting measure of a REIT's net worth, which may or may not accurately reflect its current market value if the REIT's assets have increased or decreased in value relative to their depreciated cost
+  - If a REIT's stock price reflects its NAV more than its true market value, the REIT may be a takeover candidate
+
+- **Funds from Operations (FFO)**: REIT income is measured as "funds from operations", which is earnings per share (EPS) adjusted by adding back depreciation and excluding any profits or losses from asset sales, and is a measure of its dividend paying ability
+- **UPREITs**: umbrella partnership REITs issue operating partnership units (OP units) that are convertible into REIT shares and allow a REIT to buy appreciated properties with OP units instead of cash so sellers of the properties can achieve a Section 1031 tax deferred exchange
+  - When OP units are converted into REIT shares, capital gain taxes will be due
+
+- **REIT Growth Drivers**: REITs can:
+  - Increase the net operating income from their existing properties by increasing rents and occupancy levels
+  - Acquire additional properties
+  - Renovate or expand existing properties or develop new properties on excess land
+  - Provide property services through taxable REIT subsidiaries (leasing or property management)
+  - Financial engineering (property debt or REIT corporate leverage)
+
+
+
+
+## Lecture 16:
 
 - 
 
