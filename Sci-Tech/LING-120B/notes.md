@@ -6,7 +6,7 @@
 
 - What is Syntax?
   - Two notions of syntax:
-    - As a system of grammar: the part of language that allows speakers to create and undersatand phrases and sentences
+    - As a system of grammar: the part of language that allows speakers to create and understand phrases and sentences
     - As a linguistic discipline: the subfield of linguistics that studies the rules and properties of phrases and sentences of human languages
   - What do we mean by rule?
     - We do not mean prescriptive rules (rules that prescribe how people should speak)
@@ -90,7 +90,7 @@
       - Negated by no
   - Verbs
     - Derivational suffixes: -ify, -ize
-    - Inflectional suffices: -ing, -en, -s
+    - Inflectional suffixes: -ing, -en, -s
     - Syntactic distribution: verbs can appear:
       - As the first word in a (non-negative) command
       - As negated by not/n't
@@ -183,9 +183,9 @@
       - In the tree structure, `SUB` is a subtree of `S`
     - What kinds of constituents can a pronoun replace?
       - It replaces `DP`s, it can't replace bare nominal phrases, `NP`s
-    - What kinds of constituents can then/there replace?
+    - What kinds of constituents can "then"/"there" replace?
       - `PP`s
-    - What kinds of constituents can do so replace?
+    - What kinds of constituents can "do so" replace?
       - `VP`s
   - Summary
     - When carefully used, replacement can tell us about the constituency of sentence
@@ -420,9 +420,9 @@
   - `D` can be empty
 
     - Bare plurals
-      - Ex) Dogs bite
+      - Ex) "Dogs bite"
     - Proper nouns in English
-      - Ex) Mary
+      - Ex) "Mary"
     - Is an empty `D` needed in the structure of proper names?
       - In other languages proper names do require overt determiners
 
@@ -618,7 +618,7 @@
 
 - Subjects
   - Cases where the embedded clause is smaller
-    - Ex) Fred saw John drunk
+    - Ex) "Fred saw John drunk"
     - Some of them have a "that"-`TP` counterpart
       - Ex) Peter heard Mary leave => Peter heard that Mary left
       - These sentences and their counterparts seem to have different semantic requirements
@@ -638,7 +638,7 @@
     - Pronouns: you, me, us, him
     - R-expressions: John, the professor, etc.
   - Quick note on notation:
-    - Syntacticians will sometimes abbreviate two sentences that are otherwise identifical, but have different indices
+    - Syntacticians will sometimes abbreviate two sentences that are otherwise identical, but have different indices
     - The two possible indices are separated by a slash and the index that would make the sentence ungrammatical is marked with an asterisk
   - Principle A: Anaphors
     - Seems that unlike pronouns and R-expressions, anaphors need a co-referential `DP` in the same sentence (we'll call this `DP` the antecedent or binder)
@@ -677,7 +677,7 @@
   - Binding domain of pronouns:
     - The smallest `XP` containing the pronoun that has a subject
 -  Principle C: R-Expressions
-  - R(eferential)-expressions = non-pronomnial expressions
+  - R(eferential)-expressions = non-pronominal expressions
     - Proper names
     - Descriptions
   - Principle C: R-expressions cannot be bound
@@ -984,7 +984,106 @@
 
 
 
-## Lecture 15:
+## Lecture 15: Copular Sentences and Control Verbs
 
-- 
+- Copular Sentences
+  - Copular sentences are sentences in which the predicate is not a verb and the two phrases (subject and non-verbal predicate) are linked by a copula, such as the verb "be" in English
+
+    - Examples:
+      - "John is tall."
+      - "John is in the garden."
+
+  - The verb (or copula) "be" in the examples above acts as a raising verb
+    - It doesn't select any external arguments
+    - It c-selects a small clause complement (`AP` and `PP` in the examples above)
+    - The subject of the small clause selected by the copula raises to `[Spec, TP]`
+
+- Control Verbs
+  - The following two sentences look very similar:
+    - "John seems to leave"
+    - "John hopes to leave"
+
+  - But these sentences are structurally very different:
+    - The first is a raising sentence
+    - The second is something different that doesn't involve any `DP` movement
+      - That is what we call a control sentence
+
+  - "John" is not selected by "seem" in the first sentence => "seem" doesn't assign a theta role to its subject
+  - "hope" is different => it takes two arguments: the person who hopes something and what is hoped by that person
+    - For this reason, the expletive construction is not possible with "hope":
+      - `*`"It hopes that John left."
+
+  - There seems to be a problem in the second sentence: both "leave" and "hope" need an external argument: "leave" needs an agent and "hope" needs an experiencer
+    - In the second sentence, "John" is understood to be both the agent of "leave" and the experiencer of "hope"
+    - In fact, we can provide a very close paraphrase of the second sentence with a tensed clause component instead of an infinitive:
+      - "John hopes that he will leave."
+
+  - Proposal in the second sentence: there is no movement and we need a silent anaphoric subject that is bound by the subject of the matrix verb
+    - We'll call it `PRO`
+      - The value of `PRO`  is determined by the subject of the main clause: we say that `PRO` is controlled by the subject of "hope"
+
+    - Then, the second sentence would have the following structure:
+      - "John hope [`PRO` to leave]"
+
+
+
+
+## Lecture 16: Control Verbs
+
+- Diagram process:
+
+  - The `VP` headed by the lexical verb
+    - In this case the external argument will be `PRO` carrying the same index than the subject of the matrix clause
+  - The lower `TP`
+  - The `CP`
+  - The `VP` headed by the matrix verb "hope"
+    - Unlike raising verbs, control verbs select subjects, so we expect to have the experiencer in `[Spec, VP]`
+  - The `DP` structure tree
+  - The surface structure tree
+
+- Raising to Subject vs. Control Verbs
+
+  - | hope | `V`  | `DP` | `CP`      |
+    | ---- | ---- | ---- | --------- |
+    | seem | `V`  |      | `TP`/`CP` |
+
+  - Properties that only belong to some raising verbs
+
+    - Allow weather "it":
+      - Ex) "It seems to be raining"
+    - May allow expletive "it":
+      - Ex) "It seems that John left"
+    - Allow existential "there":
+      - Ex) There seems to be a problem
+    - Allow idiom chunks:
+      - Ex) The cat seems to be out of the bag
+
+  - Properties that only belong to some control verbs
+
+    - They can take a `CP` complement in addition to a non-expletive subject
+
+  - Therefore, using only positive evidence:
+
+    - If allow weather "it" => raising
+    - If allow expletive "it" => raising
+    - If allow existential "there" => raising
+    - If allow idiom chunk as subject => raising
+    - If can take `CP` complement and non-expletive subject => control
+
+  - Not all control verbs can be paraphrased replacing the infinite clause with a tensed clause
+
+    - Want/hope-type subject control verbs can also take "for-" infinitives, try-type subject control verbs cannot
+    - Control verbs come in at least 2 kinds
+    - These are good reasons to use positive evidence whenever possible
+
+- `PRO` in Subject Infinitives
+
+  - `PRO` can lack an antecedent (i.e., be uncontrolled)
+    - Examples:
+      - "[For John to hurt his friends] is stupid."
+      - "[To hurt one's friends] is stupid."
+  - Some of the evidence comes from Binding Theory
+    - `PRO` is needed in order to satisfy Principle A
+
+- Control Structures in Foreign Languages
 
