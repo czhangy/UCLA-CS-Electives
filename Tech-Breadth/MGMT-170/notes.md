@@ -627,22 +627,21 @@
 
 - **Risk vs. Return**: investments with more risk (i.e., more volatility of returns) should provide a higher expected (i.e., mean) return
   - `β` is a measure of the volatility of returns for an investment relative to a benchmark, and `α` is a measure of the actual return of an investment relative to the benchmark given the level of investment risk
-
 - **Property Performance Information**: unlike stocks and bonds, real estate performance information is much less available
   - The National Council of Real Estate Investment Fiduciaries (NCREIF) produces quarterly returns for five property types (office, retail, apartments, industrial, and hotels), but values are based on appraisals giving imperfect market value information, and the NCREIF Index is an unleveraged index
   - REIT stock price performance information is a proxy for certain types of real estate performance, but REIT stock prices are also affected by non-real estate related stock market movements
-
 - **Business Risk**: specific to the property type, location, and market conditions
 - **Default Risk**: properties are usually leveraged
   - Higher LTVs cause higher default risk
-
+  - 0 if bought with all cash
 - **Liquidity Risk**: selling a property takes time
   - Real estate is an illiquid investment
-
 - **Diversification**: a way to lower the volatility of a portfolio's expected returns
 - **Correlation Coefficient**: measures the relative movement of one set of numbers as compared with another, ranging from `+1` (perfectly positively correlated), to `0` (no correlation at all), to `-1` (perfectly negatively correlated)
 - **Inflation Hedge**: real estate is considered a good inflation hedge as it is positively correlated with inflation (when inflation increases, property values also tend to increase)
 - **Portfolio Diversification**: buying properties in different geographic regions and of different property types will generally provide greater portfolio diversification
 - **Global Diversification**: the increasing number and variety of investment opportunities around the world provide diversification benefits from low or negative correlations with investments in the US (or your home country) that might reduce portfolio risk, but foreign investments may have additional risks that must be managed
 - **Foreign Investment Risks**: information risk, legal/tax/property rights risk, currency and interest rate risk, political risk, culture/communication risk
+  - Currency risk => the value of the foreign currency is an added factor for your profits
+  - Culture/communication risk => imperfect communication of business puts you at a disadvantage
 
