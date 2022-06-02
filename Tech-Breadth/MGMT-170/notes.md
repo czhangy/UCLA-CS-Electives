@@ -182,7 +182,7 @@
   - **Loan Terms**: are generally the same terms with fixed rate loans, other than the interest rate changes, and include assumable or "due on sale", recourse or non-recourse, prepayment or lockout, assignment, default, and acceleration
   - **Negative Amortization**: if the loan payment required is less than the amount of accrued interest then due on the loan because of a payment cap, there will be negative amortization
     - Interest rate caps do not cause negative amortization
-  - **Interest Rate Risk**: because ARM interest rates adjust periodically, interest rate risk is higher for the norrower and lower for the lender
+  - **Interest Rate Risk**: because ARM interest rates adjust periodically, interest rate risk is higher for the borrower and lower for the lender
     - The shorter the time interval between reset dates, the higher the risk for the borrower and lower for the lender
     - Lender's much happier with adjustable rate loans
   - **Default Risk**: because the interest rate adjusts periodically, the potential for future rate increases elevates the risk of a default by the borrower leading to foreclosure
@@ -407,7 +407,7 @@
   - **Convertible Mortgage**: when the lender has the right to convert part or all of the loan principal to an ownership interest in the property at a specified time
     - Lender wants the option, not the obligation
   - **Mezzanine Loan**: a loan that is often secured by the owner's equity in a property, rather than by a mortgage on the property itself
-    - Usually requires an inter-creditor agreement between the mezzanine lender and the first mortgage lender
+    - Usually requires an intercreditor agreement between the mezzanine lender and the first mortgage lender
       - First mortgage lender has to consent to the possibility of dealing with the mezzanine lender
     - Can be a traditional second mortgage
     - Lender can become the owner if the loan is failed to be paid back, dealing with the first mortgage lender
@@ -503,7 +503,7 @@
 - **Development Decision Factors**: global, national, and local economic forecast; supply and demand for space (i.e., tenant demand); competition from other current and planned developments; capital markets (i.e., financing cost and availability)
 - **Project Feasibility**: a feasibility study should be done to forecast tenant demand, rent levels, construction costs, project timing, exit strategies and future sales price, and evaluate the risks
   - Location is always a key factor in the analysis
-- **Construction Financing**: convers the hard costs and soft costs of construction
+- **Construction Financing**: converts the hard costs and soft costs of construction
   - Construction loans are disbursed in draws after costs are incurred, are typically recourse to the developer, are usually short term (maturing after construction is expected to be completed), and floating rate with construction interest capitalized into the outstanding loan balance
   - Construction lenders want a permanent lender ("take-out" lender) in place to pay off and replace the construction loan when construction is completed and various leasing targets have been achieved
   - A stand-by lender is a permanent lender who doesn't intend to actually fund their loan
@@ -594,7 +594,7 @@
     - Focus results in more skills/expertise => translates to more success
   - Mortgage REITs focus on either residential mortgages or commercial mortgages
     - Mortgage REIT => owns loans
-- **REIT Qualifications**: REITs must be managed by a board of directors; must have at least 100 shareholders; not more than 50% of a REIT's shares can be held by five or fewer shareholders ("5/50" rule); shares must be fully transferrable; can be public or private
+- **REIT Qualifications**: REITs must be managed by a board of directors; must have at least 100 shareholders; not more than 50% of a REIT's shares can be held by five or fewer shareholders ("5/50" rule); shares must be fully transferable; can be public or private
   - More than 100 shareholders is desirable to prevent circumstances from dropping the number, resulting in the REIT being subjected to taxes
   - Most REITs prevent a single shareholder from owning 9.9%+ of the stock, preventing the REIT from violating the "5/50" rule
     - Forces wide distribution with little concentration
