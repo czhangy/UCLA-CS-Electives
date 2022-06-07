@@ -12,9 +12,8 @@
   - Land and all things permanently attached to it
 
 - **Personal Property**: movable things and intangibles
-
   - Fixtures are personal property until they are attached to a building, then they become a part of the real property
-
+  
 - **Statute of Frauds**: requires that almost every agreement relating to real property be in writing in order to be enforceable in a court of law (from England 1677)
 
 - **Property Rights and Estates in Real Estate**: ownership, possessory, and use rights
@@ -214,7 +213,7 @@
   - **Supply and Demand Analysis**: important for the valuation of properties and the projection of future rent and occupancy levels
     - Global, national, regional, and local factors affect the value of properties and rent levels for commercial space
   - **Location**: the most important factor in real estate because it's location specific
-  - **Occupancy/Vacancy**: `occupancy = 100& - vacancy`
+  - **Occupancy/Vacancy**: `occupancy = 100% - vacancy`
     - Driven by many factors, including supply and demand, location, quality (age, design, construction, etc.)
   - **Lease Terms**: the parties (landlord/tenant or lessor/lessee), premises, term, base rent, CPI increases or percentage rent, security deposit and/or guarantors, allowable uses, insurance, repairs and maintenance, damage or destruction, property taxes and other expenses, assignment and subletting, defaults and remedies, subordination, attornment and non-disturbance, signage, right of first refusal or expansion option on adjacent space, notices, governing law
     - Premises define the exact real estate under consideration
@@ -579,7 +578,30 @@
 
 
 
-## Lecture 15: Real Estate Investment Trusts (REITs)
+## Lecture 15: The Secondary Mortgage Market
+
+- **Fannie Mae and Freddie Mac**: the Federal National Mortgage Association ("Fannie Mae" - created in 1938, privatized in 1968) and the Federal Home Loan Mortgage Corporation ("Freddie Mac" - created by the Emergency Home Finance Act of 1970) are the largest buyers of home loans in the US
+  - Together they buy almost half of all residential home loans
+  - Fannie Mae and Freddie Mac are huge, NYSE listed companies with $7 trillion of mortgage loans and securities
+  - During the global financial crisis, Fannie Mae and Freddie Mac were nearly bankrupt and placed under the conservatorship of the Federal Housing Finance Agency ("FHFA" - created by the Housing and Economic Recovery Act of 2008)
+- **Ginnie Mae**: Government National Mortgage Association ("Ginnie Mae" - HUD Act of 1968) is a wholly owned US government corporation within the Department of Housing and Urban Development (HUD)
+  - Ginnie Mae guarantees mortgage backed securities
+- **Conforming Loans**: mortgage loans that conform to Fannie Mae and Freddie Mac underwriting guidelines for loan size (for 2022: $647,200, or $970,800 in certain high cost areas of the country), creditworthiness (FICO score), DSCR, LTV, and other criteria
+- **Non-Conforming Loans**: mortgage loans that do not conform to all the underwriting guidelines of Fannie Mae and Freddie Mac at a particular time
+- **Subprime Loans**: mortgage loans that fall below the underwriting guidelines for creditworthiness (FICO score), DSCR, and/or LTV
+  - Not related to loan size
+- **Seasoned Mortgages**: mortgage loans that have been paying monthly principal and interest on time
+  - The longer the payments stay current, the more "seasoned" the mortgage
+- **Residential Mortgage Backed Securities (RMBS) and Commercial Mortgage Backed Securities (CMBS)**: created when pools of residential or commercial mortgage loans are tranched into securities for sale to other investors in the capital markets
+  - The primary risks associated with these securities are default risk and prepayment risk
+- **Default Risk**: When the default rate on the pool of mortgage loans underlying the mortgage backed securities is higher than was projected at the time of the MBS offering
+- **Prepayment Risk**: when the prepayment rate on the pool of mortgage loans underlying the mortgage backed securities is higher than was projected at the time of the MBS offering
+- **Collateralized Mortgage Obligations (CMOs)**: any debt can be collateral for the securities
+- **Principal Only Tranches (POs), Interest Only Tranches (IOs), Floaters and Inverse Floaters**: some of the unique securities that can be created to appeal to different investors
+
+
+
+## Lecture 16: Real Estate Investment Trusts (REITs)
 
 - **REIT Structure**: the REIT structure was created by the US Congress in 1960 to allow small investors to participate in the property markets without paying a corporate tax
   - REITs provide liquidity, dividends, diversification, and professional management
@@ -623,7 +645,7 @@
 
 
 
-## Lecture 16: Real Estate Investment Performance and Portfolio Considerations
+## Lecture 17: Real Estate Investment Performance and Portfolio Considerations
 
 - **Risk vs. Return**: investments with more risk (i.e., more volatility of returns) should provide a higher expected (i.e., mean) return
   - `β` is a measure of the volatility of returns for an investment relative to a benchmark, and `α` is a measure of the actual return of an investment relative to the benchmark given the level of investment risk
