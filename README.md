@@ -23,7 +23,7 @@
 | Course | Term | Grade |
 |:---:|:---:|:---:|
 | LING 20 | Winter '22 | A+ |
-| LING 120B | Spring '22 | IP |
+| LING 120B | Spring '22 | A |
 | ??? | ??? | ??? |
 
 ## Miscellaneous
