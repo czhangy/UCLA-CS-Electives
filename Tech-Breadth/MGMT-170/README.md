@@ -2,7 +2,7 @@
 
 # Karlan - Spring '22
 
-## Overall: IP | Raw Percentage: IP
+## Overall: A | Raw Percentage: 89.8%
 
 ## Grading
 
@@ -14,8 +14,8 @@
 
 ## Exams
 
-|  Exam   | Score |
-| :-----: | :---: |
-| Midterm | 45/50 |
-|  Final  |  ???  |
+|  Exam   | Score  |
+| :-----: | :----: |
+| Midterm | 45/50  |
+|  Final  | 88/100 |
 
