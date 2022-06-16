@@ -16,7 +16,7 @@
 |:---:|:---:|:---:|
 | ECON 1 | AP Credit | - |
 | ENGR 111 | Spring '21 | A- |
-| MGMT 170 | Spring '22 | IP |
+| MGMT 170 | Spring '22 | A |
 
 ## Sci-Tech - Linguistics
 
