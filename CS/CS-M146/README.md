@@ -6,8 +6,32 @@
 
 ## Grading:
 
-| Category | Percentage |
-| :------: | :--------: |
-|          |            |
-|          |            |
-|          |            |
+|  Category   | Percentage |
+| :---------: | :--------: |
+| Assignments |    30%     |
+|   Quizzes   |    20%     |
+|   Midterm   |    20%     |
+|    Final    |    30%     |
+
+## Assignments
+
+|  #   | Score |
+| :--: | :---: |
+|  1   |  ???  |
+
+## Quizzes
+
+|  #   | Score |
+| :--: | :---: |
+|  1   |  ???  |
+
+
+
+## Exams
+
+|  Exam   | Score |
+| :-----: | :---: |
+| Midterm |  ???  |
+|  Final  |  ???  |
+|         |       |
+
