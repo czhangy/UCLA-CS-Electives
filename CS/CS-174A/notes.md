@@ -61,7 +61,7 @@
 
 
 
-## Discussion 1:
+## Discussion 1: Introduction and Assignment 1
 
 - Scope
   - Under the CS department
@@ -82,4 +82,9 @@
   - Assignment 2: Basic Draw & Transformations
   - Assignment 3: Shading & Lighting
   - Assignment 4: Texture
-- 
+- Exams
+  - Freeform format, not multiple choice
+  - Conduct as a normal in-person exam, paper-based
+  - Math and theory, no actual coding
+  - Maybe the most critical part if you want to get an A
+  - Not curved
