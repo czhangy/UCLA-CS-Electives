@@ -63,28 +63,46 @@
 
 ## Discussion 1: Introduction and Assignment 1
 
-- Scope
-  - Under the CS department
-  - Needs a lot of a math for exams and assignments
-    - Mainly linear algebra
-    - You will learn theory about how shapes are rendered in computer graphics
-  - Needs writing code for the assignments and team project
-    - JavaScript (vanilla), GLSL
-    - We use a framework called Tiny-Graphics
-  - It is not about modeling and CG art, and we will not cover any of:
-    - 3D model creation and rendering via industrial tools, like Maya, 3D Max, Blender
-      - We will render 3D scenes directly from code and basic models/textures
-    - Making games using game engines like UE or Unity
-      - Of course, you can make a game as your team project, but you need to write all the game logic yourself
-    - 3D digital art, architecture, movie post-effects, video editing, machine learning, AI, etc.
-- Assignments
-  - Assignment 1: Setting Up the Environment
-  - Assignment 2: Basic Draw & Transformations
-  - Assignment 3: Shading & Lighting
-  - Assignment 4: Texture
-- Exams
-  - Freeform format, not multiple choice
-  - Conduct as a normal in-person exam, paper-based
-  - Math and theory, no actual coding
-  - Maybe the most critical part if you want to get an A
-  - Not curved
+- Logistics
+  - Scope
+    - Under the CS department
+    - Needs a lot of a math for exams and assignments
+      - Mainly linear algebra
+      - You will learn theory about how shapes are rendered in computer graphics
+    - Needs writing code for the assignments and team project
+      - JavaScript (vanilla), GLSL
+      - We use a framework called Tiny-Graphics
+    - It is not about modeling and CG art, and we will not cover any of:
+      - 3D model creation and rendering via industrial tools, like Maya, 3D Max, Blender
+        - We will render 3D scenes directly from code and basic models/textures
+      - Making games using game engines like UE or Unity
+        - Of course, you can make a game as your team project, but you need to write all the game logic yourself
+      - 3D digital art, architecture, movie post-effects, video editing, machine learning, AI, etc.
+  - Assignments
+    - Assignment 1: Setting Up the Environment
+    - Assignment 2: Basic Draw & Transformations
+    - Assignment 3: Shading & Lighting
+    - Assignment 4: Texture
+  - Exams
+    - Freeform format, not multiple choice
+    - Conduct as a normal in-person exam, paper-based
+    - Math and theory, no actual coding
+    - Maybe the most critical part if you want to get an A
+    - Not curved
+- Basic JavaScript
+  - The world's most popular programming language
+  - The programming language of the web
+  - Easy to learn
+  - Type system is very flexible, but sometimes too flexible
+- Assignment 1
+  - Purpose
+    - Try WebGL and write the first CG webpage application by yourself
+    - Get familiar with the developing environment for future assignments
+  - Prerequisite
+    - Very basic JS
+
+
+
+## Discussion 2:
+
+- 
