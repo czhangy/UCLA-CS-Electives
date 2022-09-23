@@ -22,12 +22,12 @@
 
 ## Assignments
 
-| Assignment | Score |
-| :--------: | :---: |
-|    ???     |  ???  |
-|    ???     |  ???  |
-|    ???     |  ???  |
-|    ???     |  ???  |
+| Assignment                                 | Score |
+| :----------------------------------------- | :---: |
+| Assignment 1: Setting Up the Environment   |   -   |
+| Assignment 2: Basic Draw & Transformations |  ???  |
+| Assignment 3: Shading & Lighting           |  ???  |
+| Assignment 4: Texture                      |  ???  |
 
 ## Project
 
