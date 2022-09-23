@@ -58,3 +58,28 @@
 ## Lecture 2:
 
 - 
+
+
+
+## Discussion 1:
+
+- Scope
+  - Under the CS department
+  - Needs a lot of a math for exams and assignments
+    - Mainly linear algebra
+    - You will learn theory about how shapes are rendered in computer graphics
+  - Needs writing code for the assignments and team project
+    - JavaScript (vanilla), GLSL
+    - We use a framework called Tiny-Graphics
+  - It is not about modeling and CG art, and we will not cover any of:
+    - 3D model creation and rendering via industrial tools, like Maya, 3D Max, Blender
+      - We will render 3D scenes directly from code and basic models/textures
+    - Making games using game engines like UE or Unity
+      - Of course, you can make a game as your team project, but you need to write all the game logic yourself
+    - 3D digital art, architecture, movie post-effects, video editing, machine learning, AI, etc.
+- Assignments
+  - Assignment 1: Setting Up the Environment
+  - Assignment 2: Basic Draw & Transformations
+  - Assignment 3: Shading & Lighting
+  - Assignment 4: Texture
+- 

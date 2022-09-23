@@ -35,5 +35,5 @@
 | :--------------------------------- | :---: |
 | Preliminary Proposal               |  ???  |
 | Final Proposal + Midway Evaluation |  ???  |
-| Final Demo + Report                |  ???  |
+| Final Demo                         |  ???  |
 
