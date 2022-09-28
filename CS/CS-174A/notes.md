@@ -55,7 +55,153 @@
 
 
 
-## Lecture 2:
+## Lecture 2: 
+
+- Basic Elements (cont.)
+
+  - Rendering
+    - Visibility
+    - Simulating light propagation
+      - Reflection, absorption, scattering, emission, interference
+    - Key elements
+      - Camera, illumination, geometry/reflectivity
+    - Draw visible surfaces onto display
+      - Near plane to avoid division by 0 errors
+      - Far plane to avoid unnecessary computation
+      - Everything within the formed pyramid is the view frustrum
+      - Everything outside is clipped out 
+      - Scan converting is the process of determining which pixels to color when drawing
+        - Issue: aliasing/pixelization
+    - Textures
+    - Non-Photorealistic Rendering
+    - Information visualization
+    - Resolving occlusions efficiently
+    - Shading
+      - Rasterization
+  - Animation
+    - Keyframe animation
+      - Ex) Flipbook animation
+    - Motion capture
+    - Procedural animation
+      - Ex) Physics-based animation, behavioral animation, emotion-based animation, etc.
+    - Cloth simulation
+    - Fluid simulation
+      - Modeling
+        - Incompressibility
+        - Viscosity
+      - Navier-Stokes equations
+      - Level sets
+    - Smoke simulation
+      - Assumption: no viscosity
+      - Rendering
+        - Photon maps
+        - Multiple scattering
+    - Behavioral animation
+
+- A Basic Graphics System
+
+  - Input => CPU => GPU => frame-buffer => display
+
+  - The GPU takes in a 3D world and generates a 2D image, with colors mapped to each pixel to form the image
+
+    - Each pixel just needs to store a color
+    - When the camera/objects/lighting is moved based on the interaction of the user, the image is recreated
+
+  - Input Devices
+
+    - Ex) Keyboard, mouse, controller, tablet & pen, other sensors (data glove, sound, gesture, etc.)
+
+  - Output Devices
+
+    - CRT (Cathode Ray-Tube)
+
+      - Electrons strike phosphor coating and emits light
+      - Direction of beam controlled by deflection plates
+      - Random-scan, calligraphic, or vector CRT
+      - Moving beam to new location
+      - Refresh rate: 60Hz - 85Hz
+
+    - Raster CRTs (`n x m` phosphor)
+
+      - Frame-buffer depth
+
+        - 1 bit: 2 levels only, black & white
+        - 8 bits: grayscale, 256 gray levels or colors
+        - 8 bits per color (RGB) = 24 bits = 16 million colors
+        - 12 bits per color: HD
+
+      - 3 different colored phosphors: triads
+
+      - Shadow mask keeps the focus of the guns to a single triad, preventing neighboring pixels from blurring
+
+      - Interlaced vs. non-interlaced displays
+
+        - Non-interlaced means we go through each scan-line => large bandwidth requirement
+        - Interlaced means we don't refresh each scan-line in every refresh
+          - Odd/even split => cuts bandwidth requirement in half
+        - Interlaced are used in commercial TV
+
+      - Single vs. double buffering
+
+        - The number of frame-buffers
+        - Single frame-buffer can lead to problems like race conditions
+        - In a double frame-buffer system, the GPU writes to one of the frame-buffers while the display reads from the other, swapping each frame
+        - More reliability at the cost of extra memory size => memory is cheap
+
+      - Screen Resolutions:
+
+        - TV: 640x480
+        - HD: 1920x1080
+        - 4K LCD: 3840x2160
+        - 35mm: 3000x2000
+
+      - Memory & Space Requirements
+
+        - Assuming:
+
+          - Screen resolution = `n x m`
+          - Refresh rate = `r` Hz (frames/second)
+          - Color depth = `b` bits/pixel
+
+        - $$
+          \text{Memory space per second}=\frac{n\times m\times b\times r}{8}\text{ bytes}
+          $$
+
+        - If non-interlaced:
+
+          - $$
+            \text{Memory read time}=\frac{1}{n\times m\times r}\text{ secs/pixel}
+            $$
+
+        - If interlaced:
+
+        - $$
+          \text{Memory read time}=\frac{2}{n\times m\times r}\text{ secs/pixel}
+          $$
+
+    - Flat Screen Displays
+
+      - Raster-based: active matrix with transistors at grid points
+      - LEDs: light-emitting diodes
+      - LCDs: polarization of liquid crystals
+      - Plasma: energize gases to glow plasma
+
+    - Other Output Devices
+
+      - Printers & plotters: raster-based, no refresh
+      - Stereo displays: 3D TVs/movies, fast switching of left and right eye polarized images
+
+    - Virtual Reality
+
+      - Flat panel technology
+      - Stereoscopic
+      - Track body, finger, and head locations
+      - Foveated rendering: high resolution where viewer is focusing, low resolution elsewhere
+      - Other input devices: force sensing gloves, sound, etc.
+
+
+
+## Lecture 3:
 
 - 
 
