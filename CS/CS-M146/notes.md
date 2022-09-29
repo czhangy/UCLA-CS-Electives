@@ -164,7 +164,7 @@
 
       - The machine can try many functions quickly, but doesn't have the intuition that we do to guide that search
 
-      - We need to choose what kind of model we want to learn
+      - We need to choose what *kind* of model we want to learn
 
       - A function `g` is consistent to a dataset:
 
@@ -187,6 +187,171 @@
 
 
 
-## Lecture 3:
+## Lecture 3: Hypothesis Space & KNN
+
+- Using Supervised Learning (cont.)
+
+  - What is our hypothesis space?
+
+    - How many possible functions are consistent with the training data? (7 known inputs, 4 inputs)
+
+      - `2^9` possible functions
+      - Is learning possible?
+
+    - The number of possible functions `f(x)` from the instance space `X` to the label space `Y` is:
+
+      - $$
+        |Y|^{|X|}
+        $$
+
+    - Learners typically consider only a subset of the functions from `X` to `Y`, called the hypothesis space `H`:
+
+      - $$
+        H\subseteq|Y|^{|X|}
+        $$
+
+    - Simple rules: conjunctive rules of the form:
+
+      - $$
+        y=x_i\land x_j\land\ ...\land\ x_k
+        $$
+
+    - `m`-of-`n` rules: if and only if at least `m` of the following `n` variables are `1`
+
+- Views of Learning
+
+  - Learning is the removal of our remaining uncertainty	
+    - Ruling out of inconsistent functions in the hypothesis space using training data
+  - Learning requires guessing a good hypothesis class
+    - If it's too restrictive, you may find no consistent functions; if it's too general, you may find many consistent functions
+    - Start with a small class and enlarge it until it contains a hypothesis that fits the data
+  - We could be wrong!
+    - Our guess of the hypothesis space could be wrong
+    - It may even be possible that the hypothesis is consistent with the training data, but we're still off
+
+- General Strategies for Machine Learning
+
+  - Develop flexible hypothesis spaces
+    - Decision trees, neural networks, nested collections, etc.
+  - Develop algorithms for finding the "best" hypothesis in the hypothesis space that fits the data
+    - Also, hope that it will generalize well
+
+- Hypothesis Space – Real Value Features
+
+  - Strong assumption that the data given in the training set will follow a given pattern => leveraged to create the hypothesis set
+  - Underfitting and Overfitting
+    - Goal is to find a hypothesis that is consistent with the training data, but without being too specific
+    - Underfitting: the hypothesis doesn't fit the training data well
+    - Overfitting: the hypothesis tries too hard to fit the training data, preventing actual learning and generalization
+
+- Bias vs. Variance
+
+  - Remember, training data are subsamples drawn from the true distribution
+  - Example: Studying Strategy
+    - Study every chapter well => low variance and low bias
+    - Study only a few chapters => high variance and low bias
+    - Study every chapter roughly => low variance and high bias
+    - Don't study => high variance and high bias
+
+- Overfitting the Data
+
+  - A classifier performing perfectly on the training data may not lead to the best generalized performance
+    - There may be noise in the training data
+    - The algorithm might be making decisions based on very little data
+  - As the complexity of the hypothesis increases, the accuracy on the training data will continue to increase, but the generalized performance will eventually drop due to overfitting
+  - Preventing Overfitting
+    - Using a less expressive model
+      - e.g., linear model
+    - Adding regularization
+      - Promote simpler models
+    - Data perturbation (add noise in training)
+      - Can be done algorithmically (e.g., dropout)
+      - May increase the bias of the model
+    - Stop the optimization process earlier
+      - Sounds bad in theory, but works in practice
+
+- How Do We Learn?
+
+  - How can we find a good model from the hypothesis space?
+
+- Linear Functions
+
+  - Challenges
+    - The hypothesis space contains an infinite number of functions
+    - Several functions are consistent with the data
+  - A possibility: local search
+    - Start with a linear threshold function
+    - See how well you're doing
+    - Correct
+    - Repeat until you converge
+    - Optimize a function with calculus
+
+- K-Nearest Neighbor
+
+  - Motivation:
+
+    - Spam
+    - Learning from memorization
+
+  - Nearest Neighbors: The Basic Version
+
+    - Training examples are vectors `xi` associated with a label `yi`
+      - e.g., `xi` = a feature vector for an email, `yi` = spam
+    - Learning: just store all the training examples
+    - Prediction: for a new example `x`
+      - Find the training example `xi` that is closest to `x`
+      - Predict the label of `x` to the label `yi` associated with `xi`
+
+  - K-Nearest Neighbors
+
+    - Training examples are vectors `xi` associated with a label `yi`
+
+      - e.g., `xi` = a feature vector for an email, `yi` = spam
+
+    - Learning: just store all the training examples
+
+    - Prediction: for a new example `x`
+
+      - Find the `k` closest training examples to `x`
+
+    - Construct the label of `x` using these `k` points
+
+    - Issue: how do we define distance?
+
+      - How do we measure distances between instances in vector space?
+
+        - Euclidean distance:
+
+          - $$
+            ||x_1-x_2||_2=\sqrt{\sum_{i=1}^n\left(x_{1,i}-x_{2,i}\right)^2}
+            $$
+
+        - Manhattan distance:
+
+          - $$
+            ||x_1-x_2||_1=\sum_{i=1}^n\left|x_{1,i}-x_{2,i}\right|
+            $$
+
+        - `Lp`-norm
+
+          - Euclidean = `L2`, Manhattan = `L1`
+
+          - $$
+            ||x_1-x_2||_p=\left(\sum_{i=1}^n\left|x_{1,i}-x_{2,i}\right|^p\right)^{\frac{1}{p}},\quad p>0
+            $$
+
+      - In general, a good place to inject knowledge about the domain
+
+      - Behavior of this approach can depend on this
+
+  - Distance Between Instances
+
+    - Most common distance is the Hamming distance
+      - Number of bits that are different, or number of features that have a different value
+
+
+
+## Lecture 4:
 
 - 
+
