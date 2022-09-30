@@ -201,11 +201,239 @@
 
 
 
-## Lecture 3:
+## Lecture 3: Parametric Forms
 
-- 
+- Review
 
+  - A Basic Graphics System
+    - Input devices: keyboard, mouse, tablet, touchscreens
+    - CPU/GPU
+    - Frame buffer, resolution, single vs. double buffering, color depth, interlaced vs. non-interlaced, refresh rate
+    - Output devices: CRT (random-scan & raster), flat-panel (LED, LCD, plasma), printers, plotters, head-mounted devices, stereo displays
+  - Linear Algebra
+    - Vectors: magnitude, unit vector, normalizing, addition, multiplication, properties
+    - Linear combination of vectors: affine, convex, linear independence
 
+- A Basic Graphics System (cont.)
+
+  - Output Devices
+    - Anamorphic LED displays
+    - Aliasing in Raster Displays
+      - Aliasing
+        - Lines
+        - Polygons
+      - Reasons for Aliasing
+        - Location of pixels are fixed
+        - Size of pixels are fixed
+
+- Linear Algebra: The Algebra of Vectors and Matrices (and Scalars)
+
+  - Vectors
+
+    - `N`-tuple of scalar elements
+
+    - $$
+      \bold{v}=(x_1,x_2,...,x_n),\quad x_i\in\mathbb{R}
+      $$
+
+    - Magnitude:
+
+      - $$
+        |\bold{v}|=\sqrt{x_1^2+\ ...\ +x_n^2}
+        $$
+
+    - Unit Vectors:
+
+      - 
+        $$
+        \bold{v}:|\bold{v}|=1
+        $$
+
+    - Normalizing a Vector:
+
+      - $$
+        \hat{\bold{v}}=\frac{\bold{v}}{|\bold{v}|}
+        $$
+
+    - Operations:
+
+      - Addition:
+
+        - $$
+          \bold{x}+\bold{y}=(x_1+y_1,...,x_n+y_n)
+          $$
+
+      - Multiplication with Scalar (Scaling)
+
+        - $$
+          a\bold{x}=(ax_1,...,ax_n),\quad a\in\mathbb{R}
+          $$
+
+      - Properties:
+
+        - $$
+          \bold{u}+\bold{v}=\bold{v}+\bold{u}\\
+          (\bold{u}+\bold{v})+\bold{w}=\bold{u}+(\bold{v}+\bold{w})\\
+          a(\bold{u}+\bold{v})=a\bold{u}+a\bold{v},\quad a\in\mathbb{R}\\
+          \bold{u}-\bold{u}=\bold{0}
+          $$
+
+      - Subtraction
+
+        - Adding the negatively scaled vector
+
+  - Linear Combination of Vectors
+
+    - A linear combination of the `m` vectors `v1, ... , vm` is a vector of the form:
+
+      - $$
+        \bold{w}=a_1\bold{v}_1+\ ...\ +a_m\bold{v}_m,\quad a_1,...,a_m\in\mathbb{R{}}
+        $$
+
+    - The result of adding a point to a vector is a point
+
+    - A vector can be defined, given a set of bases
+
+  - Points
+
+    - Points are reliant on a set of bases (2-bases for 2D space) and a point of reference/origin (where the bases join)
+
+      - Bases must all be linearly independent
+
+    - Points have a location, but do not have a direction, size, or shape
+
+      - Vectors have size and direction, but do not have location
+
+    - Subtracting two points produces a vector
+
+      - $$
+        \bold{v}=P_2-P_1
+        $$
+
+        - `P2` is the head (arrow-end), `P1` is the tail
+
+    - Linear Combination of Points
+
+      - The addition of two points is nonsensical
+
+  - Parametric Form of a Line
+
+    - $$
+      P=(1-\alpha)P_1+\alpha P_2
+      $$
+
+      - When `α = 0`, `P = P1`
+        - You are at the first endpoint of the line
+      - When `α = 1`, `P = P2`
+        - You are at the second endpoint of the line
+      - As `α` increases from `0` to `1`, you move from the first endpoint to the second
+      - We are scaling `P1` by `1 - α`, scaling `P2` by `α`, and then linearly combining them
+      - When `α > 1`, we move beyond `P2`
+      - When `α < 0`, we move beyond `P1`
+
+    - In the context of computer graphics, we can figure out if we are on an edge by looking at `α`
+
+      - We are on an edge if `0 ≤ α ≤ 1`
+      - We can then use this to determine if two edges intersect
+
+    - Generic Form:
+
+      - $$
+        P=\alpha_1P_1+\alpha_2P_2
+        $$
+
+        - Earlier, we constrained the problem so that `α1 + α2 = 1`, guaranteeing that `P` will be on the same line as `P1` and `P2` for any value of `α` => affine combination of points
+        - An affine combination of points with the constraint `αi ≥ 0` means the point `P` is constrained to being on the edge => convex combination of points
+
+  - Parametric Form of a Polygon
+
+    - $$
+      P=\alpha_1P_1+\ ...\ +\alpha_nP_n
+      $$
+
+      - Affine combination of points:
+
+        - $$
+          \sum_{i=1}^n\alpha_i=1
+          $$
+
+        - Guarantees that the points lie on the same plane as the polygon
+
+      - Convex combination of points:
+
+        - $$
+          \sum_{i=1}^n\alpha_i=1\text{ and }\alpha_1,...,\alpha_n\ge0
+          $$
+
+        - The point `P` is guaranteed to lie in the same plane as and inside the points `P1, ... ,Pn`
+
+  - Special Cases
+
+    - Linear Combination
+
+      - $$
+        \bold{w}=a_1\bold{v}_1+\ ...\ +a_m\bold{v}_m,\quad a_1,...,a_m\in\mathbb{R}
+        $$
+
+    - Affine Combination
+
+      - $$
+        a_1+\ ...\ +a_m=1
+        $$
+
+    - Convex Combination
+
+      - $$
+        a_1+\ ...\ +a_m=1\text{ and }a_1,...,a_m\ge0
+        $$
+
+  - Linear Independence
+
+    - For vectors `v1, ... , vm`:
+
+      - $$
+        a_1\bold{v}_1+\ ...\ +a_m\bold{v}_m=\bold{0}\text{ iff }a_1=\ ...\ a_m=0
+        $$
+
+  - Affine & Convex Combinations
+
+    - Parametric Form of Lines
+      - Line: infinite in both directions
+      - Ray: infinite in one direction
+      - Edge (or line segment): limited in both directions
+      - Affine combination of points
+      - Convex combination of points
+    - Parametric Form of Planes
+      - Affine combination of points
+      - Convex combination of points
+
+  - Generators and Base Vectors
+
+    - How many vectors are needed to generate a vector space?
+      - Any set of vectors that generate a vector space is called a generator set
+      - Given a vector space `R^n` we can prove that we need minimum `n` vectors to generate all vectors `v` in `R^n`
+      - A generator set with minimum size is called a basis for the given vector space
+
+  - Standard Unit Vectors
+
+    - The elements of a vector `v` in `R^n` are the scalar coefficients of the linear combination of the basis vectors
+
+    - In 2D:
+
+      - $$
+        \bold{i}=(1,0)\\
+        \bold{j}=(0,1)
+        $$
+
+    - In 3D:
+
+      - $$
+        \bold{i}=(1,0,0)\\
+        \bold{j}=(0,1,0)\\
+        \bold{k}=(0,0,1)
+        $$
+
+    - This course will generally use a right-hand coordinate system
 
 ## Lecture 4:
 
