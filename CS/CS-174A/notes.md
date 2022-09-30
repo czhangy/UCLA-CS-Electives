@@ -55,7 +55,7 @@
 
 
 
-## Lecture 2: 
+## Lecture 2:  Output Devices
 
 - Basic Elements (cont.)
 
@@ -202,6 +202,12 @@
 
 
 ## Lecture 3:
+
+- 
+
+
+
+## Lecture 4:
 
 - 
 
