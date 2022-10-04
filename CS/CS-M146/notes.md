@@ -351,9 +351,10 @@
 
 
 
-## Lecture 4:
+## Lecture 4: K-Nearest Neighbor and the Curse of Dimensionality
 
 - Learning Objectives:
+
   - KNN algorithms
   - Hyper-parameter tuning
     - Train/develop/test
@@ -361,11 +362,151 @@
   - Decision boundary
   - Curse of dimensionality
   - Practical concerns – data preprocessing
+
 - KNN Algorithm
+
   - Training examples are vectors `xi` associated with a label `yi`
   - Learning: just store all the training examples
   - Prediction for a new example `x`:
     - Find the `k` closest training examples to `x`
     - Construct the label of `x` using these `k` points
-  - 
+  - Inductive Bias of KNN
+    - Definition of inductive bias: the set of assumptions that the learner uses to predict outputs of unseen results
+    - Label of point (data instance) is similar to the label of nearby points
+    - Assumption may be broken in some cases, resulting to poor prediction
+
+- Hyper-Parameters & Design Choices
+
+  - Issue in designing KNN algorithm: how do we choose `k` and the distance measure?
+
+  - Hyper-Parameters in KNN
+
+    - Hyper-parameters:
+
+      - Choosing `k` (number of nearest neighbors)
+
+      - Distance measurement (e.g., `p` in the `Lp`-norm)
+
+        - $$
+          ||x_1-x_2||_p=\left(\sum_{i=1}^n\left|x_{1,i}-x_{2,i}\right|^p\right)^{\frac{1}{p}}
+          $$
+
+    - Those are not measured by the algorithm itself
+
+      - Require empirical studies
+      - The best parameter set is task/dataset-specific
+
+  - Train/Dev/Test Splits
+
+    - Split your data into Train/Dev/Test
+      - Only use Train and Dev for developing models
+    - Train: data for training models
+      - Is generally the largest section
+    - Dev (aka validation set): find the best parameters by evaluating models on dev
+      - Like a practice exam, where Test is the final exam
+    - Test: report the performance
+      - Labels only revealed in test time
+      - Shouldn't be modified often
+    - Recipe of Train/Dev/Test
+      - For each possible value of the hyper-parameter (e.g., `M = 1, 2, 3, ..., 10`)
+        - Train a model using `D^TRAIN`
+        - Evaluate the performance on `D^DEV`
+      - Choose the model with the best performance on `D^DEV`
+      - Optional: re-train the model on `D^TRAIN ∪ D^DEV ` with the best hyper-parameter set
+      - Evaluate the final model on `D^TEST`
+    - Trade-Off Between Train vs. Dev Size
+      - Consider a situation where you have 120 data points and 20 data points are reserved for testing
+        - What is the best way to split the remainder?
+          - A) Train: 95, Dev: 5?
+            - Result on Dev is not representative
+          - B) Train: 60, Dev: 40?
+            - Not enough data to train a model
+    - `N`-Fold Cross Validation
+      - Instead of a single Train-Dev split, split data into `N` equal-sized parts
+        - Usually `N = 5`
+        - Use each part as Dev once, with the rest as Train
+      - Train and test `N` different classifiers
+      - Report average accuracy and standard deviation of the accuracy
+      - Finding Parameters Based on Cross Validation
+        - Given `D^TRAIN` and `D^TEST`, for each possible value of the hyper-parameter (e.g., `K = 1, 2, 3, ..., 10`), conduct cross validation on `D^TRAIN` with parameter `K`
+        - Choose the model with the best performance on `D^DEV`
+        - Optional: re-train the model on `D^TRAIN ∪ D^DEV ` with the best hyper-parameter set
+        - Evaluate the final model on `D^TEST`
+
+  - Construct the Label of `x` Using These `k` Points
+
+    - Majority vote
+      - To break ties, it's better to use an odd-numbered `k`
+    - Weighted vote
+      - Weight by their distances; this is related to kernel methods (discussed later)
+
+- Decision Boundary
+
+  - The Decision Boundary for KNN
+    - Is the K-nearest neighbors algorithm explicitly building a function?
+      - No, it never forms an explicit hypothesis
+    - Given a training set, what is the implicit function that is being computed?
+    - Ex) If you have two training points, what will the decision boundary for 1-nearest neighbor be?
+      - A line bisecting the two points
+    - The Voronoi Diagram
+      - For any point `x` in a training set `S`, the Voronoi Cell of `x` is a polytype consisting of all points closer to `x` than any other point in `S`
+      - The Voronoi Diagram is the union of all Voronoi Cells
+        - Covers the entire space
+
+- Curse of Dimensionality
+
+  - Ex) What fraction of the volume of a unit circle lies between radius `1 - ϵ` and radius `1`?
+
+    - $$
+      \frac{\pi\times1^2-\pi(1-\epsilon)^2}{\pi\times{1^2}}=1-(1-\epsilon)^2
+      $$
+
+  - Ex) What fraction of the volume of a unit sphere lies between radius `1 - ϵ` and radius `1`?
+
+    - $$
+      \frac{\frac{4\pi}{3}\times1^2-\frac{4\pi}{3}(1-\epsilon)^2}{\frac{4\pi}{3}\times{1^2}}=1-(1-\epsilon)^3
+      $$
+
+  - In `d` dimensions:
+
+    - $$
+      1-(1-\epsilon)^d
+      $$
+
+      - When `d` is large, this approaches `1`
+
+    - In high dimensions, most of the volume is located far from the center
+
+  - Most of the points in high dimensional space are far away from the origin
+
+    - Need more data to "fill up the space"
+
+  - Bad news for KNN in high-dimensional spaces
+
+    - Even if most/all features are relevant, in high dimensional spaces, most points are equally far away from each other
+
+  - Dealing with the Curse of Dimensionality
+
+    - Most "real-world" data is not uniformly distributed in high dimensional space
+      - Capturing the underlying dimensionality of the space – dimensionality reduction
+
+- Data Preprocessing
+
+  - Normalize data to have zero mean and unit standard deviation in each dimension
+
+    - $$
+      \bar{x}_d=\frac{1}{N}\sum_nx_{nd},\quad s_d^2=\frac{1}{N-1}\sum_n(x_{nd}-\bar{x}_d)^2
+      $$
+
+  - Scale the feature accordingly
+
+    - $$
+      x_{nd}\leftarrow\frac{x_{nd}-\bar{x}_d}{s_d}
+      $$
+
+
+
+## Lecture 5:
+
+- 
 
