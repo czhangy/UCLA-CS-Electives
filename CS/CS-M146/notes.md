@@ -353,5 +353,19 @@
 
 ## Lecture 4:
 
-- 
+- Learning Objectives:
+  - KNN algorithms
+  - Hyper-parameter tuning
+    - Train/develop/test
+    - `N`-fold cross-validation
+  - Decision boundary
+  - Curse of dimensionality
+  - Practical concerns – data preprocessing
+- KNN Algorithm
+  - Training examples are vectors `xi` associated with a label `yi`
+  - Learning: just store all the training examples
+  - Prediction for a new example `x`:
+    - Find the `k` closest training examples to `x`
+    - Construct the label of `x` using these `k` points
+  - 
 
