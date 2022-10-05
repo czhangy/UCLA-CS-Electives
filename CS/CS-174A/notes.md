@@ -55,7 +55,7 @@
 
 
 
-## Lecture 2:  Output Devices
+## Lecture 2: Output Devices
 
 - Basic Elements (cont.)
 
@@ -201,7 +201,7 @@
 
 
 
-## Lecture 3: Parametric Forms
+## Lecture 3: Vectors and Parametric Forms
 
 - Review
 
@@ -435,7 +435,361 @@
 
     - This course will generally use a right-hand coordinate system
 
-## Lecture 4:
+## Lecture 4: Matrices, Homogeneous Representation, and Shapes
+
+- Review:
+
+  - Affine and Convex Combinations
+    - Parametric Form of Lines
+      - Line: infinite in both directions
+      - Ray: infinite in one direction
+      - Edge (or line segment): limited in both directions
+      - Affine combination of points
+      - Convex combination of points
+    - Parametric Form of Places
+      - Affine combination of points
+      - Convex combination of points
+
+- Vectors
+
+  - Dot Products in Graphics
+
+    - $$
+      \bold{w},\bold{v}\in\mathbb{R}^n\\
+      \bold{w}\cdot\bold{v}=\sum_{i=1}^nw_iv_i
+      $$
+
+    - The projection of `u` on `v`
+
+    - Another problem dot products solve: comparing vectors
+
+      - Trigonometry measurements
+
+    - Properties:
+
+      - Symmetry:
+
+        - $$
+          \bold{a}\cdot\bold{b}=\bold{b}\cdot\bold{a}
+          $$
+
+      - Linearity:
+
+        - $$
+          (\bold{a}+\bold{b})\cdot\bold{c}=\bold{a}\cdot\bold{c}+\bold{b}\cdot\bold{c}
+          $$
+
+      - Homogeneity:
+
+        - $$
+          (s\bold{a})\cdot\bold{b}=s(\bold{a}\cdot\bold{b})
+          $$
+
+      - $$
+        |\bold{b}|^2=\bold{b}\cdot\bold{b}
+        $$
+
+      - $$
+        \bold{a}\cdot\bold{b}=|\bold{a}||\bold{b}|\cos\theta
+        $$
+
+    - Dot Product and Perpendicularity
+
+      - `a · b > 0` if the angle is acute
+      - `a · b = 0` if the angle is right
+      - `a · b < 0` if the angle is obtuse
+
+    - Perpendicular Vectors
+
+      - Vectors `a` and `b` are perpendicular iff `a · b = 0`
+
+      - Also called "normal" or "orthogonal" vectors
+
+      - It's easy to see that the standard unit vectors form an orthogonal basis:
+
+        - $$
+          \bold{i}\cdot\bold{j}=0\\
+          \bold{j}\cdot\bold{k}=0\\
+          \bold{i}\cdot\bold{k}=0
+          $$
+
+    - Projection
+
+      - $$
+        |\bold{u}|\cos\theta-\frac{\bold{u}\cdot\bold{v}}{|\bold{v}|}
+        $$
+
+      - Projection of vector `u` on unit vector `v`
+
+      - Projection of vector `u` in `v`'s direction
+
+    - The problems dot product solves:
+
+      - Dotting with a vector of coefficients gives a linear function that maps a point onto a scalar
+      - Predictable effect as you adjust a coordinate
+
+  - Cross Product
+
+    - Defined only for 3D vectors and with respect to the standard unit vectors
+
+    - $$
+      \bold{a}\times\bold{b}=(a_yb_z-a_zb_y)\bold{i}+(a_zb_x-a_xb_z)\bold{j}+(a_xb_y-a_yb_x)\bold{k}\\
+      \bold{a}\times\bold{b}=\begin{vmatrix}
+      \bold{i}&\bold{j}&\bold{k}\\
+      a_x&a_y&a_z\\
+      b_x&b_y&b_z
+      \end{vmatrix}
+      $$
+
+    - Properties:
+
+      - $$
+        \bold{i}\times\bold{j}=\bold{k}\\
+        \bold{i}\times\bold{k}=-\bold{j}\\
+        \bold{j}\times\bold{k}=\bold{i}
+        $$
+
+      - Antisymmetry:
+
+        - $$
+          \bold{a}\times\bold{b}=-\bold{b}\times\bold{a}
+          $$
+
+      - Linearity:
+
+        - $$
+          \bold{a}\times(\bold{b}+\bold{c})=\bold{a}\times\bold{b}+\bold{a}\times\bold{c}
+          $$
+
+      - Homogeneity:
+
+        - $$
+          (s\bold{a})\times\bold{b}=s(\bold{a}\times\bold{b})
+          $$
+
+      - The cross product is normal to both vectors:
+
+        - $$
+          (\bold{a}\times\bold{b})\cdot\bold{a}=(\bold{a}\times\bold{b})\cdot\bold{b}=0
+          $$
+
+      - $$
+        |\bold{a}\times\bold{b}|=|\bold{a}||\bold{b}|\sin\theta
+        $$
+
+- Matrices
+
+  - Rectangular arrangement of scalar elements
+
+  - Special Square Matrices
+
+    - Zero matrix:
+
+      - $$
+        A_{ij}=0\text{ for all }i,j
+        $$
+
+    - Identity matrix:
+
+      - $$
+        I_n=\begin{cases}I_{ij}=1\text{ for all }i\\I_{ij}=0 \text{ for all }i\ne j\end{cases}
+        $$
+
+    - Symmetric matrix:
+
+      - $$
+        (A_{ij})=(A_{ji})
+        $$
+
+  - Operations:
+
+    - Addition:
+
+      - $$
+        \bold{A}_{m\times n}+\bold{B}_{m\times n}=(a_{ij}+b_{ij})
+        $$
+
+      - Properties:
+
+        - $$
+          \bold{A}+\bold{B}=\bold{B}+\bold{A}\\
+          \bold{A}+(\bold{B}+\bold{C})=(\bold{A}+\bold{B}+\bold{C})\\
+          f(\bold{A}+\bold{B})=f\bold{A}+f\bold{B}
+          $$
+
+        - Transpose:
+
+          - $$
+            \bold{A}^T=(a_{ij})^T=(a_{ji})
+            $$
+
+    - Multiplication:
+
+      - $$
+        \bold{C}_{m\times r}=\bold{A}_{m\times n}\bold{B}_{n\times r}\\
+        (\bold{C})_{ij}=\left(\sum_{k=1}^na_{ik}b_{kj}\right)
+        $$
+
+      - Properties:
+
+        - $$
+          \bold{AB}\ne\bold{BA}\\
+          \bold{A}(\bold{BC})=(\bold{AB})\bold{C}\\
+          f(\bold{AB})=(f\bold{A})\bold{B}\\
+          \bold{A}(\bold{B}+\bold{C})=\bold{AB}+\bold{AC},(\bold{B}+\bold{C})\bold{A}=\bold{BA}+\bold{CA}\\
+          (\bold{AB})^T=\bold{B}^T\bold{A}^T
+          $$
+
+  - Inverse of a Square Matrix
+
+    - $$
+      \bold{M}\bold{M}^{-1}=\bold{M}^{-1}\bold{M}=\bold{I}
+      $$
+
+    - $$
+      (\bold{AB})^{-1}=\bold{B}^{-1}\bold{A}^{-1}
+      $$
+
+  - Dot Product as a Matrix Multiplication
+
+    - $$
+      \bold{a}\cdot\bold{b}=\bold{a}^T\bold{b}\\
+      =\begin{pmatrix}a_1&a_2&a_3\end{pmatrix}\begin{pmatrix}b_1\\b_2\\b_3\end{pmatrix}\\
+      =a_1b_1+a_2b_2+a_3b_3
+      $$
+
+- Next Up:
+
+  - Homogeneous Representation of Points & Vectors
+  - Spaces: Vector & Affine
+  - Shapes
+    - Lines, circles, polygons (triangles), polyhedrons
+  - Transformations
+    - Translation, scaling, rotation, shear
+  - Spaces
+    - Model space
+    - Object/world space
+    - Eye/camera space
+    - Screen space
+
+- Homogeneous Representation of Points & Vectors
+
+  - Points vs. Vectors
+
+    - What is the difference?
+      - Points have location, but no size or direction
+      - Vectors have size and direction, but no location
+    - Problem: we represent 3D points and vectors both as 3-tuples
+
+  - Homogeneous Representation
+
+    - Convention: vectors and points are represented as 4x1 column matrices
+
+    - 3D Homogeneous Vector:
+
+      - $$
+        \begin{bmatrix}v_1\\v_2\\v_3\\0\end{bmatrix}
+        $$
+
+    - 3D Homogeneous Point:
+
+      - $$
+        \begin{bmatrix}p_1\\p_2\\p_3\\1\end{bmatrix}
+        $$
+
+    - Normal to homogeneous:
+
+      - For a vector, append `0` as a fourth coordinate
+      - For a point, append `1` as a fourth coordinate
+
+    - Homogeneous to normal:
+
+      - Remove the fourth coordinate
+
+  - Relationship between Points and Vectors
+
+    - A difference between two points is a vector:
+
+      - $$
+        Q-P=\bold{v}
+        $$
+
+      - `v` is a vector from `P` to `Q`
+
+    - We can consider a point as a base point plus a vector offset:
+
+      - $$
+        Q=P+\bold{v}
+        $$
+
+    - Holds in homogeneous form
+
+- Spaces & Frames
+
+  - Vector & Affine Spaces
+
+    - Basis = vector space: support only vectors, not points
+    - Frame = basis + point of reference/origin = affine space: support vectors and points
+    - Basis defined by `v1, v2, v3`
+    - Frame defined by `v1, v2, v3, P0`
+
+  - Homogeneous Representation
+
+    - Vectors & Points
+
+      - $$
+        \bold{v}=\beta_1v_1+\beta_2v_2+\beta_3v_3
+        $$
+
+      - $$
+        P=P_0+\bold{v}=P_0+\alpha_1v_1+\alpha_2v_2+\alpha_3v_3
+        $$
+
+    - Linear Combination of Points
+
+      - $$
+        aP+bQ=a\begin{bmatrix}p_1\\p_2\\p_3\\1\end{bmatrix}+b\begin{bmatrix}q_1\\q_2\\q_3\\1\end{bmatrix}=\begin{bmatrix}ap_1+bq_1\\ap_2+bq_2\\ap_3+bq_3\\a+b\end{bmatrix}
+        $$
+
+      - What is it?
+
+        - If `(a + b) = 0`, then it's a vector
+
+        - If `(a + b) = 1`, then it's a point
+
+        - Otherwise, ???
+
+          - Any scalar multiple of a homogeneous point is the same homogenous point
+
+          - $$
+            \begin{bmatrix}2\\4\\6\\2\end{bmatrix}\equiv\begin{bmatrix}1\\2\\3\\1\end{bmatrix}
+            $$
+
+            - When the fourth value is `1`, the first three values are the Cartesian point
+
+- Shapes
+
+  - Discretization
+    - We don't know how to tell a computer to draw most shapes because of their complicated, non-linear formulas
+    - Instead, we linearize those shapes, breaking them up into a finite number of line segments between `N` discrete points
+    - The more polygons you use, the smoother the surface, but the more expensive in space/time
+  - Polygon
+    - Collection of points connected with lines
+    - Example:
+      - Vertices: `v1, v2, v3, v4`
+      - Edges: `e1 = v1v2, e2 = v2v3, e3 = v3v4, e4 = v4, v1`
+    - Closed vs. open
+    - Wireframe vs. filled
+    - Planar vs. non-planar
+    - Convex vs. concave
+    - Simple vs. non-simple
+  - Triangles
+    - The most common primitive
+    - Simple, convex, and planar
+
+
+
+## Lecture 5:
 
 - 
 
@@ -480,9 +834,3 @@
     - Get familiar with the developing environment for future assignments
   - Prerequisite
     - Very basic JS
-
-
-
-## Discussion 2:
-
-- 
