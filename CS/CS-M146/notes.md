@@ -506,7 +506,140 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Decision Trees and Linear Models
+
+- Decision Trees
+
+  - What is a Decision Tree?
+
+    - A hierarchical data structure that represents data
+    - Motivation: many decisions are tree structures
+    - Terminology:
+      - Root: the first point in the tree
+      - Internal nodes: nodes in the middle, features used to categorize the data
+      - Edge/branch: the different values of features that break the tree into subtrees
+      - Leaf: the nodes representing outputs of the model
+    - The Representation:
+      - Decision trees are classifiers for instances represented as feature vectors
+      - Nodes are tests for feature values
+      - Edges: there is one branch for each value of the feature
+      - Leaves specify the category (labels)
+      - Can categorize instances into multiple disjoint categories
+    - Handling Real-Valued Features
+      - Usually, instances are represented as attribute-value pairs
+      - Numerical values can be used by splitting nodes with thresholds
+      - A tree partitions the feature space
+    - Expressivity of Decision Trees
+      - What Boolean functions can a decision tree represent?
+        - Any Boolean function
+
+  - Learning a Decision Tree
+
+    - Basic Decision Trees Learning Algorithm
+
+      - Data is processed in batch (i.e., all the data available)
+      - Recursively build a decision tree top-down
+      - Base case:
+        - If all examples are labeled the same, return a single node with the label
+      - Otherwise:
+        - Pick an attribute and create branches
+        - Split the tree
+
+    - Decision Tree Algorithm: ID3
+
+      - ```pseudocode
+        ID3(S, Attributes, Label):
+        	If all the attributes have the same label:
+        		Return a single node with Label // Base case
+        	A = attribute in Attributes that best classifies S
+        	For each possible value v of A:
+        		Add a new tree branch corresponding to A=v
+        		Let Sv be the subset of examples in S with A=v
+        		If Sv is empty:
+        			Add leaf node with the common value of Label in S
+          	Else:
+          		Add the subtree ID3(Sv, Attributes - {A}, Label)
+        ```
+
+    - Which Attribute to Split?
+
+      - The goal is to have the resulting decision tree as small as possible
+
+        - Finding the minimal decision tree consistent with the data is NP-hard
+        - We use a greedy heuristic search for a simple tree (cannot guarantee optimality)
+
+      - How do we quantify it?
+
+        - The most popular heuristic is based on the information gain
+
+      - How do we Measure Information Gain?
+
+        - Idea: gaining information reduces uncertainty
+        - Uncertainty can be measured by entropy
+
+      - Entropy
+
+        - Entropy (impurity, disorder) of a set of examples, `S`, relative to a binary classification is:
+
+        - $$
+          H[S]=-P_+\log_2(P_+)-P_-\log_2(P_-)
+          $$
+
+          - Here, we define `0log0 = 0`
+
+        - Where `P+` is the proportion of positive examples in `S` and `P-` is the proportion of negatives
+
+        - Formal Definition:
+
+          - If a random variable `S` has `K` different values, `a1, a2, ..., ak`, its entropy is given by:
+
+            - $$
+              H[S]=-\sum_{v=1}^KP(S=a_v)\log_2P(S=a_v)
+              $$
+
+      - Information Gain
+
+        - The information gain of an attribute `a` is the expected reduction in entropy caused by partitioning on this attribute
+
+        - $$
+          Gain(S,A)=Entropy(S)-\sum_{v\in\text{Values}(A)}\frac{|S_v|}{|S|}Entropy(S_v)
+          $$
+
+          - `Sv` is the subset of `S` for which attribute `a` has value `v`
+          - The entropy of partitioning the data is calculated by weighing the entropy of each partition by its size
+
+  - Summary:
+
+    - Representation: what are decision trees?
+      - A hierarchical data structure that represents data
+    - Algorithm: learning decision trees
+      - The ID3 algorithm: a greedy heuristic
+        - If all the examples have the same label, create a leaf with that label
+        - Otherwise, find the "most informative" attribute and split the data for different values of that attribute
+        - Recurse on the splits
+
+- Linear Models
+
+  - Recap: `X` as a vector space
+
+    - `X` is an `N`-dimensional vector space (e.g., `R^N`)
+      - Each dimension = one feature
+    - Each `x` is a feature vector
+    - Think of `x = [x1, ..., xN]` as a point in `X`
+    - Goal is to find a hyperplane that separates the space
+
+  - Hypothesis Space
+
+    - Design an algorithm to find a good line within the hypothesis space
+
+    - $$
+      w^Tx+b=0
+      $$
+
+      - `w` and `b` are the parameters to represent a linear function
+
+
+
+## Lecture 6:
 
 - 
-
