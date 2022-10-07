@@ -782,6 +782,10 @@
     - Wireframe vs. filled
     - Planar vs. non-planar
     - Convex vs. concave
+      - Concave: at least one interior angle is >180º
+      - Two problems with concave polygons
+        - Harder to detect points within the polygon's bounds
+        - Harder to find the normal of the polygon
     - Simple vs. non-simple
   - Triangles
     - The most common primitive
@@ -789,9 +793,284 @@
 
 
 
-## Lecture 5:
+## Lecture 5: Transformations
 
-- 
+- Shapes
+
+  - Polygonal Models/Data Structures
+    - Indexed Face Set
+      - Comprised of an indexed vertex list and faces
+      - Use the index of vertices to define the faces of the shape
+        - Vertices are listed in a counterclockwise manner to make it easier to calculate the outward normal
+
+- Next Up:
+
+  - Transformations
+    - Translation, scaling, rotation, shear
+    - Matrix representations
+    - Inverse of these transformations
+  - Spaces
+    - Model space
+    - Object/world space
+    - Eye/camera space
+    - Screen space
+
+- Transformations
+
+  - Translations (2D)
+
+    - Geometrically:
+
+      - Movement by some amount in each dimension
+
+    - Arithmetically:
+
+      - $$
+        x'=x+t_x\\
+        y'=y+t_y
+        $$
+
+      - $$
+        \begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}t_x\\t_y\end{bmatrix}+\begin{bmatrix}x\\y\end{bmatrix}
+        $$
+
+  - Scaling (2D)
+
+    - Geometrically:
+
+      - Doesn't make sense to scale a point, only an object
+      - Scale each vertex of the object by multiplying the coordinates of each vertex by some scaling factor, resulting in a resized object
+        - Moves the object away from the origin if scaled by a factor `>1`
+        - Moves the object towards the origin if scaled by a factor `<1`
+        - A scaling factor of `1` does nothing in that dimension
+        - A scaling factor of `-1` mirrors the object over the opposite axis
+      - Scaling happens *with respect to the origin*
+      - Uniform scaling: when `Sx = Sy`
+
+    - Arithmetically:
+
+      - $$
+        x'=S_xx\\
+        y'=S_yy
+        $$
+
+      - $$
+        \begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}S_x&0\\0&S_y\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}
+        $$
+
+  - Rotation (2D)
+
+    - Geometrically:
+
+      - Rotation of a point about the origin by some angle `θ`, counterclockwise
+      - The distance of the point from the origin is `r`
+      - The angle between the original point and the x-axis is `Φ`
+
+    - Arithmetically:
+
+      - $$
+        x=r\cos\phi\quad y=r\sin\phi\\
+        \begin{align*}
+        x'&=r\cos(\phi+\theta)\\
+        &=r\cos\phi\cos\theta-r\sin\phi\sin\theta\\
+        &=x\cos\theta-y\sin\theta\\
+        y'&=r\sin(\phi+\theta)\\
+        &=r\sin\phi\cos\theta+r\cos\phi\sin\theta\\
+        &=x\sin\theta+y\cos\theta
+        \end{align*}
+        $$
+
+      - $$
+        \begin{bmatrix}x'\\y'\end{bmatrix}=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}
+        $$
+
+  - Shear (2D)
+
+    - Geometrically:
+
+      - Deformation to an object caused by a shearing factor `Sh(a)` in a direction
+      - Coordinates in the other direction don't change
+
+    - Arithmetically
+
+      - In `x` direction:
+
+        - $$
+          x'=x+ay\\
+          y'=y
+          $$
+
+        - $$
+          \begin{bmatrix}
+          x'\\
+          y'
+          \end{bmatrix}
+          \begin{bmatrix}
+          1&a\\
+          0&1
+          \end{bmatrix}
+          \begin{bmatrix}
+          x\\
+          y
+          \end{bmatrix}
+          $$
+
+      - In `y` direction:
+
+        - $$
+          x'=x\\
+          y'=bx+y
+          $$
+
+        - $$
+          \begin{bmatrix}
+          x'\\
+          y'\\
+          \end{bmatrix}
+          \begin{bmatrix}
+          1&0\\
+          b&1\\
+          \end{bmatrix}
+          \begin{bmatrix}
+          x\\
+          y\\
+          \end{bmatrix}
+          $$
+
+  - Homogeneous Matrices
+
+    - Given any sequence of transformations from right to left, we can use consecutive matrix multiplications to produce a single transformation matrix, which can then be applied to each point of an object
+
+      - We must expand our matrix arithmetic to 3x3 in order to match our homogeneous matrices
+
+    - Translation
+
+      - $$
+        \begin{bmatrix}
+        x'\\
+        y'\\
+        w'
+        \end{bmatrix}=
+        \begin{bmatrix}
+        1&0&t_x\\
+        0&1&t_y\\
+        0&0&1
+        \end{bmatrix}
+        \begin{bmatrix}
+        x\\
+        y\\
+        1
+        \end{bmatrix}
+        $$
+
+    - Scaling
+
+      - $$
+        \begin{bmatrix}
+        x'\\
+        y'\\
+        w'
+        \end{bmatrix}=
+        \begin{bmatrix}
+        S_x&0&0\\
+        0&S_y&0\\
+        0&0&1
+        \end{bmatrix}
+        \begin{bmatrix}
+        x\\
+        y\\
+        1
+        \end{bmatrix}
+        $$
+
+    - Rotation
+
+      - $$
+        \begin{bmatrix}
+        x'\\
+        y'\\
+        w'
+        \end{bmatrix}=
+        \begin{bmatrix}
+        \cos\theta&-\sin\theta&0\\
+        \sin\theta&\cos\theta&0\\
+        0&0&1
+        \end{bmatrix}
+        \begin{bmatrix}
+        x\\
+        y\\
+        1
+        \end{bmatrix}
+        $$
+
+    - Shear
+
+      - In `x` direction:
+
+        - $$
+          \begin{bmatrix}
+          x'\\
+          y'\\
+          w'
+          \end{bmatrix}
+          \begin{bmatrix}
+          1&a&0\\
+          0&1&0\\
+          0&0&1
+          \end{bmatrix}
+          \begin{bmatrix}
+          x\\
+          y\\
+          1
+          \end{bmatrix}
+          $$
+
+      - In `y` direction:
+
+        - $$
+          \begin{bmatrix}
+          x'\\
+          y'\\
+          w'
+          \end{bmatrix}
+          \begin{bmatrix}
+          1&0&0\\
+          b&1&0\\
+          0&0&1
+          \end{bmatrix}
+          \begin{bmatrix}
+          x\\
+          y\\
+          1
+          \end{bmatrix}
+          $$
+
+  - Inverses
+
+    - Translation
+
+      - $$
+        T^{-1}(t_x,t_y)=T(-t_x,-t_y)
+        $$
+
+    - Scaling
+
+      - $$
+        S^{-1}(S_x,S_y)=S\left(\frac{1}{S_x},\frac{1}{S_y}\right)
+        $$
+
+    - Rotation
+
+      - $$
+        R^{-1}(\theta)=R(-\theta)
+        $$
+
+    - Shear
+
+      - $$
+        Sh_x^{-1}(a)=Sh_x(-a)\\
+        Sh_y^{-1}(b)=Sh_y(-b)
+        $$
 
 
 
