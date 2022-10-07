@@ -795,6 +795,12 @@
 
 
 
+## Lecture 6:
+
+- 
+
+
+
 ## Discussion 1: Introduction and Assignment 1
 
 - Logistics
