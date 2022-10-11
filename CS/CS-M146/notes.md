@@ -640,6 +640,258 @@
 
 
 
-## Lecture 6:
+## Lecture 6: Linear Model and Perceptron
+
+- What We Will Learn Today
+
+  - Linear model
+
+    - Basic linear algebra and linear classifier
+
+    - Trick to remove bias term `b` in:
+
+      - $$
+        w^Tx+b=0
+        $$
+
+  - Perceptron algorithm
+
+    - Perceptron update
+    - Why it works
+    - Convergence theorem – mistake bound
+
+- Linear Model
+
+  - Hypothesis Space
+
+    - $$
+      w=\begin{bmatrix}
+      w_1\\
+      w_2\\
+      \vdots\\
+      \vdots\\
+      w_n
+      \end{bmatrix},\quad
+      x=\begin{bmatrix}
+      x_1\\
+      x_2\\
+      \vdots\\
+      \vdots\\
+      x_n
+      \end{bmatrix}\\
+      w^Tx=w_1x_1+w_2x_2+\cdots+w_nx_n
+      $$
+
+    - `w^Tx` is the inner product (dot product) between `w` and `x`
+
+    - In `n` dimensions, a linear classifier represents a hyperplane that separates the space into two half spaces
+
+  - Linear Models for Binary Classification
+
+    - Given training set:
+
+      - $$
+        D=\{(x,y)\},\quad x\in\mathbb{R}^d,y\in\{-1,+1\}
+        $$
+
+      - We use them to learn a hypothesis function `h ∈ H`:
+
+        - $$
+          H=\{h\ |\ h(x)=\text{sgn}(w^Tx+b)\}
+          $$
+
+          - $$
+            \text{sgn}(x)=\begin{cases}
+            1&\text{if }z\ge0\\
+            -1&\text{otherwise}
+            \end{cases}
+            $$
+
+          - Note: when `z = 0`, we can either assign `sgn(z) = 1` or `-1`
+
+          - `w` and `n` are model/learnable parameters
+
+        - Such that `y = h(x)`
+
+    - Learn = Train = Find the best parameters `w`, `b`
+
+  - Linear Classifiers
+
+    - Linear classifiers classify an example `x` using the following classification process:
+
+      - Use weighted sum of features (`w`) plus a bias (`b`) and apply the `sgn` function (sign)
+
+    - A Simple Trick to Remove the Bias Term `b`
+
+      - Can also consider an additional feature of weight `b` and value `1` to condense process into a single summation
+
+      - $$
+        \tilde{w}=\begin{bmatrix}
+        w_1\\
+        w_2\\
+        \vdots\\
+        \vdots\\
+        w_n\\
+        b
+        \end{bmatrix},
+        \tilde{x}=\begin{bmatrix}
+        x_1\\
+        x_2\\
+        \vdots\\
+        \vdots\\
+        x_n\\
+        b
+        \end{bmatrix}
+        $$
+
+  - Learning a Linear Classifier
+
+    - There are several algorithms/models:
+      - Perceptron
+      - Logistic regression
+      - (Linear) support vector machines
+      - Naive Bayes
+      - etc.
+    - Different methods define "best" in a different way
+
+  - Linear Regression
+
+    - Linear regression maps an example `x` into a real value `y`
+
+    - Given training set:
+
+      - $$
+        D=\{(x,y)\},\quad x\in\mathbb{R}^d,y\in\{-1,+1\}
+        $$
+
+      - We use them to learn a hypothesis function `h ∈ H`:
+
+        - $$
+          H=\{h\ |\ h(x)=w^Tx+b\}
+          $$
+
+        - No `sgn` function
+
+- Perceptron
+
+  - Mistake + Correction = Learning
+
+  - The Perceptron Algorithm
+
+    - The goal is to find a separating hyperplane
+
+    - An online algorithm
+
+      - Processes one example at a time
+
+    - ```pseudocode
+      Initialize w ← 0 ∈ R^n
+      For (x, y) in D:
+      	y^hat = sgn(w^Tx)						// Predict
+        if y&hat ≠ y, w ← w + yx 	// Update
+      Return w
+      ```
+
+    - Prediction:
+
+      - $$
+        y^{test}\leftarrow\text{sgn}(\bold{w}^T\bold{x^{test}})
+        $$
+
+  - Intuition Behind Updates
+
+    - Mistake on postive:
+
+      - $$
+        \bold{w_{t+1}}\leftarrow \bold{w_t}+\bold{x_i}
+        $$
+
+    - Mistake on negative:
+
+      - $$
+        \bold{w_{t+1}}\leftarrow \bold{w_t}-\bold{x_i}
+        $$
+
+    - Suppose we have made a mistake on a positive example
+
+      - $$
+        y=+1,\quad \bold{w_t}^T\bold{x}\le0
+        $$
+
+    - Call the new weight vector:
+
+      - $$
+        \bold{w_{t+1}}=\bold{w_t}+\bold{x}
+        $$
+
+    - The new dot product will be:
+
+      - $$
+        \bold{w_{t+1}}^T\bold{x}=(\bold{w_t}+\bold{x})^T\bold{x}=\bold{w_t}^T\bold{x}+\bold{x}^T\bold{}
+        $$
+
+    - For a positive example, the Perceptron update will increase the score assigned to the same input
+
+    - Similar reasoning for negative examples
+
+  - Perceptron Learnability
+
+    - Perceptron cannot learn what it cannot represent – only linearly separable functions
+      - e.g., parity functions (like XOR) cannot be learned
+
+  - Convergence Theorem
+
+    - If there exists a set of weights that are consistent with the data (i.e., the data is linearly separable), the Perceptron algorithm will converge
+      - The update stops after making a finite number of mistakes
+      - The convergence rate depends on the difficulty of the problem
+    - Note: this is the condition of the data, we may not know what the hyperplane is
+    - If the data is not linearly separable, then the algorithm will eventually repeat the same set of weights and enter an infinite loop
+
+  - Margin
+
+    - If a hyperplane can separate the data, the margin of a hyperplane for the dataset is the distance between the hyperplane and the data point closest to it
+
+    - The margin of a dataset (`γ`) is the maximum margin possible for that dataset using any weight vector
+
+    - Let `{(x1, y1), (x2, y2), ..., (xm, ym)}` be a set of training data, if for all data points `(xi, yi)` in the training set, there exists a unit vector `u` such that:
+
+      - $$
+        y_i(\bold{u}^T\bold{x_i})\ge\gamma_i
+        $$
+
+    - Margin is not scale invariant
+
+      - i.e., if we double the size of every input `xi`, the margin `γ` is also doubled
+
+      - The "difficulty" of the problem can be captured by:
+
+        - $$
+          \frac{R}{\gamma},\quad||x_i||\le R,\forall_i
+          $$
+
+  - Mistake Bound Theorem
+
+    - Let `{(x1, y1), (x2, y2), ..., (xm, ym)}` be a sequence of training examples such that for all `i`, the feature vector `xi ∈ R^n` `||xi|| ≤ R`, and the label `y ∈ {-1, +1}`
+
+    - Suppose there exists some unit vector `u ∈ R^n` such that for some `γ > 0`, we have:
+
+      - $$
+        y_i(\bold{u}^T\bold{x_i})\ge\gamma_i
+        $$
+
+    - Then, the number of mistakes the Perceptron algorithm makes on the training set is bounded by:
+
+      - $$
+        \left(\frac{R}{\gamma}\right)^2
+        $$
+
+  - Beyond the Separable Case
+
+    - Good news: Perceptron makes no assumption about data distribution, could even be adversarial
+    - Bad news: Real-world data are often no linearly separable
+
+
+
+## Lecture 7:
 
 - 
