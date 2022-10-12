@@ -1076,6 +1076,13 @@
 
 ## Lecture 6:
 
+- Last Lecture Recap
+  - Polygons (triangles)
+  - Transformations: translation, scaling, rotation, shear
+    - Geometrical representation
+    - Mathematical representation
+    - Homogeneous representation
+  - Inverse of Transformations
 - 
 
 
