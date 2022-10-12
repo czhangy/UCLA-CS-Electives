@@ -793,7 +793,7 @@
 
 
 
-## Lecture 5: Transformations
+## Lecture 5: 2D Transformations
 
 - Shapes
 
@@ -1074,16 +1074,148 @@
 
 
 
-## Lecture 6:
+## Lecture 6: 3D Transformations
 
 - Last Lecture Recap
+
   - Polygons (triangles)
   - Transformations: translation, scaling, rotation, shear
     - Geometrical representation
     - Mathematical representation
     - Homogeneous representation
   - Inverse of Transformations
-- 
+
+- Next Up
+
+  - Concatenation of transformations
+  - Spaces: model, object/world, eye/camera, screen
+  - Projections: parallel and perspectives
+  - Midterm
+  - Lighting
+  - Flat and Smooth Shading
+
+- Rendering Pipeline
+
+  - Model Space => Transformation Matrix => World Space => Eye Matrix => Eye Space => Projection Matrix => Projection Space => Window-To-Viewport Mapping => Screen Space
+
+- Extending 2D Transformations to 3D
+
+  - Translation
+
+    - $$
+      \begin{bmatrix}
+      1&0&0&t_x\\
+      0&1&0&t_y\\
+      0&0&1&t_z\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+      - The upper-left 3x3 is an orthonormal matrix => each row is a unit vector and all rows are perpendicular to every other row
+      - Rigid body transformation => the lengths and angles within the body do not change
+        - Connected to the nature of their orthonormal matrix
+        - Rigid body transformation <=> orthonormal matrix
+
+  - Scaling
+
+    - $$
+      \begin{bmatrix}
+      S_x&0&0&0\\
+      0&S_y&0&0\\
+      0&0&S_z&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+      - The upper-left 3x3 is an orthogonal matrix => all rows are perpendicular to every other row, but each row is not a unit vector
+      - 
+
+  - Rotation
+
+    - $$
+      R_z(\theta)=\begin{bmatrix}
+      \cos\theta&-\sin\theta&0&0\\
+      \sin\theta&\cos\theta&0&0\\
+      0&0&1&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+    - $$
+      R_x(\theta)=\begin{bmatrix}
+      1&0&0&0\\
+      0&\cos\theta&-\sin\theta&0\\
+      0&\sin\theta&\cos\theta&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+    - $$
+      R_y(\theta)=\begin{bmatrix}
+      \cos\theta&0&\sin\theta&0\\
+      0&1&0&0\\
+      -\sin\theta&0&\cos\theta&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+      - The upper-left 3x3 on each matrix is also an orthonormal matrix
+        - Also a rigid body transformation
+
+  - Shear
+
+    - $$
+      \begin{bmatrix}
+      1&0&SH_x&0\\
+      0&1&SH_y&0\\
+      0&0&1&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+- Affine Transitions
+
+  - All transformations we've looked at are affine
+  - Properties:
+    - Maintains linearity => if we're transforming a straight line, it will remain a straight line after transformation
+    - Collinearity => if we have three points that are collinear before transformation, they will remain collinear after transformation
+    - Parallelism => if we have two edges that are parallel before transformation, they will remain parallel after transformation
+    - Planarity => if we have a set of points that are coplanar, they will remain coplanar after transformation
+    - Ratio of edge lengths => relative ratios of edges are preserved through transformation
+  - Rigid body transformation is a special case of affine transformation
+
+- Concatenation of Transformations
+
+  - In general, we know that matrix multiplication is not commutative
+  - Affine transformations are commutative and additive with themselves
+  - Examples:
+    - Rotation followed by translation vs. translation followed by rotation
+    - Rotation about a random point (not the origin)
+    - Rotation about a random axis
+
+- More on Orthonormal Matrices
+
+  - $$
+    R_z^{-1}(\theta)=R_z(-\theta)=\begin{bmatrix}
+    \cos(-\theta)&-\sin(-\theta)&0&0\\
+    \sin(-\theta)&\cos(-\theta)&0&0\\
+    0&0&1&0\\
+    0&0&0&1
+    \end{bmatrix}=\begin{bmatrix}
+    \cos\theta&\sin\theta&0&0\\
+    -\sin\theta&\cos\theta&0&0\\
+    0&0&1&0\\
+    0&0&0&1
+    \end{bmatrix}
+    $$
+
+    - Note that, for orthonormal matrices:
+
+      - $$
+        M^{-1}=M^T
+        $$
+
+      - Made up of translations and rotations only
 
 
 
