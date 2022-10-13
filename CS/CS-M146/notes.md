@@ -892,6 +892,317 @@
 
 
 
-## Lecture 7:
+## Lecture 7: Logistic Regression, Sigmoid Functions, and Gradient Descent
+
+- Recall: The Geometry of a Linear Classifier
+
+  - If we use a unit normal vector `u` to represent the hyperplane, the distance between point `x` to the plane is `|u^Tx + b|` or `y(u^Tx + b)`
+
+    - Hold as long as the model classifies correctly
+
+  - If the distance between the closest point in dataset `D` to the plane `u` is `γ`:
+
+    - $$
+      y_i(\bold{u}^Tx_i+b)\ge\gamma,\forall(x_i,y_i)\in D
+      $$
+
+    - As long as the dataset is linearly separable
+
+- Logistic Regression
+
+  - What You Will Learn Today
+
+    - Logistic regression assumption
+    - Sigmoid function
+    - Maximum likelihood principle
+    - Optimization in ML
+      - Stochastic gradient descent
+
+  - What Makes Data Not Linearly Separable?
+
+    - Decision boundary is nonlinear
+      - e.g., XOR
+    - Noise in the training data
+      - Outlier due to annotation errors
+    - Not enough features
+    - The nature of the prediction task
+      - 
+
+  - Classification, but...
+
+    - The output `y`y is a discrete value
+    - Instead of predicting the output label, let's predict `P(y = 1 | x)`
+      - How likely a given label is accurate if the feature vector lies in this region
+    - Perceptron doesn't produce probability estimates
+
+  - Predict `P(y = 1 | x)`
+
+    - Input:
+
+      - $$
+        x\in\mathbb{R}^d
+        $$
+
+    - Output:
+
+      - $$
+        y\in\{-1,1\}
+        $$
+
+    - Build a model `h(x)` such that:
+
+      - $$
+        h(\bold{x})=\sigma(\bold{w}^T\bold{x}+b)\approx P(y=1\ |\ \bold{x})
+        $$
+
+        - A regression problem
+
+        - `σ` is a sigmoid function:
+
+          - $$
+            \begin{equation*}
+            \begin{split}
+            \sigma(z)&=\frac{\text{exp}(z)}{1+\text{exp}(z)}\\
+            & = \frac{1}{1+\text{exp}(-z)}
+            \end{split}
+            \end{equation*}
+            $$
+
+  - How Can We Design Such a Transformation Function?
+
+    - Idea 1: Function always outputs a positive value
+
+      - `exp()` is always positive
+      - `exp(w^Tx + b)` always returns a positive value
+      - Problem: the function may return a value `>1`
+
+    - Idea 2: Normalize the value such that it is less than `1`
+
+      - `exp(w^Tx + b) ∈ (0, ∞)` grows very fast, so we need to us `exp` to normalize itself
+
+      - Let's use:
+
+        - $$
+          \sigma(\bold{w}^T\bold{x}+b)=\frac{\text{exp}(\bold{w}^T\bold{x}+b)}{1+\text{exp}(\bold{w}^T\bold{x}+b)}
+          $$
+
+      - $$
+        \bold{w}^T\bold{x}+b\rightarrow\infty\Rightarrow\sigma(\bold{w}^T\bold{x}+b)\rightarrow1\\
+        \bold{w}^T\bold{x}+b\rightarrow-\infty\Rightarrow\sigma(\bold{w}^T\bold{x}+b)\rightarrow0\\
+        $$
+
+  - The Sigmoid Function
+
+    - The `σ(z)` function is called a sigmoid function (or logistic function)
+
+    - $$
+      \begin{equation*}
+      \begin{split}
+      \sigma(z)&=\frac{\text{exp}(z)}{1+\text{exp}(z)}\\
+      & = \frac{1}{1+\text{exp}(-z)}
+      \end{split}
+      \end{equation*}
+      $$
+
+  - Summary (Modeling)
+
+    - What is the goal of logistic regression?
+
+      - Model `P(y = 1 |  x)`
+
+    - What is the hypothesis space?
+
+      - $$
+        H=\{h\ |\ h:X\rightarrow P(Y\ |\ X),h(\bold{x})=\sigma(\bold{w}^T\bold{x}+b)\}\\
+        \sigma(z)=\frac{1}{1+\text{exp(z)}}
+        $$
+
+    - We want to find `h(x)` such that:
+
+      - $$
+        h(\bold{x})\approx P(y=1\ |\ \bold{x})
+        $$
+
+- Decision Boundary of Logistic Regression
+
+  - Predicting a Label
+
+    - $$
+      P(y=1\ |\ \bold{x};\bold{w})=\sigma(\bold{w}^T\bold{x})=\frac{1}{1+\text{exp}(-\bold{w}^T\bold{x})}
+      $$
+
+    - Compute `σ(w^Tx)`
+
+      - If this is greater than `1/2`, predict `1`, otherwise predict `-1`
+
+- How to Train a Logistic Regression Model
+
+  - Logistic Regression: Setup
+
+    - The Setting
+
+      - Binary classification
+      - Inputs: feature vectors `x ∈ R^N`
+      - Labels: `y ∈ {-1, +1}`
+
+    - Training Data
+
+      - `S = {(x, y)}`, `m` examples
+
+    - Hypothesis Space
+
+      - $$
+        H=\{h\ |\ h:X\rightarrow P(Y\ |\ X),h(\bold{x})=\sigma(\bold{w}^T\bold{x}+b)\}\\
+        \sigma(z)=\frac{1}{1+\text{exp(z)}}
+        $$
+
+    - Learning Goal
+
+      - Find an `h ∈ H`, such that `h(x) ≈ P(y = 1 | x)`
+      - How?
+
+  - Maximum Likelihood
+
+    - Drawing Color Cards from the Envelope
+
+      - Sample with replacement `n` times
+
+      - `k` times we get a purple card and `n - k` times, we get a yellow card
+
+      - The joint probability (likelihood)
+
+        - $$
+          C^n_k\theta^k(1-\theta)^{n-k}
+          $$
+
+      - What is the best `θ` that maximizes the joint probability?
+
+      - Solving:
+
+        - $$
+          \text{max}_\theta\theta^k(1-\theta)^{n-k}
+          $$
+
+      - Equivalently, we can solve:
+
+        - $$
+          \text{max}_\theta\log(\theta^k(1-\theta)^{n-k})=\text{max}_\theta k\log\theta+(n-k)\log(1-\theta)
+          $$
+
+      - At the optimum:
+
+        - $$
+          \frac{\text{d}(k\log\theta+(n-k)\log(1-\theta))}{d\theta}=0\\
+          \frac{k}{\theta}-\frac{n-k}{1-\theta}=0\\
+          \theta(n-k)=(1-\theta)k\\
+          \theta=\frac{k}{n}
+          $$
+
+    - Maximum Likelihood Estimator (Formal Definition)
+
+      - Likelihood Function of Parameters
+
+        - Let `X1, ..., XN` be IID with PDF `p(x | θ)` => the likelihood function is defined by `L(θ)`:
+
+          - $$
+            L(\theta)=p(X_1,\ldots,X_N;\theta)=\prod_{i=1}^Np(X_i;\theta)
+            $$
+
+          - Note: the likelihood function is just the joint density of the data, except that we treat it as a function of the parameter `θ`
+
+        - Definition: the maximum likelihood estimator (MLE) `θ^hat` is the value of `θ` that maximizes `L(θ)`
+
+          - The log-likelihood function is defined by `l(θ) = log L(θ)`
+          - Its maximum occurs at the same places as that of the likelihood function
+
+      - Maximum Likelihood Estimator for Logistic Regression
+
+        - $$
+          \text{argmax}_{w,b}P(S;w,b)=\text{argmax}_{w,b}\prod_{i=1}^mP(y_i\ |\ x_i;w,b)
+          $$
+
+        - Equivalent to solve:
+
+          - $$
+            \text{argmax}_{w,b}\sum_{i=1}^m\log P(y_i\ |\ x_i;w,b)
+            $$
+
+        - Remember our assumption:
+
+          - $$
+            P(y=1\ |\ x;w,b)=\sigma(w^Tx+b)=\frac{1}{1+\text{exp}(-(w^Tx+b))}\\
+            \begin{equation*}
+            \begin{split}
+            P(y=-1\ |\ x;w,b)&=1-\sigma(w^Tx+b)\\
+            &=1-\frac{1}{1+\text{exp}(-(w^Tx+b))}\\
+            &=\frac{\text{exp}(-(w^Tx+b))}{1+\text{exp}(-(w^Tx+b))}\\
+            &=\frac{1}{1+\text{exp}(w^Tx+b)}\\
+            &=\sigma(-(w^Tx+b))
+            \end{split}
+            \end{equation*}
+            $$
+
+          - $$
+            \begin{equation*}
+            \begin{split}
+            P(y_i\ |\ x_i;w,b)&=\begin{cases}
+            \sigma(w^Tx_i+b)\\
+            \sigma(-(w^Tx_i+b))
+            \end{cases}\\
+            &=\sigma(y_i(w^Tx_i+b))
+            \end{split}
+            \end{equation*}
+            $$
+
+          - $$
+            \text{argmax}_{w,b}\sum_{i=1}^m\log\sigma(y_i(w^Tx_i+b))=\text{argmax}_{w,b}-\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+            $$
+
+- How to Optimize the Loss
+
+  - How to Minimize the Loss
+
+    - Optimization methods:
+      - Gradient descent
+      - Stochastic gradient descent
+        - Good enough to give a good model + good performance
+      - Analytic solution
+      - Many other approaches
+
+  - How to Solve It
+
+    - $$
+      \text{argmax}_{w,b}-\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+      $$
+
+    - There is no closed-form solution
+
+    - Max `f(x)` is equivalent to min `-f(x)`
+
+      - Only need to consider minimization problems
+
+    - One way to solve it is by gradient descent
+
+- Gradient Descent
+
+  - ```pseudocode
+    Start at a random point
+    Repeat
+    	Determine a descent direction
+    	Choose a step size
+    	Update
+    Until stopping criterion is satisfied
+    ```
+
+  - Where Will We Converge?
+
+    - If the function is convex, it converges to the global optimum (need proper choice of step size)
+
+    
+
+
+
+## Lecture 8:
 
 - 
+
