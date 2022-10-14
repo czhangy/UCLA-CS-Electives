@@ -1221,6 +1221,101 @@
 
 ## Lecture 7:
 
+- Last Lecture Recap
+
+  - Examples of Transformations
+    - Translation, scaling, rotation, shear
+
+- Next Up
+
+  - Concatenation of Transformations (cont.)
+  - Spaces:
+    - Model space
+    - Object/world space
+    - Eye/camera space
+    - Screen space
+  - Projections: parallel and perspective
+  - Midterm
+  - Lighting, flat/smooth shading
+
+- Examples of Transformation Composition (cont.)
+
+  - Rotation about a random axis
+
+    - $$
+      \cos\theta=\frac{u_x}{\sqrt{u_x^2+u_z^2}},\quad\sin\theta=\frac{u_z}{\sqrt{u_x^2+u_z^2}}
+      $$
+
+    - $$
+      \cos\phi=\frac{\sqrt{u_x^2+u_z^2}}{|\bold{u}|},\quad\sin\phi=\frac{u_y}{|\bold{u}|}
+      $$
+
+    - $$
+      M=T(O')R_y(-\theta)R_z(-\phi)R_x(\alpha)R_z(\phi)R_y(\theta)T(-O')
+      $$
+
+      - Move axis to origin, align axis with x-y plane, align axis with x-axis, perform required rotation about x-axis, then reverse the other transformations
+
+  - Transforming a vector/normal
+
+    - For vertices/points: `M`
+    - For vectors (normals): `(M^T)^-1`
+      - `(M^T)^-1 = M` for orthonormal matrices
+
+- Transformations of Coordinate Systems
+
+  - General Rotation Matrix
+
+    - $$
+      \begin{bmatrix}
+      x'\\
+      y'\\
+      z'\\
+      w'
+      \end{bmatrix}=\begin{bmatrix}
+      i_x'&j_x'&k_x'&0\\
+      i_y'&j_y'&k_y'&0\\
+      i_z'&j_z'&k_z'&0\\
+      0&0&0&1
+      \end{bmatrix}\begin{bmatrix}
+      x\\
+      y\\
+      z\\
+      1
+      \end{bmatrix}
+      $$
+
+  - Coordinate systems consist of basis vectors and an origin (point)
+
+    - They can be represented as affine matrices
+    - Therefore, we can transform them just like points and vectors
+    - This provides an alternate way to think of transformations: as changes of coordinate systems
+
+- Eye Space
+
+  - $$
+    \bold{k}=\bold{E},\quad\bold{i}=\bold{Top}\times\bold{E},\quad\bold{j}=\bold{k}\times{\bold{i}}
+    $$
+
+  - $$
+    EM=[\text{Mirror}_x][\text{GRM}]T(-\text{Loc})
+    $$
+
+    - $$
+      \text{Mirror}_x=\begin{bmatrix}
+      -1&0&0&0\\
+      0&1&0&0\\
+      0&0&1&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+- 
+
+
+
+## Lecture 8:
+
 - 
 
 
