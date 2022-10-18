@@ -1202,14 +1202,489 @@
 
 
 
-## Lecture 8: Neural Network and Deep Learning
+## Lecture 8: Gradient Descent, Evaluation Metrics, Neural Network, and Deep Learning
 
 - What You Will Learn Today
+
   - Optimization
     - Gradient descent
     - Stochastic gradient descent (SGD)
 
   - Evaluation Metrics
-  - Neural Network/
+  - Neural Network/Deep Learning
+    - Non-linear classifier
+    - Feed-forward neural network
+    - Deep learning architecture
 
+- Gradient Descent
+
+  - Example
+
+    - $$
+      \text{min}f(\theta)=0.5(\theta_1^2-\theta_2^2)^2+0.5(\theta_1-1)^2\\
+      \nabla f(\theta)=\begin{cases}
+      2(\theta_1^2-\theta_2)\theta_1+\theta_1-1\\
+      -(\theta_1^2-\theta_2)
+      \end{cases}
+      $$
+
+    - Use the following iterative procedure for gradient descent:
+
+      - Initialize `θ1` and `θ2` and `t = 0`
+
+      - Do:
+
+        - $$
+          \theta_1^{(t+1)}\leftarrow\theta_1^{(t)}-\eta[2(\theta_1^{(t)^2}-\theta_2^{(t)})\theta_1^{(t)}+\theta_1^{(t)}-1]\\
+          \theta_2^{(t+1)}\leftarrow\theta_2^{(t)}-\eta[-(\theta_1^{(t)^2}-\theta_2^{(t)})]\\
+          t\leftarrow t+1
+          $$
+
+      - Until `f(θt)` does not change much
+
+  - Remarks
+
+    - `η` is often called step size or learning rate – how far out update will go along the direction of the negative gradient
+
+    - With a suitable choice of `η`, the iterative procedure converges to a stationary point where:
+
+      - $$
+        \frac{\partial f}{\partial\theta}=0
+        $$
+
+      - A small `η` is too slow
+
+      - A large `η` is too unstable (may overshoot)
+
+    - A stationary point is only necessary for being the minimum
+
+  - Recap: Logistic Regression
+
+    - Training Data:
+
+      - $$
+        S=\{(x_i,y_i)\}
+        $$
+
+      - `m` examples
+
+    - Hypothesis Space:
+
+      - $$
+        H=\{h\ |\ h:X\rightarrow P(Y\ |\ X),h(x)=\sigma(w^Tx+b)\}
+        $$
+
+      - $$
+        \sigma(z)=\frac{1}{1+\text{exp}(-z)}
+        $$
+
+      - i.e., model `P(Y | X)` by `σ(w^Tx + b)`
+
+    - How to find the best `h ∈ H`: maximum log-likelihood
+
+      - $$
+        \text{argmax}-\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+        $$
+
+  - Gradient Descent for Logistic Regression
+
+    - Maximum log-likelihood:
+
+      - $$
+        \text{argmax}-\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+        $$
+
+    - Equivalent to the following minimization problem:
+
+      - $$
+        \text{argmin}\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+        $$
+
+      - $$
+        L(w,b)=\sum_{i=1}^m\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+        $$
+
+    - Gradient of `L(w, b)`:
+
+      - $$
+        \nabla L(w,b)=\sum^m_{i=1}\nabla\log(1+\text{exp}(-y_i(w^Tx_i+b)))
+        $$
+
+  - Recap: Gradient
+
+    - Let `z` be an `n`-dimensional vector of variables, `f(z)` is a function of `z`
+
+    - $$
+      \nabla f(z)=\begin{bmatrix}
+      \frac{\partial f(z)}{\partial z_1}\\
+      \frac{\partial f(z)}{\partial z_2}\\
+      \vdots\\
+      \frac{\partial f(z)}{\partial z_{n-1}}\\
+      \frac{\partial f(z)}{\partial z_n}
+      \end{bmatrix}
+      $$
+
+    - Exercise
+
+      - Let:
+
+        - $$
+          z=\begin{bmatrix}
+          z_1,z_2,z_3
+          \end{bmatrix}^T,\quad a=\begin{bmatrix}
+          3,2,4
+          \end{bmatrix}^T
+          $$
+
+        - $$
+          f(z)=\log(a^Tz)=\log(3z_1+2z_2+4z_3)
+          $$
+
+      - $$
+        \nabla f(z)=\begin{bmatrix}
+        \frac{\partial f(z)}{\partial z_1}\\
+        \frac{\partial f(z)}{\partial z_1}\\
+        \frac{\partial f(z)}{\partial z_1}\\
+        \end{bmatrix}=\begin{bmatrix}
+        \frac{3}{3z_1+2z_2+4z_3}\\
+        \frac{2}{3z_1+2z_2+4z_3}\\
+        \frac{3}{3z_1+2z_2+4z_3}
+        \end{bmatrix}=\frac{1}{3z_1+2z_2+4z_3}\begin{bmatrix}
+        3\\
+        2\\
+        4
+        \end{bmatrix}=\frac{1}{a^Tz}a
+        $$
+
+  - Gradient of `L(w, b)`
+
+    - $$
+      \begin{equation*}
+      \begin{split}
+      \nabla L(w,b)&=\sum^m_{i=1}\nabla\log(1+\text{exp}(-y_i(w^Tx_i+b)))\\
+      &=\nabla\log\frac{1}{\sigma(y_i(w^Tx_i+b))}\\
+      &=\nabla\log\frac{1}{\sigma(z)}\\
+      &=\nabla\log(1+\text{exp}(-z))\\
+      &=-\frac{\text{exp}(-z)}{1+\text{exp}(-z)}\\
+      &=-\frac{1+\text{exp}(-z)-1}{1+\text{exp}(-z)}\\
+      &=-1+\frac{1}{1+\text{exp(-z)}}\\
+      &=\sigma(z)-1
+      \end{split}
+      \end{equation*}
+      $$
+
+    - Using the above:
+
+      - $$
+        \nabla_wL(w,b)=\sum_{i=1}^m\nabla_w\log\frac{1}{\sigma(y_i(w^Tx_i+b))}=\sum^m_{i=1}(\sigma(y_i(w^Tx_i+b))-1)y_ix_i
+        $$
+
+      - $$
+        \nabla_bL(w,b)=\sum_{i=1}^m(\sigma(y_i(w^Tx_i+b))-1)y_i
+        $$
+
+  - Gradient Descent for Logistic Regression
+
+    - $$
+      S=\{(x_i,y_i)\},\quad i=1\ldots m
+      $$
+
+    - Initialize `w`:
+
+      - $$
+        w\leftarrow0\in\mathbb{R}^n
+        $$
+
+    - For epoch `1 ... T`:
+
+      - Compute:
+
+        - $$
+          \nabla_wL(w,b)=\sum^m_{i=1}(\sigma(y_i(w^Tx_i+b))-1)y_ix_i\\
+          \nabla_bL(w,b)=\sum_{i=1}^m(\sigma(y_i(w^Tx_i+b))-1)y_i
+          $$
+
+      - Update `w` and `b`:
+
+        - $$
+          w\leftarrow w-\eta\nabla_wL(w,b)\\
+          b\leftarrow b-\eta\nabla_bL(w,b)
+          $$
+
+    - Return `w` and `b`
+
+  - Remark
+
+    - $$
+      \nabla_wL(w,b)=\sum^m_{i=1}(\sigma(y_i(w^Tx_i+b))-1)y_ix_i\\
+      \nabla_bL(w,b)=\sum_{i=1}^m(\sigma(y_i(w^Tx_i+b))-1)y_i
+      $$
+
+    - For every data point `(xi, yi)`, we need to compute:
+
+      - $$
+        (\sigma(y_i(w^Tx_i+b))-1)
+        $$
+
+    - Gradient descent usually needs many iterations to converge
+
+    - When size of data (`m`) is large, computing `∇L(w, b)` is expensive
+
+      - Can we skip some data points?
+
+- Stochastic Gradient Descent
+
+  - Incremental/Stochastic Gradient Descent
+
+    - Repeat for each example `(xi, yi)`:
+      - Use this example to calculate the approximate gradient and update the model
+
+    - Contrast with batch gradient descent which makes one update to the weight vector for every pass over the data
+
+  - Recap: Gradient Descent
+
+    - $$
+      \nabla_wL(w,b)=\sum^m_{i=1}(\sigma(y_i(w^Tx_i+b))-1)y_ix_i
+      $$
+
+    - Gradient descent update:
+
+      - $$
+        w\leftarrow w-\eta\sum_{i=1}^m\nabla_wL_i(w,b)
+        $$
+
+    - Alternative way of gradient update:
+
+      - For `i = 1 ... m`:
+
+        - $$
+          w\leftarrow w-\eta\nabla_wL_i(w,b)
+          $$
+
+  - Stochastic Gradient Descent
+
+    - $$
+      \nabla_wL(w,b)=\sum_{i=1}^m\nabla_wL_i(w,b)=m\frac{\sum_{i=1}^m\nabla L_i(w,b)}{m}=m\text{avg}(\nabla_wL_i(w,b))
+      $$
+
+    - $$
+      \text{avg}(\nabla_wL_i(w,b))=E_{(x_i,y_i)\sim S}[\nabla_wL_i(w,b)]
+      $$
+
+      - Expectation of gradient `Li(w, b)` over dataset `S`
+
+    - Gradient descent update:
+
+      - $$
+        w\leftarrow w-\eta\sum_{i=1}^m\nabla_wL_i(w,b)
+        $$
+
+    - Stochastic gradient descent:
+
+      - Repeat until converge:
+
+        - Sample a data point `(xi, yi)` from `S`
+
+        - $$
+          w\leftarrow w-\eta'\nabla_wL_i(w,b)
+          $$
+
+  - Stochastic Gradient Descent for Logistic Regression
+
+    - $$
+      S=\{(x_i,y_i)\},\quad i=1\ldots m
+      $$
+
+    - Initialize `w`:
+
+      - $$
+        w\leftarrow0\in\mathbb{R}^n
+        $$
+
+    - For epoch `1 ... T`:
+
+      - Sample a data point `(xi, yi)` from `S`
+
+      - Compute:
+
+        - $$
+          \nabla_wL_i(w,b)=\sum^m_{i=1}(\sigma(y_i(w^Tx_i+b))-1)y_ix_i\\
+          \nabla_bL_i(w,b)=\sum_{i=1}^m(\sigma(y_i(w^Tx_i+b))-1)y_i
+          $$
+
+      - Update `w` and `b`:
+
+        - $$
+          w\leftarrow w-\eta\nabla_wL_i(w,b)\\
+          b\leftarrow b-\eta\nabla_bL_i(w,b)
+          $$
+
+    - Return `w` and `b`
+
+  - The Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        D=\{(x,y)\}
+        $$
+
+    - Initialize:
+
+      - $$
+        w\leftarrow 0\in\mathbb{R}^n
+        $$
+
+    - For epoch `1 ... T`:
+
+      - For `(x, y)` in `D`:
+
+        - If `y(w^Tx) < 0`:
+
+          - $$
+            w\leftarrow w+\eta yx
+            $$
+
+    - Return `w`
+
+    - Prediction:
+
+      - $$
+        y^{test}\leftarrow\text{sgn}(w^Tx^{test})
+        $$
+
+      - Effectively minimizing:
+
+        - $$
+          \sum_i\text{max}(0,1-y_i(w^Tx_i))
+          $$
+
+  - Linear Regression
+
+    - Find a line `w^Tx + b` to approximate real-value output `y` based on input `x`
+      - e.g., predict house price next year
+
+  - Least Mean Squares (LMS) Regression
+
+    - Given a dataset:
+
+      - $$
+        S=\{(x_i,y_i)\}_{i=1\ldots m},\quad x_i\in\mathbb{R}^n,y\in\mathbb{R}
+        $$
+
+    - $$
+      \text{argmin}_{w,b}\frac{1}{2}\sum_i^m(y_i-(w^Tx_i+b))^2
+      $$
+
+    - Learning: minimizing mean squared error
+
+    - Least squares (LSQ): the fitted line is used as a predictor
+
+    - Exercise:
+
+      - Derive the stochastic gradient descent algorithm for solving LMS regression
+
+- Evaluation Metrics
+
+  - Confusion Matrix
+
+    - |                              | True Label Positive | True Label Negative |
+      | ---------------------------- | ------------------- | ------------------- |
+      | **Predicted Label Positive** | True Positive (TP)  | False Positive (FP) |
+      | **Predicted Label Negative** | False Negative (FN) | True Negative (TN)  |
+
+    - $$
+      \text{Accuracy}=\frac{TP+TN}{TP+TN+FN+FP}\\
+      \text{Precision}=\frac{TP}{TP+FP}\\
+      \text{Recall}=\frac{TP}{TP+FN}
+      $$
+
+    - F1 Score
+
+      - Harmonic mean of precision and recall
+
+      - $$
+        \frac{1}{F_1}=\frac{\left(\frac{1}{P}+\frac{1}{R}\right)}{2}
+        $$
+
+      - $$
+        F_1=\frac{2TP}{2TP+FP+FN }
+        $$
+
+- Neural Networks/Deep Learning
+
+  - Checkpoint: The Bigger Picture
+
+    - Supervised learning: instances, concepts, and hypotheses
+    - Specific learners:
+      - Decision trees
+      - K-NN
+      - Perceptron
+      - Logistic regression
+
+    - General ML ideas
+      - Feature vectors
+      - Overfitting
+      - Probabilistic model
+
+  - Neural Networks
+
+    - Designed to mimic the brain
+
+    - Artificial neural networks are not nearly as complex or intricate as the actual brain structure
+
+    - Feed-Forward Neural Network
+
+      - Neural networks are made up of nodes or units, connected by links
+      - Each link has an associated weight and activation level
+      - Each node has an input function (typically summing over weighted inputs), an activation function, and an output
+
+    - Neuron Model Example: Logistic Unit
+
+      - Model takes features as input, multiplies them by some weight, and then passes it through an activation function
+
+    - Activation Functions
+
+      - Sigmoid function
+
+        - $$
+          f(x)=\frac{1}{1+e^{-x}}
+          $$
+
+      - Hyperbolic tangent
+
+        - $$
+          \tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}
+          $$
+
+      - Step function
+
+        - $$
+          \begin{cases}
+          0&\text{if }x<0\\
+          1&\text{if }x\ge0
+          \end{cases}
+          $$
+
+      - Rectified linear unit (ReLU)
+
+        - $$
+          (x)^+=\begin{cases}
+          0&\text{if }x\le0\\
+          x&\text{if }x>0
+          \end{cases}
+          $$
+
+    - Feed-Forward Process
+
+      - Input layer units are set by some exterior function (think of these as sensors), which causes their output links to be activated at the specified level
+      - Working forward through the network, the input function of each unit is applied to compute the input value
+      - The activation function transforms this input function into a final values
+
+
+
+
+## Lecture 9:
+
+- 
 
