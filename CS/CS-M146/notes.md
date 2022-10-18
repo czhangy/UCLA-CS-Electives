@@ -1202,7 +1202,14 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Neural Network and Deep Learning
 
-- 
+- What You Will Learn Today
+  - Optimization
+    - Gradient descent
+    - Stochastic gradient descent (SGD)
+
+  - Evaluation Metrics
+  - Neural Network/
+
 
