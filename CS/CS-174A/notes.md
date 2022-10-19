@@ -1219,7 +1219,7 @@
 
 
 
-## Lecture 7:
+## Lecture 7: Transformation Composition and Eye Space
 
 - Last Lecture Recap
 
@@ -1314,7 +1314,176 @@
 
 
 
-## Lecture 8:
+## Lecture 8: Projection Space and Screen Space
+
+- Recap:
+
+  - Transformation Matrix
+
+    - $$
+      RS_cShT=TM
+      $$
+
+    -  Unique for each object in the scene
+
+  - Eye Matrix
+
+    - $$
+      [\text{Mirror}_x][\text{GRM}]T(-\text{Eye})=EM
+      $$
+
+    - The same for each object in the scene
+
+- Composite 3D Rotation About the Origin
+
+  - $$
+    R(\theta_1,\theta_2,\theta_3)-R_z(\theta_3)R_y(\theta_2)R_x(\theta_1)
+    $$
+
+  - This is known as the "Euler angle" representation of 3D rotations
+
+  - The order of rotation matrices is important
+
+  - Note: the Euler angle representation suffers from sigularities
+
+- Normals in Graphics
+
+  - Finding a Normal
+
+    - May be given to us in an indexed list, as either the normals of the vertices or the normals of the faces
+
+    - Given a plane equation:
+
+      - $$
+        ax+by+cz=d
+        $$
+
+      - The normal of the plane is:
+
+        - 
+
+        $$
+        \begin{bmatrix}
+        a\\
+        b\\
+        c
+        \end{bmatrix}
+        $$
+
+        - `d` is the shortest distance from the plane to the origin
+
+          - $$
+            d=P\cdot N
+            $$
+
+    - Without a plane equation:
+
+      - 3 non-colinear points uniquely identifies a plane
+      - Cross the 3 points to find the normal
+      - Use the normal to find the plane equation
+
+  - Polygon Attributes
+
+    - Per vertex:
+      - Position
+      - Texture coordinates
+
+    - Per vertex or per face (if flat shading)
+      - Color
+      - Normal
+
+  - Reminder: What are Normals For?
+
+    - Lighting
+
+- Orthographic Projections
+
+  - Projections on the z-axis
+
+  - Parallel projection
+
+    - All parallel projectors are perpendicular to each other, creating the projection on the projection plane from an object in eye space
+
+    - $$
+      PM=\begin{bmatrix}
+      1&0&0&0\\
+      0&1&0&0\\
+      0&0&1&0\\
+      0&0&0&1
+      \end{bmatrix}
+      $$
+
+      - We want to keep the `z` information for later, so we keep the `z`, despite the fact that we're projecting onto the x-y plane
+
+      - Normalized:
+
+        - $$
+          PM=\begin{bmatrix}
+          \frac{2}{W}&0&0&0\\
+          0&\frac{2}{H}&0&0\\
+          0&0&\frac{1}{F-N}&-\frac{N}{F-N}\\
+          0&0&0&1
+          \end{bmatrix}
+          $$
+
+    - View Volume
+
+      - $$
+        -\frac{W}{2}\le X\le\frac{W}{2}\\
+        -\frac{H}{2}\le Y\le\frac{H}{2}\\
+        N\le Z\le F
+        $$
+
+      - We want to standardize the view volume into a canonical view volume to have standardized processes:
+
+        - $$
+          -1\le x\le1\\
+          -1\le y\le1\\
+          0\le z\le1
+          $$
+
+  - Perspective projection
+
+    - All projectors originate from a single center of projection, creating the projection on the projection plane from an object in eye space
+
+    - Point where all the objects are getting focused into (like the eye)
+
+      - $$
+        x\leftarrow\frac{x}{z}d\\
+        y\leftarrow\frac{y}{z}d
+        $$
+
+    - $$
+      PM=\begin{bmatrix}
+      1&0&0&0\\
+      0&1&0&0\\
+      0&0&1&0\\
+      0&0&\frac{1}{d}&0
+      \end{bmatrix}
+      $$
+
+      - For a square viewport (aspect ratio is 1:1)
+
+  - View Volumes
+
+    - Front clipping plane prevents division by 0 errors
+
+    - Back clipping plane prevents unnecessary computation
+
+    - Half-angle of view limits sides of view
+
+      - Defined in terms of the x-axis
+
+    - Aspect ratio is the ratio of the width to the height of the final image
+
+      - $$
+        A_\gamma=\frac{W}{H}
+        $$
+
+
+
+
+## Lecture 9:
 
 - 
 
