@@ -310,7 +310,7 @@
         \bold{v}=P_2-P_1
         $$
 
-        - `P2` is the head (arrow-end), `P1` is the tail
+        - `P2` is the head (arrow-end), `P1` is the ta4il
 
     - Linear Combination of Points
 
