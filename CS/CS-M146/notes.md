@@ -1684,7 +1684,351 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Deep Learning
+
+- What We Will Learn Today
+
+  - Neural Network/Deep Learning
+    - Non-linear classifier
+    - Feed-forward neural network
+    - Back propagation
+    - Deep learning architecture
+
+- Neural Network
+
+  - Overview:
+
+    - Multiple layers of linear models
+
+    - For each linear model, we predict the latent state of the inputs to the next layer
+
+    - $$
+      a_i^{(j)}=\text{activation of unit }i\text{ in layer }j\\
+      \Theta^{(j)}=\text{weight matrix controlling function mapping from layer }j\text{ to layer }j+1
+      $$
+
+      - $$
+        a_1^{(2)}=g(\Theta_{10}^{(1)}x_0+\Theta_{11}^{(1)}x_1+\Theta_{12}^{(1)}x_2+\Theta_{13}^{(1)}x_3)=g(z_1^{(2)})\\
+        a_2^{(2)}=g(\Theta_{20}^{(1)}x_0+\Theta_{21}^{(1)}x_1+\Theta_{22}^{(1)}x_2+\Theta_{23}^{(1)}x_3)=g(z_2^{(2)})\\
+        a_3^{(2)}=g(\Theta_{30}^{(1)}x_0+\Theta_{31}^{(1)}x_1+\Theta_{32}^{(1)}x_2+\Theta_{33}^{(1)}x_3)=g(z_3^{(2)})\\
+        h_{\Theta}(x)=a_1^{(3)}=g(\Theta_{10}^{(2)}a_0^{(2)}+\Theta_{11}^{(2)}a_1^{(2)}+\Theta_{12}^{(2)}a_2^{(2)}+\Theta_{13}^{(2)}a_3^{(2)})=g(z_1^{(3)})
+        $$
+
+    - If network has `sj` units in layer `j` and `sj+1` units in layer `j + 1`, then `Θ^(j)` has dimension `sj-1 × (sj + 1)`
+
+      - $$
+        \Theta^{(1)}\in\mathbb{R}^{3\times4},\quad\Theta^{(2)}\in\mathbb{R}^{1\times4}
+        $$
+
+  - Feed-Forward Steps
+
+    - $$
+      z^{(2)}=\Theta^{(1)}x\\
+      a^{(2)}=g(z^{(2)})\\
+      \text{Add }a_0^{(2)}=1\\
+      z^{(3)}=\Theta^{(2)}a^{(2)}\\
+      h_\Theta(x)=a^{(3)}=g(z^{(3)})
+      $$
+
+    - Exercise:
+
+      - $$
+        \Theta^{(1)}=\begin{bmatrix}
+        1&0&0&1\\
+        0&-1&1&0\\
+        2&0&1&1
+        \end{bmatrix},\quad\Theta^{(2)}=\begin{bmatrix}
+        0&1&1&0
+        \end{bmatrix}\\
+        g(z)=\begin{cases}
+        0&\text{if }x<0\\
+        1&\text{if }x\ge0
+        \end{cases}
+        $$
+
+      - $$
+        \text{What is the output of }x=\begin{bmatrix}
+        1\\
+        0\\
+        2\\
+        1
+        \end{bmatrix}?
+        $$
+
+      - $$
+        z^{(2)}=\begin{bmatrix}
+        1\\
+        2\\
+        2\\
+        5
+        \end{bmatrix}\\
+        a^{(2)}=\begin{bmatrix}
+        1\\
+        1\\
+        1\\
+        1
+        \end{bmatrix}\\
+        z^{(3)}=\begin{bmatrix}
+        2
+        \end{bmatrix}\\
+        h_\Theta(x)=\boxed{1}
+        $$
+
+      - Why do we need a non-linear activation function? What would happen if `g(z) = z`?
+
+        - $$
+          \begin{equation*}
+          \begin{split}
+          z^{(3)}&=\Theta^{(2)}a^{(2)}\\
+          &=\Theta^{(2)}z^{(2)}\\
+          &=\Theta^{(2)}\Theta^{(1)}x
+          \end{split}
+          \end{equation*}
+          $$
+
+        - This would just be a linear model
+
+- Non-Linear Representations
+
+  - Simple Example: AND
+
+    - $$
+      x_1,x_2\in\{0,1\}\\
+      y=x_1\text{ AND }x_2
+      $$
+
+    - $$
+      h_\Theta(x)=g(-30+20x_1+20x_2)
+      $$
+
+  - Example: OR
+
+    - $$
+      x_1,x_2\in\{0,1\}\\
+      y=x_1\text{ OR }x_2
+      $$
+
+    - $$
+      h_\Theta(x)=g(-10+20x_1+20x_2)
+      $$
+
+    - Can also implement other boolean functions and combinations of boolean functions
+
+  - Example: XNOR
+
+    - AND
+
+      - $$
+        h_\Theta(x)=g(-30+20x_1+20x_2)
+        $$
+
+    - OR
+
+      - $$
+        h_\Theta(x)=g(-10+20x_1+20x_2)
+        $$
+
+    - `(NOT x1) AND (NOT x1)`
+
+      - $$
+        h_\Theta(x)=g(10-20x_1-20x_2)
+        $$
+
+    - Use AND and `(NOT x1) AND (NOT x1)` to generate latent states, which then act as inputs to OR
+
+  - Exercise
+
+    - If all the samples inside the rectangle formed by (0, 0), (0, 2), (5, 2), (5, 0) are positive and all other points are negative, show a feedforward NN can classify all the samples correctly
+
+      - For simplicity, we assume `g(z)` is a step function
+      - What are `Θ^(1)` and `Θ(2)`?
+
+    - $$
+      \Theta^{(1)}=\begin{bmatrix}
+      0&1&0\\
+      5&-1&0\\
+      0&0&1\\
+      2&0&-1
+      \end{bmatrix}\\
+      \Theta^{(2)}=\begin{bmatrix}
+      3.5&1&1&1&1
+      \end{bmatrix}
+      $$
+
+- Neural Network Learning
+
+  - Maximum Likelihood
+
+    - Training data:
+
+      - $$
+        S=\{(x_i,y_i)\}
+        $$
+
+      - `m` examples
+
+      - $$
+        y_i=\{0,1\}
+        $$
+
+    - Consider a NN:
+
+      - $$
+        h_\Theta(x)\in[0,1],\text{ modeling }P(y=1\ |\ x)
+        $$
+
+        - $$
+          a_1^{(2)}=g(\Theta_{10}^{(1)}x_0+\Theta_{11}^{(1)}x_1+\Theta_{12}^{(1)}x_2+\Theta_{13}^{(1)}x_3)=g(z_1^{(2)})\\
+          a_2^{(2)}=g(\Theta_{20}^{(1)}x_0+\Theta_{21}^{(1)}x_1+\Theta_{22}^{(1)}x_2+\Theta_{23}^{(1)}x_3)=g(z_2^{(2)})\\
+          a_3^{(2)}=g(\Theta_{30}^{(1)}x_0+\Theta_{31}^{(1)}x_1+\Theta_{32}^{(1)}x_2+\Theta_{33}^{(1)}x_3)=g(z_3^{(2)})\\
+          h_{\Theta}(x)=a_1^{(3)}=g(\Theta_{10}^{(2)}a_0^{(2)}+\Theta_{11}^{(2)}a_1^{(2)}+\Theta_{12}^{(2)}a_2^{(2)}+\Theta_{13}^{(2)}a_3^{(2)})=g(z_1^{(3)})
+          $$
+
+        - Remember in logistic regression:
+
+          - $$
+            h_{w,b}(x)=\sigma(w^Tx+b)
+            $$
+
+          - If we choose the activation function `g` as a sigmoid function, this part is equivalent to a logistic regression with input `a`:
+
+            - $$
+              g(\Theta_{10}^{(2)}a_0^{(2)}+\Theta_{11}^{(2)}a_1^{(2)}+\Theta_{12}^{(2)}a_2^{(2)}+\Theta_{13}^{(2)}a_3^{(2)})
+              $$
+
+    - Maximum likelihood estimator:
+
+      - $$
+        \Theta^*=\text{argmax}_\Theta L(\Theta;S)\\
+        L(\Theta;S)=\prod^m_{i=1}P_\Theta(y_i\ |\ x_i)\\
+        P_\Theta(y_i\ |\ x_i)=\begin{cases}
+        h_\Theta(x_i),&y_i=1\\
+        1-h_\Theta(x_i),&y_i=0
+        \end{cases}
+        $$
+
+      - We can rewrite `L(Θ;S)` as:
+
+        - $$
+          L(\Theta;S)=\prod^m_{i=1}h_\Theta(x_i)^{y_i}(1-h_\Theta(x_i))^{1-y_i}
+          $$
+
+    - Minimum negative log-likelihood and cross-entropy loss
+
+      - $$
+        \log L(\Theta;S)=\sum_{i=1}^m[y_i\log h_\Theta(x_i)+(1-y_i)\log(1-h_\Theta(x_i))]
+        $$
+
+      - Optimal `Θ` can be obtained by solving `argminΘ J(Θ)`:
+
+        - $$
+          J(\Theta)=-\sum^m_{i=1}[y_i\log h_\Theta(x_i)+(1-y_i)\log(1-h_\Theta(x_i))]
+          $$
+
+        - Equivalent to loss function for logistic regression if:
+
+          - $$
+            h_\Theta(x)=\sigma(w^Tx+b)
+            $$
+
+      - Stochastic gradient descent
+
+        - ```
+          Given a training set D = {(x, y)}
+          Initialize Θ <- 0 ∈ R^n
+          For epoch 1...T:
+          	For (x, y) in D:
+          		Update Θ <- Θ - η∇J(Θ)
+          Return Θ
+          ```
+
+        - Similar to logistic regression
+
+  - Optimizing the Neural Network
+
+    - Need to compute `∇J(Θ)`
+
+    - Chain Rule
+
+      - Given a function:
+
+        - $$
+          f(x)=A(B(C(x)))
+          $$
+
+      - The derivative is:
+
+        - $$
+          f'(x)=A'(B)\times B'(C)\times C'(x)
+          $$
+
+- Backpropagation through Computation Graphs
+
+  - We represent the NN as a graph
+
+  - Forward Propagation
+
+    - Pass result of operation along edges to the right
+
+  - Back Propagation
+
+    - Compute `∂s/∂b`:
+
+      - $$
+        \frac{\partial s}{\partial b}=\frac{\partial s}{\partial z}\frac{\partial z}{\partial b}=\cdots
+        $$
+
+    - We don't need to calculate the gradient, we just focus on adjacent nodes to calculate a partial gradient
+
+    - Single Node:
+
+      - $$
+        h=f(z)
+        $$
+
+      - `z` => `f` => `h`
+
+      - `∂s/∂z` <= `f` <= `∂s/∂h`
+
+      - $$
+        \frac{\partial s}{\partial z}=\frac{\partial s}{\partial h}\frac{\partial h}{\partial z}
+        $$
+
+        - `∂s/∂h` is provided by the last layer
+        - Only focus on `∂h/∂z`, which we get from `f`
+
+    - Example:
+
+      - $$
+        f(x,y,z)=(x+y)\text{max}(y,z)\\
+        z=1,y=2,z=0
+        $$
+
+      - Draw the computation graph and calculate `∂f/∂x`, `∂f/∂y`, and `∂f/∂z`
+
+        - Forward propagation steps:
+
+          - $$
+            a=x+y\\
+            b=\text{max}(y,z)\\
+            f=ab
+            $$
+
+        - $$
+          \frac{\partial f}{\partial x}=\frac{\partial f}{\partial a}\frac{\partial a}{\partial x}\\
+          \frac{\partial f}{\partial y}=\frac{\partial f}{\partial a}\frac{\partial a}{\partial y}+\frac{\partial f}{\partial b}\frac{\partial b}{\partial y}
+          $$
+
+        - Calculate local gradients, plug in numbers, then use above equations to calculate the partial gradients
+
+      - Compute all gradients at once
+
+        - Naive way to compute gradients: compute each component separately
+          - Redundant computation
+
+
+
+
+## Lecture 10:
 
 - 
-
