@@ -1483,7 +1483,272 @@
 
 
 
-## Lecture 9:
+## Lecture 9: Projection Space and Screen Space
+
+- Last Lecture Recap
+
+  - Rendering Pipeline:
+    - Model space
+    - Object/world space
+    - Eye/camera space
+    - Projection space
+    - Screen space
+
+- Next Up
+
+  - Geometric Calculations
+  - Hidden Surface Removal
+    - Backface culling
+    - Object space and image space algorithms
+
+  - Lighting
+  - Flat and Smooth Shading
+
+- Projection Space
+
+  - Perspective Projection
+
+    - We need to normalize the view volume from last lecture
+
+    - $$
+      -W\le x\le W\\
+      -H\le y\le H\\
+      N\le z\le F
+      $$
+
+    - Note that `W/d = tanθ` so when we normalize, where `θ` is the half-angle of view and is defined relative to the x-axis:
+
+      - $$
+        x'=\frac{x}{z}\frac{d}{W}=\frac{x}{z\tan\theta}\\
+        y'=\frac{y}{z}\frac{d}{H}=\frac{y}{z}\frac{d}{W}\frac{W}{H}=\frac{yA_r}{z\tan\theta}
+        $$
+
+      - Since both normalized values have `z` in the denominator, we see that the farther away an object is, the smaller it will appear in projection space => perspective division
+
+    - $$
+      PM=\begin{bmatrix}
+      1&0&0&0\\
+      0&A_r&0&0\\
+      0&0&1&0\\
+      0&0&\tan\theta&0
+      \end{bmatrix}
+      $$
+
+      - To retain `z` information:
+
+        - $$
+          0=A+\frac{B}{N}\\
+          1=A+\frac{B}{F}\\
+          A=\frac{F}{F-N}\\
+          B=\frac{FN}{F-N}
+          $$
+
+        - $$
+          PM=\begin{bmatrix}
+          1&0&0&0\\
+          0&A_r&0&0\\
+          0&0&A\tan\theta&B\tan\theta\\
+          0&0&\tan\theta&0
+          \end{bmatrix}
+          $$
+
+- Screen Space
+
+  - Assume the viewport is defined by `Wxmin`, `Wymin`, `Wxmax`, and `Wymax`
+
+    - $$
+      W=W_{x_{max}}-W_{x_{min}}\\
+      H=W_{y_{max}}-W_{y_{min}}
+      $$
+
+  - We need to translate (since the normalized window's bottom left is at `(-1, -1)`), scale, and translate back
+
+    - $$
+      T(W_{x_{min}},W_{y_{min}})S\left(\frac{W}{2},\frac{H}{2}\right)T(1,1)
+      $$
+
+    - The `2` in the denominator comes from the width/height of the window in projection space, so `W/2` and `H/2` are a ratio of the viewport size to the window size
+
+- Overview
+
+  - Model Space => Transformation Matrix => World Space => Eye Matrix => Eye Space => Projection Matrix => Projection Space => Normalized Projection Space => Window-To-Viewport Mapping => Screen Space
+  - Theoretically, each matrix is a 4x4, so we should be able to combine all steps into a single matrix that moves from model space to screen space
+    - Practically, the perspective division needed to normalize projection space stops us, so we can only go as far as projection space
+
+- Geometric Calculations
+
+  - Transforming Lines and Planes
+
+    - Transforming Lines
+
+      - Given by 2 endpoints
+
+      - Given by line equation:
+
+        - $$
+          y=mx+b
+          $$
+
+          - Changing `m` is rotation:
+
+            - $$
+              m=\tan\theta
+              $$
+
+          - Changing `b` is translation in the `y` direction
+
+    - Transforming Planes
+
+      - Given by 3, non-colinear points
+
+      - Given by a plane equation:
+
+        - $$
+          Ax+By+Cz+D=0
+          $$
+
+        - The normal is given by `(A, B, C)`
+
+      - Given by a normal and a point:
+
+        - $$
+          n_x(x-p_x)+n_y(y-p_y)+n_z(z-p_z)=0
+          $$
+
+      - If `Mpoint` is a matrix to transform a point, then:
+
+        - $$
+          M_{normal}=(M_{point}^T)^{-1}
+          $$
+
+      - For orthogonal matrices:
+
+        - $$
+          M^T=M^{-1}\Rightarrow M_{normal}=M_{point}
+          $$
+
+  - Orthonormal Matrices
+
+    - Consider upper-left 3x3 matrix
+
+    - Each row is a unit vector
+
+    - Each row is orthogonal to the others
+
+      - Their dot product is 0
+
+    - These vectors can be rotated to align the with xyz-axis
+
+    - Determinant = 1
+
+    - Inverse of orthogonal matrix:
+
+      - $$
+        M^{-1}=M^T
+        $$
+
+    - Preserves angles and lengths => rigid-body transformations
+
+    - Examples of rigid-body transformations: translations, rotations
+
+    - A sequence of orthonormal transformations results in a single orthonormal transformation
+
+  - Point in Polygon Test
+
+    - Convex polygons only: if point lies to the left of all edges, then it's inside the polygon
+
+      - If it lies to the right of even one edge, it's outside
+
+    - Semi-infinite ray:
+
+      - From the point, shoot a semi-infinite ray in one direction
+
+        - If the number of intersections is odd, then it is inside
+
+      - $$
+        (y_1>y_0\land y_2\le y_0)\lor(y_1\le y_0\land y_2>y_0)
+        $$
+
+        - `y0` is the middle vertex of 3 consecutive vertices
+
+      - Intersection point `(x, y)`: `x > x0` for true intersection with semi-infinite ray to the right
+
+    - Angle summation: if directed angle sum = 0, then outside, else inside
+
+      - Connect point to each vertex and use directed angles between vertices
+
+  - Normal Vector
+
+    - 3 consecutive vertices (convex vertices): find cross product
+
+    - Summation method:
+
+      - $$
+        \left(\sum(y_i-y_j)(z_i+z_j),\sum(z_i-z_j)(x_i+x_j),\sum(x_i-x_j)(y_i+y_j)\right)
+        $$
+
+      - Where `j = (i + 1) mod n` and `n` is the total number of vertices
+
+      - Works for concave and even non-planar polygons
+
+      - Not tested
+
+  - Plane Equation
+
+    - Surface normal and distance from origin:
+
+      - $$
+        n_xx+n_yy+n_zz=d
+        $$
+
+    - Three points on plane:
+
+      - $$
+        n_x(x-x_i)+n_y(y-y_i)+n_z(z-z_i)=0
+        $$
+
+  - On-Line Test
+
+    - `P` is on `P1P2` means:
+
+      - $$
+        \frac{x-x_1}{y-y_1}=\frac{x_2-x_1}{y_2-y_1}
+        $$
+
+    - If:
+
+      - $$
+        T_{1,2}(P)=(x-x_1)(y_2-y_1)-(x_2-x_1)(y-y_1)
+        $$
+
+      - If positive, `P` is on the right, if negative, `P` is on the left
+
+  - Edge-Edge Intersection
+
+    - `P1` and `P2` are on opposite sides of line defined by `P3P4` and `P3` and `P4` are on opposite sides of line defined by `P1P2`
+
+    - Equivalently, check for intersection:
+
+      - $$
+        (T_{1,2}(P_3)\times T_{1,2}(P_4)<0)\land(T_{3,4}(P_1)\times T_{3,4}(P_2)<0)
+        $$
+
+  - Collinearity Test
+
+    - `t` is the distance from point `P` to line `P1P2`
+
+    - `θ` is the angle between `P1P` and `P1P2`
+
+    - $$
+      t=|P_1P|\sin\theta=\frac{|P1P||P1P2|\sin\theta}{P_1P_2}=\frac{|P_1P\times P_1P_2|}{|P_1P_2|}
+      $$
+
+    - If `t < ε`, `P` is considered to be on `P1P2`
+
+
+
+
+## Lecture 10:
 
 - 
 
