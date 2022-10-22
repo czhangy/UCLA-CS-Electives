@@ -25,7 +25,7 @@
 | Assignment                                 | Score |
 | :----------------------------------------- | :---: |
 | Assignment 1: Setting Up the Environment   |   -   |
-| Assignment 2: Basic Draw & Transformations |  ???  |
+| Assignment 2: Basic Draw & Transformations | 25/25 |
 | Assignment 3: Shading & Lighting           |  ???  |
 | Assignment 4: Texture                      |  ???  |
 
