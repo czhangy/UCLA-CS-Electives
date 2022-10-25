@@ -1314,7 +1314,7 @@
 
 
 
-## Lecture 8: Projection Space and Screen Space
+## Lecture 8: Projection Space
 
 - Recap:
 
