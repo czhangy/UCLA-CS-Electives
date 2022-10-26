@@ -2023,12 +2023,338 @@
 
       - Compute all gradients at once
 
-        - Naive way to compute gradients: compute each component separately
+        - Naïve way to compute gradients: compute each component separately
           - Redundant computation
 
 
 
 
-## Lecture 10:
+## Lecture 10: Multiclass Classification
+
+- What You Will Learn Today
+
+  - Deep learning architectures (not on exam)
+  - Multiclass Classification
+    - One against all
+    - One vs. one
+    - Multinomial logistic regression
+      - Softmax function
+
+- Deep Learning (cont.)
+
+  - Why You Should Understand Backpropagation
+
+    - Modern deep learning libraries implement backpropagation as a black box for you
+
+      - You can take a plane without knowing why it flies
+
+    - Backpropagation doesn't always work perfectly
+
+      - Understanding why is crucial for debugging and improving models
+
+      - Example: Gradient of Sigmoid
+
+        - $$
+          \sigma'(x)=\sigma(x)\times(1-\sigma(x))\\
+          \lim_{x\rightarrow\infty}(1-\sigma(x))=0,\lim_{x\rightarrow-\infty}\sigma(x)=0
+          $$
+
+        - Large or small inputs will just have gradients equal to 0 => requires many iterations for the model to update => range of inputs must be limited
+
+  - More Details
+
+    - Parameter Initialization
+      - Normally initialize weights to small random values; various designs
+    - Optimizer
+      - Usually SGD works
+      - Several SGD variants (e.g., ADAM) automatically adjust learning rate based on an accumulated gradient
+
+- Multi-Class Classification
+
+  - Overview
+
+    - Multiclass classification overview
+    - Reducing multiclass to binary
+      - One-against-all and one vs. one
+    - One classifier approach
+      - Multiclass logistic regression
+
+  - What is Multiclass?
+
+    - $$
+      \text{Output}\in\{1,2,3,\ldots,K\}
+      $$
+
+      - In some cases, output space can be very large (i.e., `K` is very large)
+
+    - Each input belongs to exactly one class (c.f., in multilabel, input belongs to many classes)
+
+  - Two Key Ideas to Solve Multiclass
+
+    - Reducing multiclass to binary
+      - Decompose the multiclass prediction into multiple binary decisions
+      - Make the final decision based on these binary classifiers
+    - Training a single classifier
+      - Consider all cases simulataneously
+
+  - One Against All Learning
+
+    - Multiclass classifier
+
+      - $$
+        f:\mathbb{R}^n\rightarrow\{1,2,3,\ldots,K\}
+        $$
+
+    - Decompose into binary problems
+
+    - "Does the new point belong to this class?"
+
+    - Ideal case: only the correct label will have a positive score
+
+    - Algorithm:
+
+      - Learning:
+
+        - Given a dataset:
+
+          - $$
+            D=\{(x_i,y_i)\}
+            $$
+
+        - $$
+          x_i\in\mathbb{R}^n,\quad y_i=\{1,2,3,\ldots,K\}
+          $$
+
+      - Decompose into `K` binary classification tasks
+
+        - Learn `K` models:
+
+          - $$
+            w_1,w_2,w_3,\ldots,w_K
+            $$
+
+        - For class `k`, construct a binary classification task as:
+
+          - Positive examples: elements of `D` with label `k`
+          - Negative examples: all other elements of `D`
+
+        - The binary classification can be solved by any algorithm we've seen
+
+      - Inference: "winner takes all"
+
+        - $$
+          \hat{y}=\text{argmax}_{y\in\{1,2,\ldots,K\}}w_y^Tx
+          $$
+
+        - For example:
+
+          - $$
+            y=\text{argmax}(w_{black}^Tx,w_{blue}^Tx,w_{green}^Tx)
+            $$
+
+        - An instance of the general form:
+
+          - $$
+            \hat{y}=\text{argmax}_{y\in Y}f(y;w,x)
+            $$
+
+          - $$
+            w=\{w_1,w_2,\ldots,w_K\},\quad f(y;w,x)=w_y^Tx
+            $$
+
+    - Analysis:
+
+      - Not always possible to learn
+        - Assumption: each class is individually separable from all the others
+        - Need to make sure the range of all classifiers is the same
+          - `K` classifiers are trained independently 
+        - Easy to implement, works well in practice
+
+  - One vs. One Learning
+
+    - Multiclass classifier
+
+      - $$
+        f:\mathbb{R}^n\rightarrow\{1,2,3,\ldots,K\}
+        $$
+
+    - Decompose into binary problems
+
+    - "Does the data point belong to this class or that class?"
+
+    - Algorithm:
+
+      - Learning:
+
+        - Given a dataset:
+
+          - $$
+            D=\{(x_i,y_i)\}
+            $$
+
+        - $$
+          x_i\in\mathbb{R}^n,\quad y_i=\{1,2,3,\ldots,K\}
+          $$
+
+      - Decompose into `C(K, 2)` binary classification tasks
+
+        - Learn `C(K, 2)` models:
+
+          - $$
+            w_1,w_2,w_3,\ldots,w_{K\times\frac{K-1}{2}}
+            $$
+
+        - For each class pair `(i, j)`, construct a binary classification task as:
+
+          - Positive examples: elements of `D` with label `i`
+          - Negative examples: elements of `D` with label `j`
+          - The binary classification can be solved by any algorithm we've seen
+
+      - Inference:
+
+        - Decision options:
+          - More complex; each label gets `k - 1` votes
+          - Output of the binary classifier may not be coherent
+          - Majority: classify example `x` to take label `i` if `i` wins on `x` more often than `j` (`j = 1, ..., k`)
+            - If there is a tie, you can look at specific classifications to break it
+
+  - Comparisons
+
+    - One Against All
+      - `O(K)` weight vectors to train and store
+      - Training set of the binary classifiers may be unbalanced
+      - Less expressive; makes a strong assumption
+    - One vs. One (All vs. All)
+      - `O(K^2)` weight vectors to train and store
+      - Size of training set for a pair of labels could be small => overfitting of the binary classifiers
+      - Need large space to store model
+
+  - Exercise:
+
+    - Consider we have a 10-class classification problem with 29 features, and each class has 1000 examples
+
+    - How many parameters are in total for linear models with one vs. one?
+
+      - $$
+        {10\choose2}\times(29+1)=1305
+        $$
+
+    - How many parameters are in total for linear models with one against all?
+
+      - $$
+        10\times(29+1)=300
+        $$
+
+    - How large is the training data for each one vs. one classifier?
+
+      - $$
+        1000+1000=2000
+        $$
+
+    - How large is the training data for each one against all classifier?
+
+      - $$
+        10\times1000=10000
+        $$
+
+  - Problems with Decompositions
+
+    - Learning optimizes over local metrics
+      - Does not guarantee good global performance
+      - We don't care about the performance of the local classifiers
+    - Poor decomposition => poor performance
+      - Difficult local problems
+      - Irrelevant local problems
+    - Efficiency (e.g., All vs. All vs. One vs. All)
+
+- Multiclass Logistic Regression
+
+  - Recall: Binary Logistic Regression
+
+    - $$
+      \text{min}_w\frac{1}{2}w^Tw+C\sum_i\log(1+e^{-y_i(w^Tx_i)})
+      $$
+
+    - Assume labels are generated using the following probability distribution:
+
+      - $$
+        P(y=1\ |\ x,w)=\frac{e^{w^Tx}}{1+e^{w^Tx}}=\frac{1}{1+e^{-w^Tx}}\\
+        P(y=-1\ |\ x,w)=\frac{1}{1+e^{w^Tx}}
+        $$
+
+  - Multiclass Log-Linear Model
+
+    - Assumption:
+
+      - $$
+        P(y\ |\ x,w)=\frac{\text{exp}(w_y^Tx)}{\sum_{y'\in\{1,2,\ldots, K\}}\text{exp}(w_{y'}^Tx)}
+        $$
+
+        - The denominator is called the partition function and is used to normalize the probability value
+        - Soft-max function
+
+      - This is a valid probability assumption, why?
+
+  - Why do We Call it Softmax?
+
+    - Softmax: let `s(y)` be the score for output `y`
+
+      - Here:
+
+        - $$
+          s(y)=w^T\phi(x,y)
+          $$
+
+      - $$
+        P(y)=\frac{\text{exp}(s(y))}{\sum_{y'\in\{1,2,\ldots,K\}}\text{exp}(s(y))}
+        $$
+
+    - We can control the "peakedness" of the distribution using `σ`
+
+      - $$
+        P(y\ |\ \sigma)=\frac{\text{exp}(s(y)/\sigma)}{\sum_{y'\in\{1,2,\ldots,K\}}\text{exp}(s(y)/\sigma)}
+        $$
+
+    - Softer version of the max function
+
+  - Maximum Log-Likelihood Estimation
+
+    - Training can be done by maximum log-likelihood estimation
+
+      - $$
+        \text{max}_w\log P(D\ |\ w)
+        $$
+
+    - $$
+      D=\{(x_i,y_i)\}\\
+      P(D\ |\ w)=\prod_i\frac{\text{exp}(w_{y_i}^Tx_i)}{\sum_{y'\in\{1,2,\ldots,K\}}\text{exp}(w_{y'}^Tx_i)}\\
+      \log P(D\ |\ w)=\sum_i[w_{y_i}^Tx_i-\log\sum_{y'\in\{1,2,\ldots,K\}}\text{exp}(w_{y'}^Tx_i)]
+      $$
+
+    - Comparisons:
+
+      - Log-linear model (multiclass):
+
+        - $$
+          \text{min}_w\sum_i[\log\sum_{k\in\{1,2,\ldots,K\}}\text{exp}(w_k^Tx_i)=w_{y_i}^Tx_i]
+          $$
+
+      - Log-linear model (logistic regression)
+
+        - $$
+          \text{min}_w\sum_i\log(1+e^{-y_i(w^Tx_i)})
+          $$
+
+  - Reduction vs. Single Classifier
+
+    - Reduction
+      - Future-proof: if we improve the binary classification model => improve multi-class classifier
+      - Easy to implement
+    - Single Classifier
+      - Global optimization: directly minimize the empirical loss; easier for joint prediction
+
+
+
+## Lecture 11:
 
 - 
