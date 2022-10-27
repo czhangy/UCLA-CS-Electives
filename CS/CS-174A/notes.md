@@ -516,7 +516,7 @@
     - Projection
 
       - $$
-        |\bold{u}|\cos\theta-\frac{\bold{u}\cdot\bold{v}}{|\bold{v}|}
+        |\bold{u}|\cos\theta=\frac{\bold{u}\cdot\bold{v}}{|\bold{v}|}
         $$
 
       - Projection of vector `u` on unit vector `v`
@@ -1477,7 +1477,7 @@
     - Aspect ratio is the ratio of the width to the height of the final image
 
       - $$
-        A_\gamma=\frac{W}{H}
+        A_r=\frac{W}{H}
         $$
 
 
@@ -1540,7 +1540,7 @@
           0=A+\frac{B}{N}\\
           1=A+\frac{B}{F}\\
           A=\frac{F}{F-N}\\
-          B=\frac{FN}{F-N}
+          B=-\frac{FN}{F-N}
           $$
 
         - $$
