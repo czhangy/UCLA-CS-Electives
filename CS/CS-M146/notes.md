@@ -2355,6 +2355,249 @@
 
 
 
-## Lecture 11:
+## Lecture 11: Computational Learning Theory
 
-- 
+- This Lecture
+
+  - The Theory of Generalization
+    - Difference between learning and memorizing
+  - Probably Approximately Correct (PAC) Learning
+    - How many training samples do you need to get a good classifier?
+      - Good classifier = with high probability, the error is low
+    - We will use the monotone conjunction function class as an example
+
+- Computational Learning Theory
+
+  - When can we say a concept is learnable?
+    - Learning vs. memorization
+    - Don't need to see all samples to make a good prediction
+    - Ex) Can you compute `1234 + 2332`? => easy, but you haven't seen this specific example before
+  - How much training data do we need to train a good classifier?
+    - Sample complexity
+  - PAC learnable => if the number of examples we need to see is polynomial to the parameters defining the concept (details will be discussed later)
+
+- Learning Monotone Conjunctions
+
+  - Hypothesis class:
+
+    - $$
+      f=x_1,\quad f=x_2,\quad f=x_1\land x_2,\quad f=x_1\land x_2\land x_3
+      $$
+
+  - Target function in hindsight:
+
+    - $$
+      f=x_2\land x_3
+      $$
+
+  - Exercise:
+
+    - Hypothesis class: monotone conjunctions
+
+    - Given the following data:
+
+      - $$
+        <(1,1,1),1>\\
+        <(1,0,1),0>\\
+        <(0,1,1),1>\\
+        <(1,1,0),0>
+        $$
+
+    - Predict `<(0, 1, 0), ?>`
+
+      - $$
+        f=x_2\land x_3\\
+        <(0,1,0),0>
+        $$
+
+  - Supervised Learning
+
+    - Teacher provides a set of examples `(x, f(x))`
+
+    - The setup:
+
+      - Instance space: `X`, the set of examples
+
+      - Concept space: `C`, the set of possible target functions:
+
+        - The hidden target function is:
+
+          - $$
+            f\in C
+            $$
+
+        - e.g., all `n`-conjunctions, all `n`-dimensional linear functions, etc.
+
+      - Hypothesis space: `H`, the set of possible hypotheses
+
+        - This is the set that the learning algorithm explores
+        - Concept Space vs. Hypothesis Space
+          - Concept space = hypothesis space
+            - We will work in this setting in this lecture
+          - Concept space ⊂ hypothesis space
+          - Concept space ⊄ hypothesis space
+
+      - Training instances: positive and negative examples of the target concept drawn from distribution `D`
+
+        - $$
+          S\subseteq D
+          $$
+
+        - $$
+          <x_1,f(x_1)>,<x_2,f(x_2)>,\ldots,<x_n,f(x_n)>
+          $$
+
+      - What we want: a hypothesis `h ∈ H` such that `h(x) = f(x)`
+
+      - Assumption: training and test data are both drawn IID from `X`
+
+  - Simple Algorithm
+
+    - Start with having all literals in the monotone conjunction and remove literal `j` if `xj = 0` in some positive instances
+
+    - Runs into problems, as too many literals can be included if the training data is missing cases
+
+      - We argue that if there is a sufficient amount of training data, the probability of such an error occurring is very low
+
+    - Not possible to eliminate a literal that is in the target function
+
+    - Question: how likely is it to incorrectly include a literal when we've already seen `N` examples?
+
+      - Intuitively, with more training data, it's unlikely we never see such a literal in positive training examples, but see it during testing if data is sampled from the same distribution
+
+      - "The Future Will Be Like the Past"
+
+        - We have seen many examples (drawn according to the distribution `D`)
+
+        - Since in all the positive examples `xi` was active, it is very *likely* that it will be active in future positive examples
+
+        - Otherwise, `xi` is active only in a small percentage of the examples, so our error will be small
+
+        - Illustrative Example:
+
+          - Scenario 1: 10 red balls with 20 blue balls
+
+            - How likely is it that we never see a red ball in 100 training instances, but do in a test instance?
+
+              - $$
+                P_{train}=\left(\frac{2}{3}\right)^{100}\approx2.45\times10^{-18}\\
+                P_{test}=\frac{1}{3}\\
+                P_{train}\times P_{test}\approx0
+                $$
+
+            - When the number of training points is large, it's unlikely we never see a red ball
+
+          - Scenario 2: 1 red ball with 29 blue balls
+
+            - How likely is it that we never see a red ball in 100 training instances, but do in a test instance?
+
+              - $$
+                P_{train}=\left(\frac{29}{30}\right)^{100}=0.037\\
+                P_{test}=\frac{1}{30}\\
+                P_{train}\times P_{test}=0.0011
+                $$
+
+            - If there is very few red balls, we may miss them in training, but the probability we see them in testing is very low
+
+      - Error of a Hypothesis
+
+        - Definition: given a distribution `D` over examples, the error of a hypothesis `h` with respect to a target concept `f` is:
+
+          - $$
+            \text{err}_D(h)=\text{Pr}_{x\sim d}[h(x)\ne f(x)]
+            $$
+
+- PAC Learning
+
+  - A framework for batch learning
+
+    - Train on a fixed training set
+    - Then deploy it in the wild
+
+  - How well will your learning algorithm do in *future* instances?
+
+  - We will first analyze an algorithm for learning conjunctions, then we will define PAC learning
+
+  - Intuition of PAC Learning
+
+    - With the IID sampling assumption, if a concept is reasonable, after we've seen enough examples, it's unlikely to have many error points
+    - With the IID sampling assumption, if a concept is too complicated, we need to see an exponential number of samples in order to rule out error points
+
+  - PAC Learning for Monotone Conjunctions
+
+    - Consider the concept space and hypothesis space are both monotone conjunctions with `n` variables
+
+    - Algorithm: start with having all literals in the monotone conjunction and remove literal `j` if `xj = 0` in some positive instances
+
+    - With probability `1 - δ`, the above algorithm requires ??? examples to achieve an error rate less than `ε`
+
+      - e.g., how many examples do we need to ensure the error <5% with 99% probability (`δ = 1%`, `ε = 5%`)
+
+    - Let's consider the case `n = 10`, `δ = 1%`, `ε = 5%`, how likely is the learned `h` wrong?
+
+      - When will we make a mistake?
+
+        - `h` includes some "bad literal" `z`, where we never see `(xz = 0, y = 1)` in training, but see it in test time
+        - Let `P(z)` be the probability that `z` is a bad literal
+
+      - To achieve 5% error rate, it's sufficient to ensure the probability of each bad literal:
+
+        - $$
+          P(z)<\frac{\epsilon}{n}=0.5\%
+          $$
+
+      - There are two cases:
+
+        - The probability of seeing `(xz = 0, y = 1)` < 0.5%
+          - The probability of seeing it in test time is already < 0.5%
+        - The probability of seeing `(xz = 0, y = 1)` > 0.5%
+          - We can bound the number of examples we need to ensure `P(z) < 0.5%`
+
+      - Analysis:
+
+        - We assume the probability of seeing `(xz = 0, y = 1) > ε/n`
+
+          - $$
+            \text{Pr}(\text{A bad literal is not eliminated by an example})<1-\frac{\epsilon}{n}
+            $$
+
+        - But say we have `m` training examples, then:
+
+          - $$
+            \text{Pr}(\text{A bad literal is not eliminated by an example})<\left(1-\frac{\epsilon}{n}\right)^m
+            $$
+
+        - There are at most `n` bad literals, so:
+
+          - $$
+            \text{Pr}(\text{Any bad literal survives }m\text{ examples})<n\left(1-\frac{\epsilon}{n}\right)^m
+            $$
+
+        - We want this probability to be smaller than `δ`
+
+          - Why? So we can choose enough training examples so that the probability that any `z` survives all of them is less than `δ`
+
+          - $$
+            n\left(1-\frac{\epsilon}{n}\right)^m<\delta
+            $$
+
+        - We know that `1 - x < e^-x`, so it's sufficient to require:
+
+          - $$
+            ne^{-\frac{m\epsilon}{n}}<\delta\\
+            m>\frac{n}{\epsilon}\left(\ln(n)+\ln\left(\frac{1}{\delta}\right)\right)
+            $$
+
+    - Theorem: if we are learning a monotone conjunctive concept with `n`-dimensional Boolean features using `m` training examples, with probability > `1 - δ`, the error of the learned hypothesis `errD(h)` will be less than `ε` if:
+
+      - $$
+        m>\frac{n}{\epsilon}\left(\ln(n)+\ln\left(\frac{1}{\delta}\right)\right)
+        $$
+
+        
+
+  
+
+
+
+## Lecture 12:
