@@ -1748,9 +1748,180 @@
 
 
 
-## Lecture 10:
+## Lecture 10: Hidden Surface Removal
 
-- 
+- Next Up
+
+  - Hidden Surface Removal
+    - Backface culling
+    - Painter's algorithm
+    - Z-buffer algorithm
+    - Scanline z-buffer algorithm
+
+  - Lighting/Illumination Models
+  - Flat and Smooth Shading
+  - Shadow Algorithms
+    - 2-pass z-buffer algorithm
+
+  - Hidden Surface Removal
+    - Ray casting, ray tracing
+
+- Hidden Surface Removals
+
+  - Object types:
+
+    - Polymesh
+    - Freeform surfaces
+    - Volume
+    - CSG
+    - Implicit surfaces
+
+  - Basic operations:
+
+    - Establish priorities among polygons, objects, etc.
+    - Collect overlapping elements and use priorities to resolve visibility
+
+  - Backface Culling
+
+    - `N` = outward normal vector of face
+
+    - `P` = a point on face
+
+    - `E` = eye vector (from a point on face to eye: `Eye - P`)
+
+    - It is a front face if it's:
+
+      - In world space:
+
+        - $$
+          N\cdot E>0
+          $$
+
+      - In eye/camera space:
+
+        - $$
+          N\cdot(-P)>0\text{ or }N\cdot P<0
+          $$
+
+      - In projection space (after perspective division):
+
+        - $$
+          N_z<0
+          $$
+
+  - Algorithm types:
+
+    - Image space: operations 1 and 2, both at pixel resolution
+    - List-priority: operation 1 at object resolution, operation 2 at pixel resolution
+    - Object/world/eye space: operation 1 and 2, both at object resolution
+
+  - Evaluation criteria:
+
+    - Flexibility: what types of objects can it handle?
+    - Special effects: transparency, antialiasing
+    - Memory requirements
+    - Speed
+
+  - Object space algorithms:
+
+    - Painter's
+
+  - Image precision algorithms:
+
+    - Z-buffer
+    - Scanline z-buffer
+    - Ray casting
+
+  - Painter's Algorithm
+
+    - Algorithm:
+      - Sort polygons by z-depth
+      - Scan-convert polygons in back-to-front order
+
+    - Cannot handle certain cases:
+      - Cyclic polygons
+      - Intersecting polygons
+
+  - Z-Buffer Algorithm
+
+    - ```
+      zb[Xres][Yres] = ∞
+      cb[Xres][Yres] = background color
+      
+      For each polygon:
+      	For each pixel covered by polygon:
+      		Calculate z for polygon at (x, y)
+      		If (z < zb[x][y]):
+      			zb[x][y] = z
+      			cb[x][y] = color of polygon
+      ```
+
+    - Properties:
+      - Image precision algorithm
+      - Easy to implement in software and hardware
+      - Polygons scan-converted into framebuffer in random order
+      - No pre-sorting of objects/polygons necessary
+    - Disadvantages:
+      - Memory requirements for storing color and depth for entire image
+      - Aliasing issues
+      - Complexity depends on polygon's projection area on the screen
+      - Hard to handle transparency
+    - Advantages:
+      - Handles penetrating and cyclic objects
+      - Extends to various kinds of faces other than polygons
+      - Simplicity and ease of software implementation
+      - Easily implementable in hardware
+      - Be modified to reduce memory requirements
+      - Can be extended to A-buffer to reduce aliasing
+      - Theoretically, it can handle any number of polygons
+
+  - Scanline Z-Buffer Algorithm
+
+    - ```
+      zb[Xres];
+      cb[Xres];
+      
+      For each scanline (y = scanline, reset zb and cb):
+      	For each polygon which intersects scanline:
+      		Scan convert for specific scanline; determine span segment
+      		For each pixel in span segment (x = pixel location):
+      			Calculate z for polygon at (x, y)
+      			If (z < zb[x]):
+      				zb[x] = z
+      				cb[x] = color of polygon
+      ```
+
+    - Advantages:
+
+      - Same as z-buffer
+      - Less memory requirement than z-buffer
+
+    - Disadvantages:
+
+      - Multiple passes through polygon database
+
+  - Efficiency Considerations in Z-Buffer Algorithms
+
+    - Speed considerations:
+
+      - Bounding box testing
+
+        - `Ymin/Ymax` test: associate `Ymin/Ymax` with each face
+        - Calculate left and right ends: x-intercept with scanline
+
+      - Incremental calculation of `Z` or bilinear interpolation
+
+        - $$
+          Ax+By+Cz+D=0\\
+          z=-\frac{Ax+By+D}{C}\\
+          z_{x+1}-z_x=-\frac{A}{C}\\
+          z_{x+1}=z_x+\Delta z,\quad\text{where }\Delta z=-\frac{A}{C}
+          $$
+
+      - Space subdivision
+
+      - Hierarchical subdivision
+
 
 
 
