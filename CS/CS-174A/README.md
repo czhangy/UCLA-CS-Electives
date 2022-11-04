@@ -15,10 +15,10 @@
 
 ## Exams
 
-|  Exam   | Score |
-| :-----: | :---: |
-| Midterm |  ???  |
-|  Final  |  ???  |
+|  Exam   |  Score   |
+| :-----: | :------: |
+| Midterm | 97.5/100 |
+|  Final  |   ???    |
 
 ## Assignments
 
