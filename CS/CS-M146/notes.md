@@ -2596,8 +2596,317 @@
 
         
 
+
+## Lecture 12: Learning Theory and Kernel
+
+- Learning Theory
+
+  - PAC Learnability
+
+    - Consider a concept class `C` defined over an instance space `X` (containing instances of length `n`), and a learner `L` using a hypothesis space `H`
+
+    - The concept class `C` is **PAC Learnable** by `L` using `H` if for all `f ∈ C`, all distributions `D` over `X`, and fixed `ε > 0` and `δ < 1`, given `m` examples sample IID according to `D`, the algorithm `L` produces, with probability at least `1 - δ`, a hypothesis `h ∈ H` that has error at most `ε`, where `m` is polynomial in `1/ε`, `1/δ`, `n`, and `size(H)`
+
+    - Example: Conjunction
+
+      - $$
+        m>\frac{n}{\epsilon}\left(\log(n)+\log\left(\frac{1}{\delta}\right)\right)
+        $$
+
+    - We impose two limitations:
+
+      - Polynomial **sample complexity** (information theoretic constraint)
+        -  Is there enough information in the sample to distinguish a hypothesis `h` that approximates `f`?
+      - Polynomial **time complexity** (computational complexity)
+        - Is there an efficient algorithm that can process the sample and produce a good hypothesis `h`?
+
+  - Efficient Learnability
+
+    - The concept class `C` is **efficiently learnable** if `L` can produce the hypothesis in time that is polynomial in `1/ε`, `1/δ`, `n`, and `size(H)`
+
+  - A General Result
+
+    - Let `H` be any hypothesis space
+
+    - With probability `1 - δ`, a hypothesis `h → H` that is **consistent** with a training set of size `m` will have an error less than `ε` on future examples if:
+
+      - $$
+        m>\frac{1}{\epsilon}\left(\ln(|H|)+\ln\left(\frac{1}{\delta}\right)\right)
+        $$
+
+        - `1/ε` => expecting lower error increases sample complexity (i.e., more samples needed for the guarantee)
+        - `ln(|H|)` => if we have a large hypothesis space, then we will make learning harder (i.e., higher sample complexity)
+        - `ln(1/δ)` => if we want a higher confidence in the classifier we will produce, sample complexity will be higher
+
+    - Example: Disjunction
+
+      - Let `H` be any hypothesis space
+
+      - With probability `1 - δ`, a hypothesis `h → H` that is **consistent** with a training set of size `m` will have an error less than `ε` on future examples if:
+
+        - $$
+          m>\frac{1}{\epsilon}\left(\ln(|H|)+\ln\left(\frac{1}{\delta}\right)\right)
+          $$
+
+      - Size of the hypothesis class for the disjunction class is `|H| = 3^n`, so a sufficient number of examples to learn the disjunction concept is:
+
+        - $$
+          m>\frac{1}{\epsilon}\left(n\ln3+\ln\frac{1}{\delta}\right)
+          $$
+
+    - Example: Arbitrary Boolean Function
+
+      - Let `H` be any hypothesis space
+
+      - With probability `1 - δ`, a hypothesis `h → H` that is **consistent** with a training set of size `m` will have an error less than `ε` on future examples if:
+
+        - $$
+          m>\frac{1}{\epsilon}\left(\ln(|H|)+\ln\left(\frac{1}{\delta}\right)\right)
+          $$
+
+      - Size of the hypothesis class for Boolean functions is `|H| = 2^2^n`, so a sufficient number of examples to learn the Boolean function concept is:
+
+        - $$
+          m>\frac{1}{\epsilon}\left(2^n\ln2+\ln\frac{1}{\delta}\right)
+          $$
+
+  - How About Real Value Functions?
+
+    - `VC(H)` quantifies the complexity of the hypothesis space
+
+      - e.g., `VC(linear function) < VC(polynomial function)`
+      - e.g., `VC(function w/ large margin) < VC(function w/ small margin)`
+
+    - $$
+      err_D(h)\le err_S(h)+\sqrt{\frac{VC(H)\left(\ln\frac{2m}{VC(H)}+1\right)+\ln\frac{4}{\delta}}{m}}
+      $$
+
+- Kernel and Kernel Methods
+
+  - Functions Can be Made Linear
+
+    - Data is not linearly separable in one dimension => not separable if you insist on using a specific class of functions
+
+    - Can we do some mapping to make it linearly separable? => blown up feature space
+
+      - i.e., data is separable in `<x, x^2>` space
+
+    - The Perceptron Algorithm
+
+      - Given a training set:
+
+        - $$
+          \mathcal{D}=\{(\bold{x},y)\}^m_{i=1}
+          $$
+
+      - ```
+        Initialize w ← 0
+        For (x, y) in D:
+        	if yw^TΦ(x) ≤ 0
+        		w ← w + yΦ(x)
+        Return w
+        ```
+
+        - Assume `y ∈ {1, -1}`
+
+      - Prediction: `ytest ← sgn(w^TΦ(x))`
+
+      - What happens when the dimension of `Φ(x)` is very large?
+
+        - It's okay if we can compute `Φ(xi)TΦ(xj)`
+
+        - $$
+          \bold{w}^T\bold{\phi(x)}=\sum_i\alpha_iy_i\phi(x_i)^T\phi(x)
+          $$
+
+  - Dual Representation
+
+    - Let `w` be an initial weight vector for Perceptron
+
+    - Let `(x1, +)`, `(x2, +)`, `(x3, -)`, and `(x4, -)` be examples and assume mistakes are made on `x1`, `x2`, and `x4`
+
+    - What is the resulting weight vector?
+
+      - $$
+        w=w+x_1+x_2-x_4
+        $$
+
+    - In general, the weight vector `w` can be written as a linear combination of examples:
+
+      - $$
+        w=\sum_{1\ldots m}\alpha_iy_ix_i
+        $$
+
+      - Where `αi` is the number of mistakes made on `xi`
+
+    - What will be the prediction on `x`?
+
+  - The Dual Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        \mathcal{D}=\{(\bold{x},y)\}^m_{i=1}
+        $$
+
+    - ```
+      Initialize α ← 0 ∈ R^m
+      For (xi, yi) in D:
+      	if yiΣjαjyjΦ(xj)^TΦ(xi) ≤ 0
+      		αi ← αi + 1
+      Return α
+      ```
+
+    - Prediction: `ytest ← sgn(w^TΦ(x)) = ΣiaiyiΦ(xi)^TΦ(x)`
+
+    - Use if the dimensionality of the data is much larger than the sample size
+
+  - Predicting with Linear Classifiers
+
+    - Prediction = `sgn(w^Tx)` and:
+
+      - $$
+        \bold{w}=\sum_{i=1}^m\alpha_iy_i\bold{x}_i
+        $$
+
+    - That is, we just shows that:
+
+      - $$
+        \bold{w}^T\bold{x}=\sum_i\alpha_iy_i\bold{x}_i^T\bold{x}
+        $$
+
+      - Prediction can be done by computing dot products between training examples and the new example `x`
+
+    - This is true if we map examples with `Φ(x)`:
+
+      - $$
+        \bold{w}^T\phi(\bold{x})=\sum_i\alpha_iy_i\phi(\bold{x}_i)^T\phi(\bold{x})
+        $$
+
+  - Relation to KNN
+
+    - Linear model:
+
+      - $$
+        \bold{w}^T\phi(\bold{x})=\sum_i\alpha_iy_i\phi(\bold{x}_i)^T\phi(\bold{x})
+        $$
+
+    - KNN: votes are weighted by the distance between the neighbor and `x`:
+
+      - $$
+        \text{argmax}_y\sum_{x_i\in neighbor(x);y_i=y}\phi(x_i)^T\phi(x)
+        $$
+
+  - Dot Products in High-Dimensional Spaces
+
+    - If `Φ(x)` maps `x` to a high-dimensional space, we define `K(x, z)` as the inner product of `Φ(x)` and `Φ(z)`:
+
+      - $$
+        K(\bold{x},\bold{z})=\phi(\bold{x})^T\phi(\bold{z})
+        $$
+
+    - So, prediction is:
+
+      - $$
+        sgn(\bold{w}^T\phi(\bold{x}))=sgn\left(\sum_i\alpha_iy_iK(\bold{x}_i,\bold{x})\right)
+        $$
+
+      - Since:
+
+        - $$
+          \bold{w}^T\phi(\bold{x})=\sum_i\alpha_iy_i\phi(\bold{x}_i)^T\phi(\bold{x})
+          $$
+
+    - If we can compute `K(xi, x)` without explicitly writing the blown up representation, then we will have a computational advantage
+
+    - Example:
+
+      - Assume the mapping:
+
+        - $$
+          \bold{x}=\begin{bmatrix}
+          x_1\\
+          x_2\\
+          \vdots\\
+          x_D
+          \end{bmatrix}\\
+          \phi(\bold{x})=\begin{bmatrix}
+          1\\
+          \sqrt{2}x_1\\
+          \sqrt{2}x_2\\
+          \vdots\\
+          \sqrt{2}x_D\\
+          x_1^2\\
+          x_1x_2\\
+          \vdots\\
+          x_1x_D\\
+          x_2x_1\\
+          x_2^2\\
+          \vdots\\
+          x_2x_D\\
+          \vdots\\
+          x_Dx_1\\
+          \vdots\\
+          x_D^2
+          \end{bmatrix}
+          $$
+
+      - $$
+        \mathbb{R}^D\rightarrow\mathbb{R}^{D^2+D+1}
+        $$
+
+      - Computing `w^TΦ(x)` is `O(D^2)`
+
+        - For example, if `D = 1000`, then the dimension of `Φ(x) = 1 + 1000 + 1000^2` 
+
+  - Inner Product can be Computed Efficiently
+
+    - However:
+
+      - $$
+        \phi(\bold{x}_i)^T\phi(\bold{x}_j)=(1+\bold{x}_i^T\bold{x}_j)^2
+        $$
+
+    - In fact, it can be computed in `O(D)`
+
+    - Example: Polynomial Kernel
+
+      - Let us examine more closely the inner products `Φ(xm)^TΦ(xn)` for a pair of data points `xm` and `xn`
+
+      - Polynomial-based nonlinear basis functions consider the following `Φ(x)`:
+
+        - $$
+          \phi:\bold{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix}\rightarrow\phi(\bold{x})=\begin{bmatrix}x_1^2\\\sqrt{2}x_1x_2\\x_2^2\end{bmatrix}
+          $$
+
+      - This gives rise to an inner product in a special form:
+
+        - $$
+          \begin{equation}
+          \begin{split}
+          \phi(\bold{x}_m)^T\phi(\bold{x}_n)&=x_{m1}^2x_{n1}^2+2x_{m1}x_{m2}x_{n1}x_{n2}+x_{m2}^2x_{n2}^2\\
+          &=(x_{m1}x_{n1}+x_{m2}x_{n2})^2\\
+          &=(\bold{x}_m^T\bold{x}_n)^2
+          \end{split}
+          \end{equation}
+          $$
+
+      - Namely, the inner product can be computed by a function `(xm^Txn)^2` defined in terms of the original features, without computing `Φ(·)`
+
+  - The Kernel Trick
+
+    - Suppose we wish to compute:
+
+      - $$
+        K(\bold{x},\bold{z})=\phi(\bold{x})^T\phi(\bold{z})
+        $$
+
+    - Here, `Φ` maps `x` and `z` to a high-dimensional space
+
+    - The Kernel Trick: save time/space by computing the value of `K(x, z)` by performing operations in the original space (without a feature transformation)
+
   
 
+## Lecture 13:
 
-
-## Lecture 12:
+- 
