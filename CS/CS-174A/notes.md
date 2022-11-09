@@ -1924,6 +1924,344 @@
 
 
 
+## Lecture 12: Illumination and Shading
+
+- Lighting/Illumination
+
+  - Types of Lighting:
+    - Ambient
+      - A crude approximation of real-life scenarios
+      - Some background visibility of an object, but not really the shape of the object
+    - Diffuse
+      - Starts to give you some shape
+      - Take into account the orientation of the object, normals, light vectors, etc.
+    - Specular
+      - Start noticing the highlights on shiny surfaces
+  - Geometric Properties:
+    - Object: position, orientation (normal)
+    - Light: position, direction, point vs. spot vs. area
+    - Eye: position, orientation
+  - Material Properties:
+    - Object: color, reflectivity, shininess, bumpiness, translucency
+    - Light: color
+    - Eye: filter, color blindness
+
+- Ambient Lighting
+
+  - Properties:
+
+    - Background light
+
+    - Unrealistic
+
+    - Works as a good approximation of scattered light
+
+    - Does *not* depend on position/orientation of light, object, or eye
+
+    - Only depends on object and light's material properties
+
+    - `ka` is the ambient reflection coefficient, values `[0..1]`
+
+      - May be different for `R`, `G`, and `B`
+
+    - `Ia` is the intensity of ambient light source, values `[0..1]`
+
+      - Different for `R`, `G`, and `B`
+
+    - Ambient light reflected off object:
+
+      - $$
+        k_a\times I_a
+        $$
+
+- Diffuse Lighting
+
+  - Properties:
+
+    - Point light source
+
+    - Lambertian (or diffuse) reflection for dull, matte surfaces
+
+    - Surfaces look equally bright from all directions
+
+    - Reflect light *equally* in all directions
+
+    - Lambert's Law: amount of light reflected from a differential unit area `dA` toward a viewer is proportional to the cosine of the angle between the incident light and the normal (`θ`)
+
+    - `kd` is the diffuse reflection coefficient with values `[0..1]`
+
+    - `Ip` is the intensity of point light source, values `[0..1]`
+
+    - Diffuse light reflected off object:
+
+      - $$
+        k_d\times I_p\times\cos\theta=k_d\times I_p\times (N\cdot L)
+        $$
+
+  - Incident Angle `θ`:
+
+    - `θ < 90º` => some light based on angle `θ`
+    - `θ = 0º` => max light
+    - `θ > 90º` => self-occlusion
+
+  - Directional Light Source
+
+    - A light at a sufficient distance from object (e.g., sun)
+    - `L` remains the same for entire scene
+    - `N` remains the same for entire polygon
+    - Therefore, `N · L` is constant on the polygon, `L` is constant everywhere
+
+  - Attenuated Light Source
+
+    - Diffuse light reflected off object:
+
+      - $$
+        f_{att}\times k_d\times I_p\times\cos\theta=f_{att}\times k_d\times I_p\times(N\cdot L)
+        $$
+
+    - $$
+      f_{att}=\frac{1}{d}\text{ or }\frac{1}{c_1+c_2\times d+c_3\times d^2},\quad f_{att}=\min(f_{att},1)
+      $$
+
+  - Colored Light and Objects
+
+    - Object's diffuse color:
+
+      - $$
+        (O_{d\lambda}):O_{dR},O_{dG},O_{dB}
+        $$
+
+    - $$
+      I_\lambda=[k_{a\lambda}\times I_{a\lambda}+f_{att}\times k_{d\lambda}\times I_{p\lambda}\times(N\cdot L)]\times O_{d\lambda}
+      $$
+
+  - Atmospheric Attenuation or Blending
+
+    - Depth cueing or fog (fog color = `Idcλ`)
+
+    - $$
+      I_\lambda=s_o\times I_\lambda+(1-s_o)\times I_{dc\lambda}
+      $$
+
+    - $$
+      s_o=s_b\text{ when }z>z_b
+      $$
+
+    - $$
+      s_o=s_f\text{ when }z<z_f
+      $$
+
+    - $$
+      s_o=s_f+\frac{s_b-s_f}{z_b-z_f}(z-z_f)
+      $$
+
+- Specular Lighting
+
+  - Properties:
+
+    - Shiny surfaces
+
+    - Color of light, not object
+
+    - Does depend on position of light, object, and eye
+
+    - Light reflects unequally in different directions (e.g., perfect reflector: mirror)
+
+    - For non-perfect reflectors
+
+    - `ks` is the specular reflection coefficient, with values `[0..1]`
+
+      - May be different for `R`, `G`, and `B`
+
+    - `n` is the material's specular reflection exponent, values `[1..100s]`
+
+      - Perfect reflector: `n = ∞`
+
+    - Specular light reflected off object:
+
+      - $$
+        f_{att}\times k_s\times I_p\times\cos^n\phi=f_{att}\times k_s\times I_p\times(R\cdot V)^n
+        $$
+
+    - $$
+      I_\lambda=k_{a\lambda}I_{a\lambda}O_{d\lambda}+f_{att}k_{d\lambda} I_{p\lambda}(N\cdot L)O_{d\lambda}+f_{att}k_{s\lambda}I_{p\lambda}(R\cdot V)^n
+      $$
+
+      - The ambient light source has no attenuation factor since it's a background light
+      - The diffuse term is based on Lambert's Law (angle between the normal and the light vector)
+      - The specular term is based on the angle between the reflection vector and the view vector
+
+  - Specular Term: Smoothness Exponent Effect
+
+    - Exponentiating a term that has values less than 1 draws it closer to 0
+
+    - Higher exponent => smaller region where point light's reflection is considered aligned with the viewer => smaller shiny spot
+
+    - Negative values of `cosΦ` is clamped to 0:
+
+      - $$
+        \max(0,(R\cdot V)^n)
+        $$
+
+    - Max specular reflection when `Φ = 0`
+
+  - Calculating the `R` Vector
+
+    - Reflection of point light source
+
+    - Given normalized light vector `L` and the normal `N`
+
+    - $$
+      N'=(L\cdot N)N=L+u\\
+      u=(L\cdot N)N-L\\
+      \begin{equation*}\begin{split}
+      R&=N'+u\\
+      &=L+2u\\
+      &=2(N\cdot L)N-L
+      \end{split}\end{equation*}
+      $$
+
+      - `N'` is the projection of `L` onto `N`
+      - `u` is the vector from the tip of `L` to the tip of `N'`
+
+  - Halfway Vector: Alternate Formulation of `R · V`
+
+    - Halfway vector (`H`) between `L` and `V`:
+
+      - $$
+        \text{normalize}(L+V)
+        $$
+
+    - Replace:
+
+      - $$
+        (R\cdot V)^n\text{ with }(H\cdot N)^n=\cos^n\psi,\quad\psi=\frac{\theta}{2}
+        $$
+
+    - This alternate is referred to as Blinn-Phong illumination
+
+  - Final Light Equation
+
+    - $$
+      I=\text{emissive}+\text{ambient}+\text{diffuse}+\text{specular}\\
+      \begin{equation*}
+      \begin{split}
+      \text{emissive}&=k_e\\
+      \text{ambient}&=k_a\times ambientColor\\
+      \text{diffuse}&=k_d\times lightColor\times\cos\theta\\
+      &=k_d\times lightColor\times\max(0,N\cdot L)\\
+      \text{specular}&=k_s\times lightColor\times\cos^n\phi\\
+      &=k_s\times lightColor\times\max(0,R\cdot V)^n
+      \end{split}
+      \end{equation*}
+      $$
+
+- Lighting: Miscellaneous Improvements
+
+  - Multiple Light Sources
+
+    - Sum the light terms over all light sources
+      - Usually only one ambient light source
+
+  - Clamping
+
+    - $$
+      x=\max(0,x)\text{ and }\min(x,1)
+      $$
+
+    - With respect to the max value of color in the entire image:
+
+      - $$
+        x=\text{normalize}(x)
+        $$
+
+  - Fast Alternative to Phong Illumination
+
+    - $$
+      t=R\cdot V\text{ or }H\cdot N
+      $$
+
+    - Instead of `t^n`, do:
+
+      - $$
+        \frac{t}{n-nt+t}
+        $$
+
+  - Spot Lights
+
+    - Smooth spot silhouette
+
+    - If `α < β`, then illuminate the point
+
+      - `β` is the spot angle
+
+      - Replace angles with cosines
+
+        - `β` is a constant, so `cosβ` is also a constant
+
+        - $$
+          \cos\alpha=L\cdot D
+          $$
+
+          - `L` is the light vector to the point you are trying to illuminate and `D` is the direction of the spot light
+
+    - Center of the spot should be maximally lit, while there should be a soft falloff towards the periphery of the spot
+
+      - Use `L · D` => maximum in the center, falls off towards the periphery
+      - Clamp to 0 when the angle is larger than `β`
+
+- Types of Lights: Summary
+
+  - | Type        | Location | Direction        |
+    | ----------- | -------- | ---------------- |
+    | Ambient     | No       | No               |
+    | Point       | Yes      | No               |
+    | Directional | No       | Yes              |
+    | Spot        | Yes      | Yes + Spot Angle |
+
+- Flat/Constant/Faceted Shading
+
+  - Use the `N` of the polygon
+  - Find `I` at center/any vertex of the polygon
+  - Apply that same color to all points inside the polygon
+  - In essence, it means:
+    - `N` is constant across the polygon
+    - Light is at ∞ => `N · L` is constant across the polygon
+    - Viewer is at ∞ => `N · V` is constant across the polygon
+  - Which space to compute `N` and illuminate?
+    - Either world space or eye space, not in projection space
+  - Problem with Flat Shading
+    - Mach bands are an optical illusion, exaggerating the contrast between edges of slightly differing shades of gray
+
+- Gouraud Smooth Shading
+
+  - Also called intensity interpolation or color interpolation shading
+
+    - $$
+      C=(1-\alpha)C_1+\alpha C_2
+      $$
+
+    - Bilinear interpolation: linear interpolation in 2-dimensions
+
+  - World space: find `I` at each vertex and illuminate the vertex
+
+  - Screen space: interpolate across the polygon face
+
+  - Store normals at vertices
+
+    - Average normals of polygons sharing a vertex
+    - During tessellation, e.g., sphere
+    - What about hard edges?
+
+  - Issues with Gouraud Shading
+
+    - Rotating polygons
+    - Specular reflection with large polygons
+      - At polygon's center
+      - At polygon's vertex
+    - Mach banding is not completely eliminated
+
+
 
 ## Discussion 1: Introduction and Assignment 1
 
