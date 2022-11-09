@@ -2243,6 +2243,17 @@
 
     - Bilinear interpolation: linear interpolation in 2-dimensions
 
+      - Draw a horizontal line through the point and find the color at the edge intersections using linear interpolations to find y-intepolations
+
+      - $$
+        y_a=y_b=y\\
+        \frac{x_a-x_1}{x_4-x_1}=\frac{y_a-y_1}{y_4-y_1}\Rightarrow x_a=\ ?
+        $$
+
+        - Do same for `ya`, `ra`, `xb`, `yb`, and `rb`
+
+      - Same for all characteristics (e.g., red, green, blue, depth, normals, textures, etc.)
+
   - World space: find `I` at each vertex and illuminate the vertex
 
   - Screen space: interpolate across the polygon face
@@ -2256,10 +2267,38 @@
   - Issues with Gouraud Shading
 
     - Rotating polygons
+      - Different vertices are used for the calculations at different orientations => sudden jumps in coloring
+      - One solution => only deal with triangles so that the same 3 vertices are always used
     - Specular reflection with large polygons
       - At polygon's center
+        - Will never get captured since the middle of the polygon is never used for calculations
       - At polygon's vertex
+        - Will have too much impact on pixels inside the polygon, since the specular vertex will be used for interpolations
+      - No solution to this issue
     - Mach banding is not completely eliminated
+
+- Phong Shading
+
+  - Also called normal vector interpolation shading
+  - Calculate intensity at each pixel
+    - Pixel => screen space
+    - Can invert the transformation from world space to screen space for the pixel to move it back to world space
+  - Interpolate normals similar to others, then normalize
+    - No more interpolation of colors
+  - Much more computation, but better looking images
+  - Smooth Shadings
+    - Issues with interpolated shading:
+      - Polygonal silhouette
+        - Geometry of the object is never used, so the shape is polygonal despite the smooth shading
+      - Orientation dependence (triangles okay)
+      - Problems at shared vertices
+      - Unrepresentative vertex normals
+
+
+
+## Lecture 13:
+
+- 
 
 
 
