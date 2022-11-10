@@ -2757,7 +2757,7 @@
       Return α
       ```
 
-    - Prediction: `ytest ← sgn(w^TΦ(x)) = ΣiaiyiΦ(xi)^TΦ(x)`
+    - Prediction: `ytest ← sgn(w^TΦ(x)) = ΣiαiyiΦ(xi)^TΦ(x)`
 
     - Use if the dimensionality of the data is much larger than the sample size
 
@@ -2907,6 +2907,398 @@
 
   
 
-## Lecture 13:
+## Lecture 13: Kernel Methods and Support Vector Machines
+
+- Kernel Methods
+
+  - The Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        \mathcal{D}=\{(\bold{x},y)\}^m_{i=1}
+        $$
+
+    - ```
+      Initialize w ← 0
+      For (x, y) in D:
+      	if yw^TΦ(x) ≤ 0
+      		w ← w + yΦ(x)
+      Return w
+      ```
+
+      - Assume `y ∈ {1, -1}`
+
+    - Prediction:
+
+      - $$
+        y^{\text{test}}\leftarrow\text{sgn}(\bold{w}^T\bold{\phi(x)})
+        $$
+
+  - The Dual Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        \mathcal{D}=\{(\bold{x},y)\}^m_{i=1}
+        $$
+
+    - ```
+      Initialize α ← 0 ∈ R^m // w ← 0
+      For (xi, yi) in D:
+      	if yiΣjαjyjΦ(xj)^TΦ(xi) ≤ 0 // yw^TΦ(x) ≤ 0
+      		αi ← αi + 1 // w ← w + yΦ(x)
+      Return α
+      ```
+
+    - Prediction:
+
+      - $$
+        y^{\text{test}}\leftarrow\text{sgn}(\bold{w}^T\bold{\phi(x)})=\text{sgn}\left(\sum_i\alpha_iy_i\bold{\phi(x_i)}^T\bold{\phi(x)}\right)
+        $$
+
+    - $$
+      \bold{w}=\sum_{j=1\ldots m}\alpha_jy_j\bold{\phi(x_j)}
+      $$
+
+    - Instead of updating in the original space of `w`, we update in the space of `α`
+
+      - Like normal Perceptron, we only update when the prediction is incorrect
+      - Need to compute the inner product between `Φ(xi)` and `Φ(x)` efficiently
+
+  - Example: Polynomial Kernel
+
+    - Let us closely examine the following inner product for a pair of data points `xm` and `xn`:
+
+      - $$
+        \bold{\phi(x_m)}^T\bold{\phi(x_n)}
+        $$
+
+    - Polynomial-based nonlinear basis functions consider the following `Φ(x)`:
+
+      - $$
+        \phi:\bold{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix}\rightarrow\bold{\phi(x)}=\begin{bmatrix}x_1^2\\\sqrt{2}x_1x_2\\x_2^2\end{bmatrix}
+        $$
+
+    - This gives rise to an inner product in a special form:
+
+      - $$
+        \begin{equation*}
+        \begin{split}
+        \bold{\phi(x_m)}^T\bold{\phi(x_n)}
+        & =x_{m1}^2x_{n1}^2+2x_{m1}x_{m2}x_{n1}x_{n2}+x_{m2}^2x_{n2}^2\\
+        & =(x_{m1}x_{n1}+x_{m2}x_{n2})^2\\
+        & =(\bold{x_m}^T\bold{x_n})^2
+        \end{split}
+        \end{equation*}
+        $$
+
+    - Namely, the inner product can be computed without computing `Φ(·)`, and instead by a function defined in terms of the original features:
+
+      - $$
+        (\bold{x_m}^T\bold{x_n})^2
+        $$
+
+    - Note that, in this example, the benefit of using kernel is insignificant, but consider when:
+
+      - $$
+        \bold{x}\in\mathbb{R}^{1000},\quad\bold{\phi(x)}\in\mathbb{R}^{500500}
+        $$
+
+  - The Kernel Trick
+
+    - Suppose we wish to compute:
+
+      - $$
+        K(\bold{x},\bold{z})=\bold{\phi(x)}^T\bold{\phi(z)}
+        $$
+
+    - Here, `Φ` maps `x` and `z` to a high-dimensional space
+
+    - Save time/space by computing the value of `K(x, z)` by performing operations in the original space (without a feature transformation)
+
+  - Kernel Functions
+
+    - A kernel function `k(·,·)` satisfies the following property:
+
+      - For any `xm, xn`:
+
+        - $$
+          k(\bold{x_m},\bold{x_n})=k(\bold{x_n},\bold{x_m})\text{ and }k(\bold{x_m},\bold{x_n})=\bold{\phi(x_m)}^T\bold{\phi(x_n)}\text{ for some }\phi(\cdot)
+          $$
+
+    - Example:
+
+      - $$
+        (\bold{x_m}^T\bold{x_n})
+        $$
+
+      - The above is a kernel, because it's the linear product of the following mapping:
+
+        - $$
+          \phi:\bold{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix}\rightarrow\bold{\phi(x)}=\begin{bmatrix}x_1^2\\\sqrt{2}x_1x_2\\x_2^2\end{bmatrix}
+          $$
+
+    - Exercise:
+
+      - Show that the following is a valid kernel:
+
+        - $$
+          k(\bold{x_i},\bold{x_j})=(4+9\bold{x_i}^T\bold{x_j})^2,\quad x\in\mathbb{R}^2
+          $$
+
+      - By the definition of a kernel function, we need to show that:
+
+        - $$
+          k(\bold{x_i},\bold{x_j})=\bold{\phi(x_i)}^T\bold{\phi(x_j)}
+          $$
+
+      - Solution:
+
+        - $$
+          \bold{x_i}=\begin{bmatrix}x_{i1}\\x_{i2}\end{bmatrix},\quad\bold{x_j}=\begin{bmatrix}x_{j1}\\x_{j2}\end{bmatrix}\\
+          \begin{equation}
+          \begin{split}
+          (4+9\bold{x_i}^T\bold{x_j})^2
+          & =(4+9x_{i1}x_{j1}+9x_{i2}x_{j2})^2\\
+          & =16+81x_{i1}^2x_{j1}^2+81x_{i2}^2x_{j2}^2+72x_{i1}x_{j1}+72x_{i2}x_{j2}+162x_{i1}x_{j1}x_{i2}x_{j2}
+          \end{split}
+          \end{equation}\\
+          \bold{\phi(x_i)}=\begin{bmatrix}4\\9x_{i1}^2\\9x_{i2}^2\\6\sqrt{2}x_{i1}\\6\sqrt{2}x_{i2}\\9\sqrt{2}x_{i1}x_{i2}\end{bmatrix}\cdot\begin{bmatrix}4\\9x_{j1}^2\\9x_{j2}^2\\6\sqrt{2}x_{j1}\\6\sqrt{2}x_{j2}\\9\sqrt{2}x_{j1}x_{j2}\end{bmatrix}=\bold{\phi(x_j)}
+          $$
+
+  - Zoo of Kernel
+
+    - Linear Kernel:
+
+      - $$
+        K(\bold{x},\bold{y})=\bold{x}^T\bold{y}
+        $$
+
+      - $$
+        \bold{\phi(x)}=\bold{x}
+        $$
+
+    - Polynomial Kernel:
+
+      - $$
+        K(\bold{x},\bold{y})=(\bold{x}^T\bold{y}+c)^d
+        $$
+
+    - RBF Kernel:
+
+      - $$
+        K(\bold{x},\bold{x'})=\text{exp}\left(-\frac{||\bold{x}-\bold{x'}||^2}{2\sigma^2}\right)
+        $$
+
+      - Similar to a bell-shaped distribution
+
+      - Explicitly making this data into an infinite-dimension space => proof not on exam
+
+  - The Kernel Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        \mathcal{D}=\{(\bold{x},y)\}^m_{i=1}
+        $$
+
+    - ```
+      Initialize α ← 0 ∈ R^m // w ← 0
+      For (xi, yi) in D:
+      	if yiΣjαjyjK(xi, xj) ≤ 0 // yw^TΦ(x) ≤ 0
+      		αi ← αi + 1 // w ← w + yΦ(x)
+      Return α
+      ```
+
+      - Same as dual Perceptron, but with the inner product replaced by a kernel function
+
+    - Prediction:
+
+      - $$
+        y^{\text{test}}\leftarrow\text{sgn}(\bold{w}^T\bold{\phi(x)})=\text{sgn}\left(\sum_i\alpha_iy_iK(\bold{x_i},\bold{x})\right)
+        $$
+
+    - $$
+      \bold{w}^T\bold{\phi(x)}=\sum_i\alpha_iy_i\bold{\phi(x_i)}^T\bold{\phi(x)}=\sum_i\alpha_iy_iK(\bold{x_i},\bold{x})
+      $$
+
+    - Can be applied to other algorithms (e.g., KNN, logistic regression, etc.)
+
+- Support Vector Machines
+
+  - Recall: The Perceptron Algorithm
+
+    - The margin, `γ`, of a hyperplane is the distance from the hyperplane to the closest point
+    - We want a large `γ` so that the model can generalize better during test time
+      - A new example that wasn't in the training set might be misclassified if the margin is smaller
+
+  - The Marginal Perceptron Algorithm
+
+    - Given a training set:
+
+      - $$
+        \mathcal{D}=\{(\bold{x},y)\}
+        $$
+
+    - ```
+      Initialize w ← 0 ∈ R^n
+      For (x, y) in D:
+      	if y(w^Tx) ≤ γ:
+      		w ← w + yx
+      Return w
+      ```
+
+      - Assume:
+
+        - $$
+          y\in\{1,-1\}
+          $$
+
+      - `γ` is a hyper-parameter
+
+    - Prediction:
+
+      - $$
+        y^{\text{test}}\leftarrow\text{sgn}(\bold{w}^T\bold{x^{\textbf{test}}})
+        $$
+
+    - Enforces that predictions must be better than some margin, not just correct
+
+    - Is there a way to find out the best `γ` automatically? => SVM
+
+  - This Lecture
+
+    - Training by maximizing margin
+    - The SVM objective
+    - Solving the SVM optimization problem
+    - Support vectors, duals, and kernels
+
+  - Learning strategy: find the linear separator that maximizes the margin
+
+  - Recall: The Geometry of a Linear Classifier
+
+    - How do we find the distance from a point `p*` to a classifier `w^Tx + b = 0`?
+
+      - Assume there is a point `q` such that `p*q` is perpendicular to the classifier
+
+      - We know that `w` is the normal vector to the classifier
+
+      - Therefore:
+
+        - $$
+          \bold{p^*}=\bold{q}+\frac{d}{||\bold{w}||}\times\bold{w}\\
+          \bold{w}^T\bold{q}+b=0\\
+          d=\frac{||\bold{w}^T\bold{p^*}+b||}{||\bold{w}||}
+          $$
+
+    - Margin
+
+      - Assume we draw lines `w^Tx + b = 1` and `w^Tx + b = -1`
+
+      - What is the distance between `w^Tx + b = 0` and `w^Tx + b = 1`?
+
+        - $$
+          \bold{p^*}=\bold{q}+\frac{d}{||\bold{w}||}\times\bold{w}\\
+          \bold{w}^T\bold{p^*}+b=1\\
+          \bold{w}^T\bold{q}+b=0\\
+          \bold{w}^T\left(\bold{q}+\frac{d}{||\bold{w}||\times\bold{w}}\right)+b=1\\
+          d\times\frac{||\bold{w}||^2}{||\bold{w}||}=1\\
+          d=\frac{1}{||\bold{w}||}
+          $$
+
+  - Hard SVM
+
+    - Three areas:
+
+      - Within the margins:
+
+        - $$
+          -1<(\bold{w}^T\bold{x_i}+b)<1
+          $$
+
+      - Positive prediction:
+
+        - $$
+          (\bold{w}^T\bold{x_i}+b)\ge1
+          $$
+
+      - Negative prediction:
+
+        - $$
+          (\bold{w}^T\bold{x_i})\le-1
+          $$
+
+    - Distance from the hyperplane to the margins is `1 / ||w||`
+
+      - Gives meaning to the size of `w` => larger `w` means smaller margins and vice versa
+
+    - Leads to the following optimization problem to maximize the margin:
+
+      - $$
+        \max_{w,b}\frac{1}{||\bold{w}||}=\min_{w,b}||\bold{w}||=\min_{w,b}||\bold{w}||^2\\
+        \min_{w,b}\frac{1}{2}\bold{w}^T\bold{w}\text{ such that }\forall_i, y_i(\bold{w}^T\bold{x_i}+b)\ge1
+        $$
+
+  - Max-Margin Classifiers
+
+    - Learning Problem:
+
+      - $$
+        \min_{w,b}\frac{1}{2}\bold{w}^T\bold{w}\text{ such that }\forall_i, y_i(\bold{w}^T\bold{x_i}+b)\ge1
+        $$
+
+        - The constraint ensures positive points will be bounded by `w^Tx + b = 1` and negative points will be bounded by `w^Tx + b = -1`
+        - This condition is true for every example, specifically, for the example closest to the separator
+
+    - This is called the "hard" Support Vector Machine
+
+      - No training error can be made, all support vectors are on the boundary
+
+    - We will look at how to solve this optimization problem later
+
+    - What if the data is not separable?
+
+      - This is a constrained optimization problem
+      - If the data is not separable, there is no `w` that will classify the data
+      - Infeasible problem, no solution
+
+  - Dealing with Non-Separable Data
+
+    - Key idea: allow some examples to "break into the margin" or "make a mistake", but penalize them
+
+  - Soft SVM
+
+    - Introduce one slack variable `ξi` per example, and require:
+
+      - $$
+        y_i(\bold{w}^T\bold{x_i}+b)\ge1-\xi_i\text{ and }\xi_i\ge0
+        $$
+
+      - Defined by the distance from the point to the margin it should be at
+
+      - Intuition: the slack variable allows examples to "break" into the margin
+
+      - If the slack value is zero, then the example is either on or outside the margin
+
+    - New optimization problem for learning:
+
+      - $$
+        \min_{w,b,\xi_i}\frac{1}{2}\bold{w}^T\bold{w}+C\sum_i\xi_i\text{ such that }\forall_i,y_i(\bold{w}^T\bold{x_i}+b)\ge1-\xi_i,\quad \xi_i\ge0
+        $$
+
+      - `C` is the hyper-parameter and acts as the tradeoff between the maximization of the margin and the minimization of the total slack
+
+      - Equivalently, we can eliminate the slack variables to rewrite this as:
+
+        - $$
+          \min_{w,b}\frac{1}{2}\bold{w}^T\bold{w}+C\sum_i\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
+          $$
+
+    - 
+
+    
+
+## Lecture 14:
 
 - 
