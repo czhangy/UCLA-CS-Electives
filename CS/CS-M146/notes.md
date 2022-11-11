@@ -3295,13 +3295,318 @@
           \min_{w,b}\frac{1}{2}\bold{w}^T\bold{w}+C\sum_i\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
           $$
 
-    - 
-
     
 
 ## Lecture 14:
 
-- 
+- SVM
+
+  - SVM Objective Function
+
+    - $$
+      \min_{w,b}\frac{1}{2}\bold{w}^T\bold{w}+C\sum_i\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
+      $$
+
+    - Regularization Function
+
+      - $$
+        \frac{1}{2}\bold{w}^T\bold{w}
+        $$
+
+        
+
+      - Maxmize the margin
+      - Imposes a preference over the hypothesis space and pushes for better generalization
+      - Can be replaced with other regularization terms which impose other preferences
+
+    - Loss Function/Empirical Loss
+
+      - $$
+        \sum_i\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
+        $$
+
+      - Hinge loss
+
+      - Penalizes weight vectors that make mistakes
+
+      - Can be replaced with oither loss functions which impose other preferences
+
+    - Hyper-Parameter
+
+      - $$
+        C
+        $$
+
+      - Controls the trade-off between a large margin and a small hinge-loss
+
+    - In general:
+
+      - $$
+        \min_{\bold{w}\in\mathbb{R}^d}R(\bold{w})+C\sum_{(\bold{x},y)\in\hat{D}}[L(\bold{x}{,\bold{w},y})]
+        $$
+
+    - General Learning Principle
+
+      - Risk Minimization
+
+        - $$
+          \min_{\bold{w}\in\mathbb{R}^d}[L(\bold{x},\bold{w},y)]
+          $$
+
+        - Define the notion of "loss" over the training data as a function of a hypothesis
+
+        - Learning = find the hypothesis that has the lowest loss on the training data
+
+      - Regularized Risk Minimization
+
+        - Define a regularization function that penalizes over-complex hypotheses
+        - Capacity control gives better generalization
+        - Define the notion of "loss" over the training data as a function of a hypothesis
+        - Learning = find the hypothesis that has the lowest `[Regularizer + Loss on the training data]`
+
+    - The 0-1 Loss
+
+      - Misclassification:
+
+        - $$
+          y\bold{w}^T\bold{x}+b<0
+          $$
+
+      - No misclassification:
+
+        - $$
+          y\bold{w}^T\bold{x}+b>0
+          $$
+
+      - A higher `w^Tx` means the model has a higher confidence in its prediction
+
+      - If the model makes a correct prediction, that sample has 0 loss
+
+      - If the model makes an incorrect prediction, that sample has 1 loss
+
+      - Advantage: directly corresponds to error rate
+
+      - Disadvantages:
+
+        - Doesn't take the model's confidence into account
+        - Difficult to use gradient descent, as the gradient is 0 everywhere
+
+    - The Hinge Loss
+
+      - $$
+        \mathcal{L}_{\text{Hinge}}(y,\bold{x},\bold{w})=\max(0,1-y(\bold{w}^T\bold x +b))
+        $$
+
+      - No penalty (0 loss) when `y(w^Tx + b) > 1`
+
+        - Penalizes predictions even if they are correct, but too close to the margin
+
+      - For incorrect predictions, the loss linearly scales with the value of `1 - y(w^Tx + b)`
+
+      - Penalizes the model for being confident in an incorrect prediction
+
+      - Advantages:
+
+        - Better for gradient descent since gradient information can be derived from incorrect predictions, but still not ideal due to the "hinge" at `y(w^Tx + b) = 1`
+        - Since hinge loss is an upper bound for the 0-1 loss, optimizing the hinge loss optimizes the 0-1 loss
+
+    - The Loss Function Zoo
+
+      - Perceptron Loss:
+
+        - $$
+          \mathcal{L}_{\text{Perceptron}}(y,\bold{x},\bold{w})=\max(0,-y(\bold{w}^T\bold{x}+b))
+          $$
+
+      - Logistic Loss (Logistic Regression):
+
+        - $$
+          \mathcal{L}_{\text{Logistic}}(y,\bold{x},\bold{w})=\log\left(1+e^{-y(\bold{w}^T\bold{x}+b)}\right)
+          $$
+
+        - Loss of a prediction is always non-zero
+
+        - Differentiable at every point
+
+      - Hinge Loss (SVM):
+
+        - $$
+          \mathcal{L}_\text{Hinge}(y,\bold{x},\bold{w})=\max(0,1-y(\bold{w}^T\bold{x}+b))
+          $$
+
+        - Same as Perceptron loss, but with an offset
+
+      - All loss functions should have less loss as the prediction is more correct and more loss as the prediction is more incorrect
+
+    - Many Choices of Regularization Functions
+
+      - Minimizing the empirical loss with a linear function:
+
+        - $$
+          \min_{\bold{w}\in\mathbb{R}^d}R(\bold{w})+C\sum_{(\bold{x},y)\in\hat{D}}[L(\bold{x},\bold{w},y)]
+          $$
+
+      - Prefer simpler model:
+
+        - Sparse:
+
+          - L0 Regularizer:
+
+            - $$
+              R(\bold{w})=\#\text{ of non-zero elements in }\bold{w}
+              $$
+
+          - L1 Regularizer:
+
+            - $$
+              R(\bold{w})=\sum_i|w_i|
+              $$
+
+          - Trim out as many unrelated features as possible by setting `wi` to 0
+
+        - Gaussian Prior:
+
+          - L2 Regularizer:
+
+            - $$
+              R(\bold{w})=\sum_iw_i^2=\bold{w}^T\bold{w}
+              $$
+
+          - Large margin with hinge loss
+
+  - SVM Optimization
+
+    - Outline: Training SVM by Optimization
+
+      - Stochastic gradient descent
+      - Sub-derivatives of the hinge loss
+      - Stochastic sub-gradient descent for SVM
+      - Comparison to Perceptron
+
+    - Hinge Loss is *Not* Differentiable
+
+      - Gradient can't be found at the hinge
+      - Can still guarantee that SGD will converge if we define the gradient at the hinge properly
+
+    - Sub-Gradient of the SVM Objective
+
+      - $$
+        J^t(\bold{w})=\frac{1}{2}\bold{w}^T\bold{w}+C\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
+        $$
+
+      - General strategy: first solve the max and compute the gradient for each case:
+
+        - $$
+          \nabla J^t=\begin{cases}
+          \bold{w}&\text{if }\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))=0\\
+          \bold{w}-Cy_i\bold{x_i}&\text{otherwise}
+          \end{cases}
+          $$
+
+    - Stochastic Sub-Gradient Descent
+
+      - Given a training set:
+
+        - $$
+          \mathcal{D}=\{(\bold{x},y)\}
+          $$
+
+      - ```
+        Initialize w ← 0 ∈ R^n
+        For epoch 1 ... T:
+        	For (x, y) in D:
+        		if y(w^Tx + b) < 1:
+        			w ← w - η(w - Cyx) // w ← (1 - η)w + ηCyx
+        			b ← b + ηCy
+        		else:
+        			w ← w - ηw
+        Return w
+        ```
+
+    - Perceptron vs. SVM
+
+      - Perceptron: stochastic sub-gradient descent for a different loss
+
+        - No regularization though
+
+        - $$
+          \mathcal{L}_\text{Perceptron}(y,\bold{x},\bold{w})=\max(0,-y_i(\bold{w}^T\bold{x_i}+b))
+          $$
+
+      - SVM: optimizes the hinge loss
+
+        - With regularization
+
+        - $$
+          \mathcal{L}_\text{Hinge}(y,\bold{x},\bold{w})=\max(0,1-y_i(\bold{w}^T\bold{x_i}+b))
+          $$
+
+  - Support Vectors, Duals, and Kernels
+
+    - Maximizing Margin and Minimizing Loss
+
+      - There are three cases:
+
+        - Example is *correctly* classified and is *outside* the margin: penalty = 0
+
+        - Example is *incorrectly* classified: penalty =
+
+          - $$
+            1-y_i(\bold{w}^T\bold{x_i}+b)
+            $$
+
+        - Example is *correctly* classified but *within* the margin: penalty =
+
+          - $$
+            1-y_i(\bold{w}^T\bold{x_i}+b)
+            $$
+
+      - This is the hinge loss function
+
+    - SVM: Primal and Dual
+
+      - $$
+        \min_{\bold{w},b,\xi_i}\frac{1}{2}\bold{w}^T\bold{w}+C\sum_i\xi_i\text{ such that }\forall_i,y_i(\bold{w}^T\bold{x_i}+b)\ge1-\xi_i,\xi_i\ge0
+        $$
+
+      - This is called the primal form of the objective
+
+      - This can be converted to its dual form, which will let us prove a very useful property
+
+    - Support Vector Machines
+
+      - Let `w` be the minimizer of the SVM problem for some dataset with `m` examples:
+
+        - $$
+          \{(\bold{x_i},y_i)\}
+          $$
+
+      - Then, for `i = 1 ... m`, there exist `αi ≥ 0` such that the optimum `w` can be written as:
+
+        - $$
+          \bold{w}=\sum_{i=1}^m\alpha_iy_i\bold{x_i}\\
+          \max_\alpha\sum_i\alpha_i-\frac{1}{2}\sum_{i,j}\alpha_i\alpha_jy_iy_j\bold{x_i}\bold{x_j}\\
+          \sum_i\alpha_iy_i=0\\
+          C\ge\alpha_i\ge0
+          $$
+
+      - Furthermore:
+
+        - $$
+          y_i(\bold{w}^T\bold{x_i}+b)>1\Rightarrow\alpha_i=0\\
+          y_i(\bold{w}^T\bold{x_i}+b)<1\Rightarrow\alpha_i=C\\
+          y_i(\bold{w}^T\bold{x_i}+b)=1\Rightarrow0\le\alpha_i\le C
+          $$
+
+    - The weight vector is completely defined by training examples whose `αi`s are non-zero:
+
+      - $$
+        \bold{w}=\sum_{i=1}^m\alpha_iy_i\bold{x_i}
+        $$
+
+      - These examples are called the support vectors
+
+        - Examples that are misclassified or classified correctly, but within the margin
 
 
 
