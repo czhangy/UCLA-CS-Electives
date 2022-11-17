@@ -3297,7 +3297,7 @@
 
     
 
-## Lecture 14:
+## Lecture 14: Hard SVM
 
 - SVM
 
@@ -3610,6 +3610,273 @@
 
 
 
-## Lecture 15:
+## Lecture 15: Bayesian Learning
+
+- What You Will Learn Today
+
+  - Review Bayesian Theorem
+  - Maximum A Posteriori (MAP)
+  - Logistic Regression with Gaussian Prior
+  - Naive Bayes
+
+- Bayesian Theorem
+
+  - $$
+    P(Y\ |\ X)=\frac{P(X\ |\ Y)P(Y)}{P(X)}
+    $$
+
+    - Short for:
+
+      - $$
+        \begin{equation}
+        \begin{split}
+        \forall_{x,y}\ P(Y=y\ |\ X=x)
+        &=\frac{P(X=x\ |\ Y=y)P(Y=y)}{P(X=x)}\\
+        &=\frac{P(X=x\ |\ Y=y)P(Y=y)}{\sum_{y'}P(X=x\ |\ Y=y')P(Y=y')}
+        \end{split}
+        \end{equation}
+        $$
+
+    - `P(Y)` => prior probability: what is our belief in `Y` before we see `X`?
+    - `P(X | Y)` => likelihood: what is the likelihood of observing `X` over a specific `Y`?
+    - `P(Y | X)` => posterior probability: what is the probability of `Y` given that `X` is observed
+    - `(X, Y)` can be `(Data, Model)` or `(Input, Output)`
+
+  - Example:
+
+    - How likely is it for a patient to have COVID if the test is positive?
+
+    - $$
+      P(\text{COVID}\ |\ +)=\frac{P(\text{COVID and }+)}{P(\text{COVID and }+)+P(\text{no COVID and }+)}
+      $$
+
+- Probabilistic Learning
+
+  - Two different notions of probabilistic learning:
+
+    - Bayesian learning: use of a probabilistic criterion in selecting a hypothesis (`P(Θ | D)`)
+
+      - The hypothesis can be deterministic, a Boolean function
+      - The criterion for selecting the hypothesis is deterministic
+
+    - Learning probabilistic concepts (`P(Y | X)`)
+
+      - The learned concept is a function:
+
+        - $$
+          c:X\rightarrow[0,1]
+          $$
+
+      - `c(x)` may be interpreted as the probability that the label `1` is assigned to `x`
+
+  - Bayesian Learning: The Basics
+
+    - Goal: to find the *best* hypothesis from some space `H` of hypotheses, using the observed data `D`
+
+      - Define *best* = *most probable hypothesis* in `H`
+
+    - We assume a probability distribution *over the class* `H`
+
+    - Given a dataset `D`, we want to find the *best* hypothesis `h`
+
+      - What does *best* mean?
+      - Bayesian learning uses `P(h | D)`, the conditional probability of a hypothesis given the data to define *best*
+
+    - $$
+      P(h\ |\ D)=\frac{P(D\ |\ h)P(h)}{P(D)}
+      $$
+
+      - `P(h | D)` is a posterior probability: the probability that `h` is the hypothesis, given that the data `D` is observed
+      - `P(h)` is a prior probability: background knowledge; what we expect the hypothesis to be before we see any data
+      - `P(D | h)` is likelihood: what is the probability that this data point is observed, given that the hypothesis is `h`?
+      - `P(D)`: what is the probability that the data `D` is observed, independent of any knowledge about the hypothesis?
+
+- Maximum A Posteriori
+
+  - Choosing a Hypothesis
+
+    - Given some data, find the most probable hypothesis
+
+      - The *Maximum a Posteriori* hypothesis `hMAP`:
+
+        - $$
+          \begin{equation}
+          \begin{split}
+          h_{MAP}
+          &=\arg\max_{h\in H}P(h\ |\ D)\\
+          &=\arg\max_{h\in H}\frac{P(D\ |\ h)P(h)}{P(D)}\\
+          &=\arg\max_{h\in H}P(D\ |\ h)P(h)
+          \end{split}
+          \end{equation}
+          $$
+
+    - If we assume that the prior is uniform, we get the maximum likelihood
+
+      - $$
+        P(h_i)=P(h_j)\ \forall_{h_i,h_j}
+        $$
+
+      - $$
+        h_{ML}=\arg\max_{h\in H}P(D\ |\ h)
+        $$
+
+      - Often computationally easier to maximize log likelihood
+
+  - The "Learning" Algorithm
+
+    - $$
+      \begin{equation}
+      \begin{split}
+      p_{best}
+      &=\arg\max_pP(D\ |\ h)\\
+      &=\arg\max_p\log P(D\ |\ h)\\
+      &=\arg\max_p\log\left({a+b\choose a}p^a(1-p)^b\right)\\
+      &=\arg\max_pa\log p+b\log(1-p)
+      \end{split}
+      \end{equation}
+      $$
+
+    - Calculus 101: set the derivative to 0:
+
+      - $$
+        p_{best}=\frac{a}{a+b}
+        $$
+
+  - Beta Distribution
+
+    - $$
+      \begin{equation}
+      \begin{split}
+      f(x;\alpha,\beta)
+      &=\text{constant}\cdot x^{\alpha-1}(1-x)^{\beta-1}\\
+      &=\frac{x^{\alpha-1}(1-x)^{\beta-1}}{\int_0^1u^{\alpha-1}(1-u)^{\beta-1}du}\\
+      &=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma{\beta}}x^{\alpha-1}(1-x)^{\beta-1}\\
+      &=\frac{1}{\Beta(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1},\quad\alpha>0,\beta>0
+      \end{split}
+      \end{equation}
+      $$
+
+  - MAP Estimation
+
+    - $$
+      h_{MAP}=\arg\max_{h\in H}P(D\ |\ h)P(h)\\
+      P(D\ |\ p)={a+b\choose a}p^a(1-p)^b\\
+      P(p)=\frac{1}{\Beta(\alpha,\beta)}p^{\alpha-1}(1-p)^{\beta-1}
+      $$
+
+    - $$
+      \begin{equation}
+      \begin{split}
+      p_{best}
+      &=\arg\max_pP(D\ |\ h)P(h)\\
+      &=\arg\max_p\log P(D\ |\ h)+\log P(h)\\
+      &=\arg\max_p\log\left(\frac{a+b\choose a}{\Beta(\alpha,\beta)}p^a(1-p)^bp^{\alpha-1}(1-p)^{\beta-1}\right)\\
+      &=\arg\max_p(a+\alpha-1)\log p+(b+\beta-1)\log(1-p)
+      \end{split}
+      \end{equation}
+      $$
+
+  - MAP vs. MLE
+
+    - MLE:
+
+      - $$
+        \arg\max_pa\log p+b\log(1-p)\Rightarrow p_{best}=\frac{a}{a+b}
+        $$
+
+    - MAP (with Beta distribution as prior)
+
+      - $$
+        \arg\max_p(a+\alpha-1)\log p+(b+\beta-1)\log(1-p)\Rightarrow p_{best}=\frac{a+\alpha-1}{a+b+\alpha+\beta-2}
+        $$
+
+  - MAP for Logistic Regression
+
+    - Training data:
+
+      - $$
+        S=\{(\bold{x_i},y_i)\}
+        $$
+
+      - `m` examples
+
+    - What we want:
+
+      - Find a `w` such that `P(S | w)` is maximized
+      - We know that our examples are drawn independently and are IID
+      - How do we proceed?
+
+    - Maximum Likelihood Estimation
+
+      - $$
+        \arg\max_{\bold{w}}P(S\ |\ \bold{w})=\arg\max_\bold{w}\prod_{i=1}^mP(y_i\ |\ \bold{x_i},\bold{w})
+        $$
+
+      - Equivalent to solving:
+
+        - $$
+          \max_\bold{w}\sum_i^m-\log(1+\exp(-y_i(\bold{w}^T\bold{x_i}+b)))
+          $$
+
+        - Equivalent to training a linear classifier by minimizing the *logistic loss*
+
+      - The usual trick: convert products to sums by taking log
+
+        - Recall that this works only because log is an increasing function and the maximizer will not change
+
+      - The goal: maximum likelihood training of a discriminative probabilistic classifier under the logistic model for posterior distribution
+
+    - Maximum a Posteriori Estimation
+
+      - We could also add a prior on the weights
+
+      - Suppose each weight in the weight vector is drawn independently from the normal distribution with zero mean and standard deviation `σ`
+
+        - Helps ensure simplicity of model parameter and avoid overfitting of training data
+        - `σ` can be tuned to balance the regularization term induced by the Gaussian model
+
+      - $$
+        p(\bold{w})=\prod_{j=1}^dp(w_i)=\prod_{j=1}^d\frac{1}{\sigma\sqrt{2\pi}}\exp\left(\frac{-w_i^2}{\sigma^2}\right)
+        $$
+
+      - $$
+        \begin{equation}
+        \begin{split}
+        \arg\max_\bold{w}P(S\ |\ \bold{w})P(\bold{w})
+        &=\arg\max_\bold{w}\log P(S\ |\ \bold{w})+\log P(\bold{w})\\
+        &=\arg\max_\bold{w}\sum_i^m-\log(1+\exp(-y_i(\bold{w}^T\bold{x_i}+b)))+\sum_{j=1}^d\frac{-w_j^2}{\sigma^2}+C
+        \end{split}
+        \end{equation}
+        $$
+
+      - Maximizing a negative function is the same as minimizing the function:
+
+        - $$
+          \arg\min_\bold{w}\sum_i^m\log(1+\exp(-y_i(\bold{w}^T\bold{x_i}+b)))+\frac{1}{\sigma^2}\bold{w}^T\bold{w}
+          $$
+
+          - The final term is an L2 regularizer that adds a Gaussian prior that ensures the model parameters are close to the Gaussian => compare to SVM where the term gives you the largest margin
+
+- Naive Bayes
+
+  - MAP Prediction
+
+    - Let's use the Bayes rule for predicting `y` given an input `x`
+
+    - Predict `y` for the input `x` using:
+
+      - $$
+        \arg\max_yP(X=x\ |\ Y=y)P(Y=y)
+        $$
+
+      - All we need are two sets of probabilities:
+
+        - `P(X | Y)`: the likelihood of observing this input `x` when the label is `y`
+        - `P(Y)`: prior probability of the label being `y`
+
+
+
+
+## Lecture 16:
 
 - 
