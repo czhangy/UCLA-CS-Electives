@@ -26,7 +26,7 @@
 | :----------------------------------------- | :---: |
 | Assignment 1: Setting Up the Environment   |   -   |
 | Assignment 2: Basic Draw & Transformations | 25/25 |
-| Assignment 3: Shading & Lighting           |  ???  |
+| Assignment 3: Shading & Lighting           | 25/25 |
 | Assignment 4: Texture                      |  ???  |
 
 ## Project
