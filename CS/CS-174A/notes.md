@@ -2296,9 +2296,215 @@
 
 
 
-## Lecture 13:
+## Lecture 14: Ray Casting and Tracing
 
-- 
+- Last Lecture Recap
+  - Non-Photorealistic Rendering
+  - Global Illumination: Radiosity
+  - Mappings: Texture, Bump, Displacement, Environment
+  - Shadows
+    - 2-pass z-buffer algorithm
+
+- Next Up
+  - Hidden Surface Removal
+    - Ray casting
+
+  - Ray Tracing
+
+
+- HSR: Ray Casting Algorithm
+
+  - Types of Ray Casting
+
+    - Forward Ray Casting
+      - Starting from the light source and casting rays back to the eye
+      - Not used in this class
+    - Backward Ray Casting
+      - Using a grid in front of the eye, we will shoot a ray through each pixel, intersect that ray with every object in the world, find the closest intersection point, and illuminate that point
+
+  - Ray casting is a WS or ES visible surface algorithm
+
+  - Window is divided into a rectangular array of pixels
+
+  - Algorithm Overview
+
+    - ```
+      For each pixel in viewport:
+      	Generate ray emanating from Eye (O) through pixel
+      	Find intersection between ray and objects
+      	Pick intersection point closest to Eye (O)
+      	Illuminate the closest intersection point
+      	Plot pixel with illuminated color of closest object
+      ```
+
+  - Two Kinds of Rays
+
+    - Primary ray: the ray from the eye to the point of illumination
+    - Shadow ray: the ray from the point to the light source
+
+  - Ray Casting Algorithm
+
+    - Step 1: Generate ray emanating from Eye (`O`) through pixel
+
+      - Superimpose a grid (representing viewport) onto the area defined by `(-tanθ, -tanθ / Ar)`, `(tanθ, tanθ / Ar)` on the `z = 1` plane
+
+      - Width of a pixel on the `z = 1` plane will be:
+
+        - $$
+          \frac{2\tan\theta}{X_{res}}
+          $$
+
+      - Point corresponding to center of pixel `(i, j)` is `P - (xp, yp, 1)`
+
+        - $$
+          x_p=-\tan\theta+(i+0.5)\frac{2\tan\theta}{X_{res}},\quad y_p=\frac{1}{A_r}(\tan\theta-(j+0.5)\frac{2\tan\theta}{Y_{res}})
+          $$
+
+      - Parametric ray emanating from eye (origin) through pixel `P`:
+
+        - $$
+          x=x_e+t(x_p-x_e),y=y_e+t(y_p-y_e),z=z_e+t(z_p-z_e)
+          $$
+
+        - For ES:
+
+          - $$
+            (x_e=y_e=z_e=0):x=tx_p,y=ty_p,z=t
+            $$
+
+    - Step 2: Find intersection between ray and objects
+
+      - Intersection test: if no intersection, skip the next step
+      - Intersection calculation: for spheres and for polygons
+
+  - Ray Casting Spheres
+
+    - Transform center of sphere to ES (radius remains the same)
+
+    - Equation of sphere:
+
+      - $$
+        (x-x_c)^2+(y-y_c)^2+(z-z_c)^2-R^2=0
+        $$
+
+    - Parametric equation of ray (ES):
+
+      - $$
+        x=tx_p,y=ty_p,z=t
+        $$
+
+    - Find intersection of ray with sphere: plug in equation of ray in equation of sphere, resulting in an equation of the form:
+
+      - $$
+        At^2+Bt+C=0\\
+        A=x_p^2+y_p^2+1\\
+        C=a^2+b^2+c^2-R^2
+        $$
+
+      - No real solution => ray doesn't intersect sphere
+
+      - 1 real solution => ray grazes sphere
+
+      - 2 real solutions => entering and exiting points, pick lower positive `t` and calculate `P`
+
+    - Find normal at intersection point `P`:
+
+      - $$
+        \bold{N}=P-P_c
+        $$
+
+    - Illuminate using `P`, `N`, `E` of closest positive `t`
+
+  - Ray Casting Polygons
+
+    - Transform polygon to ES
+
+    - Equation of the plane containing polygon:
+
+      - $$
+        Ax+By+Cz+D=0
+        $$
+
+    - Parametric equation of ray (ES):
+
+      - $$
+        x=tx_p,y=ty_p,z=t
+        $$
+
+    - Find intersection of ray with plane: plug in equation of ray into equation of plane
+
+      - If denominator is 0, ray is parallel to plane => no intersection
+
+    - Check if intersection point `P` is contained inside the polygon
+
+      - Project polygon and point onto one of the primary planes (use max of `N` components)
+      - Use one of the "point inside polygon" tests
+
+    - Find normal `N` at intersection point using bilinear interpolation
+
+    - Illuminate using `P`, `N`, `E` of closest positive `t`
+
+- Ray Tracing
+
+  - Also referred to as Recursive Ray Tracing
+
+  - Handles reflections, refractions, shadows
+
+  - Primary ray: ray from eye into the world
+
+  - Secondary rays: reflected, refracted, shadow
+
+  - Illumination for ray tree:
+
+    - $$
+      I=\text{ambient}+\text{diffuse}+\text{specular}+k_rI_r+k_tI_t
+      $$
+
+      - `kr`: coefficient of reflection
+      - `kt`: coefficient of transmission
+
+  - Attenuate `Ir` and `It` by distance the ray travels
+
+  - Reflected Ray Direction
+
+    - $$
+      \bold{r}=\bold{i}-2(\bold{i}\cdot\bold{n})\bold{n}
+      $$
+
+  - Ray Tree
+
+    - Formed of primary, secondary, and shadow rays
+    - Evaluated bottom up
+    - Tree terminates if:
+      - No intersection for a ray
+      - Tree depth has reached a specified level
+      - Intensity of `Ir` and `It` becomes very low
+      - Ray has traveled a max distance
+
+  - Efficiency Considerations
+
+    - Total number of shadow rays spawned:
+
+      - $$
+        m(2^n-1)
+        $$
+
+        - `m` = number of light sources
+        - `n` = depth of ray tree
+
+    - Total number of rays:
+
+      - $$
+        (m+1)(2^n-1)
+        $$
+
+    - Back faces cannot be culled
+
+    - Clipping cannot be done for view volume or behind eye
+
+    - 75-95% of time is spent in intersection calculations
+
+    - Use bounding box/sphere testing or hierarchies (octrees)
 
 
 
