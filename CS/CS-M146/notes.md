@@ -3857,7 +3857,7 @@
 
           - The final term is an L2 regularizer that adds a Gaussian prior that ensures the model parameters are close to the Gaussian => compare to SVM where the term gives you the largest margin
 
-- Naive Bayes
+- Naïve Bayes
 
   - MAP Prediction
 
@@ -3877,6 +3877,219 @@
 
 
 
-## Lecture 16:
+## Lecture 16: Naïve Bayes
+
+- Naïve Bayes Classifier
+
+  - How hard is it to learn probabilistic models?
+
+    - Prior `P(Y)`:
+      - If there are `k` labels, then `k - 1` parameters
+    - Likelihood `P(X | Y)`:
+      - We need a value for each possible `P(x1, x2, ... , xd | y)` for each `y`
+      - Assume we have `D` binary features, how many parameters do we need?
+        - `k(2^D - 1)`
+    - Need a lot of data to estimate this many numbers
+    - High model complexity
+      - If there is very limited data, there will be high variance in the parameters
+    - How can we deal with this?
+      - Make independence assumptions
+
+  - Recall: Conditional Independence
+
+    - Suppose `X`, `Y`, and `Z` are random variables
+
+    - `X` is *conditionally independent* of `Y` given `Z` if the probability distribution of `X` is independent of the value of `Y` when `Z` is observed:
+
+      - $$
+        P(X\ |\ Y,Z)=P(X\ |\ Z)
+        $$
+
+      - Or, equivalently:
+
+        - $$
+          P(X,Y\ |\ Z)=P(X\ |\ Z)P(Y\ |\ Z)
+          $$
+
+    - Conditionally independent does not entail independence
+
+  - Modeling the Features
+
+    - `P(x1, x2, ... , xd | y)` required a lot of features
+
+    - Consider we have `d` Boolean features for `k` classes; the number of parameters we need is:
+
+      - $$
+        k(2^d-1)
+        $$
+
+    -  What if all the features were conditionally independent given the label? => The Naïve Bayes Assumption
+
+      - That is:
+
+        - $$
+          P(x_1,x_2,\cdots,x_d\ |\ y)=P(x_1\ |\ y)P(x_2\ |\ y)\cdots P(x_d\ |\ y)
+          $$
+
+      - This assumption doesn't hold in practice, but still performs reasonably well
+
+      - Only `dk` features are now needed to specify the likelihood
+
+  - The Naïve Bayes Classifier
+
+    - Assumption: features are conditionally independent given the label `Y`
+
+    - To predict, we need two sets of probabilities:
+
+      - Prior `P(y)`
+      - For each `xj`, we have the likelihood `P(xj | y)`
+
+    - Decision rule:
+
+      - $$
+        \begin{equation}
+        \begin{split}
+        h_{NB}(\bold{x})
+        &=\arg\max_yP(y)P(x_1,x_2,\cdots,x_d\ |\ y)\\
+        &=\arg\max_yP(y)\prod_jP(x_j\ |\ y)
+        \end{split}
+        \end{equation}
+        $$
+
+    - Decision Boundaries of Naïve Bayes
+
+      - What is the decision boundary of the naïve Bayes classifier?
+
+      - Consider the two class case; we predict the label to be `+` if:
+
+        - $$
+          P(y=+)\prod_jP(x_j\ |\ y=+)>P(y=-)\prod_jP(x_j\ |\ y=-)\\
+          \frac{P(y=+)\prod_jP(x_j\ |\ y=+)}{P(y=-)\prod_jP(x_j\ |\ y=-)}>1\\
+          \log\left(\frac{P(y=+)\prod_jP(x_j\ |\ y=+)}{P(y=-)\prod_jP(x_j\ |\ y=-)}\right)>0\\
+          \log\left(\frac{P(y=+)}{P(y=-)}\right)+\sum_j\log\left(\frac{P(x_j\ |\ y=+)}{P(x_j\ |\ y=-)}\right)>0
+          $$
+
+        - Compare to `w^Tx + b`
+        - By taking the log and simplifying, we can show that the decision boundary of naïve Bayes is a linear function of the feature space
+
+- Learning the Naïve Bayes Classifier
+
+  - Hypothesis Function
+
+    - What is the hypothesis function `h` defined by?
+
+      - A collection of probabilities:
+        - A prior for each label: `P(y)`
+        - Likelihoods for feature `xj` given a label: `P(xj | y)`
+
+    - Suppose we have a dataset:
+
+      - $$
+        \mathcal{D}=\{(\bold{x_i},y_i)\}
+        $$
+
+      - `m` examples
+
+    - How do we estimate `P(y)` and `P(xj | y)`?
+
+  - Example:
+
+    - Suppose you have `y ∈ {1, 0}` and all features are binary
+
+    - Prior:
+
+      - $$
+        P(y=1)=p\text{ and }P(y=0)=1-p
+        $$
+
+    - Likelihood for each feature given a label:
+
+      - $$
+        P(x_j=1\ |\ y=1)=a_j\text{ and }P(x_j=0\ |\ y=1)=1-a_j\\
+        P(x_j=1\ |\ y=0)=b_j\text{ and }P(x_j=0\ |\ y=0)=1-b_j
+        $$
+
+  - Maximum Likelihood Estimation
+
+    - $$
+      h_{ML}=\arg\max_{h\in H}P(D\ |\ h)
+      $$
+
+      - Here, `h` is defined by all the probabilities used to construct the naïve Bayes decision
+
+    - $$
+      h_{ML}=\arg\max_h\prod_{i=1}^mP((\bold{x_i},y_i)\ |\ h)
+      $$
+
+      - Each example in the dataset is IID, so we can represent `P(D | h)` as this product
+
+    - $$
+      \begin{equation}
+      \begin{split}
+      h_{ML}
+      &=\arg\max_h\prod_{i=1}^mP((\bold{x_i},y_i)\ |\ h)\\
+      &=\arg\max_h\prod_{i=1}^mP(\bold{x_i}\ |\ y_i,h)P(y_i\ |\ h)\\
+      &=\arg\max_h\prod_{i=1}^mP(y_i\ |\ h)\prod_jP(x_{i,j}\ |\ y_i,h)\\
+      &=\arg\max_h\sum_{i=1}^m\log P(y_i\ |\ h)+\sum_i\sum_j\log P(x_{i,j}\ |\ y_i,h)
+      \end{split}
+      \end{equation}
+      $$
+
+      - Use the Naïve Bayes Assumption
+      - `xij` is the `j`th feature of `xi`
+
+    - Using the assumption from the example above:
+
+      - $$
+        P(y_i\ |\ h)=p^{[y_i=1]}(1-p)^{[y_i=0]}\\
+        P(x_{ij}\ |\ y_i,h)=a_j^{[y_i=1,x_{ij}=1]}\times(1-a_j)^{[y_i=1,x_{ij}=0]}\times b_j^{[y_i=0,x_{ij}=1]}\times(1-b_j)^{[y_i=0,x_{ij}=0]}
+        $$
+
+      - `[z]` is called the indicator function or Iverson bracket; its value is 1 if the argument `z` is true and zero otherwise
+
+    - Substituting and deriving the argmax, we get:
+
+      - $$
+        p=\frac{\text{Count}(y_i=1)}{\text{Count}(y_i=1)+\text{Count}(y_i=0)},\quad P(y=1)=p\\
+        a_j=\frac{\text{Count}(y_i=1,x_{ij}=1)}{\text{Count}(y_i=1)},\quad P(x_j=1\ |\ y=1)=a_j\\
+        b_j=\frac{\text{Count}(y_i=0,x_{ij}=1)}{\text{Count}(y_i=0)},\quad P(x_j=1\ |\ y=0)=b_j
+        $$
+
+  - Learning and Prediction
+
+    - Learning
+      - Count how often features occur with each label
+        - Normalize to get likelihoods
+      - Priors from fraction of examples with each label
+      - Generalizes to multiclass
+    - Prediction
+      - Use learned probabilities to find highest scoring label
+
+  - Important Caveats
+
+    - In practice, features may not be conditionally independent given the label
+
+      - Just because we assume that they are doesn't mean that that's how they behave in nature
+      - We made a modeling assumption because it makes computation and learning easier
+
+    - Not enough training data to get good estimates of the probabilities from the counts
+
+      - The basic operation for learning likelihoods is counting how often a feature occurs with a label
+
+      - What if we never see a particular feature with a particular label? Should we treat these counts as zero?
+
+        - $$
+          P(y)\prod_jP(x_j\ |\ y)
+          $$
+
+        - If any `P(xj | y)` term is equal to zero, the entire term is zero
+
+      - Answer: smoothing
+
+        - Add fake counts (very small numbers so that the counts are not zero)
+
+
+
+## Lecture 17:
 
 - 
