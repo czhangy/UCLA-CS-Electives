@@ -33,7 +33,7 @@
 
 | Deliverable                        | Score |
 | :--------------------------------- | :---: |
-| Preliminary Proposal               |  ???  |
+| Preliminary Proposal               | 25/25 |
 | Final Proposal + Midway Evaluation |  ???  |
 | Final Demo                         |  ???  |
 
