@@ -4090,6 +4090,255 @@
 
 
 
-## Lecture 17:
+## Lecture 17: Clustering
 
-- 
+- Goal of Clustering
+
+  - Given a collection of data points, the goal is to find structure in the data
+    - **Organize that data into sensible groups**
+  - Applications
+    - Topics in news articles
+    - Idenfity communities within social networks
+
+- How to Define Clusters?
+
+  - Distance between points?
+  - Decision boundaries?
+  - Underlying shape of data?
+
+- Today's Lecture
+
+  - K-Means
+  - K-Medoids
+  - GMM (probabilistic version)
+
+- K-Means
+
+  - Intuition
+
+    - The prototype of a cluster is the average of all points in the cluster
+    - Algorithm:
+      - Alternately, updating the prototype and the cluster assignment
+
+  - Problem Setting
+
+    - An optimization problem:
+
+      - Given:
+
+        - $$
+          \mathcal{D}=\{x_n\}^N_{n=1}
+          $$
+
+        - A number `K`
+
+      - We want to group all data points into `K` clusters
+
+      - The cluster membership:
+
+        - $$
+          A(x)\in\{1,2,\ldots,K\}
+          $$
+
+      - $$
+        r_{nk}\in\{0,1\}\text{ indicates whether }A(x_n)=k
+        $$
+
+      - Quantify the clustering quality by mean square distance:
+
+        - $$
+          \sum_{n=1}^N\sum_{k=1}^Kr_{nk}||x_n-\mu_k||^2
+          $$
+
+  - K-Means Clustering
+
+    - Distortion measure (loss function for clustering):
+
+      - $$
+        J(\{r_{nk},{\bold{\mu_k}}\})=\sum_{n=1}^N\sum_{k=1}^Kr_{nk}||\bold{x_n}-\bold{\mu_k}||^2_2
+        $$
+
+      - Where `rnk` is an indicator variable:
+
+        - $$
+          r_{nk}=1\text{ iff }A(\bold{x_n})=k
+          $$
+
+    - Sum of distances of all points to their cluster center
+
+  - K-Means Objective
+
+    - $$
+      \arg\min_{\{r_{nk}\},\{\bold{\mu_k}\}}J(\{r_{nk}\},\{\mu_k\})=\sum_{n=1}^N\sum_{k=1}^Kr_{nk}||\bold{x_n}-\bold{\mu_k}||^2_2
+      $$
+
+    - It is a non-convex objective function
+
+    - Minimizing the above objective is NP-hard
+
+    - Cannot guarantee a global minimum, but can guarantee local minimum
+
+      - In practice, this is usually good enough
+
+  - K-Means Algorithm (AKA Lloyd's Algorithm)
+
+    - A greedy algorithm for minimizing K-means objective
+
+    - Algorithm:
+
+      - Randomly assign the cluster centers:
+
+        - $$
+          \{\bold{\mu_k}\}
+          $$
+
+      - Reassign cluster member:
+
+        - $$
+          \text{Minimize }J\text{ over }\{r_{nk}\}
+          $$
+
+        - Cluster data points with closest cluster center
+
+        - $$
+          r_{nk}=\begin{cases}1&\text{if }k=\arg\min_j||\bold{x_n-\bold{\mu_j}}||^2_2\\0&\text{otherwise}\end{cases}
+          $$
+
+      - Update the cluster centers:
+
+        - $$
+          \text{Minimize }J\text{ over }\{\bold{\mu_k}\}
+          $$
+
+        - Move cluster center to average of data points within cluster
+
+        - $$
+          \bold{\mu_k}=\frac{\sum_nr_{nk}\bold{x_n}}{\sum_nr_{nk}}
+          $$
+
+      - Loop until it converges
+
+  - Remarks
+
+    - Prototype `µk` is the mean of data points assigned to the cluster `k`, hence "K-means"
+    - `µk` may not be in the training set
+    - Need to pre-define `K`
+      - There are some other approaches for the case where `K` is unknown => will not be covered in class
+    - The procedure reduces `J` in both step 1 and 2, and thus makes improvements or stays the same on each iteration
+
+  - Choosing `K`
+
+    - Increasing `K` will always decrease the optimal value of the K-means objective
+      - It doesn't mean a better clustering
+      - Analogous to overfitting in supervised learning
+
+  - Properties of the K-Means Algorithm
+
+    - Does the K-means algorithm converge?
+      - Yes
+    - How long does it take to converge?
+      - In the worst case, exponential in the number of data points
+      - In practice, usually quick
+    - How good is its solution?
+      - Local minimum (depends on the initialization)
+    - Sensitive to outliers
+      - One data point can make the center shift
+
+  - K-Medoids
+
+    - Motivation
+
+      - K-means is sensitive to outliers
+      - In some applications, we want the prototypes to be one of the points
+      - Leads to K-medoids
+
+    - Algorithm
+
+      - Randomly *select `K` points as the cluster centers*:
+
+        - $$
+          \{\bold{\mu_k}\}
+          $$
+
+      - Minimize `J` over `{rnk}` => assign every point to the closest cluster center
+
+        - $$
+          r_{nk}=\begin{cases}1&\text{if }k=\arg\min_j||\bold{x_n-\bold{\mu_j}}||^2_2\\0&\text{otherwise}\end{cases}
+          $$
+
+      - Update the cluster centers => the prototype for a cluster is the data that is closest to all other data points in the cluster
+
+        - $$
+          k*=\arg\min_{m:r_{mk}=1}\sum_nr_{nk}||\bold{x_n}-\bold{x_m}||^2_2\\
+          \bold{\mu_k}=\bold{x_k*}
+          $$
+
+      - Loop until it converges
+
+- Gaussian Mixture Models
+
+  - Similar to K-Means
+
+    - Alternatively:
+      - Assign points to clusters
+      - Update cluster centers/variances
+
+  - Soft Cluster
+
+    - Assignment based on the conditional probability:
+
+      - $$
+        P(A(\bold{x_n})\ |\ \bold{x_n})
+        $$
+
+  - Gaussian Mixture Models (GMM)
+
+    - Assume the PDF for `x` as:
+
+      - $$
+        p(\bold{x})=\sum_{k=1}^K\omega_kN(\bold{x}\ |\ \bold{\mu_k},\bold{\Sigma_k})
+        $$
+
+  - Multivariate Gaussian
+
+    - Mean:
+
+      - $$
+        \bold{\mu}\in\mathbb{R}^k
+        $$
+
+    - Variance:
+
+      - $$
+        \bold{\Sigma}\in\mathbb{R}^{k\times k}
+        $$
+
+    - PDF:
+
+      - $$
+        (2\pi)^{-\frac{k}{2}}\det(\bold{\Sigma})^{-\frac{1}{2}}\exp\left(-\frac{1}{2}(\bold{x}-\bold{\mu})^T\bold{\Sigma}^{-1}(\bold{x}-\bold{\mu})\right)
+        $$
+
+  - Bayes Rule: Posterior Distribution
+
+    - $$
+      p(z_n=k\ |\ \bold{x_n})=\frac{p(\bold{x_n}\ |\ z_n=k)p(z_n=k)}{p(\bold{x_n})}=\frac{p(\bold{x_n}\ | z_n=k)p(z_n=k)}{\sum_{k'=1}^{K}p(\bold{x_n}\ |\ z_n=k')p(z_n=k')}
+      $$
+
+  - Comparison to K-Means
+
+    - Alternatively:
+
+      - Soft assign points to clusters based on:
+
+        - $$
+          p(z_n=k\ |\ \bold{x_n})=\frac{p(\bold{x_n}\ |\ z_n=k)p(z_n=k)}{p(\bold{x_n})}=\frac{p(\bold{x_n}\ | z_n=k)p(z_n=k)}{\sum_{k'=1}^{K}p(\bold{x_n}\ |\ z_n=k')p(z_n=k')}
+          $$
+
+      - Update cluster centers/variances
+
+  
+
+  ## Lecture 18:
+
+  - 
