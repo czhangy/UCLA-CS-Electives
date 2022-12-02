@@ -68,7 +68,7 @@
     - Draw visible surfaces onto display
       - Near plane to avoid division by 0 errors
       - Far plane to avoid unnecessary computation
-      - Everything within the formed pyramid is the view frustrum
+      - Everything within the formed pyramid is the view frustum
       - Everything outside is clipped out 
       - Scan converting is the process of determining which pixels to color when drawing
         - Issue: aliasing/pixelization
@@ -184,7 +184,7 @@
       - Raster-based: active matrix with transistors at grid points
       - LEDs: light-emitting diodes
       - LCDs: polarization of liquid crystals
-      - Plasma: energize gases to glow plasma
+      - Plasma: energize gasses to glow plasma
 
     - Other Output Devices
 
@@ -759,7 +759,7 @@
 
         - Otherwise, ???
 
-          - Any scalar multiple of a homogeneous point is the same homogenous point
+          - Any scalar multiple of a homogeneous point is the same homogeneous point
 
           - $$
             \begin{bmatrix}2\\4\\6\\2\end{bmatrix}\equiv\begin{bmatrix}1\\2\\3\\1\end{bmatrix}
@@ -1344,7 +1344,7 @@
 
   - The order of rotation matrices is important
 
-  - Note: the Euler angle representation suffers from sigularities
+  - Note: the Euler angle representation suffers from singularities
 
 - Normals in Graphics
 
@@ -1378,7 +1378,7 @@
 
     - Without a plane equation:
 
-      - 3 non-colinear points uniquely identifies a plane
+      - 3 non-collinear points uniquely identifies a plane
       - Cross the 3 points to find the normal
       - Use the normal to find the plane equation
 
@@ -1599,7 +1599,7 @@
 
     - Transforming Planes
 
-      - Given by 3, non-colinear points
+      - Given by 3, non-collinear points
 
       - Given by a plane equation:
 
@@ -2187,7 +2187,7 @@
         \frac{t}{n-nt+t}
         $$
 
-  - Spot Lights
+  - Spotlights
 
     - Smooth spot silhouette
 
@@ -2203,7 +2203,7 @@
           \cos\alpha=L\cdot D
           $$
 
-          - `L` is the light vector to the point you are trying to illuminate and `D` is the direction of the spot light
+          - `L` is the light vector to the point you are trying to illuminate and `D` is the direction of the spotlight
 
     - Center of the spot should be maximally lit, while there should be a soft falloff towards the periphery of the spot
 
@@ -2243,7 +2243,7 @@
 
     - Bilinear interpolation: linear interpolation in 2-dimensions
 
-      - Draw a horizontal line through the point and find the color at the edge intersections using linear interpolations to find y-intepolations
+      - Draw a horizontal line through the point and find the color at the edge intersections using linear interpolations to find y-interpolations
 
       - $$
         y_a=y_b=y\\
@@ -2505,6 +2505,200 @@
     - 75-95% of time is spent in intersection calculations
 
     - Use bounding box/sphere testing or hierarchies (octrees)
+
+
+
+## Lecture 16: 
+
+- Last Lecture Recap
+
+  - Ray Tracing
+    - Issues: speed, shadows, *aliasing*
+    - *Stochastic ray tracing*
+
+- Next Up
+
+  - Transparent objects, compositing
+  - Particle rendering
+  - Volume rendering
+  - Aliasing/anti-aliasing
+
+- Transparency/Opacity
+
+  - Matte: coverage info
+
+  - Add a 4th channel to color: `α` = opacity (RGBA), range: `[0..1]`
+
+  - `α = 0` => fully transparent, `α = 1` => fully opaque
+
+  - `Transparency = 1 - Opacity`
+
+  - Applications:
+
+    - Image compositing (e.g., combining computer-rendered images with live footage)
+    - Particle rendering (e.g., smoke, snow, fire, etc.)
+    - Volume rendering
+
+  - Blending
+
+    - Premultiplied vs. straight alpha
+
+    - Operators: over, in, out, atop, xor
+
+    - Alpha blending or alpha compositing (over operator)
+
+      - Straight:
+
+        - $$
+          C_0=\frac{C_f\alpha_f+C_b\alpha_b(1-\alpha_f)}{\alpha_f+\alpha_b(1-\alpha_f)}
+          $$
+
+      - Pre-multiplied:
+
+        - $$
+          C_0=C_f+C_b(1-\alpha_f)\\
+          \alpha_0=\alpha_f+\alpha_b(1-\alpha_f)
+          $$
+
+  - Examples:
+
+    - Water flow map
+
+- Procedural Models
+
+  - For modeling cloud, smoke, water, crowd, flock: using behavior
+  - Describe objects in an algorithmic manner, only generate polygons when necessary
+  - Combine computer graphics with physical laws for modeling solid objects
+    - Particle systems obeying Newton's Laws (e.g., fireworks, smoke, flame, etc.)
+    - Language-based models for natural objects (e.g., plants, snowflakes, etc.)
+    - Fractal geometry for natural phenomena, using level of detail (e.g., mountain, etc.)
+    - Procedural noise for realistic motion (e.g., clouds, fluid motion, etc.)
+
+- Particle Modeling
+
+  - Used for simulating fuzzy phenomena
+  - Examples: chaotic, natural, or chemical systems
+    - Like fire, smoke, explosions, snow, dust, etc.
+  - Modeled as an emitter, like a sphere or box
+  - Particle behavior parameters:
+    - Spawning rate
+    - Initial velocity vector
+    - Lifetime
+    - Color
+    - Collision?
+  - Rendered usually as textured, bill-boarded quads
+    - Sprites vs. billboards
+      - Billboards always face the viewer
+    - Integrate with z-buffer
+  - In games, as a single pixel
+
+- Volume Rendering
+
+  - 2D projection of 3D sampled dataset
+
+  - Volume rendering algorithms:
+
+    - Usually no illumination or shadows, just compositing
+    - Therefore only ray-casting, no recursive ray-casting
+    - No perspective, only parallel projection
+
+  - Voxels
+
+    - Volume dataset: 3D regular grid of voxels
+    - Voxel: a small cube at `(i, j, k)` with sides `Δx`, `Δy`, `Δz`
+    - Each grid point has a scalar value `f(x, y, z)`
+      - For example, density, intensity, CT scan, MRI
+      - Eventually has to be converted to some color for rendering
+    - Voxelize more complex implicit surfaces
+    - If `Δx = Δy = Δz` => structured volume dataset
+    - Transfer function: to map lattice scalar values to RGBA
+    - Based on viewer location, there's a natural ordering of voxels from front to back
+      - Helps with compositing, which must be done in a front-to-back pattern
+
+  - Marching Cubes
+
+    - Object-based volume rendering technique
+    - Create polygon mesh by extracting iso-surfaces: `fijk = c`
+      - Loses the advantage of having volumes (can no longer see the inside of the object)
+      - Hardware cannot render volume datasets, only polygonal
+        - Real-time interaction requires polygonal datasets
+      - Adjacent voxels don't need to recalculate shared points => marching from cube to cube
+    - Color vertices: if `fijk < c`, then white, else black
+    - 14 unique cases
+
+  - Splatting
+
+    - Object-resolution volume rendering technique
+    - Each volume element (voxel) is splatted on screen as a snowball
+    - Voxels splatted in back-to-front order with respect to the viewer
+    - Splats are rendered and composited as disks on the screen
+      - All splat footprints are the same, no re-calculations needed
+    - Circular, ellipsoidal, or Gaussian splits
+
+  - V-Buffer
+
+    - Image-based volume rendering technique
+
+    - Ray casting through volume
+
+    - Trilinear interpolation to determine RGBA at non-lattice point
+
+    - Accumulate color and opacity
+
+    - 3 levels of sampling:
+
+      - Voxel lattice: `xijk`
+      - Sampling along ray: `yi`
+      - Image plane: `zij`
+
+    - 2 pipelines (color/opacity):
+
+      - $$
+        c=c_1+c_2(1-\alpha_1)\\
+        \alpha=\alpha_1+\alpha_2(1-\alpha_1)
+        $$
+
+    - Parametric equation of ray:
+
+      - $$
+        p+t\times d
+        $$
+
+        - `p`: pixel location
+        - `d`: ray direction
+        - `t`: parameter along ray
+
+    - Step through ray by incrementing `t`
+
+    - Speedups:
+
+      - Early termination of ray
+        - Stop when opacity equals 1
+        - Or when ray exits volume
+      - Empty space skipping
+      - Octree or BSP trees
+      - Temporal use of voxels
+
+  - Transfer Function
+
+    - Assume: x-ray density for each voxel
+    - Assign different color to each peak in histogram
+      - Converting scalar values of feature to a color
+    - Opacity values based on emphasis
+
+- Aliasing: Rasterization
+
+  - Spatial aliasing in CG
+    - Jagged lines after rasterization
+    - Going from continuous representation to a sampled approximation, which has limited resolution
+    - Pixels on screen have fixed number, size, and shape
+  - Temporal aliasing
+    - Rays may miss small objects
+  - Texture aliasing
+    - Due to high-frequency patterns
+  - Anti-Aliasing
+    - Area averaging
+    - Super sampling, then averaging or blending
 
 
 
