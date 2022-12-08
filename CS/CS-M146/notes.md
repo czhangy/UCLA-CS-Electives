@@ -4337,8 +4337,151 @@
 
       - Update cluster centers/variances
 
-  
 
-  ## Lecture 18:
 
-  - 
+
+## Lecture 18: EM and GMM
+
+- Unsupervised Learning
+
+  - MLE in Unsupervised Learning
+
+    - We only have the observation of `P(X)`
+
+    - We make assumptions to model `P(X, Y | Θ)`
+
+    - We know:
+
+      - $$
+        P(X\ |\ \Theta)=\sum_YP(X,Y\ |\ \Theta)
+        $$
+
+    - Therefore, MLE is:
+
+      - $$
+        \begin{equation*}\begin{split}\arg\max_\Theta P(X\ |\ \Theta)&=\arg\max_\Theta\sum_YP(X,Y\ |\ \Theta)\\&=\arg\max_\Theta\log\sum_YP(X,Y\ |\ \Theta)\end{split}\end{equation*}
+        $$
+
+- EM Algorithm
+
+  - EM solves the MLE for unsupervised learning by iteratively updating `Θ`
+
+    - At iteration `t`, the model is defined by:
+
+      - $$
+        \Theta^t
+        $$
+
+    - E-Step: estimate:
+
+      - $$
+        P(Y\ |\ X,\Theta^t)
+        $$
+
+    - M-Step: optimize:
+
+      - $$
+        \max_\Theta\sum_Y[P(Y\ |\ X,\Theta^t)\log P(X,Y\ |\ \Theta)]
+        $$
+
+  - In general, it converges to a local maximum
+
+  - Intuition: use an iterative approach for estimating the parameters
+
+    - Guess the probability, generating fictional labels, weighted according to this probability
+    - Then, compute the most likely value of the parameters, using supervised learning
+    - Compute the likelihood of the data given this model
+    - Re-estimate the parameter setting: set them to maximize the likelihood of the data
+
+- GMM
+
+  - Recap:
+
+    - Assume the probability density function for `x` as:
+
+      - $$
+        p(\bold{x})=\sum_{k=1}^K\omega_kN(\bold{x}\ |\ \bold{\mu}_k,\bold{\Sigma}_k)
+        $$
+
+  - Iterative Procedure:
+
+    - Let `θ` represent all parameters:
+
+      - $$
+        \{\omega_k,\mu_k,\Sigma_k\}
+        $$
+
+    - Step 0: initialize `θ` with some values (random or otherwise)
+
+    - Step 1: using the current `θ`, compute:
+
+      - $$
+        \gamma_{nk}
+        $$
+
+    - Step 2: update `θ` using the value you just calculated
+
+    - Step 3: go back to step 1
+
+  - E-Step: Estimate `γnk`
+
+    - $$
+      \gamma_{nk}=P(z_n=k\ |\ x_n)
+      $$
+
+      - e.g., probability `xn` belongs to a cluster `k`, given the input and model
+
+    - Posterior probability
+
+    - $$
+      \begin{equation*}\begin{split}p(z_n=k\ |\ \bold{x}_n)&=\frac{p(\bold{x}_n\ |\ z_n=k)p(z_n=k)}{p(\bold{x}_n)}\\&=\frac{p(\bold{x}_n\ |\ z_n=k)p(z_n=k)}{\sum_{k'=1}^Kp(\bold{x}_n\ |\ z_n=k')p(z_n=k')}\\&=\frac{N(\bold{x}_n\ |\ \bold{\mu}_k,\bold{\Sigma}_k)\omega_k}{\sum_{k'=1}^KN(\bold{x}_n\ |\ \bold{\mu}_{k'},\bold{\Sigma}_{k'})\omega_{k'}}\end{split}\end{equation*}
+      $$
+
+  - M-Step: Parameter Estimation for GMMs
+
+    - If cluster assignments are observed (`{zn}` are given)
+
+      - We know the cluster of each point
+      - Let `γnk ∈ [0, 1]` is a soft assignment of instance `n` to cluster `k`
+
+    - Then, the MLE is:
+
+      - $$
+        \omega_k=\frac{\sum_n\gamma_{nk}}{\sum_k\sum_n\gamma_{nk}}\\
+        \bold{\mu}_k=\frac{1}{\sum_n\gamma_{nk}}\sum_n\gamma_{nk}\bold{x}_n\\
+        \bold{\Sigma}_k=\frac{1}{\sum_n\gamma_{nk}}\sum_n\gamma_{nk}(\bold{x}_n-\bold{\mu}_k)(\bold{x}_n-\bold{\mu}_k)^T
+        $$
+
+        
+
+      - For the weight, count the number of data points whose `zn` is `k` and divide by the total number of data points
+      - For the mean, get all the data points whose `zn` is `k` and compute their mean
+      - For the covariance matrix, get all the data points whose `zn` is `k`, compute their covariance matrix
+
+- Generative vs. Discriminative Models
+
+  - Generative
+
+    - Estimate `P(Y | X)` through `P(X, Y)`
+
+      - e.g., Naïve Bayes
+
+    - MLE:
+
+      - $$
+        \max_\theta\sum_{i=1\ldots n}\log P(y_i,x_i)
+        $$
+
+  - Discriminative
+
+    - Estimate `P(Y | X)`
+
+      - e.g., logistic regression, SVM
+
+    - MLE:
+
+      - $$
+        \max_\theta\sum_{i=1\ldots n}\log P(y_i\ |\ x_i)
+        $$
+
+        
