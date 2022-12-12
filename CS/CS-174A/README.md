@@ -31,9 +31,9 @@
 
 ## Project
 
-| Deliverable                        | Score |
-| :--------------------------------- | :---: |
-| Preliminary Proposal               | 25/25 |
-| Final Proposal + Midway Evaluation |  ???  |
-| Final Demo                         |  ???  |
+| Deliverable                        | Score  |
+| :--------------------------------- | :----: |
+| Preliminary Proposal               | 25/25  |
+| Final Proposal + Midway Evaluation | 25/25  |
+| Final Demo                         | 93/100 |
 
