@@ -2250,7 +2250,7 @@
         \frac{x_a-x_1}{x_4-x_1}=\frac{y_a-y_1}{y_4-y_1}\Rightarrow x_a=\ ?
         $$
 
-        - Do same for `ya`, `ra`, `xb`, `yb`, and `rb`
+        - Do same for `ya`, `f`, `xb`, `yb`, and `rb`
 
       - Same for all characteristics (e.g., red, green, blue, depth, normals, textures, etc.)
 

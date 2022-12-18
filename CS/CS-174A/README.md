@@ -2,7 +2,7 @@
 
 # Law - Fall '22
 
-## Overall: IP | Raw Percentage: IP
+## Overall: A | Raw Percentage: 94.6%
 
 ## Grading:
 
@@ -15,10 +15,10 @@
 
 ## Exams
 
-|  Exam   |  Score   |
-| :-----: | :------: |
-| Midterm | 97.5/100 |
-|  Final  |   ???    |
+|  Exam   |   Score   |
+| :-----: | :-------: |
+| Midterm | 97.5/100  |
+|  Final  | 157.5/175 |
 
 ## Assignments
 
