@@ -7,7 +7,7 @@
 | CS 143 | Fall '21 | A |
 | CS M146 |  Fall '22  |  IP   |
 | CS 161  | Winter '22 |  A+   |
-| CS 174A | Fall '22 | IP |
+| CS 174A | Fall '22 | A |
 | ??? | ??? | ??? |
 
 ## Tech Breadth - Tech Management
