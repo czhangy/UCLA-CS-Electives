@@ -2,7 +2,7 @@
 
 # Chang - Fall '22
 
-## Overall: IP | Raw Percentage: IP
+## Overall: IP | Raw Percentage: 89.6%
 
 ## Grading:
 
@@ -18,8 +18,8 @@
 |  #   |  Score   |
 | :--: | :------: |
 |  1   | 97.5/100 |
-|  2   |   ???    |
-|  3   |   ???    |
+|  2   |  97/100  |
+|  3   |  97/100  |
 
 ## Quizzes
 
@@ -38,6 +38,6 @@
 
 |  Exam   | Score  |
 | :-----: | :----: |
-| Midterm | 96/100 |
-|  Final  |  ???   |
+| Midterm | 97/100 |
+|  Final  | 70/100 |
 
