@@ -26,10 +26,10 @@
 | LING 105 | Spring '23 | IP |
 | LING 120B | Spring '22 | A |
 
-## Miscellaneous
+## Misc.
 
-|  Course  |    Term    | Grade |
-| :------: | :--------: | :---: |
-| ENGR 23  |  Fall '21  |   P   |
-| PIC 40A  | Spring '23 |  IP   |
-| PSYCH 85 | Summer '20 |  A+   |
+|   Course    |    Term    | Grade |
+| :---------: | :--------: | :---: |
+| COMPTNG 40A | Spring '23 |  IP   |
+|   ENGR 23   |  Fall '21  |   P   |
+|  PSYCH 85   | Summer '20 |  A+   |
