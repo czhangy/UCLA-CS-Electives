@@ -4,11 +4,11 @@
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
+| ASIA AM 191A | Spring '23 | IP |
 | CS 143 | Fall '21 | A |
 | CS M146 |  Fall '22  |  A-  |
 | CS 161  | Winter '22 |  A+   |
 | CS 174A | Fall '22 | A |
-| ??? | ??? | ??? |
 
 ## Tech Breadth - Tech Management
 
@@ -23,12 +23,13 @@
 | Course | Term | Grade |
 |:---:|:---:|:---:|
 | LING 20 | Winter '22 | A+ |
+| LING 105 | Spring '23 | IP |
 | LING 120B | Spring '22 | A |
-| ??? | ??? | ??? |
 
 ## Miscellaneous
 
 |  Course  |    Term    | Grade |
 | :------: | :--------: | :---: |
 | ENGR 23  |  Fall '21  |   P   |
+| PIC 40A  | Spring '23 |  IP   |
 | PSYCH 85 | Summer '20 |  A+   |
