@@ -2,6 +2,12 @@
 
 [TOC]
 
-## Lecture 1:
+## Lecture 1: Introduction
 
-- H
+Nothing to see here!
+
+
+
+## Lecture 2:
+
+- 
