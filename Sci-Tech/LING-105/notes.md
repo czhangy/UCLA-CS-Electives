@@ -2,6 +2,12 @@
 
 [TOC]
 
-## Lecture 1:
+## Lecture 1: What is Morphology?
+
+Nothing to see here!
+
+
+
+## Lecture 2:
 
 - 
