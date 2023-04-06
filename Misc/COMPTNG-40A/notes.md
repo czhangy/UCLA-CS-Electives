@@ -8,6 +8,6 @@ Nothing to see here!
 
 
 
-## Lecture 2:
+## Lecture 2: Basic HTML
 
-- 
+Nothing to see here!
