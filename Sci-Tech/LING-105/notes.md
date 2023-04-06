@@ -8,6 +8,12 @@ Nothing to see here!
 
 
 
-## Lecture 2:
+## Lecture 2: Syntactic Topology and Universals
+
+- 
+
+
+
+## Lecture 3:
 
 - 
