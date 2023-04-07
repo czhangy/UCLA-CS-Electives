@@ -126,8 +126,6 @@ Nothing to see here!
       |   Dative   | insulae  |  insulīs  |
       |  Ablative  |  insulā  |  insulīs  |
 
-- 
-
 
 
 ## Lecture 3:
