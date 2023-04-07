@@ -34,8 +34,12 @@
 
 
 
-## Lecture 2:
+## Lecture 2: Hello, World
+
+Nothing to see here!
+
+
+
+## Lecture 3:
 
 - 
-
-
