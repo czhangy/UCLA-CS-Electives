@@ -2,7 +2,7 @@
 
 # Chang - Fall '22
 
-## Overall: A- | Raw Percentage: 89.6%
+## Overall: A | Raw Percentage: 89.6%
 
 ## Grading:
 

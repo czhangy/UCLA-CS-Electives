@@ -4118,7 +4118,7 @@
 
     - The prototype of a cluster is the average of all points in the cluster
     - Algorithm:
-      - Alternately, updating the prototype and the cluster assignment
+      - Alternately updating the prototype and the cluster assignment
 
   - Problem Setting
 
