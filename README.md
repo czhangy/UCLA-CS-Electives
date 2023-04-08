@@ -10,7 +10,7 @@
 | CS 161  | Winter '22 |  A+   |
 | CS 174A | Fall '22 | A |
 
-## Tech Breadth - Tech Management
+## Tech Breadth: Tech Management
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
@@ -18,7 +18,7 @@
 | ENGR 111 | Spring '21 | A- |
 | MGMT 170 | Spring '22 | A |
 
-## Sci-Tech - Linguistics
+## Sci-Tech: Linguistics
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
