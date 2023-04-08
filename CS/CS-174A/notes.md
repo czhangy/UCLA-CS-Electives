@@ -2508,7 +2508,7 @@
 
 
 
-## Lecture 16: 
+## Lecture 16: Volume Rendering
 
 - Last Lecture Recap
 

@@ -2,7 +2,7 @@
 
 # Law - Fall '22
 
-## Overall: A | Raw Percentage: 94.6%
+## Overall:  | Raw Percentage: 94.6%
 
 ## Grading:
 
