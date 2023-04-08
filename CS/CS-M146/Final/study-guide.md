@@ -1,4 +1,4 @@
-# M146 Study Guide
+# M146 Final Study Guide
 
 ## Supervised Learning
 
