@@ -133,7 +133,3 @@ Nothing to see here!
 - 
 
 
-
-## Reading 1:
-
-- 

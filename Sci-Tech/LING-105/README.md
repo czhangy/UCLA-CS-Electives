@@ -2,7 +2,7 @@
 
 # Silvestri - Spring '23
 
-## Overall: IP | Raw Percentage: IP
+## Overall: IP | Raw Percentage: I
 
 ## Grading
 
