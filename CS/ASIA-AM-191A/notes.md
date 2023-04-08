@@ -8,8 +8,8 @@
   - What is GIS?
     - Data that is layered with time and/or space
     - Geographic Information Systems/Geographic Information Science
-      - GISystems are the spatial tools
-      - GIScience describes the spatial thinking
+      - GI-Systems are the spatial tools
+      - GI-Science describes the spatial thinking
     - Ex) Google Maps, COVID maps, etc.
     - Exists in various forms
       - It can disempower or empower
