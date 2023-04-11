@@ -40,6 +40,17 @@ Nothing to see here!
 
 
 
-## Lecture 3:
+## Lecture 3: Humanizing Technology
+
+- Sectors of Society
+  - Private/Government/Civil Society
+  - Goal is to increase the influence of civil society in GIS
+- Undisciplining Cartography
+  - Not about "mapping accuracy" but about the *WHO* behind the ,aps
+
+- Theme of the Week
+  - Balancing critical tools with critical thinking
+
+## Lecture 4:
 
 - 
