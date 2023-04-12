@@ -128,9 +128,37 @@ Nothing to see here!
 
 
 
-## Lecture 3:
+## Lecture 3: Morphemes and Allomorphs
 
-- 
+- Allomorphs
+  - Complication!
+    - Morphemes may have *different phonological shapes* under different circumstances
+
+  - Example:
+    - The plural morpheme is sometimes pronounced `-[s]`, sometimes `-[z]`, and sometimes `-[əz]`
+
+  - When a single affix has more than one shape, linguists use the term **allomorph** to refer to each of these shapes
+  - The crucial properties which define the suffixes above as being allomorphs are that they have the *same meaning* and occur in *different environments* in **complementary distribution**
+    - Once the conditions are met for one allophone to be selected, a different allophone cannot take its place
+
+- Phonological Allomorphs
+  - Morphemes can be different in shape
+    - By shape, we mean different features (how things sound)
+
+  - Being phonologically similar is a common property of allomorphs, but is not a necessary one
+    - Allomorphs that have this property are **phonological allomorphs**
+    - The formal relation between 2+ phonological allomorphs is called an **alternation**
+      - Alternations can be described with a special set of **morphophonological rules**
+      - Such rules were *historically* phonetically motivated, but now affect morphology
+      - As for now, let's think about phonological allomorphy in terms of a **single underlying representation** that is affected by rules under certain conditions
+      - The endpoint of our descriptions is what is actually pronounced
+        - i.e., the **surface representation**
+
+      - Describing alternations:
+        - Underlying representation (symbol: `//`)
+        - The respective rules in the examples
+        - Application of rule and surface representations (resulting word-forms; symbols: `[]`)
+
 
 
 
