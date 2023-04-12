@@ -95,6 +95,50 @@ Nothing to see here!
 
 
 
-## Lecture 5:
+## Lecture 5: Basic JS III
+
+- Type Coercion (cont.)
+
+  - Implicit Coercion
+
+    - Primitive => String
+
+      - If `v1` or `v2` is a string, this occurs when evaluating `v1 + v2`
+
+    - Primitive => Number
+
+      - Arithmetic operators other than the above `+` are used
+
+    - Primitive => Boolean
+
+      - Control flow
+
+      - Boolean operators (`&&` and `||`)
+
+        - ```js
+          console.log('hello' && 0) // 0
+          console.log('hello' || 0) // 'hello'
+          ```
+
+        - Both operators return the first element that gives them a definite output
+
+- Arrays
+
+  - Member functions
+    - `a.push(x)` appends `x` to the end of array `a` and returns the new length of `a`
+    - `a.pop()` removes the last element from array `a` and returns the element
+    - `a1.concat(a2)` creates a new array with all the elements of `a1` followed by the elements of `a2`
+      - Leaves `a1` and `a2` unaffected
+  - Indexing
+    - Indexing out-of-bounds returns `undefined`
+    - Assigning to an out-of-bounds index succeeds and fills with `undefined`
+
+- Objects
+
+  - Object assignment passes by reference
+
+
+
+## Lecture 6:
 
 - 
