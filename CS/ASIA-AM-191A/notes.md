@@ -51,6 +51,12 @@ Nothing to see here!
 - Theme of the Week
   - Balancing critical tools with critical thinking
 
-## Lecture 4:
+## Lecture 4: Leaflet
+
+Nothing to see here!
+
+
+
+## Lecture 5:
 
 - 
