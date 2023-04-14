@@ -139,6 +139,20 @@ Nothing to see here!
 
 
 
-## Lecture 6:
+## Lecture 6: Basic JS IV
+
+- Objects (cont.)
+  - `const` objects can still be modified
+    - `const` applies to the object's reference, not the contents of the object it refers to
+    - `const` protects against assignment
+- Control Flow
+  - `of` uses C++'s range-based for loop functionality
+- Functions
+  - Functions without a `return` statement return `undefined` by default
+  - Functions are just objects
+
+
+
+## Lecture 7:
 
 - 
