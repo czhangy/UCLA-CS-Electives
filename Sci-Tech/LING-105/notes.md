@@ -162,9 +162,87 @@ Nothing to see here!
 
 
 
-## Lecture 4:
+## Lecture 4: Suppletion
 
-- 
+- Allomorphs
+  - Allomorphs in roots
+    - Also roots and stems may have different allomorphs
+    - Example:
+      - In English verbs such as "sleep", "keep", "deal", "feel", "mean"
+      - The root has the long vowel `[i:]` in the present-tense forms
+      - The root has an allomorph with short `[ε]` in the past-tense forms:
+        - "slept", "kept", "dealt", "felt", "meant"
+  - Historical motivation of allomorphy
+    - It is evident that in some cases, the historical reason for the existence of the morphophonological rule for the allomorphy is to facilitate pronounciation
+      - For instance, if the English plural were uniformly `[-z]`, words such as "cats" and "faces" would be almost unpronounceable
+    - We will return to phonological allomorphs later on
+  - Important aspects
+    - Phonological allomorphs represent a single morpheme whose form varies slightly depending upon the phonological context created by combining morphemes
+    - The underlying and surface representations may be the same, or they may differ as a result of the application of morphophonological rules
+    - However, always remember that the underlying representation is a tool used by linguists, not by speakers
+    - There are examples where it seems unlikely that there is a single underlying representation in the mind of speakers
+      - We see this in another type of allomorphy: suppletion
+- Suppletion
+  - What is it?
+    - Morphemes may also have allomorphs that are not at all similar in pronounciation
+      - These are called **suppletive allomorphs**
+      - For instance, the English adjective "good" has the suppletive term `bett-` in the comparative degree ("better")
+    - The term suppletion is most often used to refer to stem shape
+      - Some linguists reserve the term for the above use
+      - Other linguists also talk about affixes as being potentially suppletive
+    - Definition: a kind a allomorphy in which two allomorphs of the same morpheme are not similar in pronounciation
+  - Two types of suppletion
+    - Strong suppletion
+    - Weak suppletion
+  - Is it phonological alteration or suppletion?
+    - Not always easy to decide whether an alternation is phonological or suppletive
+    - Why? Because the categories are end points on a continuum of traits, rather than a clear-cut binary distinction
+      - Some examples are therefore intermediary
+    -  Example:
+      - "buy/"bought", "catch"/"caught", "teach"/"taught"
+      - Roots not as radically different as "go"/"went", but are not similar enough to be described by phonological rules
+        - Weak suppletion
+  - What counts as weak suppletion?
+    - Not always clear
+    - Where to set the limit for what counts as weak suppletion, introduces the criterion of uniqueness
+    - The alternation of two related forms counts as suppletive if it is the only one of its kind in the language
+    - Example:
+      - English "child"/"children" count as suppletion
+      - English "run"/"ran" do not count, since they are part of a pattern
+  - Underlying form of suppletive form?
+    - It is theoretically possible to posit an underlying representation from which suppletive allomorphs are derived by rule
+    - However, the underlying representation would need to be very abstract, and the rules aren't convenient
+    - There is no evidence that language users make such abstractions, so underlying representations are perhaps best treated as useful metaphors
+  - Allomorphy, weak suppletion, strong suppletion
+    - Phonological allomorphy
+      - Alternation could be described by a rule of pronounciation
+      - Ex) English plural
+    - Weak suppletion
+      - Allomorphs exhibit some similarity, but this cannot be described by phonological rules
+      - Ex) English "buy"/"bought"
+    - Strong suppletion
+      - Allomorphs exhibit no similarity at all
+      - Ex) English "good"/"bett-"
+  - Suppletion in affixed?
+    - Suppletive affixes based on lexical conditioning
+      - **Lexical conditioning**: the choice of suppletive affixes is dependent on other properties of the base
+        - For instance, semantic properties
+      - Lexical conditioning is also involved where the choice of allomorph cannot be derived from any general rule and must be learned individually for each word
+      - Ex) Persians plural marking selects `-an` for human nouns and `-ha` for non-human nouns
+  - Allomorphy and its conditioning
+    - Phonological conditioning
+      - Choice of allomorphs depends on phonological context
+      - Ex) English plural depends on final sound in stem
+    - Morphological conditioning
+      - Choice of allomorphs depends on the morphological context
+      - Ex) Spanish `ir`, `va-`, or `fu-` depending on tense
+    - Lexical conditioning
+      - Choice of allomorphs depends on the individual lexical item
+      - Ex) English past participle `-en`/`-ed` is unpredictable and depends on individual verbs
+  - New definition
+    - An irregularity in inflectional paradigms created by the use of stems from etymologically different sources in the same paradigm
+      - e.g., English "go"/"went"
+    - In a purely synchronic sense, the term is used for paradigms whose forms are so different that they could not be plausibly derived from one underlying form
 
 
 
