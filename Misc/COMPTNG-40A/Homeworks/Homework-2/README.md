@@ -47,4 +47,4 @@
 
 ### Submission
 
-- [ ] Submit `hw2.js` to Gradescope
+- [x] Submit `hw2.js` to Gradescope
