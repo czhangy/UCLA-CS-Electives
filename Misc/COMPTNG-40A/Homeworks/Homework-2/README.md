@@ -2,7 +2,7 @@
 
 ## To-Do
 
-### `roll_dice`
+### `roll_dice()`
 
 - [ ] Return the result of rolling two dice in the following format:
 
@@ -14,20 +14,37 @@
 
 - [ ] Returns a string
 
-### `first_occurrences`
+### `first_occurrences(arr)`
 
-- [ ] Delete duplicates in an array of numbers
-- [ ] Leaves the original array unaffected
+- [ ] Delete duplicates in an array of numbers `arr`
+- [ ] Leaves the `arr` unaffected
 - [ ] Leaves the remaining numbers in the correct order
 - [ ] Works on the empty array
 - [ ] Returns an array of numbers
 
-### `first_minus_second`
+### `first_minus_second(arr1, arr2)`
 
-- [ ] 
+- [ ] Removes all elements that occur in `arr2` from `arr1`
+- [ ] Performs the removal in-place
+  - [ ] Use `splice()`
+
+- [ ] Preserves the order of remaining elements in `arr1`
+- [ ] Preserves all elements of `arr2`
+- [ ] Does not have a return value
+
+`extract_username(cookie)`
+
+- [ ] Extracts the value corresponding to the name `"username"`
+- [ ] If there is no name `"username"`, returns the empty string
+- [ ] Returns a string
 
 ### Review
 
 - [ ] Semi-colons are properly used
 - [ ] All variables are declared with `let` or `const`
 - [ ] There are no occurrences of `==` or `!=`
+- [ ] Remove all `console.log(...)`s
+
+### Submission
+
+- [ ] Submit `hw2.js` to Gradescope
