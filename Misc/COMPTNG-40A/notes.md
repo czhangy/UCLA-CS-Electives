@@ -14,7 +14,7 @@ Nothing to see here!
 
 
 
-## Lecture 3: Basic JS I
+## Lecture 3: Basic JS I: Primitives and Typing
 
 - Use of `<script>` tag with `src` attribute to inject JS into HTML
   - Use `defer` attribute to force HTML to be parsed first, and then load the JS after
@@ -32,7 +32,7 @@ Nothing to see here!
 
 
 
-## Lecture 4: Basic JS II
+## Lecture 4: Basic JS II: Strings and Type Coercion
 
 - Strings
 
@@ -95,7 +95,7 @@ Nothing to see here!
 
 
 
-## Lecture 5: Basic JS III
+## Lecture 5: Basic JS III: Type Coercion and Arrays
 
 - Type Coercion (cont.)
 
@@ -139,7 +139,7 @@ Nothing to see here!
 
 
 
-## Lecture 6: Basic JS IV
+## Lecture 6: Basic JS IV: Objects, Control Flow, and Functions
 
 - Objects (cont.)
   - `const` objects can still be modified
@@ -153,6 +153,53 @@ Nothing to see here!
 
 
 
-## Lecture 7:
+## Lecture 7: Basic JS V: Functions and Scope
+
+- Functions (cont.)
+
+  - Since functions are objects, they can be passed to other functions
+
+    - ```js
+      function apply(f, arr) {
+        for (let i = 0; i < arr.length; i++) {
+          arr[i] = f(arr[i]);
+        }
+      }
+      ```
+
+  - Function expressions can be used to create anonymous functions
+
+    - ```js
+      function(x) {
+        if (x > 0) {
+          return x;
+        }
+        return -x;
+      }
+      ```
+
+- Scope
+
+  - Also called a lexical environment
+
+  - Defined by `{}`
+
+  - Closures save lexical environments when necessary
+
+    - ```js
+      function greet(name) {
+        let msg = name;
+        return function() {
+          console.log(message);
+        }
+      }
+      
+      let greet_me = greet("Me");
+      greet_me() // Works
+      ```
+
+      
+
+## Lecture 8:
 
 - 
