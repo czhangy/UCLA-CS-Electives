@@ -57,6 +57,18 @@ Nothing to see here!
 
 
 
-## Lecture 5:
+## Lecture 5: Ethical Software and Developing for Civil Society
+
+- Theme of the Week
+  - How do you decide what technology is right?
+- Open Source
+  - Open-source vs. closed-source
+    - You can see the code vs. you can never see the code
+  - Issues with open-source
+    - Detaches technology from ethics and treats it as "neutral"
+
+
+
+## Lecture 6:
 
 - 
