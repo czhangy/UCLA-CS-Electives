@@ -246,6 +246,32 @@ Nothing to see here!
 
 
 
-## Lecture 5:
+## Lecture 5: Morphological Patterns
+
+- Morphological Patterns
+  - Morphological structure is much more various than simply affixes combining with bases
+  - A morpheme can correspond to a frequently occurring special subtype of morphological pattern
+- Classification
+  - Linguists often distinguish two basic types of morphological patterns:
+    - Concatenative: two morphemes are ordered one after the other
+    - Non-concatenative: everything else
+  - Most of the examples of morphologically complex words that we have seen so far can be neatly segmented into roots and affixes, and are therefore **concatenative patterns**
+  - In process terms, concatenative patterns can be described as derived by **affixation** (subtypes suffixation, prefixing, etc.) and **compounding**
+- Affixation
+  - Affixation involves combining morphemes in a certain way
+  - Combinatory potential of an affix = which types or morphemes may combine
+  - Affixes and bases do not combine randomly
+    - The combinatory potential of an affix *cannot* be (entirely) predicted from its meaning
+    - Combinatory potential must be specified along with another information about the affixation process
+- Compounding
+  - A compound is a process of **word formation**
+  - The output of this process is a complex lexeme that can be thought of as consisting of two or more **base lexemes**
+  - In the simplest case, a compound consists of two lexemes that are joined together (called "compound members")
+  - Rather than attaching an affix to a stem, compounding concatenates two stems
+  - Compounding rules may differ in **productivity**
+
+
+
+## Lecture 6:
 
 - 
