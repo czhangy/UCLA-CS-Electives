@@ -200,6 +200,28 @@ Nothing to see here!
 
       
 
-## Lecture 8:
+## Lecture 8: Functions and Hoisting
+
+- Functions
+  - When passing values into a function, we are assigning the **arguments** into the **parameters**
+    - Passing by value => objects have their references passed by value
+  - Function parameters can be assigned defaults
+    - These defaults are allowed to depend on prior parameters
+    - If a parameter has a default expression, all parameters to the right must as well
+- `let`
+  - Trying to use a `let`-declared variable before declaration results in an error
+  - Redeclaring a `let` variable results in an error
+  - `let` declares a variable for use in the current lexical environment
+    - Not enclosing environments (`{}` and function calls)
+  - `const` is the same, but doesn't allow assignments
+- `var`
+  - Can use variable before declaration
+  - Allows redeclarations
+  - Doesn't understand `{}`, but still understands functions
+
+
+
+## Lecture 9:
 
 - 
+
