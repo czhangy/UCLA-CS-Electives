@@ -69,6 +69,15 @@ Nothing to see here!
 
 
 
-## Lecture 6:
+## Lecture 6: GeoJSON
+
+- The 3 Standards
+  - Open source
+  - Open standards
+  - Open data
+
+
+
+## Lecture 7:
 
 - 
