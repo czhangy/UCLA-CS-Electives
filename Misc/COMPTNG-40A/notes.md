@@ -14,7 +14,7 @@ Nothing to see here!
 
 
 
-## Lecture 3: Basic JS I: Primitives and Typing
+## Lecture 3: Primitives and Typing
 
 - Use of `<script>` tag with `src` attribute to inject JS into HTML
   - Use `defer` attribute to force HTML to be parsed first, and then load the JS after
@@ -32,7 +32,7 @@ Nothing to see here!
 
 
 
-## Lecture 4: Basic JS II: Strings and Type Coercion
+## Lecture 4: Strings and Type Coercion
 
 - Strings
 
@@ -95,7 +95,7 @@ Nothing to see here!
 
 
 
-## Lecture 5: Basic JS III: Type Coercion and Arrays
+## Lecture 5: Type Coercion and Arrays
 
 - Type Coercion (cont.)
 
@@ -139,7 +139,7 @@ Nothing to see here!
 
 
 
-## Lecture 6: Basic JS IV: Objects, Control Flow, and Functions
+## Lecture 6: Objects, Control Flow, and Functions
 
 - Objects (cont.)
   - `const` objects can still be modified
@@ -153,7 +153,7 @@ Nothing to see here!
 
 
 
-## Lecture 7: Basic JS V: Functions and Scope
+## Lecture 7: Functions and Scope
 
 - Functions (cont.)
 
@@ -221,7 +221,52 @@ Nothing to see here!
 
 
 
-## Lecture 9:
+## Lecture 9: Objects
+
+- Objects
+
+  - Properties
+
+    - Accessed with the `.` operator on an object
+    - Unknown properties are `undefined` by default
+    - Properties allow assignment
+    - `delete` can be used to remove a property from an object
+    - `in` asks if an object can use a property
+      - Includes properties obtained through prototypal inheritance
+      - `hasOwnProperty` is used to check if an object has a property
+
+  - Classes
+
+    - Constructors can be written as a `function` expression, conventionally denoted with a capitalized name and called with the `new` keyword
+
+      - ```js
+        function Person(first, last, user) {
+          this.first_name = first;
+          this.last_name = last;
+          this.username = user;
+        }
+        
+        let person = new Person("Charles", "Zhang", "czhangy");
+        ```
+
+      - The final line does the following operations:
+
+        - Creates an empty object
+        - Something we discuss later
+        - Binds `this` in the function body to the newly created object
+        - Have the assigned to variable reference the newly created object
+        - Ignores the return value of the constructor if it's a primitive
+
+  - Prototypes
+
+    - Every object has a prototype object
+    - `null` is an object by type, but is the only object without a prototype
+    - Can be accessed using `Object.getPrototypeOf(obj)`
+    - Can be assigned using `Object.setPrototypeOf(obj, proto)`
+
+
+
+
+## Lecture 10:
 
 - 
-
