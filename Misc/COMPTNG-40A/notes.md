@@ -267,6 +267,30 @@ Nothing to see here!
 
 
 
-## Lecture 10:
+## Lecture 10: Objects
+
+- Objects
+  - `===` compares the references, not the objects
+  - `in` keyword can be used to determine if a property exists in an object
+  - All objects have a property called `__proto__`, which is the same as `Object.getPrototypeOf(obj)` (this is deprecated)
+  - Functions have a property called `prototype`
+  - `Class.prototype.__proto__ === Object.prototype`
+    - `Object` is a constructor with a `prototype` referencing an object that contains functions that should be inherited by all objects
+  - Constructors
+    - When a constructor class is used, the `__proto__` property of the new object is made to reference the same object as the `prototype` property of the constructor
+    - Therefore, the fill constructor flow is:
+      - Creates an empty object
+      - Match `__proto__` of the new object to `prototype` of the constructor
+      - Binds `this` in the function body to the newly created object
+      - Have the assigned to variable reference the newly created object
+      - Ignores the return value of the constructor if it's a primitive
+    - `Class.prototype.constructor == Class`
+  - Functions
+    - In function objects, `__proto__` points to the `prototype` of `Function`
+    - In `Function`, `__proto__ == prototype`
+
+
+
+## Lecture 11:
 
 - 
