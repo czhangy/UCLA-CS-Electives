@@ -78,6 +78,12 @@ Nothing to see here!
 
 
 
-## Lecture 7:
+## Lecture 7: Technology and Ethics
+
+- 
+
+
+
+## Lecture 8:
 
 - 
