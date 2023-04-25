@@ -80,7 +80,7 @@ Nothing to see here!
 
 ## Lecture 7: Technology and Ethics
 
-- 
+Nothing to see here!
 
 
 
