@@ -291,6 +291,32 @@ Nothing to see here!
 
 
 
-## Lecture 11:
+## Lecture 11: DOM
+
+- DOM
+  - The HTML DOM API includes:
+    - Access to and control of HTML elements
+    - Access to and manipulation of form datas
+  - Structure
+    - Consists of a hierarchical tree of nodes
+      - Nodes for each element
+      - Element => node => event target
+    - Each document is an instance of `Document`
+  - Window functions
+    - `alert()` is a basic pop-up in the window
+    - `confirm()` is a yes or no pop-up
+      - Returns true or false based on user selection
+    - `prompt()` is a pop-up that has an input box, returning either the value the user inputs or null if the input is empty
+      - Takes an optional string parameter that acts as a default
+    - `location.assign()` redirects to a different webpage
+    - `onload` can be assigned a function that executes after the page loads
+      - More-or-less irrelevant with the use of `defer` in the `script` tag
+  - Document functions
+    - `getElementsByTagName()` returns an array of all elements of a given tag in the order they appear on the page
+    - `innerHTML` is a property of an `HTMLElement` that can be used to modify the contents of a tag
+
+
+
+## Lecture 12:
 
 - 
