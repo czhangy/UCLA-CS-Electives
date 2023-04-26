@@ -278,6 +278,12 @@ Nothing to see here!
 
 
 
-## Lecture 7:
+## Lecture 7: Morpheme-Based Model
+
+Nothing to see here!
+
+
+
+## Lecture 8:
 
 - 
