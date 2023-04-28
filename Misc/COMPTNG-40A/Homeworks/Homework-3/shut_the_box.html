@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Shut The Box</title>
+		<script src="shut_the_box.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -37,8 +38,8 @@
 			<section>
 				<h2>Dice roll</h2>
 				<fieldset>
-					<input id="roll-dice" type="button" value="Roll dice" />
-					<span id="roll-result">Result: </span>
+					<button id="roll-dice">Roll dice</button>
+					<span id="roll-result">Result:</span>
 				</fieldset>
 			</section>
 			<section>
@@ -68,16 +69,10 @@
 					</tr>
 				</table>
 				<fieldset>
-					<input
-						id="submit"
-						type="button"
-						value="Submit box selection"
-					/>
-					<input
-						id="give-up"
-						type="button"
-						value="I give up/I can't make a valid move"
-					/>
+					<button id="submit" disabled>Submit box selection</button>
+					<button id="give-up">
+						I give up/I can't make a valid move
+					</button>
 				</fieldset>
 			</section>
 		</main>
