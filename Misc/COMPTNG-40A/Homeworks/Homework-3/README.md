@@ -4,21 +4,21 @@
 
 ### HTML
 
-- [ ] The tab should be titled "Shut The Box"
-- [ ] There should be a header displaying a heading "Shut The Box"
-- [ ] There should be a section describing the rules using i, ii, iii, ... numbering
-- [ ] There should be a section with a heading that says "Dice roll"
-  - [ ] Under the heading, there should be a button that says "Roll dice"
-  - [ ] There should be a space which will display the result of a dice roll, made with a `<span>` element
-  - [ ] The button and space should be wrapped by a `<fieldset>` element
-- [ ] There should be a section with a heading that says "Box selection"
-  - [ ] Under the heading, there should be a `<table>` element
-  - [ ] The table head should contain the numbers 1-9
-  - [ ] The table body should contain corresponding checkboxes
-  - [ ] There should be no table foot
-  - [ ] Under the table, there should be two buttons in a `<fieldset>` element that say "Submit box selection" and "I give up"
-- [ ] There should be a footer with copyright information
-- [ ] HTML should be [validated](https://validator.w3.org/)
+- [x] The tab should be titled "Shut The Box"
+- [x] There should be a header displaying a heading "Shut The Box"
+- [x] There should be a section describing the rules using i, ii, iii, ... numbering
+- [x] There should be a section with a heading that says "Dice roll"
+  - [x] Under the heading, there should be a button that says "Roll dice"
+  - [x] There should be a space which will display the result of a dice roll, made with a `<span>` element
+  - [x] The button and space should be wrapped by a `<fieldset>` element
+- [x] There should be a section with a heading that says "Box selection"
+  - [x] Under the heading, there should be a `<table>` element
+  - [x] The table head should contain the numbers 1-9
+  - [x] The table body should contain corresponding checkboxes
+  - [x] There should be no table foot
+  - [x] Under the table, there should be two buttons in a `<fieldset>` element that say "Submit box selection" and "I give up"
+- [x] There should be a footer with copyright information
+- [x] HTML should be [validated](https://validator.w3.org/)
 
 ### JavaScript
 
