@@ -320,6 +320,7 @@ Nothing to see here!
 ## Lecture 12: Event Listeners
 
 - `addEventListener` can be used to watch for a specific event and call a function
+  - `click` should be used over `onclick` to separate HTML and JS
 
 
 
