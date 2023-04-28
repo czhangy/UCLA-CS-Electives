@@ -43,5 +43,5 @@
 
 ### Submission
 
-- [ ] All code must be uploaded to the [PIC server](www.pic.ucla.edu/~charleszhang/HW3/shut_the_box.html)
+- [x] All code must be uploaded to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW3/shut_the_box.html)
 - [ ] All code must be uploaded to Gradescope
