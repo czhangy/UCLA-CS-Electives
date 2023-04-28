@@ -1,37 +1,54 @@
-let unchecked_total = 45;
+// Game state
+let score = 45;
+let currentRoll = null;
 
-let dice_roll = null;
-
-const roll_dice_btn = document.getElementById("roll-dice");
-const submit_btn = document.getElementById("submit");
-const finish_btn = document.getElementById("give-up");
-const roll_result = document.getElementById("roll-result");
-
+// Elements
+const rollButton = document.getElementById("roll-button");
+const submitButton = document.getElementById("submit-button");
+const endGameButton = document.getElementById("end-game-button");
+const rollResult = document.getElementById("roll-result");
 const boxes = document.getElementsByTagName("th");
 const checkboxes = document.getElementsByTagName("input");
 
+// Event listeners
+rollButton.addEventListener("click", rollDice);
+submitButton.addEventListener("click", submit);
+endGameButton.addEventListener("click", endGame);
 for (let i = 0; i < boxes.length; i++) {
 	boxes[i].addEventListener("click", () => {
-		checkboxes[i].checked = !checkboxes[i].checked;
+		toggleCheckbox(i);
 	});
 }
 
-roll_dice_btn.addEventListener("click", roll_dice);
-submit_btn.addEventListener("click", submit);
-finish_btn.addEventListener("click", finish);
-
-function roll_dice() {
-	dice_roll = Math.floor(Math.random() * 6) + 1;
-	if (unchecked_total > 6) {
-		dice_roll += Math.floor(Math.random() * 6) + 1;
+function toggleCheckbox(i) {
+	if (!checkboxes[i].disabled) {
+		checkboxes[i].checked = !checkboxes[i].checked;
 	}
-	roll_result.innerHTML = `Result: ${dice_roll}`;
-	roll_dice_btn.disabled = true;
-	submit_btn.disabled = false;
 }
 
-function sum_checked_values() {
+function rollDie() {
+	return Math.floor(Math.random() * 6) + 1;
+}
+
+function rollDice() {
+	const firstRoll = rollDie();
+	let secondRoll = null;
+	// Roll second die if needed
+	if (score > 6) {
+		secondRoll = rollDie();
+	}
+	currentRoll = firstRoll + (secondRoll ? secondRoll : 0);
+	// Update UI
+	rollResult.innerHTML = `Result: ${firstRoll}${
+		secondRoll ? ` + ${secondRoll} = ${currentRoll}` : ""
+	}`;
+	rollButton.disabled = true;
+	submitButton.disabled = false;
+}
+
+function sumValues() {
 	let sum = 0;
+	// Sum up checked values
 	for (let i = 0; i < checkboxes.length; i++) {
 		if (!checkboxes[i].disabled && checkboxes[i].checked) {
 			sum += i + 1;
@@ -40,29 +57,49 @@ function sum_checked_values() {
 	return sum;
 }
 
-function submit() {
-	const sum = sum_checked_values();
-	if (sum != dice_roll) {
-		alert(
-			"The total of the boxes you selected does not match the dice roll. Please make another selection and try again."
-		);
-	} else {
-		unchecked_total -= sum;
-		for (let checkbox of checkboxes) {
-			if (checkbox.checked) {
-				checkbox.disabled = true;
-			}
+function handleInvalid() {
+	// Alert user of invalid input
+	alert(
+		"The total of the boxes you selected does not match the dice roll. Please make another selection and try again."
+	);
+}
+
+function handleValid(sum) {
+	// Update score
+	score -= sum;
+	// Disable used checkboxes
+	for (let checkbox of checkboxes) {
+		if (checkbox.checked) {
+			checkbox.checked = false;
+			checkbox.disabled = true;
 		}
-		roll_result.innerHTML = `Result:`;
-		submit_btn.disabled = true;
-		roll_dice_btn.disabled = false;
+	}
+	// Update UI
+	rollResult.innerHTML = `Result:`;
+	submitButton.disabled = true;
+	rollButton.disabled = false;
+}
+
+function submit() {
+	// Get input
+	const sum = sumValues();
+	// Check validity of input
+	if (sum != currentRoll) {
+		handleInvalid();
+	} else {
+		handleValid(sum);
 	}
 }
 
-function finish() {
+function endGame() {
+	// Disable all buttons and checkboxes
 	const buttons = document.getElementsByTagName("button");
 	for (let button of buttons) {
 		button.disabled = true;
 	}
-	alert(`Your score is ${unchecked_total}`);
+	for (let checkbox of checkboxes) {
+		checkbox.disabled = true;
+	}
+	// Alert user of score
+	alert(`Your score is ${score}`);
 }
