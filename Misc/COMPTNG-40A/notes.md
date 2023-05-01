@@ -324,6 +324,55 @@ Nothing to see here!
 
 
 
-## Lecture 13:
+## Lecture 13: Canvas and `this`
 
-- 
+- Canvas Elements
+
+  - ```js
+    const canvas = document.getElementsByTagName("canvas")[0];
+    canvas.width = 400;
+    canvas.height = 300;
+    
+    const context = canvas.getContext("2d");
+    context.fillStyle = "blue";
+    
+    canvas.addEventListener("click", function(e) {
+    	const rect = canvas.getBoundingClientRect();
+    	const xPos = e.clientX - rect.left;
+    	const yPos = e.clientY - rect.top;
+    	context.fillRect(xPos, yPos, 4, 4);
+    });
+    ```
+
+  - ```js
+    function Drawing(canvas, width, height, color) {
+      this.canvas = canvas
+      this.canvas.width = width;
+      this.canvas.height = height;
+      this.context = this.canvas.getContext("2d");
+      this.context.fillStyle = color;
+    };
+    
+    Drawing.prototype.start = function() {
+      let self = this;
+      self.canvas.addEventListener("click", function(e) {
+    		const rect = self.canvas.getBoundingClientRect();
+    		const xPos = e.clientX - rect.left;
+    		const yPos = e.clientY - rect.top;
+    		self.context.fillRect(xPos, yPos, 4, 4);
+    	});
+    };
+    ```
+
+- `this`
+
+  - `this` in a constructor refers to the object it's creating
+  - `this` in a member function refers to the caller object
+  - `this` in an event handler refers to the listener object
+  - `this` anywhere else refers to `window`
+
+
+
+## Lecture 14:
+
+- ,
