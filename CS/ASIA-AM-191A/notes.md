@@ -90,6 +90,12 @@ Nothing to see here!
 
 
 
-## Lecture 9:
+## Lecture 9: Ethical Software and Developing for Civil Society
+
+Nothing to see here!
+
+
+
+## Lecture 10: Community-Based Empowerment
 
 - 
