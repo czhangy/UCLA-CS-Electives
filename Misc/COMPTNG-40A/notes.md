@@ -373,6 +373,28 @@ Nothing to see here!
 
 
 
-## Lecture 14:
+## Lecture 14: Cookies
 
-- 
+- Cookies
+  - Deleted by setting expiration to a `Date` in the past
+  - Cookies are stored in `name=value` pairs in the order in which they were edited
+    - `name` and `value` can be empty
+    - The empty `name` can be assigned without use of `=`
+    - Spaces shouldn't be used, but can be in Chrome => leading/ending whitespace in `name` and `value` is trimmed
+  - When they're created, they should try to not break anything, but when reading cookies, be ready for anything
+- `Date`
+  - Components
+    - Year: normal
+    - Month: 0-indexed
+    - Day: 1-indexed
+    - Hours/minutes/seconds/milliseconds: 0-indexed
+  - Member functions
+    - `UTC(time)`
+      - Returns the number of milliseconds since the UNIX epoch
+    - `toString()`
+      - Outputs the `Date` object in a string format with local time
+    - `toUTCString()`
+      - Outputs the `Date` object in a string format with UTC time
+    - `setMinutes()`/`getMinutes()`
+      - Sets/gets the minutes of a `Date` object
+      - Same for hours/seconds/etc.
