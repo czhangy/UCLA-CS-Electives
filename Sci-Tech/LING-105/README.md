@@ -17,7 +17,7 @@
 
 |         Phase         | Score |
 | :-------------------: | :---: |
-|      Prospectus       |  ???  |
+|      Prospectus       | 20/20 |
 | Midpoint Development  |  ???  |
 |      Final Paper      |  ???  |
 | Research Presentation |  ???  |
