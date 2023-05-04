@@ -1,0 +1,217 @@
+Open this file in Sublime so that it reads nicely.
+
+
+
+
+The exam will not ask you to write very much code at all
+because midterms are normally to short for that.
+It will mainly test your understanding by asking
+whether some provided code produces an error and/or
+asking you to write down the output of some code
+that executes successfully.
+
+
+
+
+What we've covered is summarized in the links below and
+is thoroughly explained in the videos posted on BruinLearn.
+
+https://www.pic.ucla.edu/~mjandr/basicHTML/?C=M;O=A
+https://www.pic.ucla.edu/~mjandr/basicJS/?C=M;O=A
+https://www.pic.ucla.edu/~mjandr/HTML_w_JS/?C=M;O=A
+
+
+
+
+For basic HTML, I will not ask you to remember...
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>a_title</title>
+    <script src="a_js_file.js" defer></script>
+  </head>
+</html>
+
+However, you should be familiar with...
+<body>, <header>, <main>, <footer>,
+<h1>, <h2>, <section>, <p>, <span>,
+<ul>, <ol>, <li>, <img>,
+<input type="button">, <input type="checkbox">
+
+and using the id attribute.
+
+
+
+
+The exam will mainly focus on pure JS.
+Thoroughly reviewing the snippets is essential.
+Review the videos where necessary (e.g. to see a good picture).
+Below, I have highlighted where to focus your attention the most.
+
+
+prim_let_const.js
+ - You should now be familiar with 'let' and 'const' declaring variables
+   and the primitive data types undefined, boolean, number, string.
+
+string.js and string2.js
+ - You should be familiar with the different quotes,
+   the ability to concatenate strings using +, indexing using [],
+   the methods substring, includes, and startsWith.
+
+bool_number.js
+ - All of this snippet should feel familiar.
+   However, I will not test == or != because they're awful.
+
+coercions.js
+ - This snippet was mainly intended to make you run from coercions.
+   All I want you to remember from it is lines 35, 36, 42, 43, and 57-75
+    - a primitive will be coerced to a string when evaluating v1 + v2
+      provided that one of v1 or v2 is a string;
+    - primitives are converted to numbers when arithmetic operations
+      (other than the one just mentioned) are used.
+
+arrays.js
+ - You should be familiar with push and pop.
+ - Arrays were our first example of interesting objects.
+   The examples from line 53 onwards must be well understood.
+   In particular, you should understand that when typeof(v) === 'object',
+   the value of the variable v is a reference to an object and
+   the value of the variable v is a distinct quantity from the value of the object.
+   Moreover, assignment to a variable influences the value of a variable and,
+   when objects are involved, causes an object reference to be copied.
+   Furthermore, array objects never store subarray objects;
+   however, an array might store a reference to another array.
+   Does this mean that arr.push(arr) makes sense?
+
+control.js
+ - All control flow should be familiar
+   even if the examples in this snippet are intimidating.
+   From HW2, I've noticed that many of you seem to be allergic to...
+   for (let el of arr) {
+     // do something with el
+   }
+   Make it your friend.
+
+functions.js
+ - You should be familiar with creating functions using the syntax
+   function f(param1, param2) {
+     // function body
+   }
+ - You should also be familiar with function expressions
+   function(param1, param2) {
+     // function body
+   }
+ - You should be familiar with immediately invoked function expressions
+   (function(param1, param2) {
+     // function body
+   })(arg1, arg2);
+ - You should be familiar with passing functions to functions.
+ - You could therefore ponder passing a function expression to an IIFE.
+
+lex_env.js
+ - This snippet assumes that you've understood {} in C++.
+   The BruinLearn video (01-12-22, 47:00 - 50:45) recaps this.
+   The discussion is continued in the next video.
+ - You should understand the difference between using a
+   'let' declared variable in a function and a variable
+   that has not been declared in a function.
+ - You should understand that this means
+   (function() { stuff })();
+   accomplishes the same as { stuff }
+   when variables are 'let' declared.
+ - You should understand the basics of closures.
+
+lex_env_ext.js
+ - Nothing in this snippet that is
+   not spoken about in lex_env.js
+   will be examined because
+   this snippet was deferred to discussion.
+   However, the examples on lines 323-391, 469-540
+   clarify examples in the previous snippet.
+
+loose_ends.js
+ - This snippet is (more) poorly named (than the others).
+   It felt like "loose ends" when I first taught the class,
+   but it highlights a very important point
+   that is often poorly understood:
+   when a function is called,
+   after a suitable lexical environment is introduced,
+   the arguments provided in the function call are assigned
+   to the parameters given in the function definition
+   (which behave as though they are 'let' declared).
+   If an argument is not provided,
+   but a default expression is available,
+   then the default expression is assigned to the parameter.
+
+   Important consequences: parameters are local to the function;
+   when objects are involved, an object reference is copied to the parameter,
+   which is *not* the same as saying the argument is passed by reference.
+
+var.js
+ - I will not examine 'var'.
+   If you I ask you to write code and you use 'var', you'll receive 0.
+ - However, the first 34 lines are still useful and should be familiar.
+ - I will not examine the fact that assigning to a variable
+   which hasn't been declared adds a property to 'window'.
+
+On BruinLearn, the four uses of 'this' that we've seen are listed.
+
+objects.js
+ - The first 73 lines should be well understood.
+   This provides an example of 'this' in a constructor.
+ - The remainder provides a warning that should be noted.
+   It also shows 'this' being use in a normal function
+   (the least useful usage of 'this').
+
+prototypes1-4.js
+ - Most important is prototypes2.js.
+   These examples demonstrate simple prototype chains,
+   and examples of 'this' in a function called by an object.
+   You should also understand that once a property is found,
+   the prototype chain will not be exhausted: consider
+   prototype chains where the same property appears many times.
+ - prototypes1.js is fairly straightforward but highlights that
+   Array.prototype is where member functions for arrays live.
+   However, since arrays are objects, they also have access to
+   member function for objects which live in Object.prototype.
+ - The first 27 lines of prototype3.js should be well understood.
+   Square.prototype is the correct place to store member functions
+   for the Square class.
+ - Lines 5-12 of prototype4.js are very important!
+   The rest can only help your understanding,
+   but the midterm will never say __proto__.
+
+
+
+
+In terms of using JS for applications...
+
+buttons.html/js
+ - I may use the onclick attribute to make a question less verbose.
+ - I won't bother with confirm, prompt, or window.location.assign.
+   You only need to know alert.
+
+dom.html/js
+ - You only need to be familiar with
+   document.getElementsByTagName, document.getElementById, innerHTML
+
+event_list.html/js
+ - You should be familiar with
+   [HTMLElement].addEventListener('click', [eventHandler])
+
+dom_no_onclick.html/js
+ - You only need to be familiar with
+   [HTMLElement].removeEventListener('click', [eventHandler])
+
+checkbox.html/js
+ - You should be familiar with the checked and disabled property.
+
+checkbox_no_onclick.html/js
+ - This serves as additional index practice.
+
+canvas/multi_canvas_1.html/js
+ - multi_canvas_1 snippet introduces the final 'this'.
+   You don't need to know anything about <canvas>,
+   but you do need to know the behavior of 'this' highlighted.
