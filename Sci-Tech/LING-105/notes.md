@@ -290,6 +290,12 @@ Nothing to see here!
 
 
 
-## Lecture 9:
+## Lecture 9: Inflection and Derivation
 
-- 
+Nothing to see here!
+
+
+
+## Lecture 10: 
+
+Nothing to see here!
