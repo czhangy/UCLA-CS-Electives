@@ -96,6 +96,57 @@ Nothing to see here!
 
 
 
-## Lecture 10: Community-Based Empowerment
+## Lecture 10: Designing Community-Focused Surveys
+
+- Main Idea
+  - Let the community speak for itself
+  - We should not be making any "conclusions"
+- Main Points
+  - Test your survey
+  - We are here to listen and empower, **NOT** take information and leave
+  - Acknowledge and try to avoid as much bias as possible
+  - Keep it short
+- Why Test?
+  - Respecting the community
+  - Checking for Respect
+    - Each question **MUST** have an important purpose
+    - If a question is not necessary, **DO NOT** ask it because it would be "nice to know"
+    - Less is more
+    - Remember: each question takes someone's time
+    - Remember: each survey contributes to survey fatigue
+      - Every survey taken reduces the chance the same person will take a survey in the future
+      - Make your survey pleasant and meaningful for everyone, another chance may not come
+- We are here to Listen
+  - **How** we listen is important
+    - Access to the Internet may be limited
+    - Language barriers
+    - Dependent on networking
+    - Limits to the above could create skewed responses
+    - Focus on open-ended questions
+    - Do not "lead" (i.e., try to get a specific answer) in questions both open-ended and closed
+    - If you must include *closed-ended*, do not have:
+      - Tons of options
+      - Long options
+- Avoiding Bias
+  - Don't fall victim to confirmation bias
+  - We should challenge our biases because:
+    - Social problems are difficult to solve if we keep assuming (wrong) things
+    - To facilitate social change better, we need to start breaking down those assumptions
+  - How to minimize bias?
+    - First and foremost, emphasize listening
+    - It is impossible to understand every social problem, but we can start to address societal issues by listening to the people affected without assumptions first
+    - Avoid jargon: ask simple questions with simple wording
+    - Avoid assumptions: do not assume people know about your issue
+    - Avoid leading: do not use subjective claims
+    - Define definitions: explain terms if you must use them
+- Keep it Short
+  - For you and for them
+  - A shorter survey = more space to share people's stories
+  - Tie each question to **who** you are looking to empower
+  - Open-ended questions = community members can take more time to respond if they want
+
+
+
+## Lecture 11:
 
 - 
