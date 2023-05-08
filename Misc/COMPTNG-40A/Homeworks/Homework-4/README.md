@@ -16,11 +16,11 @@
 
 ### JS
 
-- [ ] `username.js`
-  - [ ] `get_username()`
-    - [ ] Extracts the value corresponding to the name `username` from `document.cookie`
-    - [ ] If there is no such name, return the empty string
-    - [ ] Make sure this accounts for the situation where `document.cookie` contains `username; username=user`
+- [x] `username.js`
+  - [x] `get_username()`
+    - [x] Extracts the value corresponding to the name `username` from `document.cookie`
+    - [x] If there is no such name, return the empty string
+    - [x] Make sure this accounts for the situation where `document.cookie` contains `username; username=user`
 - [ ] `welcome.js`
   - [ ] Should fill the textbox with the user's username if it was discovered in `get_username()`
   - [ ] Should add event listeners to trigger submit behavior on button press and on Enter keypress
