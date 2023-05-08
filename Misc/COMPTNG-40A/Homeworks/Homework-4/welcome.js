@@ -26,7 +26,7 @@ function check_username(username) {
 	let errors = "";
 	// Handle bullet point #1
 	if (username.length < 5) {
-		errors += "Username must be at 5 characters or longer.\n";
+		errors += "Username must be 5 characters or longer.\n";
 	}
 	if (username.length > 40) {
 		errors += "Username cannot be longer than 40 characters.\n";
