@@ -21,22 +21,22 @@
     - [x] Extracts the value corresponding to the name `username` from `document.cookie`
     - [x] If there is no such name, return the empty string
     - [x] Make sure this accounts for the situation where `document.cookie` contains `username; username=user`
-- [ ] `welcome.js`
-  - [ ] Should fill the textbox with the user's username if it was discovered in `get_username()`
-  - [ ] Should add event listeners to trigger submit behavior on button press and on Enter keypress
-  - [ ] `on_submit()`
-    - [ ] `check_username(user)`
-      - [ ] The username should be checked to see if it is between 5 and 40 characters
-      - [ ] The username doesn't include spaces, commas, semicolons, =, or &
-      - [ ] Every character is either an alphanumeric or one of "!@#$%^*()-_+[]{}:'|`~<.>/?"
-    - [ ] `on_invalid_username()`
-      - [ ] Alert the user in the correct manner
-    - [ ] `create_cookie(user)`
-      - [ ] Create a new cookie with name equal to the string "username" and value equal to what the user typed
-      - [ ] The cookie should expire in an hour
-      - [ ] Don't specify anything about the path
-    - [ ] `start_game()`
-      - [ ] Redirect to `shut_the_box.html`
+- [x] `welcome.js`
+  - [x] Should fill the textbox with the user's username if it was discovered in `get_username()`
+  - [x] Should add event listeners to trigger submit behavior on button press and on Enter keypress
+  - [x] `on_submit()`
+    - [x] `check_username(user)`
+      - [x] The username should be checked to see if it is between 5 and 40 characters
+      - [x] The username doesn't include spaces, commas, semicolons, =, or &
+      - [x] Every character is either an alphanumeric or one of "!@#$%^*()-_+[]{}:'|`~<.>/?"
+    - [x] `on_invalid_username()`
+      - [x] Alert the user in the correct manner
+    - [x] `create_cookie(user)`
+      - [x] Create a new cookie with name equal to the string "username" and value equal to what the user typed
+      - [x] The cookie should expire in an hour
+      - [x] Don't specify anything about the path
+    - [x] `start_game()`
+      - [x] Redirect to `shut_the_box.html`
 
 ### Submission
 
