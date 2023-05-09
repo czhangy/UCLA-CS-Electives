@@ -147,6 +147,12 @@ Nothing to see here!
 
 
 
-## Lecture 11:
+## Lecture 11: Designing for Civil Society
+
+Nothing to see here!
+
+
+
+## Lecture 12:
 
 - 
