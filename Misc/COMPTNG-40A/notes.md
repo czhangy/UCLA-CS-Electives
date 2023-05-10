@@ -398,3 +398,50 @@ Nothing to see here!
     - `setMinutes()`/`getMinutes()`
       - Sets/gets the minutes of a `Date` object
       - Same for hours/seconds/etc.
+
+
+
+## Lecture 15: Cookies
+
+Nothing to see here!
+
+
+
+## Lecture 16: Basic PHP
+
+- Main goal:
+  - Produce HTML algorithmically
+- Basics:
+  - Shebang: `#!/usr/local/bin/php`
+  - PHP enclosed by `<?php` and `?>`
+  - Strings enclosed by `'` within the PHP tags
+  - Add `+x` permissions to files
+- `echo`
+  - Adds string to document contents
+- `header()`
+  - Communicates the end result's format (HTML by default)
+  - Must be the first piece of content in the file (other than the opening PHP tag)
+    - No newline between shebang and opening tag
+  - `header(Content-Type: text/plain; charset=utf-8)` for plain text
+- `phpversion()`
+  - Outputs the version of PHP being used
+- `$`
+  - Prefix for variables
+  - Dynamically-typed
+  - Can be used in `var_dump()` to print without coercion and with type information
+- `'` vs `"`
+  - `'` ignores escape sequences (other than backslashes and single quotes) and variables
+  - `"` allows for escapes and variables
+    - Curly braces can be used to isolate the variable name if needed
+- `//`
+  - Used to comment
+- `&&` vs. `and`
+  - `&&` has higher precedence than assignment
+  - `and` has lower precedence than assignment
+    - Don't use this
+
+
+
+## Lecture 17:
+
+- 
