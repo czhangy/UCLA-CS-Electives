@@ -153,6 +153,48 @@ Nothing to see here!
 
 
 
-## Lecture 12:
+## Lecture 12: Design Justice
+
+- Web Design
+  - Web design is the presentation part of web development
+  - Mostly HTML/CSS
+- Wireframes
+  - Types of Wireframes
+    - Analog
+      - Pen and paper:
+        - Boxes for website
+        - Annotations for actions
+    - Digital
+      - Pen/Whiteboard
+        - More free form
+        - Easily do multiple iterations
+    - Low Fidelity
+      - Boxes for content
+      - Placeholder text
+  - Why Wireframes?
+    - They connect UX to UI
+    - Makes sure you have an idea of what you're doing before you commit to doing it
+  - Tools for Wireframing
+    - Analog
+      - Pen
+      - Pencil
+      - Paper
+      - Post-its
+    - Digital
+      - Figma/FigJam
+      - Canva
+      - Draw.io
+      - Adobe Sketch
+      - PowerPoint
+      - Adobe Illustrator
+- Human Centered Design
+  - Putting UX at the center of your design
+- Design Justice
+  - Not an ideal or theory
+  - A holistic solutions framework and approach to rebalance society and technology by focusing on marginalized communities
+
+
+
+## Lecture 13:
 
 - 
