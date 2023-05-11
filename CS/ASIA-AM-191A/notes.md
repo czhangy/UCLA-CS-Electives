@@ -192,6 +192,16 @@ Nothing to see here!
 - Design Justice
   - Not an ideal or theory
   - A holistic solutions framework and approach to rebalance society and technology by focusing on marginalized communities
+  - Principles:
+    - Use design to sustain, heal, and empower communities
+    - Center voices directly impacted by design
+    - Prioritize design's impact on the community instead of designer's intentions
+    - Everyone is an expert based on their own lived experiences
+  - Reflect:
+    - How close am I to the issue at hand?
+    - Does this community want me to work on this project?
+    - Am I the appropriate person to work on this project?
+    - How can I step back and facilitate the design of solutions by the community?
 
 
 
