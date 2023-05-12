@@ -439,9 +439,89 @@ Nothing to see here!
   - `&&` has higher precedence than assignment
   - `and` has lower precedence than assignment
     - Don't use this
+  - Same idea for `||` and `or`
 
 
 
-## Lecture 17:
+## Lecture 17: Basic PHP
+
+- `%`
+
+  - Truncates both operands to integers and then performs C++ `%`
+
+- Strings
+
+  - `strlen($str)` returns the number of characters in a string `$str`
+  - `[]` can be used to index
+    - Assignment works
+  - `substr($str, $start)` returns the substring of `$str` starting from index `$start`
+  - `strpos($str, $sub)` returns the index at which a substring `$sub` can be found in `$str`
+    - Returns `false` if `$sub` cannot be found in `$str`
+  - `.` operator can be used to concatenate strings
+  - `explode($c, $str)` returns an array of elements of `$str` separated by `$c`
+  - `implode($c, $arr)` joins the elements of array `$arr` using `$c`
+
+- `const` Variables
+
+  - Declared with `const`, don't need `$`
+
+- Coercion
+
+  - Casting
+    - `(type) $value` coerces `$value` to type `type`
+  - Number to Boolean
+    - Non-zero values become true, 0 becomes false
+  - Boolean to Number
+    - True becomes `1`
+    - False becomes `0`
+  - String to Boolean
+    - The string `'0'` and `''` become false
+    - Every other string becomes true
+  - Boolean to String
+    - True becomes `'1'`
+    - False becomes `''`
+  - Array to Boolean
+    - The empty array becomes false
+    - Everything else becomes true
+  - Number to String
+    - Exact copy, but doubles with `.0` become their integer representations
+  - String to Number
+    - Whitespaces are ignored
+    - Leading numbers are converted, with the first non-numeric value terminating the coercion
+    - When converting to doubles, `e` can be used for scientific notation
+      - `e` is treated as a non-numeric when converting to int
+  - Operations
+    - Evaluates left to right
+    - `.` coerces operands to strings
+    - Arithmetic operations coerce operands to numbers
+
+- Arrays
+
+  - Cannot be printed with `echo`, use `var_dump` or `print_r` instead
+
+  - `count($arr)` returns the length of array `$arr`
+
+  - `array_push($arr, $e)` pushes element `$e` to array `$arr`
+
+    - Can push multiple elements at a time
+
+  - `array_pop($arr)` removes the last element from `$arr`
+
+  - Dictionaries
+
+    - ```php
+      $dict = ['key1' => 'value1', 'key2' => 'value2'];
+      ```
+
+    - `$dict[$key] = $value` sets a key-value pair `($key, $value)` to `$dict`
+
+    - `unset($dict[$key])` removes a key-value pair denoted by `$key` from `$dict`
+
+      - Doesn't make sense to use on non-dictionary arrays
+
+
+
+## Lecture 18:
 
 - 
+
