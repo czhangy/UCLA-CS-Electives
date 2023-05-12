@@ -302,6 +302,12 @@ Nothing to see here!
 
 
 
-## Lecture 11:
+## Lecture 11: Hierarchical Structures
+
+Nothing to see here!
+
+
+
+## Lecture 12:
 
 - 
