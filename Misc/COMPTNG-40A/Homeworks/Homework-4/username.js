@@ -1,7 +1,7 @@
 function get_username() {
 	const cookies = document.cookie.split("; ");
 	for (const cookie of cookies) {
-		if (cookie.includes("=") && cookie.split("=")[0] === "username") {
+		if (cookie.startsWith("username=")) {
 			return cookie.substring(9);
 		}
 	}

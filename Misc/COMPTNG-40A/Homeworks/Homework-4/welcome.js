@@ -2,6 +2,8 @@
 const username_input = document.getElementById("username");
 const submit_button = document.getElementById("submit-button");
 
+// DELETE
+
 // Get username on load
 username_input.defaultValue = get_username();
 
@@ -79,10 +81,8 @@ function on_invalid_username(errors) {
 
 function create_cookie(username) {
 	let expire = new Date();
-	const one_hour = 1000 * 60 * 60;
-	expire.setTime(expire.getTime() + one_hour);
+	expire.setHours(expire.getHours() + 1);
 	document.cookie = `username=${username}; expires=${expire.toUTCString()};`;
-	console.log(document.cookie);
 }
 
 function start_game() {
