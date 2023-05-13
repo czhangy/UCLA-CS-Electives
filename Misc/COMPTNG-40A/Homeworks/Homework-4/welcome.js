@@ -2,8 +2,6 @@
 const username_input = document.getElementById("username");
 const submit_button = document.getElementById("submit-button");
 
-// DELETE
-
 // Get username on load
 username_input.defaultValue = get_username();
 
