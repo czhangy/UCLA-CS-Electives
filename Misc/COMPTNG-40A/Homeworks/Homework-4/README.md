@@ -41,5 +41,5 @@
 ### Submission
 
 - [x] Upload the following six files: `README.txt`, `shut_the_box.html`, `shut_the_box.js`, `welcome.html`, `username.js`, `welcome.js`
-- [ ] Upload to the [PIC server](www.pic.ucla.edu/~charleszhang/HW4/welcome.html)
-- [ ] Upload to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
+- [x] Upload to the [PIC server](www.pic.ucla.edu/~charleszhang/HW4/welcome.html)
+- [x] Upload to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
