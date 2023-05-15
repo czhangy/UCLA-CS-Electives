@@ -443,7 +443,7 @@ Nothing to see here!
 
 
 
-## Lecture 17: Basic PHP
+## Lecture 17: Strings, Coercions, and Arrays
 
 - `%`
 
@@ -521,7 +521,76 @@ Nothing to see here!
 
 
 
-## Lecture 18:
+## Lecture 18: Functions, Variables, Control Flow, and PHP with HTML
+
+- Functions
+
+  - Functions are defined using the keyword `function`
+
+    - Otherwise, C++ syntax
+
+    - Default params are allowed
+
+    - ```php
+      function foo($bar) {
+      	...
+      }
+      ```
+
+  - Passing by reference can be accomplished using `&`
+
+  - Function names aren't case-sensitive
+
+- Variables
+
+  - Undefined variables evaluate as `NULL`
+    - `NULL` is `false` when cast to a boolean
+    - Make sure to write control flow carefully to avoid bugs
+      - Variable name typos
+      - Missing `$`
+      - etc.
+
+  - Variables are globally scoped
+    - Can be removed from scope with `unset($var)`
+    - Can be views as part of the `$GLOBALS` dict
+
+- Control Flow
+
+  - `foreach` can be used to iterate through an array with a range-based for-loop
+
+    - ```php
+      foreach($arr as $val) {
+        echo $val;
+      }
+      ```
+
+    - `$val` can be assigned as reference if the underlying array should be mutated
+
+      - When this is done, `unset` must be used after the loop, otherwise bugs can be introduced
+
+    - Can be used with dictionaries:
+
+      - `$dict as $val` to extract values
+      - `$dict as $key => $value` to extract key-value pairs
+
+- PHP with HTML
+
+  - `<form>`
+    - Form contents are submitted using an `<input type="submit">`
+    - `action` attribute specifies a location to be redirected to after submitting the form
+      - Gives the location access to a superglobal (e.g., `$_GET`, `$_POST`) that stores what was submitted in a dict
+
+    - `method` defines the method that the form submits with
+
+  - `$_GET`
+    - Params appear in URL
+
+  - `$_POST`
+    - Better for security
+
+
+
+
+## Lecture 19:
 
 - 
-
