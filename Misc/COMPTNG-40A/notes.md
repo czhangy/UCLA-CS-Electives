@@ -591,6 +591,27 @@ Nothing to see here!
 
 
 
-## Lecture 19:
+## Lecture 19: Request Methods
+
+- `$_SERVER['REQUEST_METHOD']`
+  - Used to access methods (`$_GET`, `$_POST`)
+- `$_GET` vs. `$_POST`
+  - `$_GET` displays content in a query string in the URL
+  - `$_POST` does not transmit data via query string
+    - Better for secure communications
+  - `isset()` can be used to check if a specific name is set
+    - The `name` attribute in `input` tags is used to specify the name of the superglobal that will be submitted
+- `<a>`
+  - Used to make hyperlinks
+  - Can take nested HTML
+  - Has a mandatory `href` attribute that specifies where to redirect to
+    - Can be given full or relative URLs
+  - `title` is an attribute that specifies hover text
+  - `download` is a boolean attribute that tells the `<a>` tag to download instead of redirecting
+  - `target="_blank"` can be used to redirect in a new tab
+
+
+
+## Lecture 20:
 
 - 
