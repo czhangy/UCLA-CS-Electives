@@ -1,1 +1,1 @@
-window.opener.location = "site_e.html";
+window.opener.locatin = "site_e.html";

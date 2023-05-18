@@ -72,19 +72,19 @@
 
 ### Testing
 
-- [ ] `welcome.php` correctly uses the username that was submitted
-- [ ] Entering username and password information on `site_e.html` and submitting leads to being
+- [x] `welcome.php` correctly uses the username that was submitted
+- [x] Entering username and password information on `site_e.html` and submitting leads to being
   directed to `phished.php`
-- [ ] `phished.php` correctly uses the password that was submitted
-- [ ] `From site_g.html`, clicking on the "holiday" anchor opens `holiday1.html` in a new tab and
+- [x] `phished.php` correctly uses the password that was submitted
+- [x] From `site_g.html`, clicking on the "holiday" anchor opens `holiday1.html` in a new tab and
   redirects `site_g.html` to `site_e.html`
-- [ ] From `site_g.html`, clicking on the "pictures" anchor opens `holiday2.html` in a new tab and
+- [x] From `site_g.html`, clicking on the "pictures" anchor opens `holiday2.html` in a new tab and
   redirects `site_g.html` to `site_e.html`
-- [ ] `holiday1.html` looks like a realistic error message created by the PIC servers
-- [ ] `holiday2.html` looks like a realistic error message created by Google Chrome
-- [ ] The reload button on `holiday2.html` appears to try to reload the page and appears to continue
+- [x] `holiday1.html` looks like a realistic error message created by the PIC servers
+- [x] `holiday2.html` looks like a realistic error message created by Google Chrome
+- [x] The reload button on `holiday2.html` appears to try to reload the page and appears to continue
   to result in the page not loading
-- [ ] Instructions regarding the layout of pages have been followed, so pages appear close to identical
+- [x] Instructions regarding the layout of pages have been followed, so pages appear close to identical
   to the example given in the video
 
 ### Submission
