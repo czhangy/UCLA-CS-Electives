@@ -4,30 +4,30 @@
 
 ### README
 
-- [ ] `README.txt`
-  - [ ] Must contain your PIC username (charleszhang)
+- [x] `README.txt`
+  - [x] Must contain your PIC username (charleszhang)
 
 ### HTML
 
-- [ ] `site_g.html` and `site_e.html`
-  - [ ] Tab should be called "Interesting"
-  - [ ] A header with an `<h1>` saying "Login page for site with interesting content"
-  - [ ] There should be 2 `<section>`s:
-    - [ ] A login section
-      - [ ] Should have an `<h2>` that says "Login"
-      - [ ] Should have a `<form>` element with `method` set to `"POST"`
-      - [ ] Should have 2 `<label>` elements that say "Username:" and "Password:"
-      - [ ] Should have 3 `<input>` elements with `type` set to `"text"`, `"password"`, and `"submit"`
-    - [ ] A comment section
-      - [ ] Should have an `<h2>` that says "Recent posts by users"
-      - [ ] Should have a `<p>` that says "niceGuy666 said, "check out my holiday pictures!""
-        - [ ] "holiday" should be an `<a>` tag with `target="_blank"` and `href="holiday1.html"`
-        - [ ] "pictures" should be an `<a>` tag with `target="_blank"` and `href="holiday2.html"`
-  - [ ] A `<footer>` with copyright information
-- [ ] `site_g.html`
-  - [ ] The `<form>` should have `action="welcome.php"`
-- [ ] `site_e.html`
-  - [ ] The `<form>` should have `action="phished.php"`
+- [x] `site_g.html` and `site_e.html`
+  - [x] Tab should be called "Interesting"
+  - [x] A header with an `<h1>` saying "Login page for site with interesting content"
+  - [x] There should be 2 `<section>`s:
+    - [x] A login section
+      - [x] Should have an `<h2>` that says "Login"
+      - [x] Should have a `<form>` element with `method` set to `"POST"`
+      - [x] Should have 2 `<label>` elements that say "Username:" and "Password:"
+      - [x] Should have 3 `<input>` elements with `type` set to `"text"`, `"password"`, and `"submit"`
+    - [x] A comment section
+      - [x] Should have an `<h2>` that says "Recent posts by users"
+      - [x] Should have a `<p>` that says "niceGuy666 said, "check out my holiday pictures!"
+        - [x] "holiday" should be an `<a>` tag with `target="_blank"` and `href="holiday1.html"`
+        - [x] "pictures" should be an `<a>` tag with `target="_blank"` and `href="holiday2.html"`
+  - [x] A `<footer>` with copyright information
+- [x] `site_g.html`
+  - [x] The `<form>` should have `action="welcome.php"`
+- [x] `site_e.html`
+  - [x] The `<form>` should have `action="phished.php"`
 - [ ] `holiday1.html`
   - [ ] Navigate to https://www.pic.ucla.edu/~mjandr/thisDoesNotExist
   - [ ] `console.log` the `outerHTML` of the `<html>` element
@@ -40,7 +40,7 @@
   - [ ] Replace all 8 occurrences of "www.utternonsense.notawebsite.com"
   - [ ] Edit the function `reloadButtonClick` so that the `location` is updated to "https://www.pic.ucla.edu/~charleszhang/HW5/holiday2.html" regardless of the value of the parameter `url`
   - [ ] Include `phish.js`
-- [ ] All HTML other than `holiday1.html` and `holiday2.html` should [validate](https://validator.w3.org/)
+- [ ] `site_g.html` and `site_e.html` should [validate](https://validator.w3.org/)
 
 ### PHP
 
