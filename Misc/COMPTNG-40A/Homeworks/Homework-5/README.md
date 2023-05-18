@@ -33,36 +33,36 @@
   - [x] `console.log` the `outerHTML` of the `<html>` element
   - [x] Copy and paste the result into the file
   - [x] Include `phish.js`
-- [ ] `holiday2.html`
-  - [ ] Navigate to http://www.utternonsense.notawebsite.com/afterForwardSlash
-  - [ ] `console.log` the `outerHTML` of the `<html>` element
-  - [ ] Copy and paste the result into the file
-  - [ ] Replace all 8 occurrences of "www.utternonsense.notawebsite.com"
-  - [ ] Edit the function `reloadButtonClick` so that the `location` is updated to "https://www.pic.ucla.edu/~charleszhang/HW5/holiday2.html" regardless of the value of the parameter `url`
-  - [ ] Include `phish.js`
+- [x] `holiday2.html`
+  - [x] Navigate to http://www.utternonsense.notawebsite.com/afterForwardSlash
+  - [x] `console.log` the `outerHTML` of the `<html>` element
+  - [x] Copy and paste the result into the file
+  - [x] Replace all 8 occurrences of "www.utternonsense.notawebsite.com"
+  - [x] Edit the function `reloadButtonClick` so that the `location` is updated to "https://www.pic.ucla.edu/~charleszhang/HW5/holiday2.html" regardless of the value of the parameter `url`
+  - [x] Include `phish.js`
 - [x] `site_g.html` and `site_e.html` should [validate](https://validator.w3.org/)
 
 ### PHP
 
-- [ ] `welcome.php`
-  - [ ] Tab should be called "Interesting"
-  - [ ] A header with an `<h1>` saying "Welcome to site with interesting content"
-  - [ ] There should be 2 `<section>`s:
-    - [ ] A welcome section
-      - [ ] Should have an `<h2>` that says "Welcome"
-      - [ ] Should have a `<p>` that says "Welcome ${USERNAME}"
-    - [ ] A comment section
-      - [ ] Should have an `<h2>` that says "Recent posts by users"
-      - [ ] Should have a `<p>` that says "niceGuy666 said, "check out my holiday pictures!""
-        - [ ] "holiday" should be an `<a>` tag with `target="_blank"` and `href="holiday1.html"`
-        - [ ] "pictures" should be an `<a>` tag with `target="_blank"` and `href="holiday2.html"`
-  - [ ] A `<footer>` with copyright information
-- [ ] `phished.php`
-  - [ ] Tab should be called "Phished"
-  - [ ] A header with an `<h1>` saying "HAHAHA"
-  - [ ] There should be a `<section>`:
-    - [ ] A `<p>` saying "You just got phished!!!\nYour password is ${PASSWORD}"
-  - [ ] A `<footer>` with copyright information
+- [x] `welcome.php`
+  - [x] Tab should be called "Interesting"
+  - [x] A header with an `<h1>` saying "Welcome to site with interesting content"
+  - [x] There should be 2 `<section>`s:
+    - [x] A welcome section
+      - [x] Should have an `<h2>` that says "Welcome"
+      - [x] Should have a `<p>` that says "Welcome ${USERNAME}"
+    - [x] A comment section
+      - [x] Should have an `<h2>` that says "Recent posts by users"
+      - [x] Should have a `<p>` that says "niceGuy666 said, "check out my holiday pictures!""
+        - [x] "holiday" should be an `<a>` tag with `target="_blank"` and `href="holiday1.html"`
+        - [x] "pictures" should be an `<a>` tag with `target="_blank"` and `href="holiday2.html"`
+  - [x] A `<footer>` with copyright information
+- [x] `phished.php`
+  - [x] Tab should be called "Phished"
+  - [x] A header with an `<h1>` saying "HAHAHA"
+  - [x] There should be a `<section>`:
+    - [x] A `<p>` saying "You just got phished!!!\nYour password is ${PASSWORD}"
+  - [x] A `<footer>` with copyright information
 
 ### JS
 
