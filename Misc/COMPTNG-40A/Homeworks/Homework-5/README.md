@@ -61,13 +61,14 @@
   - [x] Tab should be called "Phished"
   - [x] A header with an `<h1>` saying "HAHAHA"
   - [x] There should be a `<section>`:
-    - [x] A `<p>` saying "You just got phished!!!\nYour password is ${PASSWORD}"
+    - [x] A `<p>` saying "You just got phished!!!"
+    - [x] A `<p>` saying "Your password is ${PASSWORD}"
   - [x] A `<footer>` with copyright information
 
 ### JS
 
-- [ ] `phish.js`
-  - [ ] Use `window.opener.location` to redirect the opening tab
+- [x] `phish.js`
+  - [x] Use `window.opener.location` to redirect the opening tab
 
 ### Testing
 

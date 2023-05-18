@@ -13,7 +13,7 @@
 		<main>
 			<section>
 				<h2>Welcome</h2>
-				<p>Welcome <?php echo $_POST['username'] ?></p>
+				<p>Welcome <?php echo $_POST['username'] ?>!!!</p>
 			</section>
 			<section>
 				<h2>Recent posts by users</h2>
