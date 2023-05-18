@@ -28,11 +28,11 @@
   - [x] The `<form>` should have `action="welcome.php"`
 - [x] `site_e.html`
   - [x] The `<form>` should have `action="phished.php"`
-- [ ] `holiday1.html`
-  - [ ] Navigate to https://www.pic.ucla.edu/~mjandr/thisDoesNotExist
-  - [ ] `console.log` the `outerHTML` of the `<html>` element
-  - [ ] Copy and paste the result into the file
-  - [ ] Include `phish.js`
+- [x] `holiday1.html`
+  - [x] Navigate to https://www.pic.ucla.edu/~mjandr/thisDoesNotExist
+  - [x] `console.log` the `outerHTML` of the `<html>` element
+  - [x] Copy and paste the result into the file
+  - [x] Include `phish.js`
 - [ ] `holiday2.html`
   - [ ] Navigate to http://www.utternonsense.notawebsite.com/afterForwardSlash
   - [ ] `console.log` the `outerHTML` of the `<html>` element
@@ -40,7 +40,7 @@
   - [ ] Replace all 8 occurrences of "www.utternonsense.notawebsite.com"
   - [ ] Edit the function `reloadButtonClick` so that the `location` is updated to "https://www.pic.ucla.edu/~charleszhang/HW5/holiday2.html" regardless of the value of the parameter `url`
   - [ ] Include `phish.js`
-- [ ] `site_g.html` and `site_e.html` should [validate](https://validator.w3.org/)
+- [x] `site_g.html` and `site_e.html` should [validate](https://validator.w3.org/)
 
 ### PHP
 
