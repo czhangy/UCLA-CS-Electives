@@ -612,6 +612,35 @@ Nothing to see here!
 
 
 
-## Lecture 20:
+## Lecture 20: Files
+
+- `[]`
+  - Use of `[]` in the `name` attribute of an input allows for an array submission
+- File Submission
+  - `type="file"` can be used on an `<input>` tag to submit files
+  - Can be accessed with the `$_FILES` superglobal
+    - Can then use `['name']` to access the file's name
+  - Uploaded files are automatically stored at a location given by `['tmp_name']`
+    - Can be moved to a desired location with `move_uploaded_file($currentLocation, $desiredLocation)`
+  - `__DIR__` can be used to access the current path
+- Files
+  - Can be opened with `fopen(${FILE_NAME}, ${MODE})`
+    - Returns a resource is successful or `false` if unsuccessful
+      - Resources are always coerced to be `true`
+    - Can confirm that the file was opened by evaluating the result of `fopen`
+    - Can be prepended with `@` to silence warnings
+  - Can read a line with `fgets($file)`
+    - Takes the first line that has not been previously read and returns it in a string
+    - Can check if at EOF with `feof($file)`
+  - Can write to a file with `fwrite($file, ${CONTENT})`
+    - Saves place from previous writes (since the file has been opened)
+    - Setting the mode to `w` writes over existing files while `a` appends on top of any existing file
+      - Both create a file if it doesn't already exist
+  - Can be closed with `fclose($file)`
+    - Should be done every time after you're done with a file
+
+
+
+## Lecture 21:
 
 - 
