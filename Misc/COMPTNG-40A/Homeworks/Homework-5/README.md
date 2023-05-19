@@ -89,14 +89,14 @@
 
 ### Submission
 
-- [ ] Submission must include:
-  - [ ] `README.txt`
-  - [ ] `site_g.html`
-  - [ ] `site_e.html`
-  - [ ] `welcome.php`
-  - [ ] `phished.php`
-  - [ ] `phish.js`
-  - [ ] `holiday1.html`
-  - [ ] `holiday2.html`
+- [x] Submission must include:
+  - [x] `README.txt`
+  - [x] `site_g.html`
+  - [x] `site_e.html`
+  - [x] `welcome.php`
+  - [x] `phished.php`
+  - [x] `phish.js`
+  - [x] `holiday1.html`
+  - [x] `holiday2.html`
 - [ ] Files must be uploaded to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
-- [ ] Files must be uploaded to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW5/site_g.html)
+- [x] Files must be uploaded to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW5/site_g.html)
