@@ -314,6 +314,12 @@ Nothing to see here!
 
 
 
-## Lecture 13:
+## Lecture 13: Lexical Integrity
+
+Nothing to see here!
+
+
+
+## Lecture 14:
 
 - 
