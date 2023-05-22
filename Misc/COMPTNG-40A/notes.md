@@ -641,6 +641,38 @@ Nothing to see here!
 
 
 
-## Lecture 21:
+## Lecture 21: PHP Headers and Sessions
+
+- `header()`
+  - Must be no space between the shebang and the starting `<php>` tag
+  - Cannot `echo` before a header is sent
+    - Typing outside `<php>` tags is like `echo`ing
+  - Sends HTTP header information
+  - `'Location: ${URL}'` redirects to a URL
+  - `'Content Disposition: attachement; filename="${FILENAME}"'` signals a file download
+    - Anything `echo`ed afterward goes into the new file
+    - Not producing anything for the browser to display
+  - If not used, a header gets inferred for you
+- `exit`
+  - Stops a PHP script from executing
+- `readfile($file)`
+  - Essentially echoes the contents of `$file`
+- Sessions
+  - Used to allow multiple pages to share common data
+    - This data is saved in a file
+  - Started with `session_start()`, which must be called before sending headers
+    - Can be named with `session_name($name)`
+      - If no param is given, it `echo`s the name of the session
+      - If a session with the name already exists (as determined by a cookie), then the session is resumed, not started
+    - Can specify where data is stored with `session_save_path(__DIR__ . $path)`
+    - These options precede `session_start()`
+  - The session ID can be `echo`d with `session_id()`
+    - Identifies the file name that the session data is stored in
+    - Cookie is stored in browser as `${SESSION_NAME}=${SESSION_ID}`
+  - Session data can be assigned/accessed using the `$_SESSION` superglobal
+
+
+
+## Lecture 22:
 
 - 
