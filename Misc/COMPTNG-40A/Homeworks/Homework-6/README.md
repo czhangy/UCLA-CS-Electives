@@ -30,7 +30,7 @@
 - [ ] Submitting the form without selecting a file should reload the page with no changes
 - [ ] No new files should be present on the PIC server
 - [ ] Tidying `mac.txt` should create a file `tidy_mac.txt` of size 477B
-- [ ] Tidying `windows.txt` should create a file `tidy_windows.txt` of size 506
+- [ ] Tidying `windows.txt` should create a file `tidy_windows.txt` of size 506B
 
 ### Submission
 
