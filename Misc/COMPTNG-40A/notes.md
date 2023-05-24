@@ -675,4 +675,5 @@ Nothing to see here!
 
 ## Lecture 22:
 
-- 
+- `$_SERVER['PHP_SELF']`
+  - Can be used to redirect to same page
