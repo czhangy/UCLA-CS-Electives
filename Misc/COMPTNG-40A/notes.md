@@ -677,3 +677,8 @@ Nothing to see here!
 
 - `$_SERVER['PHP_SELF']`
   - Can be used to redirect to same page
+
+
+
+## Lecture 23:
+
