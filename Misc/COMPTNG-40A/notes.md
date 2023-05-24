@@ -673,10 +673,21 @@ Nothing to see here!
 
 
 
-## Lecture 22:
+## Lecture 22: Passwords and Cookies
 
 - `$_SERVER['PHP_SELF']`
   - Can be used to redirect to same page
+- `hash($algo, $str)`
+  - Used to hash string `$str` using algorithm `$algo`
+  - A possible algorithm to use is `md2` or `md5`
+
+- `setcookie($name, $value, $expire_time)`
+  - Defines a cookie with name `$name` of value `$value` and expiration time `$expire_time` seconds to be sent along with the rest of the HTTP headers
+  - Must be sent before any output from your script
+
+- `$_COOKIE`
+  - Superglobal that is used to access cookies
+
 
 
 
