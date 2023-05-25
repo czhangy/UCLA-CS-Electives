@@ -231,6 +231,13 @@ Nothing to see here!
     - Add changes
     - Commit changes (with a message)
     - Push changes
+- Git Collaboration
+  - Shared Coding Sessions
+    - Live Share extension
+  - Individual Coding Sessions
+  - Pair Coding Sessions
+    - Work side-by-side
+- 
 
 
 
