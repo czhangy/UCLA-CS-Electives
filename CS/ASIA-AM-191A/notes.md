@@ -223,6 +223,17 @@ Nothing to see here!
 
 
 
-## Lecture 16:
+## Lecture 16: GitHub and Plugins
+
+- Git Terms
+  - The Git Process
+    - Pull changes
+    - Add changes
+    - Commit changes (with a message)
+    - Push changes
+
+
+
+## Lecture 17:
 
 - 
