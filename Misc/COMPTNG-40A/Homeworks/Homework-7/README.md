@@ -4,23 +4,23 @@
 
 ### README
 
-- [ ] Should contain PIC username (`charleszhang`)
+- [x] Should contain PIC username (`charleszhang`)
 
 ### PHP
 
 - [ ] `login.php`
   - [ ] HTML
-    - [ ] `<title>` should contain "Shut the Box"
-    - [ ] `<h1>` in the `<header>` should say "Welcome! Ready to play "Shut The Box"?"
-    - [ ] `<section>`
-      - [ ] `<h2>` saying "Login"
-      - [ ] `<p>` saying "In order to play you need the password."
-      - [ ] `<p>` saying "“If you know it, please enter it below and login."
-    - [ ] `<fieldset>` containing a `<form>` with `method="POST"`
-      - [ ] `<label>` saying "Password:"
-      - [ ] `<input>` with `type="text"`
-      - [ ] `<input>` with `type=submit` and `value="Login"`
-    - [ ] `<footer>` with copyright information
+    - [x] `<title>` should contain "Shut the Box"
+    - [x] `<h1>` in the `<header>` should say "Welcome! Ready to play "Shut The Box"?"
+    - [x] `<section>`
+      - [x] `<h2>` saying "Login"
+      - [x] `<p>` saying "In order to play you need the password."
+      - [x] `<p>` saying "If you know it, please enter it below and login."
+    - [x] `<fieldset>` containing a `<form>` with `method="POST"`
+      - [x] `<label>` saying "Password:"
+      - [x] `<input>` with `type="password"`
+      - [x] `<input>` with `type=submit` and `value="Login"`
+    - [x] `<footer>` with copyright information
   - [ ] PHP
     - [ ] If the correct password is submitted, a PHP session with the name `shutTheBox` should record the user as being `loggedin`, and the user should be redirected to `welcome.php`
     - [ ] If an incorrect password is submitted, a PHP session with the name `shutTheBox` should record the user as being not `loggedin`, and the user should stay on the same page, with the message "Invalid password!"
@@ -35,12 +35,12 @@
 
 ### JS
 
-- [ ] `username.js`
-  - [ ] Should be copied from Homework 4
-- [ ] `shut_the_box.js`
-  - [ ] Should be copied from Homework 4
-- [ ] `welcome.js`
-  - [ ] Update file extensions from `.html` to `.php`
+- [x] `username.js`
+  - [x] Should be copied from Homework 4
+- [x] `shut_the_box.js`
+  - [x] Should be copied from Homework 4
+- [x] `welcome.js`
+  - [x] Update file extensions from `.html` to `.php`
 
 ### Submission
 
