@@ -8,8 +8,8 @@
 
 ### PHP
 
-- [ ] `login.php`
-  - [ ] HTML
+- [x] `login.php`
+  - [x] HTML
     - [x] `<title>` should contain "Shut the Box"
     - [x] `<h1>` in the `<header>` should say "Welcome! Ready to play "Shut The Box"?"
     - [x] `<section>`
@@ -21,11 +21,11 @@
       - [x] `<input>` with `type="password"`
       - [x] `<input>` with `type=submit` and `value="Login"`
     - [x] `<footer>` with copyright information
-  - [ ] PHP
-    - [ ] If the correct password is submitted, a PHP session with the name `shutTheBox` should record the user as being `loggedin`, and the user should be redirected to `welcome.php`
-    - [ ] If an incorrect password is submitted, a PHP session with the name `shutTheBox` should record the user as being not `loggedin`, and the user should stay on the same page, with the message "Invalid password!"
-  - [ ] `h_password.txt`
-    - [ ] Should contain a hashed version of the password "Immutable"
+  - [x] PHP
+    - [x] If the correct password is submitted, a PHP session with the name `shutTheBox` should record the user as being `loggedin`, and the user should be redirected to `welcome.php`
+    - [x] If an incorrect password is submitted, a PHP session with the name `shutTheBox` should record the user as being not `loggedin`, and the user should stay on the same page, with the message "Invalid password!"
+  - [x] `h_password.txt`
+    - [x] Should contain a hashed version of the password "Immutable"
 - [ ] `welcome.php`
   - [ ] Use PHP sessions to redirect a user to `login.php` if they are not `loggedin`
 - [ ] `shut_the_box.php`

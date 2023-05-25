@@ -1,7 +1,35 @@
 #!/usr/local/bin/php
 <?php
+
+// Set up session
+session_save_path(__DIR__ . "/sessions/");
+session_name("shutTheBox");
+session_start();
+
+function checkPassword($password, &$invalidPassword)
+{
+    // Get correct hashed password
+    $passFile = @fopen("h_password.txt", "r") or die("Unable to find h_password.txt");
+    $hPassword = fgets($passFile);
+    fclose($passFile);
+
+    // Check submitted password
+    if (hash("md5", $password) === $hPassword) {
+        $_SESSION["loggedin"] = true;
+    } else {
+        $_SESSION["loggedin"] = false;
+        $invalidPassword = true;
+    }
+}
+
+// Check for password
+$invalidPassword = false;
 if (isset($_POST["submittedPassword"])) {
-    echo hash("md5", $_POST["submittedPassword"]);
+    checkPassword($_POST["submittedPassword"], $invalidPassword);
+    if (!$invalidPassword) {
+        header("Location: welcome.php");
+        exit;
+    }
 }
 ?>
 
@@ -30,6 +58,11 @@ if (isset($_POST["submittedPassword"])) {
                 <input type="submit" value="Login">
             </form>
         </fieldset>
+        <?php
+        if ($invalidPassword) {
+            echo "<p>Invalid password!</p>";
+        }
+        ?>
     </main>
     <footer>&copy; Charles Zhang, 2023</footer>
 </body>
