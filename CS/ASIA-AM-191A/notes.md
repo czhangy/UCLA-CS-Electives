@@ -237,7 +237,6 @@ Nothing to see here!
   - Individual Coding Sessions
   - Pair Coding Sessions
     - Work side-by-side
-- 
 
 
 
