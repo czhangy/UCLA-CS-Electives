@@ -30,6 +30,8 @@
 | Project                           | Score |
 | :-------------------------------- | :---: |
 | Project #1: Repository and Readme | 20/20 |
-| Project #2: Memo                  | 36/50 |
-| Project #3: Survey                |  ???  |
+| Project #2: Memo                  | 48/50 |
+| Project #3: Survey                | 14/15 |
+| Project #4: Wireframes            |  ???  |
+| Project #5: Rough Draft           |  ???  |
 
