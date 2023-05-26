@@ -675,21 +675,79 @@ Nothing to see here!
 
 ## Lecture 22: Passwords and Cookies
 
-- `$_SERVER['PHP_SELF']`
-  - Can be used to redirect to same page
-- `hash($algo, $str)`
-  - Used to hash string `$str` using algorithm `$algo`
-  - A possible algorithm to use is `md2` or `md5`
+- Passwords
+  - `$_SERVER['PHP_SELF']`
+    - Can be used to redirect to same page
 
-- `setcookie($name, $value, $expire_time)`
-  - Defines a cookie with name `$name` of value `$value` and expiration time `$expire_time` seconds to be sent along with the rest of the HTTP headers
-  - Must be sent before any output from your script
+  - `hash($algo, $str)`
+    - Used to hash string `$str` using algorithm `$algo`
+    - A possible algorithm to use is `md2` or `md5`
 
-- `$_COOKIE`
-  - Superglobal that is used to access cookies
+- Cookies
+  - `setcookie($name, $value, $expire_time)`
+    - Defines a cookie with name `$name` of value `$value` and expiration time `$expire_time` seconds to be sent along with the rest of the HTTP headers
+    - Must be sent before any output from your script
+
+  - `$_COOKIE`
+    - Superglobal that is used to access cookies
 
 
 
 
-## Lecture 23:
+## Lecture 23: Timeouts and the Event Loop
 
+- Timeouts
+
+  - `setTimeout()`
+
+    - Takes in the following parameters:
+
+      - `callbackFunction`: the function object that will be called
+      - `timeInMilliseconds`: the number of milliseconds before `callbackFunction` will be called
+      - `args`: any arguments to assign to `callbackFunction`
+
+    - Example:
+
+      - ```js
+        function delayedAlert(timeInSecs) {
+          setTimeout(alert, timeInSecs * 1000, `${timeInSecs} seconds have passed`);
+        }
+        ```
+
+  - `clearTimeout()`
+
+    - Can stop a callback function from `setTimeout()` from executing
+
+    - Takes in a `timeoutID`, which is returned from `setTimeout()`
+
+    - Example:
+
+      - ```js
+        let timeoutID;
+        
+        function delayedAlert(timeInSecs) {
+          timeoutID = setTimeout(alert, timeInSecs * 1000, "Delayed alert");
+        }
+        
+        function cancelAlert() {
+          clearTimeout(timeoutID);
+        }
+        ```
+
+- Event Loop
+
+  - JS is single-threaded => how do timeouts work?
+    - This is true of the JS *runtime*
+    - JS leverages web APIs in your browser to achieve concurrency
+  - For `setTimeout()`:
+    - `setTimeout()` sends the callback function with a timer to the web API, which allows the JS runtime to continue executing code in the meantime
+    - Once the timer completes, the web API sends the callback to the task queue
+    - The event loop manages the task queue, sending the first object in the task queue into the call stack when it's empty
+    - `setTimeout()` with delay `0`:
+      - Since the event loop only passes items to the call stack when it's empty, the `main()` function must finish execution before the callback can be pushed to the stack
+
+
+
+## Lecture 24:
+
+- 
