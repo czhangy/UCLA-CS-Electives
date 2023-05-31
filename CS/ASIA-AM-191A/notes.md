@@ -240,6 +240,12 @@ Nothing to see here!
 
 
 
-## Lecture 17:
+## Lecture 17: Connections with Civil Society
+
+Nothing to see here!
+
+
+
+## Lecture 18:
 
 - 
