@@ -326,6 +326,18 @@ Nothing to see here!
 
 
 
-## Lecture 15:
+## Lecture 15: Syntactic Valence
 
-- 
+Nothing to see here!
+
+
+
+## Lecture 16: Distributed Morphology
+
+Nothing to see here!
+
+
+
+## Lecture 17:
+
+Nothing to see here!
