@@ -70,4 +70,4 @@
   - `shut_the_box.js`
 
 - [x] Submit to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW7)
-- [ ] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
+- [x] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
