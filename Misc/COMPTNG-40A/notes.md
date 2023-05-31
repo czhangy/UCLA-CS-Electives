@@ -748,6 +748,34 @@ Nothing to see here!
 
 
 
-## Lecture 24:
+## Lecture 24: AJAX GET Requests
+
+- AJAX Request
+
+  - ```js
+    function makeRequest (filename) {
+      const request = new XmlHttpRequest();
+    	request.open("GET", filename + "?v=" + Math.random());
+      request.send();
+    }
+    ```
+
+    - `open(method, url)` initializes a new request or re-initialized an opened request with HTTP method `method` to `url`
+    - `send()` sends a request to the server
+      - If the request is asynchronous, this method returns immediately after the request is sent
+    - `onreadystatechange` is an event that fires as the response progresses through various stages of done-ness
+      - `readyState` defines the possible states
+        - `DONE` is represented by the value `4`
+      - `onload` is a more modern event, only firing when the response is ready
+    - `status` defines the response code of the request after it is completed
+    - `responseText` displays the body of the response in string format
+
+  - This request uses a web API to function, so it will not block other JS functionality
+
+    - Any JS run on the resulting response *will* block JS functionality
+
+
+
+## Lecture 25:
 
 - 
