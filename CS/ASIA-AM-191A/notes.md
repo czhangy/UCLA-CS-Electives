@@ -246,6 +246,12 @@ Nothing to see here!
 
 
 
-## Lecture 18:
+## Lecture 18: Mapplications as Stories
+
+Nothing to see here!
+
+
+
+## Lecture 19:
 
 - 
