@@ -7,7 +7,7 @@ if (isset($_POST['username']) && isset($_POST['score'])) {
 function saveScore()
 {
     isset($_POST['username']);
-    $file = @fopen('scores.txt', 'w');
+    $file = @fopen('scores.txt', 'a');
     fwrite($file, $_POST['username'] .  " " . $_POST['score'] . "\n");
     fclose($file);
 }
