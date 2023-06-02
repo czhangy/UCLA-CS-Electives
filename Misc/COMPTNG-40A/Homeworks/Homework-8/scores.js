@@ -29,7 +29,7 @@ function makeGETRequest() {
 	const request = new XMLHttpRequest();
 	request.onload = function () {
 		if (this.status === 200) {
-			document.getElementById("scores").innerHTML += this.responseText
+			document.getElementById("scores").innerHTML = this.responseText
 				.split("\n")
 				.join("<br>");
 		}
