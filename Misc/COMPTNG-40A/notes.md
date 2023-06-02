@@ -790,7 +790,8 @@ Nothing to see here!
         }
       };
       request.open("POST", "post.php")
-      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      request.send('val1=8&val2=ate');
     }
     ```
 

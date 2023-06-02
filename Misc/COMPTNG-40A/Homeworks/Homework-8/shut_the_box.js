@@ -102,6 +102,21 @@ function endGame() {
 	}
 	// Alert user of score
 	alert(`Your score is ${score}`);
+	// Post user's score
+	makePOSTRequest();
 }
 
-function makePOSTRequest() {}
+function makePOSTRequest() {
+	const request = new XMLHttpRequest();
+	request.onload = function () {
+		if (this.status === 200) {
+			window.location.href = "scores.php";
+		}
+	};
+	request.open("POST", "score.php");
+	request.setRequestHeader(
+		"Content-Type",
+		"application/x-www-form-urlencoded"
+	);
+	request.send(`username=${get_username()}&score=${score}`);
+}

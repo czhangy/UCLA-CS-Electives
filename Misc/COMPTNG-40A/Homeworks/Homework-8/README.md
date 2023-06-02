@@ -43,10 +43,10 @@
   - No changes from HW7 are necessary
 - [x] `welcome.js`
   - No changes from HW7 are necessary
-- [ ] `shut_the_box.js`
-  - [ ] `endGame()`
-    - [ ] Should make an AJAX `POST` request to send the user's username and score to `score.php`
-    - [ ] Redirect to `scores.php` if the `POST` was successful
+- [x] `shut_the_box.js`
+  - [x] `endGame()`
+    - [x] Should make an AJAX `POST` request to send the user's username and score to `score.php`
+    - [x] Redirect to `scores.php` if the `POST` was successful
 
 - [ ] `scores.js`
   - [ ] Should make sure scores are updated every 8 seconds (without refreshing the page)
