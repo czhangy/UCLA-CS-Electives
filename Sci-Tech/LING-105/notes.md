@@ -338,6 +338,6 @@ Nothing to see here!
 
 
 
-## Lecture 17:
+## Lecture 17: Syncretism
 
 Nothing to see here!
