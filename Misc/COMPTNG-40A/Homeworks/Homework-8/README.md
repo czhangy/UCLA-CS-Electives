@@ -14,8 +14,8 @@
   - No changes from HW7 are necessary
 - [x] `shut_the_box.php`
   - [x] Should change one line
-- [ ] `score.php`
-  - [ ] Should write information to `scores.txt` if accessed from `shut_the_box.php`
+- [x] `score.php`
+  - [x] Should write information to `scores.txt` if accessed from `shut_the_box.php`
   - [x] Should not write any information if opened directly
 
 - [ ] `scores.php`
