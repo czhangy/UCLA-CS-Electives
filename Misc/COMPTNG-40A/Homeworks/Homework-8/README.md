@@ -4,7 +4,7 @@
 
 ### README
 
-- [ ] Should contain PIC username (`charleszhang`)
+- [x] Should contain PIC username (`charleszhang`)
 
 ### PHP
 

@@ -804,8 +804,8 @@ Nothing to see here!
     </p>
     
     <?php
-    	echo $_POST['val1'];
-    	echo $_POST['val2'];
+    	$file = fopen('file.txt', 'w');
+    	fclose($file);
     ?>
     ```
 
