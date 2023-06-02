@@ -34,7 +34,7 @@ function makeGETRequest() {
 				.join("<br>");
 		}
 	};
-	request.open("GET", "score.txt?v=" + Math.random());
+	request.open("GET", "scores.txt?v=" + Math.random());
 	request.send();
 }
 
