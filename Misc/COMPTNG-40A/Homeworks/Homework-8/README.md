@@ -16,7 +16,7 @@
   - [x] Should change one line
 - [ ] `score.php`
   - [ ] Should write information to `scores.txt` if accessed from `shut_the_box.php`
-  - [ ] Should not write any information if opened directly
+  - [x] Should not write any information if opened directly
 
 - [ ] `scores.php`
   - [ ] HTML

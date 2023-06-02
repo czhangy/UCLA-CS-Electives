@@ -824,6 +824,11 @@ Nothing to see here!
 
     - `delete(param, value)` can be used to delete a param value
 
+  - JSON
+
+    - Can be encoded in JS with `stringify(obj)`
+    - Can be decoded in PHP with `json_decode(str)`
+
 
 
 ## Lecture 26:
