@@ -776,6 +776,43 @@ Nothing to see here!
 
 
 
-## Lecture 25:
+## Lecture 25: AJAX POST Requests
+
+- AJAX POST
+
+  - ```js
+    // JS
+    function makePOSTRequest() {
+      const request = new XMLHttpRequest();
+      request.onload = function () {
+        if (this.status === 200) {
+          document.getElementById('response').innerHTML += this.responseText;
+        }
+      };
+      request.open("POST", "post.php")
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    }
+    ```
+
+  - ```php+HTML
+    // PHP
+    
+    <?php header('Content-Type: text/plain; charset=utf-8'); ?>
+      
+    <p>
+      From the PHP script &hellip
+    </p>
+    
+    <?php
+    	echo $_POST['val1'];
+    	echo $_POST['val2'];
+    ?>
+    ```
+
+    - 
+
+
+
+## Lecture 26:
 
 - 
