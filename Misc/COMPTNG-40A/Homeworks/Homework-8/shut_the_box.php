@@ -23,6 +23,7 @@ if (!isset($_COOKIE["username"])) {
 <head>
     <meta charset="UTF-8" />
     <title>Shut The Box</title>
+    <script src="username.js" defer></script>
     <script src="shut_the_box.js" defer></script>
 </head>
 

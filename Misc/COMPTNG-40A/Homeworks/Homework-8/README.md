@@ -8,12 +8,12 @@
 
 ### PHP
 
-- [ ] `login.php` and `h_password.txt`
+- [x] `login.php` and `h_password.txt`
   - No changes from HW7 are necessary
-- [ ] `welcome.php`
+- [x] `welcome.php`
   - No changes from HW7 are necessary
-- [ ] `shut_the_box.php`
-  - [ ] Should change one line
+- [x] `shut_the_box.php`
+  - [x] Should change one line
 - [ ] `score.php`
   - [ ] Should write information to `scores.txt` if accessed from `shut_the_box.php`
   - [ ] Should not write any information if opened directly
@@ -39,12 +39,12 @@
 
 ### JS
 
-- [ ] `username.js`
-  - [ ] No changes from HW7 are necessary
-- [ ] `welcome.js`
-  - [ ] No changes from HW7 are necessary
+- [x] `username.js`
+  - No changes from HW7 are necessary
+- [x] `welcome.js`
+  - No changes from HW7 are necessary
 - [ ] `shut_the_box.js`
-  - [ ] `finish()`
+  - [ ] `endGame()`
     - [ ] Should make an AJAX `POST` request to send the user's username and score to `score.php`
     - [ ] Redirect to `scores.php` if the `POST` was successful
 

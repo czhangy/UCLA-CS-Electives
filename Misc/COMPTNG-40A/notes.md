@@ -809,7 +809,19 @@ Nothing to see here!
     ?>
     ```
 
-    - 
+  - `URLSearchParams`
+
+    - ```js
+      const url_sp = new URLSearchParams();
+      
+      url_sp.append('radio', 'A'); // "radio=A"
+      ```
+
+    - `toString()` converts the object into string format
+
+    - `set(param, value)` can be used to change a param value
+
+    - `delete(param, value)` can be used to delete a param value
 
 
 

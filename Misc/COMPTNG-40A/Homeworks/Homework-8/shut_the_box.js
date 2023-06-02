@@ -103,3 +103,5 @@ function endGame() {
 	// Alert user of score
 	alert(`Your score is ${score}`);
 }
+
+function makePOSTRequest() {}
