@@ -1,7 +1,13 @@
 // Set up click handlers
-document.getElementById("play-again").addEventListener(() => restartGame());
-document.getElementById("start-update").addEventListener(() => startUpdate());
-document.getElementById("stop-update").addEventListener(() => stopUpdate());
+document
+	.getElementById("play-again")
+	.addEventListener("click", () => restartGame());
+document
+	.getElementById("start-update")
+	.addEventListener("click", () => startUpdate());
+document
+	.getElementById("stop-update")
+	.addEventListener("click", () => stopUpdate());
 
 let timeoutID = null;
 
@@ -31,3 +37,5 @@ function makeGETRequest() {
 	request.open("GET", "score.txt?v=" + Math.random());
 	request.send();
 }
+
+makeGETRequest();
