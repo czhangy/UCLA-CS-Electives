@@ -32,6 +32,7 @@
 | Project #1: Repository and Readme | 20/20 |
 | Project #2: Memo                  | 48/50 |
 | Project #3: Survey                | 14/15 |
-| Project #4: Wireframes            |  ???  |
-| Project #5: Rough Draft           |  ???  |
+| Project #4: Wireframes            | 48/50 |
+| Project #5: Rough Draft           | 52/60 |
+| Project #6: Final Draft           |  ???  |
 
