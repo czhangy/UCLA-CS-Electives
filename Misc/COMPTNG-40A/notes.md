@@ -831,6 +831,16 @@ Nothing to see here!
 
 
 
-## Lecture 26:
+## Lecture 26: Basic CSS
+
+- Include into HTML with:
+
+  - ```html
+    <link rel="stylesheet" href="style.css">
+    ```
+
+
+
+## Lecture 27:
 
 - 
