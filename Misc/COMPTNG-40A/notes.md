@@ -841,6 +841,50 @@ Nothing to see here!
 
 
 
-## Lecture 27:
+## Lecture 27: Pseudo-Classes/Elements and Position
+
+- Pseudo-Classes
+  - Denoted by `:`
+  - `:focus`
+    - Exists on `<input>` elements
+    - Activates when clicked on
+  - `:hover`
+    - Exists on all elements
+    - Essentially, `mouseover`
+- Pseudo-Elements
+  - Denoted by `::`
+  - `::first-line`
+    - Selects the first line of a text body
+  - etc.
+- Position
+  - `static`
+    - Positioned according to the normal flow of the page
+    - Not affected by `top`, `bottom`, etc.
+    - "Default" position
+  - `relative`
+    - Positioned relative to its normal poisition
+    - Setting properties like `top`, `bottom`, etc. will cause it to be moved away from its usual position
+    - Other content doesn't get adjusted to fit into gaps left by the element
+  - `fixed`
+    - Positioned relative to the viewport
+      - Stays in the same place even when scrolled
+    - Properties like `top`, `bottom`, etc. are used to position the element
+    - Doesn't leave a gap in the page, the element is removed from the normal flow
+  - `absolute`
+    - Positioned relative to the nearest positioned ancestor
+    - Element is taken out of its normal flow
+    - If an `absolute` positioned element has no positioned ancestor, it's positioned relative to the document body
+  - `sticky`
+    - Positioned based on the user's scroll position
+    - Toggles between `relative` and `fixed` depending on the scroll position
+  - `z-index`
+    - Only works for positioned elements
+- Style in JS
+  - All elements have a `style` property
+    - CSS properties get converted to camelCase
+
+
+
+## Lecture 28:
 
 - 
