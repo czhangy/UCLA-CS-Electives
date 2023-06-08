@@ -252,6 +252,12 @@ Nothing to see here!
 
 
 
-## Lecture 19:
+## Lecture 19: Final Finishing Touches
 
-- 
+Nothing to see here!
+
+
+
+## Lecture 20: Closing Remarks
+
+Nothing to see here!
