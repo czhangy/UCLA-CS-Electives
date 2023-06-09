@@ -20,4 +20,4 @@
 |      Prospectus       | 20/20 |
 | Midpoint Development  | 27/27 |
 |      Final Paper      |  ???  |
-| Research Presentation |  ???  |
+| Research Presentation | 10/10 |
