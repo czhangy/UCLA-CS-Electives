@@ -885,6 +885,6 @@ Nothing to see here!
 
 
 
-## Lecture 28:
+## Lecture 28: SQLite
 
-- 
+Nothing to see here!
