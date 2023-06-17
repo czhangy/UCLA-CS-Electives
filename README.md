@@ -4,7 +4,7 @@
 
 | Course | Term | Grade |
 |:---:|:---:|:---:|
-| ASIA AM 191A | Spring '23 | IP |
+| ASIA AM 191A | Spring '23 | A |
 | CS 143 | Fall '21 | A |
 | CS M146 |  Fall '22  |  A-  |
 | CS 161  | Winter '22 |  A+   |
