@@ -2,7 +2,7 @@
 
 # Silvestri - Spring '23
 
-## Overall: IP | Raw Percentage: IP
+## Overall: A+ | Raw Percentage: 102.0%
 
 ## Grading
 
@@ -19,5 +19,5 @@
 | :-------------------: | :---: |
 |      Prospectus       | 20/20 |
 | Midpoint Development  | 27/27 |
-|      Final Paper      |  ???  |
+|      Final Paper      | 38/38 |
 | Research Presentation | 10/10 |
