@@ -37,5 +37,5 @@
 - [x] The submission should include two files:
   - [x] `README.txt`
   - [x] `tidy.php`
-- [ ] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
+- [x] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
 - [x] Submit to the [PIC server](https://www.pic.ucla.edu/~charleszhang/HW6/tidy.php)
