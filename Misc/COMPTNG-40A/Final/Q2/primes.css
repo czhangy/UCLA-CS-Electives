@@ -1,0 +1,12 @@
+table {
+  text-align: center;
+}
+
+td {
+  width: 28px;
+  border: 1px solid black;
+}
+
+.not_prime {
+  background-color: black;
+}
