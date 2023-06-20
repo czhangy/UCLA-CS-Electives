@@ -30,6 +30,6 @@
 
 |   Course    |    Term    | Grade |
 | :---------: | :--------: | :---: |
-| COMPTNG 40A | Spring '23 |  IP   |
+| COMPTNG 40A | Spring '23 |   A   |
 |   ENGR 23   |  Fall '21  |   P   |
 |  PSYCH 85   | Summer '20 |  A+   |
