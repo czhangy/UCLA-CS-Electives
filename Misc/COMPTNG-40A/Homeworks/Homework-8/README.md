@@ -74,5 +74,5 @@
 - [x] Submit to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW8)
   - [x] Ensure `scores.txt` is an empty text file
   - [x] Make sure a folder named `sessions` with 755 permissions exists
-- [ ] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
+- [x] Submit to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
   - Don't submit `scores.txt` to Gradescope
