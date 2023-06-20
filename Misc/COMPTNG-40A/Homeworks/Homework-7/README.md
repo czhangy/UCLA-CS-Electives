@@ -33,7 +33,7 @@
 - [x] `shut_the_box.php`
   - [x] Use PHP sessions to redirect a user to `login.php` if they are not `loggedin`
   - [x] Use PHP cookies so that if a user is logged in but has not specified a username, they are redirected back to `welcome.php`
-  - [x] Use PHP and 2 for-loops to create the box selection table
+  - [x] Use PHP for-loops to create the box selection table
 
 ### JS
 
