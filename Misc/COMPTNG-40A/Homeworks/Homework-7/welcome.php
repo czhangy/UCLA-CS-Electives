@@ -6,9 +6,9 @@ session_save_path(__DIR__ . "/sessions/");
 session_name("shutTheBox");
 session_start();
 
-// Redirect if not logged in
-if (!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
-    header("Location: login.php");
+// Check for numbers
+if (!isset($_SESSION["num1"]) || !isset($_SESSION["num2"])) {
+    header("Location: pick_numbers.html");
 }
 ?>
 

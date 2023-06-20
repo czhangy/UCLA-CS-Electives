@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>PIC 40A Final</title>
+	</head>
+
+	<body>
+		<header>
+			<h1>PIC 40A Final - Pick Numbers</h1>
+		</header>
+
+		<main>
+			<form method="POST" action="numbers.php">
+				<label for="first-num">First number:</label>
+				<input
+					id="first-num"
+					type="text"
+					required
+					pattern="[0-9]{1,4}"
+					name="num1"
+				/>
+
+				<br />
+
+				<label for="second-num">Second number:</label>
+				<input
+					id="second-num"
+					type="text"
+					required
+					pattern="[0-9]{1,4}"
+					name="num2"
+				/>
+
+				<br />
+
+				<input type="submit" value="Make selection" />
+			</form>
+		</main>
+
+		<footer>
+			<hr />
+			<small> &copy; Michael Andrews, 2023 </small>
+		</footer>
+	</body>
+</html>
