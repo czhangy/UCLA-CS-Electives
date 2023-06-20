@@ -98,5 +98,5 @@
   - [x] `phish.js`
   - [x] `holiday1.html`
   - [x] `holiday2.html`
-- [ ] Files must be uploaded to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
+- [x] Files must be uploaded to [Gradescope](https://bruinlearn.ucla.edu/courses/160942/external_tools/408)
 - [x] Files must be uploaded to the [PIC server](http://www.pic.ucla.edu/~charleszhang/HW5/site_g.html)
